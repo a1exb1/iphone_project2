@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>B9417E3B-82E2-419A-8224-C6381F7B1537</string>
+	<string>048578D8-DBB5-43EA-977A-97443FF9B597</string>
 	<key>IDESourceControlProjectName</key>
 	<string>testGit</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>51C447FC-2F89-45F3-8CFC-2F3384FFEEFD</key>
-		<string>https://github.com/a1exb1/iphone_project.git</string>
+		<key>53E80C59-1459-46DB-B747-DC7604F91AF7</key>
+		<string>https://github.com/a1exb1/iphone_project2.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>testGit.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>51C447FC-2F89-45F3-8CFC-2F3384FFEEFD</key>
+		<key>53E80C59-1459-46DB-B747-DC7604F91AF7</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/a1exb1/iphone_project.git</string>
+	<string>https://github.com/a1exb1/iphone_project2.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>51C447FC-2F89-45F3-8CFC-2F3384FFEEFD</string>
+	<string>53E80C59-1459-46DB-B747-DC7604F91AF7</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>51C447FC-2F89-45F3-8CFC-2F3384FFEEFD</string>
+			<string>53E80C59-1459-46DB-B747-DC7604F91AF7</string>
 			<key>IDESourceControlWCCName</key>
-			<string>iphone_project</string>
+			<string>iphone_project2</string>
 		</dict>
 	</array>
 </dict>
