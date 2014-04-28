@@ -10,4 +10,21 @@
 
 @implementation Student
 
+- (id)init {
+    
+    self = [super init];
+    
+    if (self) {
+        
+        self.studentID = 0;
+        self.name = [NSString stringWithFormat:@"Noname"];
+       
+        // name = jeff;
+        
+    }
+    
+    return self;
+    
+}
+
 @end

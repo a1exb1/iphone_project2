@@ -28,6 +28,15 @@ NSMutableArray *viewStudentsArray;
     return self;
 }
 
+-(IBAction)plus:(id)sender
+{
+    Student *student = [[Student alloc] init];
+    StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
+    [student setStudentCourseLink: studentCourseLink];
+    _studentSender=student;
+    [self performSegueWithIdentifier:@"StudentsToEditStudent" sender:self];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

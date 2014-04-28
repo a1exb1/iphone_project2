@@ -204,7 +204,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Students" id="abH-H7-deW">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="pwT-q3-qaI"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="pwT-q3-qaI">
+                            <connections>
+                                <action selector="plus:" destination="EO7-ZM-hG2" id="S16-bV-VFm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mainTableView" destination="f6n-zj-ygf" id="48R-sa-6VB"/>

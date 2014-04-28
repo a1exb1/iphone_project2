@@ -10,6 +10,23 @@
 
 @implementation StudentCourseLink
 
+- (id)init {
+    
+    self = [super init];
+    
+    if (self) {
+        self.Weekday = 1;
+        self.Hour = 10;
+        self.Mins = 00;
+        self.Duration = 30;
+        
+        // name = jeff;
+        
+    }
+    
+    return self;
+    
+}
 
 -(void) load{
     
