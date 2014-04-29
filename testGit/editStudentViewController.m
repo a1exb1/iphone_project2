@@ -40,7 +40,7 @@
                        @"Mon",
                        @"Tue",
                        @"Wed",
-                    @"Thu",
+                       @"Thu",
                        @"Fri",
                        @"Sat",
                        nil];
@@ -55,10 +55,7 @@
                    @"00",@"5",@"10",@"15",@"20",@"25",@"30",@"35",@"40",@"45",@"50",@"55",nil];
                      
     
-    _DurationArray = [[NSArray alloc]
-                      
-                      initWithObjects:
-                      
+    _DurationArray = [[NSArray alloc] initWithObjects:
                       @"20",@"25",@"30",@"35",@"40",@"45",@"50",@"55",@"60",@"65",@"70",@"75",@"80",@"85",@"90",nil];
 
     
@@ -66,6 +63,16 @@
 initWithObjects: _weekdayArray, _HoursArray, _MinutesArray, _DurationArray, nil];
     
     
+    [self.lessonTimePicker selectRow:[[_student studentCourseLink] Weekday] inComponent:0 animated:YES];
+    
+    [self.lessonTimePicker selectRow:[[_student studentCourseLink] Hour] inComponent:1 animated:YES];
+    
+    int minsFromArray = [[_student studentCourseLink] Mins] / 5;
+    int durationFromArray = [[_student studentCourseLink] Duration] / 5;
+    durationFromArray = durationFromArray - 4;
+    
+    [self.lessonTimePicker selectRow:minsFromArray inComponent:2 animated:YES];
+    [self.lessonTimePicker selectRow:durationFromArray inComponent:3 animated:YES];
 }
 
 
@@ -115,6 +122,24 @@ initWithObjects: _weekdayArray, _HoursArray, _MinutesArray, _DurationArray, nil]
 -(IBAction)saveStudent:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+    
+    int newWeekday = (int)[_lessonTimePicker selectedRowInComponent:0] ;
+    int newHour = [[_HoursArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:1 ]] intValue];
+    int newMins = [[_MinutesArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
+    int newDuration = [[_DurationArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
+    
+    Student *newStudent = [[Student alloc] init];
+    [newStudent setStudentID:[_student studentID]];
+    [newStudent setName:[_student name]];
+    
+    StudentCourseLink *newStudentCourseLink = [[StudentCourseLink alloc] init];
+    [newStudentCourseLink setWeekday:newWeekday];
+    [newStudentCourseLink setHour:newHour];
+    [newStudentCourseLink setHour:newMins];
+    [newStudentCourseLink setHour:newDuration];
+    [newStudent setStudentCourseLink:newStudentCourseLink];
+    
+    //needs to save this
 }
 
 @end
