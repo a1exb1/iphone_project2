@@ -17,6 +17,7 @@
 @property int Weekday;
 @property int Hour;
 @property int Mins;
+@property NSString *Course;
 
 -(void) load;
 -(void) loadByID: (long)linkID;

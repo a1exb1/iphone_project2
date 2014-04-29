@@ -8,13 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Student.h"
-@interface editStudentViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface editStudentViewController : UIViewController
 
 @property NSString *studentID;
 @property Student *student;
-@property NSArray *weekdayArray;
-@property NSArray *HoursArray;
-@property NSArray *MinutesArray;
-@property NSArray *DurationArray;
-@property NSArray *ComponentsArray;
+
 @end

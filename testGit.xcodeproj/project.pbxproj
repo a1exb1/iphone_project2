@@ -32,6 +32,8 @@
 		E42B6112190C0582001B977F /* studentNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E42B6111190C0582001B977F /* studentNote.m */; };
 		E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430DCB4190A582B00DEFD7C /* coursesViewController.m */; };
 		E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430DCB7190A5BB200DEFD7C /* studentsViewController.m */; };
+		E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E441CEF419100F8600088FEE /* editStudentAndSlotViewController.m */; };
+		E441CEF819101C7D00088FEE /* editLessonSlotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E441CEF719101C7D00088FEE /* editLessonSlotViewController.m */; };
 		E4494DD4190D84B700585CB8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E4494DD3190D84B700585CB8 /* User.m */; };
 		E4494DD7190D851E00585CB8 /* Tutor.m in Sources */ = {isa = PBXBuildFile; fileRef = E4494DD6190D851E00585CB8 /* Tutor.m */; };
 		E47352801900279E008006EE /* indexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E473527F1900279E008006EE /* indexViewController.m */; };
@@ -91,6 +93,10 @@
 		E430DCB4190A582B00DEFD7C /* coursesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = coursesViewController.m; sourceTree = "<group>"; };
 		E430DCB6190A5BB200DEFD7C /* studentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = studentsViewController.h; sourceTree = "<group>"; };
 		E430DCB7190A5BB200DEFD7C /* studentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = studentsViewController.m; sourceTree = "<group>"; };
+		E441CEF319100F8600088FEE /* editStudentAndSlotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editStudentAndSlotViewController.h; sourceTree = "<group>"; };
+		E441CEF419100F8600088FEE /* editStudentAndSlotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editStudentAndSlotViewController.m; sourceTree = "<group>"; };
+		E441CEF619101C7D00088FEE /* editLessonSlotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editLessonSlotViewController.h; sourceTree = "<group>"; };
+		E441CEF719101C7D00088FEE /* editLessonSlotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editLessonSlotViewController.m; sourceTree = "<group>"; };
 		E4494DD2190D84B700585CB8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		E4494DD3190D84B700585CB8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		E4494DD5190D851E00585CB8 /* Tutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutor.h; sourceTree = "<group>"; };
@@ -181,6 +187,10 @@
 				E430DCB7190A5BB200DEFD7C /* studentsViewController.m */,
 				E4F96D11190AA12B008D75D6 /* editStudentViewController.h */,
 				E4F96D12190AA12B008D75D6 /* editStudentViewController.m */,
+				E441CEF319100F8600088FEE /* editStudentAndSlotViewController.h */,
+				E441CEF419100F8600088FEE /* editStudentAndSlotViewController.m */,
+				E441CEF619101C7D00088FEE /* editLessonSlotViewController.h */,
+				E441CEF719101C7D00088FEE /* editLessonSlotViewController.m */,
 			);
 			name = manage;
 			sourceTree = "<group>";
@@ -428,12 +438,14 @@
 				E40DF297190017E100E1332A /* ABViewController.m in Sources */,
 				795B641F190E599700A2C879 /* ToDoViewController.m in Sources */,
 				E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */,
+				E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */,
 				795B6411190E45D900A2C879 /* UIImage+ImageWithUIView.m in Sources */,
 				E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */,
 				E40DF28E190017E100E1332A /* ABAppDelegate.m in Sources */,
 				E47352801900279E008006EE /* indexViewController.m in Sources */,
 				795B6422190E5BC400A2C879 /* Student.m in Sources */,
 				795B6410190E45D900A2C879 /* ECSlidingViewController.m in Sources */,
+				E441CEF819101C7D00088FEE /* editLessonSlotViewController.m in Sources */,
 				E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */,
 				E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */,
 				E4494DD7190D851E00585CB8 /* Tutor.m in Sources */,

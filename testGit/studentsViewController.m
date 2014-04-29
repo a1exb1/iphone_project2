@@ -7,11 +7,13 @@
 //
 
 #import "studentsViewController.h"
+#import "editStudentAndSlotViewController.h"
 #import "editStudentViewController.h"
 
 @interface studentsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *plusBtn;
 
 @end
 
@@ -33,8 +35,9 @@ NSMutableArray *viewStudentsArray;
     Student *student = [[Student alloc] init];
     StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
     [student setStudentCourseLink: studentCourseLink];
-    _studentSender=student;
-    [self performSegueWithIdentifier:@"StudentsToEditStudent" sender:self];
+    _studentSender = student;
+    _sender = 1;
+    [self performSegueWithIdentifier:@"newStudentSegue" sender:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -74,6 +77,9 @@ NSMutableArray *viewStudentsArray;
     viewStudentsArray = [[NSMutableArray alloc] init];
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
+    // need course object for title here
+    //self.title = [_cou];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -145,11 +151,12 @@ NSMutableArray *viewStudentsArray;
     [studentCourseLink setHour:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Hour"] intValue]];
     [studentCourseLink setMins:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Minute"] intValue]];
     [studentCourseLink setDuration:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]];
+    [studentCourseLink setCourse:[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"CourseName"]];
 
     [student setStudentCourseLink: studentCourseLink];
     
-    _studentSender=student;
-    [self performSegueWithIdentifier:@"StudentsToEditStudent" sender:self];
+    _studentSender = student;
+    [self performSegueWithIdentifier:@"StudentsToEditStudentAndLink" sender:self];
     
 }
 
@@ -205,10 +212,19 @@ NSMutableArray *viewStudentsArray;
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    editStudentViewController *item = segue.destinationViewController;
-    item.studentID = self.studentIDSender;
-    item.student = self.studentSender;
+{    
+    if (_sender == 1){
+        editStudentViewController *item = segue.destinationViewController;
+        //item.studentID = self.studentIDSender;
+        item.student = self.studentSender;
+    }
+    else{
+        editStudentAndSlotViewController *item = segue.destinationViewController;
+        //item.studentID = self.studentIDSender;
+        item.student = self.studentSender;
+    }
+    
+    
 }
 
 

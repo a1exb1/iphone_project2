@@ -20,5 +20,6 @@
 @property NSArray *uniqueWeekdays;
 
 @property Student *studentSender;
+@property int sender;
 
 @end
