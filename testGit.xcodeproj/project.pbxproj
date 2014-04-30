@@ -34,6 +34,7 @@
 		E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430DCB7190A5BB200DEFD7C /* studentsViewController.m */; };
 		E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E441CEF419100F8600088FEE /* editStudentAndSlotViewController.m */; };
 		E441CEF819101C7D00088FEE /* editLessonSlotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E441CEF719101C7D00088FEE /* editLessonSlotViewController.m */; };
+		E441CEFB19115BF900088FEE /* viewAllStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E441CEFA19115BF900088FEE /* viewAllStudentsViewController.m */; };
 		E4494DD4190D84B700585CB8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E4494DD3190D84B700585CB8 /* User.m */; };
 		E4494DD7190D851E00585CB8 /* Tutor.m in Sources */ = {isa = PBXBuildFile; fileRef = E4494DD6190D851E00585CB8 /* Tutor.m */; };
 		E47352801900279E008006EE /* indexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E473527F1900279E008006EE /* indexViewController.m */; };
@@ -97,6 +98,8 @@
 		E441CEF419100F8600088FEE /* editStudentAndSlotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editStudentAndSlotViewController.m; sourceTree = "<group>"; };
 		E441CEF619101C7D00088FEE /* editLessonSlotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editLessonSlotViewController.h; sourceTree = "<group>"; };
 		E441CEF719101C7D00088FEE /* editLessonSlotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editLessonSlotViewController.m; sourceTree = "<group>"; };
+		E441CEF919115BF900088FEE /* viewAllStudentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viewAllStudentsViewController.h; sourceTree = "<group>"; };
+		E441CEFA19115BF900088FEE /* viewAllStudentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = viewAllStudentsViewController.m; sourceTree = "<group>"; };
 		E4494DD2190D84B700585CB8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		E4494DD3190D84B700585CB8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		E4494DD5190D851E00585CB8 /* Tutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutor.h; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 				E441CEF419100F8600088FEE /* editStudentAndSlotViewController.m */,
 				E441CEF619101C7D00088FEE /* editLessonSlotViewController.h */,
 				E441CEF719101C7D00088FEE /* editLessonSlotViewController.m */,
+				E441CEF919115BF900088FEE /* viewAllStudentsViewController.h */,
+				E441CEFA19115BF900088FEE /* viewAllStudentsViewController.m */,
 			);
 			name = manage;
 			sourceTree = "<group>";
@@ -445,6 +450,7 @@
 				E47352801900279E008006EE /* indexViewController.m in Sources */,
 				795B6422190E5BC400A2C879 /* Student.m in Sources */,
 				795B6410190E45D900A2C879 /* ECSlidingViewController.m in Sources */,
+				E441CEFB19115BF900088FEE /* viewAllStudentsViewController.m in Sources */,
 				E441CEF819101C7D00088FEE /* editLessonSlotViewController.m in Sources */,
 				E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */,
 				E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */,

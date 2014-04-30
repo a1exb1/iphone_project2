@@ -15,7 +15,7 @@
 @end
 
 
-
+int cellClicked = -1;
 
 
 @implementation editStudentAndSlotViewController
@@ -104,12 +104,17 @@
     
     if(indexPath.row == 0) {
         //self.studentSender = _student;
+        cellClicked = 0;
         [self performSegueWithIdentifier:@"studentAndSlotToEditStudent" sender:self];
+        
     }
     
     else if(indexPath.row == 1){
+        cellClicked = 1;
         [self performSegueWithIdentifier:@"studentAndSlotToEditSlot" sender:self];
+        
     }
+    
     
 }
 
@@ -145,7 +150,10 @@
     editStudentViewController *item = segue.destinationViewController;
     item.student = self.student;
     
-    item.editStudentDelegate = self;
+    if(cellClicked == 0){
+        item.editStudentDelegate = self;
+    }
+
     
 }
 

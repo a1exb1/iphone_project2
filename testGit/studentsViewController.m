@@ -9,6 +9,7 @@
 #import "studentsViewController.h"
 #import "editStudentAndSlotViewController.h"
 #import "editStudentViewController.h"
+#import "viewAllStudentsViewController.h"
 
 @interface studentsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -37,7 +38,7 @@ NSMutableArray *viewStudentsArray;
     [student setStudentCourseLink: studentCourseLink];
     _studentSender = student;
     _sender = 1;
-    [self performSegueWithIdentifier:@"newStudentSegue" sender:self];
+    [self performSegueWithIdentifier:@"studentsForCourseToStudentsList" sender:self];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -229,9 +230,9 @@ NSMutableArray *viewStudentsArray;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {    
     if (_sender == 1){
-        editStudentViewController *item = segue.destinationViewController;
+        viewAllStudentsViewController *item = segue.destinationViewController;
         //item.studentID = self.studentIDSender;
-        item.student = self.studentSender;
+        //item.student = self.studentSender;
     }
     else{
         editStudentAndSlotViewController *item = segue.destinationViewController;

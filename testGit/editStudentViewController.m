@@ -10,9 +10,10 @@
 #import "Student.h"
 
 @interface editStudentViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *youSelectedLbl;
+
 @property (weak, nonatomic) IBOutlet UITextField *studentNameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
+@property (weak, nonatomic) IBOutlet UIButton *toSlotBtn;
 
 @end
 
@@ -119,7 +120,6 @@
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
-        NSLog(@"%li", [_student studentID]);
         if ([_student studentID] == 0) {
             [_student setStudentID:[[[_saveResultArray objectAtIndex:0] objectForKey:@"studentid" ] intValue]];
             
@@ -136,6 +136,11 @@
     }
     else{
         self.statusLbl.text = @"Error with saving";
+        self.statusLbl.hidden = NO;
+        
+        //self.toSlotBtn.textInputContextIdentifier = @"";
+        self.toSlotBtn.hidden = NO;
+        
     }
 
 }
