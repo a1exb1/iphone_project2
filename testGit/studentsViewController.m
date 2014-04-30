@@ -40,6 +40,17 @@ NSMutableArray *viewStudentsArray;
     [self performSegueWithIdentifier:@"newStudentSegue" sender:self];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbycourse&id=%@&ts=%f", _courseID, [[NSDate date] timeIntervalSince1970]];
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [[NSURLConnection alloc] initWithRequest: request delegate:self];
+    
+    viewStudentsArray = [[NSMutableArray alloc] init];
+    
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -48,6 +59,11 @@ NSMutableArray *viewStudentsArray;
     if (selection) {
         [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
+    
+    
+    
+    _statusLbl.hidden = NO;
+    _statusLbl.text = @"Loading...";
 }
 
 - (void)viewDidLoad
@@ -59,10 +75,6 @@ NSMutableArray *viewStudentsArray;
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbycourse&id=%@&ts=%f", _courseID, [[NSDate date] timeIntervalSince1970]];
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [[NSURLConnection alloc] initWithRequest: request delegate:self];
     
     daysOfWeekArray = [[NSArray alloc] initWithObjects:
                                 @"Sunday",
@@ -74,12 +86,14 @@ NSMutableArray *viewStudentsArray;
                                 @"Saturday",
                                 nil];
     
-    viewStudentsArray = [[NSMutableArray alloc] init];
+    
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
+    
+    
     // need course object for title here
-    //self.title = [_cou];
+    self.title = _courseName;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -164,6 +178,7 @@ NSMutableArray *viewStudentsArray;
 {
     _data = [[NSMutableData alloc]init];
     _uniqueWeekdays = [[NSArray alloc]init];
+    
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
@@ -192,7 +207,7 @@ NSMutableArray *viewStudentsArray;
         [viewStudentsArray addObject:listOfStudentsForArray];
     }
     [self.mainTableView reloadData];
-    
+        
     if ([_students count] == 0) {
         _statusLbl.text = @"No students, click the plus to add one";
         [_mainTableView setBackgroundColor:[UIColor whiteColor]];

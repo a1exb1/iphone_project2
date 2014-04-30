@@ -17,6 +17,6 @@
 @property NSArray *courses;
 @property NSMutableData *data;
 @property NSString  *courseIDSender;
-
+@property NSString  *courseNameSender;
 
 @end

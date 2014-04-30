@@ -13,6 +13,7 @@
 @interface studentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property NSString *courseID;
+@property NSString *courseName;
 
 @property NSArray *students;
 @property NSMutableData *data;

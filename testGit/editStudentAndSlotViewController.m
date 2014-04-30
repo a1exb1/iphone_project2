@@ -39,6 +39,11 @@
     }
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,8 +52,6 @@
     self.mainTableView.delegate = self;
     
     _cells = [[NSArray alloc] initWithObjects:[_student name], [_student studentCourseLink] , nil];
-    
-    
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -127,6 +130,11 @@
 //    return sectionName;
 //}
 
+-(void)updatedStudent:(Student *)student{
+    _cells = [[NSArray alloc] initWithObjects:[_student name], [_student studentCourseLink] , nil];
+    self.student = student;
+    [_mainTableView reloadData];
+}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -136,6 +144,8 @@
     
     editStudentViewController *item = segue.destinationViewController;
     item.student = self.student;
+    
+    item.editStudentDelegate = self;
     
 }
 

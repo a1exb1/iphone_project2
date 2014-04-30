@@ -8,9 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "Student.h"
+
+@protocol editStudentDelegate <NSObject>
+
+-(void)updatedStudent:(Student *)student;
+
+@end
+
 @interface editStudentViewController : UIViewController
 
 @property NSString *studentID;
 @property Student *student;
+
+@property NSMutableData *data;
+@property NSArray *saveResultArray;
+
+@property (weak, nonatomic) id<editStudentDelegate> editStudentDelegate;
+
 
 @end

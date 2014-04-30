@@ -11,7 +11,8 @@
 
 @interface editStudentViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *youSelectedLbl;
-
+@property (weak, nonatomic) IBOutlet UITextField *studentNameTextField;
+@property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 
 @end
 
@@ -30,8 +31,9 @@
 {
     [super viewDidLoad];
         // Do any additional setup after loading the view.
-    self.youSelectedLbl.text = [NSString stringWithFormat:@"%@", [_student name]];
+    self.studentNameTextField.text = [NSString stringWithFormat:@"%@", [_student name]];
     
+    _saveResultArray = [[NSArray alloc] init];
     
     if([_student studentID] == 0) {
         self.title = @"New Student";
@@ -63,16 +65,28 @@
 
 -(IBAction)saveStudent:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    
     
 //    int newWeekday = (int)[_lessonTimePicker selectedRowInComponent:0] ;
 //    int newHour = [[_HoursArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:1 ]] intValue];
 //    int newMins = [[_MinutesArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
 //    int newDuration = [[_DurationArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
     
-    Student *newStudent = [[Student alloc] init];
-    [newStudent setStudentID:[_student studentID]];
-    [newStudent setName:[_student name]];
+    //_newStudent = [[Student alloc] init];
+    [_student setStudentID:[_student studentID]];
+    [_student setName:self.studentNameTextField.text];
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&name=%@&ts=%f", [_student studentID], [_student name], [[NSDate date] timeIntervalSince1970]];
+    
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
+                 NSASCIIStringEncoding];
+    
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [[NSURLConnection alloc] initWithRequest: request delegate:self];
+
     
 //    StudentCourseLink *newStudentCourseLink = [[StudentCourseLink alloc] init];
 //    [newStudentCourseLink setWeekday:newWeekday];
@@ -81,7 +95,50 @@
 //    [newStudentCourseLink setHour:newDuration];
 //    [newStudent setStudentCourseLink:newStudentCourseLink];
     
+    _saveResultArray = [[NSArray alloc] init];
+    
     //needs to save this
 }
+
+-(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
+{
+    _data = [[NSMutableData alloc]init];
+    
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
+{
+    [_data appendData:theData];
+
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:nil error:nil];
+    
+    if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
+    {
+        [self.editStudentDelegate updatedStudent:
+         _student];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        self.statusLbl.text = @"Error with saving";
+    }
+
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [errorView show];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+//
+
+
+
 
 @end
