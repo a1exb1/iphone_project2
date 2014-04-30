@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Student.h"
 
-@interface viewAllStudentsViewController : UIViewController
+@interface viewAllStudentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property Student *student;
+@property NSArray *students;
+@property NSMutableData *data;
+@property Student *studentSender;
 
 @end

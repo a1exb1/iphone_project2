@@ -43,10 +43,16 @@ NSMutableArray *viewStudentsArray;
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    
+    self.mainTableView.dataSource = self;
+    self.mainTableView.delegate = self;
+    
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbycourse&id=%@&ts=%f", _courseID, [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [[NSURLConnection alloc] initWithRequest: request delegate:self];
+    
+    _sender = -1;
     
     viewStudentsArray = [[NSMutableArray alloc] init];
     
@@ -71,8 +77,7 @@ NSMutableArray *viewStudentsArray;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.mainTableView.dataSource = self;
-    self.mainTableView.delegate = self;
+    
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //
@@ -171,6 +176,9 @@ NSMutableArray *viewStudentsArray;
     [student setStudentCourseLink: studentCourseLink];
     
     _studentSender = student;
+    
+    _sender = 0;
+    
     [self performSegueWithIdentifier:@"StudentsToEditStudentAndLink" sender:self];
     
 }
@@ -232,7 +240,7 @@ NSMutableArray *viewStudentsArray;
     if (_sender == 1){
         viewAllStudentsViewController *item = segue.destinationViewController;
         //item.studentID = self.studentIDSender;
-        //item.student = self.studentSender;
+        item.student = self.studentSender;
     }
     else{
         editStudentAndSlotViewController *item = segue.destinationViewController;

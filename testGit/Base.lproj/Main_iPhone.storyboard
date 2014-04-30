@@ -414,7 +414,7 @@
             </objects>
             <point key="canvasLocation" x="2059" y="-1524"/>
         </scene>
-        <!--View All Students View Controller-->
+        <!--View All Students View Controller - Add student to course-->
         <scene sceneID="MAg-zo-M08">
             <objects>
                 <viewController id="BpR-Kk-nNk" customClass="viewAllStudentsViewController" sceneMemberID="viewController">
@@ -430,11 +430,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="uTd-Fh-s8n">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uTd-Fh-s8n" id="i8o-fH-rNL">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="T0r-2x-a7b" kind="push" identifier="AllStudentsToSlot" id="oFh-nJ-edz"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="zrx-md-bkD"/>
+                    <navigationItem key="navigationItem" title="Add student to course" id="zrx-md-bkD"/>
                     <connections>
                         <outlet property="mainTableView" destination="xSZ-CV-fgq" id="Oh4-Lw-88y"/>
                     </connections>
@@ -1001,7 +1014,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="P5I-tD-urD"/>
-        <segue reference="a2M-xz-gXS"/>
+        <segue reference="koL-fA-Xti"/>
+        <segue reference="oFh-nJ-edz"/>
     </inferredMetricsTieBreakers>
 </document>
