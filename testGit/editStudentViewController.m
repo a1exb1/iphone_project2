@@ -119,10 +119,20 @@
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
-        [self.editStudentDelegate updatedStudent:
-         _student];
+        NSLog(@"%li", [_student studentID]);
+        if ([_student studentID] == 0) {
+            [_student setStudentID:[[[_saveResultArray objectAtIndex:0] objectForKey:@"studentid" ] intValue]];
+            
+            [self performSegueWithIdentifier:@"editStudentToEditSlot" sender:self];
+        }
+        else{
+            [self.editStudentDelegate updatedStudent:
+             _student];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
         
-        [self.navigationController popViewControllerAnimated:YES];
+        
+        
     }
     else{
         self.statusLbl.text = @"Error with saving";
@@ -138,6 +148,15 @@
 }
 //
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    editLessonSlotViewController *view = segue.destinationViewController;
+    
+    // do any setup you need for myNewVC
+    view.student = _student;
+    
+}
 
 
 
