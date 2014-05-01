@@ -42,6 +42,7 @@
     
     [_studentCourseLinkSender setCourse:previousCourse];
     //[_student setStudentCourseLink:studentCourseLink];
+    
 }
 
 - (void)viewDidLoad

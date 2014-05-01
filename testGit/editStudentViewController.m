@@ -75,27 +75,14 @@
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&name=%@&phone=%@&clientid=%i&ts=%f", [[_studentCourseLink student] studentID], [[_studentCourseLink student]name], [[_studentCourseLink student] phone], 1, [[NSDate date] timeIntervalSince1970]];
     
-    NSLog(@"%@", urlString);
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
-    
-    
     
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [[NSURLConnection alloc] initWithRequest: request delegate:self];
-
-    
-//    StudentCourseLink *newStudentCourseLink = [[StudentCourseLink alloc] init];
-//    [newStudentCourseLink setWeekday:newWeekday];
-//    [newStudentCourseLink setHour:newHour];
-//    [newStudentCourseLink setHour:newMins];
-//    [newStudentCourseLink setHour:newDuration];
-//    [newStudent setStudentCourseLink:newStudentCourseLink];
     
     _saveResultArray = [[NSArray alloc] init];
-    
-    //needs to save this
 }
 
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
@@ -130,8 +117,6 @@
     else{
         self.statusLbl.text = @"Error with saving";
         self.statusLbl.hidden = NO;
-        
-        //self.toSlotBtn.textInputContextIdentifier = @"";
         self.toSlotBtn.hidden = NO;
     }
 }
@@ -148,10 +133,7 @@
 {
     
     editLessonSlotViewController *view = segue.destinationViewController;
-    
-    // do any setup you need for myNewVC
     view.studentCourseLink = _studentCourseLink;
-    
 }
 
 

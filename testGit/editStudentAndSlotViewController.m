@@ -93,17 +93,12 @@ int cellClicked = -1;
     
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //onclick for each object, put to label for example
-    //UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    //self.courseIDSender = cell.accessibilityValue;
-    
     if(indexPath.row == 0) {
-        //self.studentSender = _student;
+        
         cellClicked = 0;
         [self performSegueWithIdentifier:@"studentAndSlotToEditStudent" sender:self];
         
@@ -112,10 +107,7 @@ int cellClicked = -1;
     else if(indexPath.row == 1){
         cellClicked = 1;
         [self performSegueWithIdentifier:@"studentAndSlotToEditSlot" sender:self];
-        
     }
-    
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -123,20 +115,7 @@ int cellClicked = -1;
 }
 
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    return 40;
-//}
-
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    NSString *sectionName = [NSString stringWithFormat:@"%@", _tutorName];
-//
-//
-//    return sectionName;
-//}
-
 -(void)updatedStudent:(StudentCourseLink *)studentCourseLink{
-    NSLog(@"iit");
     _cells = [[NSArray alloc] initWithObjects:[[_studentCourseLink student] name], _studentCourseLink , nil];
     _studentCourseLink = studentCourseLink;
     [_mainTableView reloadData];
@@ -154,8 +133,6 @@ int cellClicked = -1;
     if(cellClicked == 0){
         item.editStudentDelegate = self;
     }
-
-    
 }
 
 
@@ -165,15 +142,5 @@ int cellClicked = -1;
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

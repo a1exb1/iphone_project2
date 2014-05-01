@@ -100,10 +100,14 @@ NSMutableArray *viewStudentsArray;
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
-    
-    
-    // need course object for title here
+    // need course object for title here 
     self.title = [_course name];
+    
+    _studentCourseLinkSender = [[StudentCourseLink alloc] init];
+    [_studentCourseLinkSender setCourse: _course];
+    
+    Student *student = [[Student alloc] init];
+    [_studentCourseLinkSender setStudent:student];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -153,8 +157,9 @@ NSMutableArray *viewStudentsArray;
     weekday = [daysOfWeekArray objectAtIndex: weekdayFromJson];
     int hour = [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Hour"] intValue];
     int minute = [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Minute"] intValue];
+    int duration = [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue];
 
-    cell.textLabel.text = [NSString stringWithFormat:@"%02d:%02d • %@", hour, minute, [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%02d:%02d (%02d) • %@", hour, minute, duration, [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
     cell.accessibilityValue = [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -167,23 +172,22 @@ NSMutableArray *viewStudentsArray;
     NSMutableArray *sectionArray = [[NSMutableArray alloc]init];
     sectionArray = [viewStudentsArray objectAtIndex:indexPath.section];
     
-    StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
-    [studentCourseLink setStudentCourseLinkID:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentCourseLinkID"] intValue]];
-    [studentCourseLink setWeekday:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Weekday"] intValue]];
-    [studentCourseLink setHour:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Hour"] intValue]];
-    [studentCourseLink setMins:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Minute"] intValue]];
-    [studentCourseLink setDuration:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]];
-    [studentCourseLink setCourse: _course];
+    
+    [_studentCourseLinkSender setStudentCourseLinkID:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentCourseLinkID"] intValue]];
+    [_studentCourseLinkSender setWeekday:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Weekday"] intValue]];
+    [_studentCourseLinkSender setHour:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Hour"] intValue]];
+    [_studentCourseLinkSender setMins:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Minute"] intValue]];
+    [_studentCourseLinkSender setDuration:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]];
+    
     
     Student *student = [[Student alloc] init];
     [student setStudentID: [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentID"] intValue]];
     [student setName: [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
     
-    
 
-    [studentCourseLink setStudent:student];
+    [_studentCourseLinkSender setStudent:student];
     
-    _studentCourseLinkSender = studentCourseLink;
+    //_studentCourseLinkSender = studentCourseLink;
     
     _sender = 0;
     
