@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *lessonDurationPicker;
 @property (weak, nonatomic) IBOutlet UILabel *studentNameLbl;
 @property (weak, nonatomic) IBOutlet UILabel *studentCourseLbl;
+@property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 
 @end
 
@@ -76,10 +77,10 @@
     [self.lessonTimePicker selectRow:minsFromArray inComponent:2 animated:YES];
     [self.lessonDurationPicker selectRow:durationFromArray inComponent:0 animated:YES];
     
+    self.studentNameLbl.text = [_student name];
+     self.studentCourseLbl.text = [[[_student studentCourseLink] course] name];
     
-    
-    NSLog(@"courseid: %li", [[[_student studentCourseLink] course] courseID]);
-    NSLog(@"studentid: %li", [_student studentID]);
+   
 //    if([_student studentID] == 0) {
 //        self.title = @"New Student";
 //    }
@@ -144,5 +145,101 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(IBAction)save:(id)sender{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        int newWeekday = (int)[_lessonTimePicker selectedRowInComponent:0] ;
+       int newHour = [[_HoursArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:1 ]] intValue];
+        int newMins = [[_MinutesArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
+        int newDuration = [[_DurationArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
+    //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&hour=%i&mins=%i&studentid=%li&courseid=%li&weekday=%i&duration=%i&clientid=%i&ts=%f", [[_student studentCourseLink] StudentCourseLinkID], newHour, newMins,[_student studentID],[[[_student studentCourseLink]course]courseID], newWeekday,newDuration, 1, [[NSDate date] timeIntervalSince1970]];
+    
+    
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
+                 NSASCIIStringEncoding];
+    
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [[NSURLConnection alloc] initWithRequest: request delegate:self];
+    
+  
+    
+
+}
+
+
+
+-(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
+{
+    _data = [[NSMutableData alloc]init];
+    
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
+{
+    [_data appendData:theData];
+    
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:nil error:nil];
+    
+    if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
+    {
+        if ([_student studentID] == 0) {
+            [_student setStudentID:[[[_saveResultArray objectAtIndex:0] objectForKey:@"studentid" ] intValue]];
+            //            int cID = [[_student studentCourseLink] CourseID];
+            //            Course *course = [[Course alloc] init];
+            //            [course setCourseID:cID];
+            //            [course setName:cID];
+            
+            
+            StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
+            [studentCourseLink setCourse:[[_student studentCourseLink] course]];
+            [_student setStudentCourseLink:studentCourseLink];
+            [self performSegueWithIdentifier:@"editStudentToEditSlot" sender:self];
+        }
+        else{
+            
+           // [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
+//            [[[[[self parentViewController] parentViewController] parentViewController] parentViewController] dismissViewControllerAnimated:YES completion:nil];
+            
+//            ABAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//            NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:[appDelegate.navigationController viewControllers]];
+//            for (UIViewController *aViewController in allViewControllers) {
+//                if ([aViewController isKindOfClass:[RequiredViewController class]]) {
+//                    [self.navigationController popToViewController:aViewController animated:NO];
+//                }
+//            }
+             [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
+       }
+        
+       
+        
+        
+        
+    }
+    else{
+        self.statusLbl.text = @"Error with saving";
+        self.statusLbl.hidden = NO;
+        
+        //self.toSlotBtn.textInputContextIdentifier = @"";
+        
+        
+    }
+    
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [errorView show];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+//
+
 
 @end

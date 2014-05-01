@@ -361,13 +361,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hae-Vl-x4C">
+                                <rect key="frame" x="20" y="129" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit lesson time" id="WnZ-bC-DPY"/>
+                    <navigationItem key="navigationItem" title="Edit lesson time" id="WnZ-bC-DPY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="JSK-HH-nA5">
+                            <connections>
+                                <action selector="save:" destination="T0r-2x-a7b" id="Pmt-wP-aoZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="lessonDurationPicker" destination="Eqc-5l-ZWW" id="3Hr-P7-4c3"/>
                         <outlet property="lessonTimePicker" destination="ryy-WE-Vnp" id="Bat-Ls-Pw1"/>
+                        <outlet property="statusLbl" destination="Hae-Vl-x4C" id="P4T-LP-yLb"/>
                         <outlet property="studentCourseLbl" destination="Vuh-Uq-JOL" id="iLR-xU-WnR"/>
                         <outlet property="studentNameLbl" destination="cMe-ly-act" id="82D-kf-4oS"/>
                     </connections>
@@ -1036,6 +1049,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="nUC-wu-8cT"/>
-        <segue reference="oFh-nJ-edz"/>
+        <segue reference="a2M-xz-gXS"/>
     </inferredMetricsTieBreakers>
 </document>
