@@ -11,6 +11,8 @@
 @interface editLessonSlotViewController ()
 @property (weak, nonatomic) IBOutlet UIPickerView *lessonTimePicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *lessonDurationPicker;
+@property (weak, nonatomic) IBOutlet UILabel *studentNameLbl;
+@property (weak, nonatomic) IBOutlet UILabel *studentCourseLbl;
 
 @end
 
@@ -74,6 +76,10 @@
     [self.lessonTimePicker selectRow:minsFromArray inComponent:2 animated:YES];
     [self.lessonDurationPicker selectRow:durationFromArray inComponent:0 animated:YES];
     
+    
+    
+    NSLog(@"courseid: %li", [[[_student studentCourseLink] course] courseID]);
+    NSLog(@"studentid: %li", [_student studentID]);
 //    if([_student studentID] == 0) {
 //        self.title = @"New Student";
 //    }

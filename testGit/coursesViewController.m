@@ -84,9 +84,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //onclick for each object, put to label for example
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    self.courseNameSender = cell.textLabel.text;
-    self.courseIDSender = cell.accessibilityValue;
+//    self.courseNameSender = cell.textLabel.text;
+//    self.courseIDSender = cell.accessibilityValue;
     //self.itemNameSender = cell.textLabel.text;
+    
+    _courseSender = [[Course alloc] init];
+    [_courseSender setCourseID:[cell.accessibilityValue intValue]];
+    [_courseSender setName:cell.textLabel.text];
     
     [self performSegueWithIdentifier:@"CoursesToStudents" sender:self];
     
@@ -148,8 +152,9 @@
     // Pass the selected object to the new view controller.
     
     studentsViewController *item = segue.destinationViewController;
-    item.courseName = self.courseNameSender;
-    item.courseID = self.courseIDSender;
+    item.course = _courseSender;
+//    item.courseName = self.courseNameSender;
+//    item.courseID = self.courseIDSender;
     
 }
 

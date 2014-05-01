@@ -14,6 +14,7 @@
 		795B641C190E56A900A2C879 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 795B641B190E56A900A2C879 /* MenuViewController.m */; };
 		795B641F190E599700A2C879 /* ToDoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 795B641E190E599700A2C879 /* ToDoViewController.m */; };
 		795B6422190E5BC400A2C879 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 795B6421190E5BC400A2C879 /* Student.m */; };
+		79F7196319124FA100C644A1 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F7196219124FA100C644A1 /* Course.m */; };
 		E40DF27E190017E100E1332A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF27D190017E100E1332A /* Foundation.framework */; };
 		E40DF280190017E100E1332A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF27F190017E100E1332A /* CoreGraphics.framework */; };
 		E40DF282190017E100E1332A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF281190017E100E1332A /* UIKit.framework */; };
@@ -68,6 +69,8 @@
 		795B641E190E599700A2C879 /* ToDoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoViewController.m; sourceTree = "<group>"; };
 		795B6420190E5BC400A2C879 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		795B6421190E5BC400A2C879 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
+		79F7196119124FA100C644A1 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
+		79F7196219124FA100C644A1 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
 		E40DF27A190017E100E1332A /* testGit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testGit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E40DF27D190017E100E1332A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E40DF27F190017E100E1332A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -173,6 +176,8 @@
 				E4494DD6190D851E00585CB8 /* Tutor.m */,
 				795B6420190E5BC400A2C879 /* Student.h */,
 				795B6421190E5BC400A2C879 /* Student.m */,
+				79F7196119124FA100C644A1 /* Course.h */,
+				79F7196219124FA100C644A1 /* Course.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79F7196319124FA100C644A1 /* Course.m in Sources */,
 				E42B6112190C0582001B977F /* studentNote.m in Sources */,
 				795B641C190E56A900A2C879 /* MenuViewController.m in Sources */,
 				E4F96CCC19097D49008D75D6 /* tutors2ViewController.m in Sources */,

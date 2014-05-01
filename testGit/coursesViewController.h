@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Course.h"
 
 @interface coursesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -18,5 +18,5 @@
 @property NSMutableData *data;
 @property NSString  *courseIDSender;
 @property NSString  *courseNameSender;
-
+@property Course *courseSender;
 @end

@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *studentNameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 @property (weak, nonatomic) IBOutlet UIButton *toSlotBtn;
+@property (weak, nonatomic) IBOutlet UITextField *studentPhoneTextField;
 
 @end
 
@@ -37,10 +38,10 @@
     _saveResultArray = [[NSArray alloc] init];
     
     if([_student studentID] == 0) {
-        self.title = @"New Student";
+        self.title = @"Create student";
     }
     else{
-        self.title = @"Edit Student";
+        self.title = @"Edit student info";
     }
 }
 
@@ -76,10 +77,12 @@
     //_newStudent = [[Student alloc] init];
     [_student setStudentID:[_student studentID]];
     [_student setName:self.studentNameTextField.text];
+    [_student setPhone:self.studentPhoneTextField.text];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&name=%@&ts=%f", [_student studentID], [_student name], [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&name=%@&phone=%@&clientid=%i&ts=%f", [_student studentID], [_student name], [_student phone], 1, [[NSDate date] timeIntervalSince1970]];
+    
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
@@ -122,7 +125,15 @@
     {
         if ([_student studentID] == 0) {
             [_student setStudentID:[[[_saveResultArray objectAtIndex:0] objectForKey:@"studentid" ] intValue]];
+//            int cID = [[_student studentCourseLink] CourseID];
+//            Course *course = [[Course alloc] init];
+//            [course setCourseID:cID];
+//            [course setName:cID];
             
+            
+            StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
+            [studentCourseLink setCourse:[[_student studentCourseLink] course]];
+            [_student setStudentCourseLink:studentCourseLink];
             [self performSegueWithIdentifier:@"editStudentToEditSlot" sender:self];
         }
         else{

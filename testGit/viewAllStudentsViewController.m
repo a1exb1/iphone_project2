@@ -33,6 +33,14 @@
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [[NSURLConnection alloc] initWithRequest: request delegate:self];
+    
+    Course *previousCourse = [[_student studentCourseLink] course];
+    _student = [[Student alloc]init];
+    
+    StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc]init];
+
+    [studentCourseLink setCourse:previousCourse];
+    [_student setStudentCourseLink:studentCourseLink];
 }
 
 - (void)viewDidLoad
@@ -88,15 +96,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //onclick for each object, put to label for example
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    //self.tutorIDSender = cell.accessibilityValue;
-    //self.tutorNameSender = cell.textLabel.text;
-    
-    // ??? neccessary?
-    //
     
     
     [_student setName:cell.textLabel.text];
     [_student setStudentID:[cell.accessibilityValue intValue]];
+    //int cID = [[_student studentCourseLink] CourseID];
+    StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc]init];
+    //[studentCourseLink setCourseID:cID];
+    Course *previousCourse = [[_student studentCourseLink] course];
+    [[_student studentCourseLink] setCourse:previousCourse];
     [self performSegueWithIdentifier:@"AllStudentsToSlot" sender:self];
 }
 

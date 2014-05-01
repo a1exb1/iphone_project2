@@ -35,6 +35,7 @@ NSMutableArray *viewStudentsArray;
 {
     Student *student = [[Student alloc] init];
     StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
+    [studentCourseLink setCourse: _course];
     [student setStudentCourseLink: studentCourseLink];
     _studentSender = student;
     _sender = 1;
@@ -47,7 +48,7 @@ NSMutableArray *viewStudentsArray;
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
     
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbycourse&id=%@&ts=%f", _courseID, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbycourse&id=%li&ts=%f", [_course courseID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [[NSURLConnection alloc] initWithRequest: request delegate:self];
@@ -99,7 +100,7 @@ NSMutableArray *viewStudentsArray;
     
     
     // need course object for title here
-    self.title = _courseName;
+    self.title = [_course name];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -171,7 +172,8 @@ NSMutableArray *viewStudentsArray;
     [studentCourseLink setHour:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Hour"] intValue]];
     [studentCourseLink setMins:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Minute"] intValue]];
     [studentCourseLink setDuration:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]];
-    [studentCourseLink setCourse:[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"CourseName"]];
+    [studentCourseLink setCourse: _course];
+
 
     [student setStudentCourseLink: studentCourseLink];
     

@@ -12,5 +12,5 @@
 
 
 @property NSString *name;
-
+@property NSString *phone;
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Student.h"
 #import "editLessonSlotViewController.h"
-
+#import "Course.h"
 @protocol editStudentDelegate <NSObject>
 
 -(void)updatedStudent:(Student *)student;
