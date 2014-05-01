@@ -159,7 +159,8 @@ NSMutableArray *viewStudentsArray;
     int minute = [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Minute"] intValue];
     int duration = [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue];
 
-    cell.textLabel.text = [NSString stringWithFormat:@"%02d:%02d (%02d) • %@", hour, minute, duration, [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d:%02d (%02d minutes)", hour, minute, duration];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
     cell.accessibilityValue = [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     

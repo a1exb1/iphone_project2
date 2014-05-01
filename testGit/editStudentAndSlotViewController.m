@@ -87,7 +87,7 @@ int cellClicked = -1;
         NSString *cellMins = [NSString stringWithFormat:@"%02d", [_studentCourseLink Mins]];
         NSString *cellCourse = [[_studentCourseLink course] name];
         
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@:%@", cellCourse, @"at",cellHour, cellMins];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@:%@ (%i mins)", cellCourse, @"at",cellHour, cellMins, [_studentCourseLink Duration]];
         cell.detailTextLabel.text = @"Change lesson time.";
     }
     
