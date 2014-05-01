@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Student.h"
-#import "ABAppDelegate.h"
+#import "StudentCourseLink.h"
+
 @interface editLessonSlotViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property Student *student;
+@property StudentCourseLink *studentCourseLink;
 @property NSArray *weekdayArray;
 @property NSArray *HoursArray;
 @property NSArray *MinutesArray;

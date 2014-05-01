@@ -7,19 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Student.h"
+#import "StudentCourseLink.h"
 #import "editLessonSlotViewController.h"
 #import "Course.h"
 @protocol editStudentDelegate <NSObject>
 
--(void)updatedStudent:(Student *)student;
+-(void)updatedStudent:(StudentCourseLink *)studentCourseLink;
 
 @end
 
 @interface editStudentViewController : UIViewController
 
 @property NSString *studentID;
-@property Student *student;
+@property StudentCourseLink *studentCourseLink;
 
 @property NSMutableData *data;
 @property NSArray *saveResultArray;

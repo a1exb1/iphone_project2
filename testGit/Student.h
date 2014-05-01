@@ -7,13 +7,13 @@
 //
 
 #import "User.h"
-#import "StudentCourseLink.h"
+
 
 @interface Student : User
 
 @property long studentID;
 @property NSArray *studentNotes;
-@property StudentCourseLink *studentCourseLink;
+//@property StudentCourseLink *studentCourseLink;
 
 
 @end

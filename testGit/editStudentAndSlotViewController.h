@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Student.h"
+#import "StudentCourseLink.h"
 #import "editStudentViewController.h"
 
 @interface editStudentAndSlotViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, editStudentDelegate>
 
-@property Student *student;
+@property StudentCourseLink *studentCourseLink;
 @property NSArray *cells;
 
 

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Student.h"
 #import "StudentCourseLink.h"
 #import "Course.h"
 @interface studentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
@@ -20,7 +19,7 @@
 @property NSString  *studentIDSender;
 @property NSArray *uniqueWeekdays;
 
-@property Student *studentSender;
+@property StudentCourseLink *studentCourseLinkSender;
 @property Course *course;
 @property int sender;
 

@@ -51,7 +51,7 @@ int cellClicked = -1;
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
     
-    _cells = [[NSArray alloc] initWithObjects:[_student name], [_student studentCourseLink] , nil];
+    _cells = [[NSArray alloc] initWithObjects:[[_studentCourseLink student] name], _studentCourseLink , nil];
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -78,14 +78,14 @@ int cellClicked = -1;
                                                   reuseIdentifier:@"cell"];
     
     if(indexPath.row == 0){
-        cell.textLabel.text = [_student name];
+        cell.textLabel.text = [[_studentCourseLink student] name];
         cell.detailTextLabel.text = @"Edit the student's details.";
         //cell.accessibilityValue = _student;
     }
     else if(indexPath.row == 1){
-        NSString *cellHour = [NSString stringWithFormat:@"%02d", [[_student studentCourseLink] Hour]];
-        NSString *cellMins = [NSString stringWithFormat:@"%02d", [[_student studentCourseLink] Mins]];
-        NSString *cellCourse = [[[_student studentCourseLink] course] name];
+        NSString *cellHour = [NSString stringWithFormat:@"%02d", [_studentCourseLink Hour]];
+        NSString *cellMins = [NSString stringWithFormat:@"%02d", [_studentCourseLink Mins]];
+        NSString *cellCourse = [[_studentCourseLink course] name];
         
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@:%@", cellCourse, @"at",cellHour, cellMins];
         cell.detailTextLabel.text = @"Change lesson time.";
@@ -135,9 +135,10 @@ int cellClicked = -1;
 //    return sectionName;
 //}
 
--(void)updatedStudent:(Student *)student{
-    _cells = [[NSArray alloc] initWithObjects:[_student name], [_student studentCourseLink] , nil];
-    self.student = student;
+-(void)updatedStudent:(StudentCourseLink *)studentCourseLink{
+    NSLog(@"iit");
+    _cells = [[NSArray alloc] initWithObjects:[[_studentCourseLink student] name], _studentCourseLink , nil];
+    _studentCourseLink = studentCourseLink;
     [_mainTableView reloadData];
 }
 
@@ -148,7 +149,7 @@ int cellClicked = -1;
     // Pass the selected object to the new view controller.
     
     editStudentViewController *item = segue.destinationViewController;
-    item.student = self.student;
+    item.studentCourseLink = _studentCourseLink;
     
     if(cellClicked == 0){
         item.editStudentDelegate = self;

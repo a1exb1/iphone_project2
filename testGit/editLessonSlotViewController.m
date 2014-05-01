@@ -66,19 +66,19 @@
                        initWithObjects: _weekdayArray, _HoursArray, _MinutesArray, _DurationArray, nil];
     
     
-    [self.lessonTimePicker selectRow:[[_student studentCourseLink] Weekday] inComponent:0 animated:YES];
+    [self.lessonTimePicker selectRow:[_studentCourseLink Weekday] inComponent:0 animated:YES];
     
-    [self.lessonTimePicker selectRow:[[_student studentCourseLink] Hour] inComponent:1 animated:YES];
+    [self.lessonTimePicker selectRow:[_studentCourseLink Hour] inComponent:1 animated:YES];
     
-    int minsFromArray = [[_student studentCourseLink] Mins] / 5;
-    int durationFromArray = [[_student studentCourseLink] Duration] / 5;
+    int minsFromArray = [_studentCourseLink Mins] / 5;
+    int durationFromArray = [_studentCourseLink Duration] / 5;
     durationFromArray = durationFromArray - 4;
     
     [self.lessonTimePicker selectRow:minsFromArray inComponent:2 animated:YES];
     [self.lessonDurationPicker selectRow:durationFromArray inComponent:0 animated:YES];
     
-    self.studentNameLbl.text = [_student name];
-     self.studentCourseLbl.text = [[[_student studentCourseLink] course] name];
+    self.studentNameLbl.text = [[_studentCourseLink student] name];
+     self.studentCourseLbl.text = [[_studentCourseLink course] name];
     
    
 //    if([_student studentID] == 0) {
@@ -153,7 +153,7 @@
         int newMins = [[_MinutesArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
         int newDuration = [[_DurationArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&hour=%i&mins=%i&studentid=%li&courseid=%li&weekday=%i&duration=%i&clientid=%i&ts=%f", [[_student studentCourseLink] StudentCourseLinkID], newHour, newMins,[_student studentID],[[[_student studentCourseLink]course]courseID], newWeekday,newDuration, 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&hour=%i&mins=%i&studentid=%li&courseid=%li&weekday=%i&duration=%i&clientid=%i&ts=%f", [_studentCourseLink StudentCourseLinkID], newHour, newMins,[[_studentCourseLink student] studentID],[[_studentCourseLink course]courseID], newWeekday,newDuration, 1, [[NSDate date] timeIntervalSince1970]];
     
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
@@ -189,8 +189,8 @@
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
-        if ([_student studentID] == 0) {
-            [_student setStudentID:[[[_saveResultArray objectAtIndex:0] objectForKey:@"studentid" ] intValue]];
+        if ([[_studentCourseLink student] studentID] == 0) {
+            [[_studentCourseLink student] setStudentID:[[[_saveResultArray objectAtIndex:0] objectForKey:@"studentid" ] intValue]];
             //            int cID = [[_student studentCourseLink] CourseID];
             //            Course *course = [[Course alloc] init];
             //            [course setCourseID:cID];
@@ -198,8 +198,8 @@
             
             
             StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
-            [studentCourseLink setCourse:[[_student studentCourseLink] course]];
-            [_student setStudentCourseLink:studentCourseLink];
+            [studentCourseLink setCourse:[_studentCourseLink course]];
+            //[[_studentCourseLink student] setStudentCourseLink:studentCourseLink];
             [self performSegueWithIdentifier:@"editStudentToEditSlot" sender:self];
         }
         else{

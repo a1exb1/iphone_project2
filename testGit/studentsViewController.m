@@ -35,9 +35,12 @@ NSMutableArray *viewStudentsArray;
 {
     Student *student = [[Student alloc] init];
     StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
+    
+    
     [studentCourseLink setCourse: _course];
-    [student setStudentCourseLink: studentCourseLink];
-    _studentSender = student;
+    //[student setStudentCourseLink: studentCourseLink];
+    [_studentCourseLinkSender setStudent:student];
+    //_studentSender = student;
     _sender = 1;
     [self performSegueWithIdentifier:@"studentsForCourseToStudentsList" sender:self];
 }
@@ -163,9 +166,7 @@ NSMutableArray *viewStudentsArray;
     self.studentIDSender = cell.accessibilityValue;
     NSMutableArray *sectionArray = [[NSMutableArray alloc]init];
     sectionArray = [viewStudentsArray objectAtIndex:indexPath.section];
-    Student *student = [[Student alloc] init];
-    [student setStudentID: [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentID"] intValue]];
-    [student setName: [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
+    
     StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
     [studentCourseLink setStudentCourseLinkID:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentCourseLinkID"] intValue]];
     [studentCourseLink setWeekday:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Weekday"] intValue]];
@@ -173,11 +174,16 @@ NSMutableArray *viewStudentsArray;
     [studentCourseLink setMins:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Minute"] intValue]];
     [studentCourseLink setDuration:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]];
     [studentCourseLink setCourse: _course];
-
-
-    [student setStudentCourseLink: studentCourseLink];
     
-    _studentSender = student;
+    Student *student = [[Student alloc] init];
+    [student setStudentID: [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentID"] intValue]];
+    [student setName: [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
+    
+    
+
+    [studentCourseLink setStudent:student];
+    
+    _studentCourseLinkSender = studentCourseLink;
     
     _sender = 0;
     
@@ -242,12 +248,12 @@ NSMutableArray *viewStudentsArray;
     if (_sender == 1){
         viewAllStudentsViewController *item = segue.destinationViewController;
         //item.studentID = self.studentIDSender;
-        item.student = self.studentSender;
+        item.studentCourseLink = self.studentCourseLinkSender;
     }
     else{
         editStudentAndSlotViewController *item = segue.destinationViewController;
         //item.studentID = self.studentIDSender;
-        item.student = self.studentSender;
+        item.studentCourseLink = self.studentCourseLinkSender;
     }
     
     

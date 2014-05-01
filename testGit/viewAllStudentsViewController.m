@@ -34,13 +34,14 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [[NSURLConnection alloc] initWithRequest: request delegate:self];
     
-    Course *previousCourse = [[_student studentCourseLink] course];
-    _student = [[Student alloc]init];
+    Course *previousCourse = [_studentCourseLink course];
+    //[_studentCourseLink setStudent: [[Student alloc]init]];
     
-    StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc]init];
-
-    [studentCourseLink setCourse:previousCourse];
-    [_student setStudentCourseLink:studentCourseLink];
+    _studentCourseLinkSender = [[StudentCourseLink alloc]init];
+    [_studentCourseLinkSender setStudent:[[Student alloc] init]];
+    
+    [_studentCourseLinkSender setCourse:previousCourse];
+    //[_student setStudentCourseLink:studentCourseLink];
 }
 
 - (void)viewDidLoad
@@ -97,14 +98,14 @@
     //onclick for each object, put to label for example
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
+    [_studentCourseLinkSender setStudent:[[Student alloc] init]];
+    [[_studentCourseLinkSender student] setStudentID:[cell.accessibilityValue intValue]];
+    [[_studentCourseLinkSender student] setName:cell.textLabel.text];
     
-    [_student setName:cell.textLabel.text];
-    [_student setStudentID:[cell.accessibilityValue intValue]];
-    //int cID = [[_student studentCourseLink] CourseID];
-    StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc]init];
+    //StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc]init];
     //[studentCourseLink setCourseID:cID];
-    Course *previousCourse = [[_student studentCourseLink] course];
-    [[_student studentCourseLink] setCourse:previousCourse];
+    Course *previousCourse = [_studentCourseLink course];
+    [_studentCourseLink setCourse:previousCourse];
     [self performSegueWithIdentifier:@"AllStudentsToSlot" sender:self];
 }
 
@@ -144,9 +145,9 @@
 //    item.tutorID = self.tutorIDSender;
 //    item.tutorName = self.tutorNameSender;
     
-    NSLog(@"%@", [_student name]);
+    //NSLog(@"%@", [_student name]);
     
-    item.student = _student;
+    item.studentCourseLink = _studentCourseLinkSender;
 }
 
 

@@ -33,11 +33,11 @@
 {
     [super viewDidLoad];
         // Do any additional setup after loading the view.
-    self.studentNameTextField.text = [NSString stringWithFormat:@"%@", [_student name]];
+    self.studentNameTextField.text = [NSString stringWithFormat:@"%@", [[_studentCourseLink student] name]];
     
     _saveResultArray = [[NSArray alloc] init];
     
-    if([_student studentID] == 0) {
+    if([[_studentCourseLink student] studentID] == 0) {
         self.title = @"Create student";
     }
     else{
@@ -68,24 +68,18 @@
 -(IBAction)saveStudent:(id)sender
 {
     
-    
-//    int newWeekday = (int)[_lessonTimePicker selectedRowInComponent:0] ;
-//    int newHour = [[_HoursArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:1 ]] intValue];
-//    int newMins = [[_MinutesArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
-//    int newDuration = [[_DurationArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
-    
-    //_newStudent = [[Student alloc] init];
-    [_student setStudentID:[_student studentID]];
-    [_student setName:self.studentNameTextField.text];
-    [_student setPhone:self.studentPhoneTextField.text];
+    [[_studentCourseLink student] setName:self.studentNameTextField.text];
+    [[_studentCourseLink student] setPhone:self.studentPhoneTextField.text];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&name=%@&phone=%@&clientid=%i&ts=%f", [_student studentID], [_student name], [_student phone], 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&name=%@&phone=%@&clientid=%i&ts=%f", [[_studentCourseLink student] studentID], [[_studentCourseLink student]name], [[_studentCourseLink student] phone], 1, [[NSDate date] timeIntervalSince1970]];
     
-    
+    NSLog(@"%@", urlString);
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
+    
+    
     
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -123,22 +117,22 @@
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
-        if ([_student studentID] == 0) {
-            [_student setStudentID:[[[_saveResultArray objectAtIndex:0] objectForKey:@"studentid" ] intValue]];
+        if ([[_studentCourseLink student] studentID] == 0) {
+            [[_studentCourseLink student] setStudentID:[[[_saveResultArray objectAtIndex:0] objectForKey:@"studentid" ] intValue]];
 //            int cID = [[_student studentCourseLink] CourseID];
 //            Course *course = [[Course alloc] init];
 //            [course setCourseID:cID];
 //            [course setName:cID];
             
             
-            StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
-            [studentCourseLink setCourse:[[_student studentCourseLink] course]];
-            [_student setStudentCourseLink:studentCourseLink];
+            //StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
+            //[studentCourseLink setCourse:[[_student studentCourseLink] course]];
+            //[_student setStudentCourseLink:studentCourseLink];
             [self performSegueWithIdentifier:@"editStudentToEditSlot" sender:self];
         }
         else{
-            [self.editStudentDelegate updatedStudent:
-             _student];
+            [self.editStudentDelegate updatedStudent: _studentCourseLink];
+            //[self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
             [self.navigationController popViewControllerAnimated:YES];
         }
         
@@ -170,7 +164,7 @@
     editLessonSlotViewController *view = segue.destinationViewController;
     
     // do any setup you need for myNewVC
-    view.student = _student;
+    view.studentCourseLink = _studentCourseLink;
     
 }
 

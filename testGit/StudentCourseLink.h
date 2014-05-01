@@ -7,18 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Student.h"
 #import "Course.h"
 
 @interface StudentCourseLink : NSObject
 
 @property long StudentCourseLinkID;
-@property long StudentID;
-@property long CourseID;
+//@property long StudentID;
+//@property long CourseID;
 @property int Duration;
 @property int Weekday;
 @property int Hour;
 @property int Mins;
 @property Course *course;
+@property Student *student;
 
 -(void) load;
 -(void) loadByID: (long)linkID;
