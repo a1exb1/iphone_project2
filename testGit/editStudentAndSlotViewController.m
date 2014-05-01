@@ -91,7 +91,6 @@ int cellClicked = -1;
         cell.detailTextLabel.text = @"Change lesson time.";
     }
     
-    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
