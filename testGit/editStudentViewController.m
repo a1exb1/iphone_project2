@@ -119,25 +119,13 @@
     {
         if ([[_studentCourseLink student] studentID] == 0) {
             [[_studentCourseLink student] setStudentID:[[[_saveResultArray objectAtIndex:0] objectForKey:@"studentid" ] intValue]];
-//            int cID = [[_student studentCourseLink] CourseID];
-//            Course *course = [[Course alloc] init];
-//            [course setCourseID:cID];
-//            [course setName:cID];
-            
-            
-            //StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
-            //[studentCourseLink setCourse:[[_student studentCourseLink] course]];
-            //[_student setStudentCourseLink:studentCourseLink];
+
             [self performSegueWithIdentifier:@"editStudentToEditSlot" sender:self];
         }
         else{
             [self.editStudentDelegate updatedStudent: _studentCourseLink];
-            //[self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
             [self.navigationController popViewControllerAnimated:YES];
         }
-        
-        
-        
     }
     else{
         self.statusLbl.text = @"Error with saving";
@@ -145,9 +133,7 @@
         
         //self.toSlotBtn.textInputContextIdentifier = @"";
         self.toSlotBtn.hidden = NO;
-        
     }
-
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

@@ -153,19 +153,15 @@
         int newMins = [[_MinutesArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
         int newDuration = [[_DurationArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&hour=%i&mins=%i&studentid=%li&courseid=%li&weekday=%i&duration=%i&clientid=%i&ts=%f", [_studentCourseLink StudentCourseLinkID], newHour, newMins,[[_studentCourseLink student] studentID],[[_studentCourseLink course]courseID], newWeekday,newDuration, 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&hour=%i&mins=%i&studentid=%li&courseid=%li&weekday=%i&duration=%i&tutorid=%li&clientid=%i&ts=%f", [_studentCourseLink StudentCourseLinkID], newHour, newMins,[[_studentCourseLink student] studentID],[[_studentCourseLink course]courseID], newWeekday,newDuration,[[_studentCourseLink course] tutorID], 1, [[NSDate date] timeIntervalSince1970]];
     
-    
+    NSLog(@"%@", urlString);
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
     
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [[NSURLConnection alloc] initWithRequest: request delegate:self];
-    
-  
-    
-
 }
 
 
@@ -173,13 +169,11 @@
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
 {
     _data = [[NSMutableData alloc]init];
-    
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
 {
     [_data appendData:theData];
-    
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -189,41 +183,17 @@
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
-        if ([[_studentCourseLink student] studentID] == 0) {
-            [[_studentCourseLink student] setStudentID:[[[_saveResultArray objectAtIndex:0] objectForKey:@"studentid" ] intValue]];
-            //            int cID = [[_student studentCourseLink] CourseID];
-            //            Course *course = [[Course alloc] init];
-            //            [course setCourseID:cID];
-            //            [course setName:cID];
-            
-            
-            StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc] init];
-            [studentCourseLink setCourse:[_studentCourseLink course]];
-            //[[_studentCourseLink student] setStudentCourseLink:studentCourseLink];
-            [self performSegueWithIdentifier:@"editStudentToEditSlot" sender:self];
-        }
-        else{
-            
-           // [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
-//            [[[[[self parentViewController] parentViewController] parentViewController] parentViewController] dismissViewControllerAnimated:YES completion:nil];
-            
-//            ABAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//            NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:[appDelegate.navigationController viewControllers]];
-//            for (UIViewController *aViewController in allViewControllers) {
-//                if ([aViewController isKindOfClass:[RequiredViewController class]]) {
-//                    [self.navigationController popToViewController:aViewController animated:NO];
-//                }
-//            }
-             [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
-       }
         
+        
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
        
-        
-        
         
     }
     else{
-        self.statusLbl.text = @"Error with saving";
+        
+        NSString *error = [NSString stringWithFormat:@"%@",[[_saveResultArray objectAtIndex:0] objectForKey:@"errormsg" ] ];
+        
+        self.statusLbl.text = error;
         self.statusLbl.hidden = NO;
         
         //self.toSlotBtn.textInputContextIdentifier = @"";

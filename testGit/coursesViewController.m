@@ -89,6 +89,7 @@
     //self.itemNameSender = cell.textLabel.text;
     
     _courseSender = [[Course alloc] init];
+    [_courseSender setTutorID:[_tutorID intValue]];
     [_courseSender setCourseID:[cell.accessibilityValue intValue]];
     [_courseSender setName:cell.textLabel.text];
     
