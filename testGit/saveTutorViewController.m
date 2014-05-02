@@ -1,18 +1,18 @@
 //
-//  addTutorViewController.m
+//  saveTutorViewController.m
 //  testGit
 //
 //  Created by Alex Bechmann on 02/05/14.
 //  Copyright (c) 2014 Alex Bechmann. All rights reserved.
 //
 
-#import "addTutorViewController.h"
+#import "saveTutorViewController.h"
 
-@interface addTutorViewController ()
+@interface saveTutorViewController ()
 
 @end
 
-@implementation addTutorViewController
+@implementation saveTutorViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSLog(@"%i", _test);
 }
 
 - (void)didReceiveMemoryWarning

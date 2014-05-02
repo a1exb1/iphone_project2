@@ -1,5 +1,5 @@
 //
-//  addTutorViewController.h
+//  saveTutorViewController.h
 //  testGit
 //
 //  Created by Alex Bechmann on 02/05/14.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface addTutorViewController : UIViewController
+@interface saveTutorViewController : UIViewController
+
+@property int test;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "tutors2ViewController.h"
 #import "coursesViewController.h"
-
+#import "saveTutorViewController.h"
 
 
 @interface tutors2ViewController ()
@@ -75,7 +75,18 @@
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
+
+    //item.tutorID = self.tutorIDSender;
+    //item.tutorName = self.tutorNameSender;
     
+    
+}
+
+-(IBAction)plus:(id)sender{
+    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addTutor"];
+    view.test = 5;
+    [self.navigationController pushViewController:view animated:YES];
+    //[self presentViewController:view animated:YES completion:nil];
 }
 
 
@@ -118,7 +129,12 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     self.tutorIDSender = cell.accessibilityValue;
     self.tutorNameSender = cell.textLabel.text;
-    [self performSegueWithIdentifier:@"TutorsToCourses" sender:self];
+    //[self performSegueWithIdentifier:@"TutorsToCourses" sender:self];
+    
+    coursesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"courses"];
+    view.tutorID = self.tutorIDSender;
+    view.tutorName = self.tutorNameSender;
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
@@ -160,9 +176,9 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    coursesViewController *item = segue.destinationViewController;
-    item.tutorID = self.tutorIDSender;
-    item.tutorName = self.tutorNameSender;
+//    coursesViewController *item = segue.destinationViewController;
+//    item.tutorID = self.tutorIDSender;
+//    item.tutorName = self.tutorNameSender;
 }
 
 /*

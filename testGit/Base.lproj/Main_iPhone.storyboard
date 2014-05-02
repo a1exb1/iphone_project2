@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Add Tutor-->
+        <!--Save Tutor View Controller - Add Tutor-->
         <scene sceneID="ard-km-y7n">
             <objects>
-                <viewController id="Ls4-EQ-ovu" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addTutor" id="Ls4-EQ-ovu" customClass="saveTutorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RWp-Gq-oCH"/>
                         <viewControllerLayoutGuide type="bottom" id="7ke-cZ-Pj7"/>
@@ -15,6 +15,14 @@
                     <view key="view" contentMode="scaleToFill" id="Gb9-KS-q1u">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YWc-zS-dgR">
+                                <rect key="frame" x="112" y="163" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Tutor" id="lGl-2U-FOP"/>
@@ -45,7 +53,7 @@
         <!--Tutors2 View Controller - Tutors-->
         <scene sceneID="2Ya-kq-dMJ">
             <objects>
-                <viewController id="aG9-0O-xEg" customClass="tutors2ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tutors" id="aG9-0O-xEg" customClass="tutors2ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L9c-Fd-8aj"/>
                         <viewControllerLayoutGuide type="bottom" id="DDU-BM-I9N"/>
@@ -84,8 +92,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Tutors" id="ePZ-IG-zz4">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="afm-WX-flN">
+                            <color key="tintColor" red="0.62282764668367352" green="0.0" blue="0.0067583067411217919" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="Ls4-EQ-ovu" kind="push" identifier="editTutor" id="1kw-XC-VT0"/>
+                                <action selector="plus:" destination="aG9-0O-xEg" id="LCt-dC-SDp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -101,7 +110,7 @@
         <!--Courses View Controller - Courses-->
         <scene sceneID="1XH-vT-xP6">
             <objects>
-                <viewController id="9kX-wJ-F2M" customClass="coursesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="courses" id="9kX-wJ-F2M" customClass="coursesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MLM-L3-4Kt"/>
                         <viewControllerLayoutGuide type="bottom" id="BhS-ym-zPQ"/>
@@ -139,9 +148,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Courses" id="82R-vT-rf1">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4t1-2G-Erc">
-                            <connections>
-                                <segue destination="Fop-hj-njy" kind="push" identifier="editCourse" id="6Sl-pY-nez"/>
-                            </connections>
+                            <color key="tintColor" red="0.0" green="0.54413637910000001" blue="0.04055823779" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -156,7 +163,7 @@
         <!--Students View Controller - Students-->
         <scene sceneID="Qhi-qW-5Uc">
             <objects>
-                <viewController id="EO7-ZM-hG2" customClass="studentsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="students" id="EO7-ZM-hG2" customClass="studentsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cru-pP-rvt"/>
                         <viewControllerLayoutGuide type="bottom" id="ZXx-Us-AxN"/>
@@ -1038,7 +1045,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="koL-fA-Xti"/>
         <segue reference="oFh-nJ-edz"/>
-        <segue reference="nUC-wu-8cT"/>
     </inferredMetricsTieBreakers>
 </document>
