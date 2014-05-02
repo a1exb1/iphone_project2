@@ -162,7 +162,7 @@
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
 
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:_popViews] animated:YES];
     }
     else{
         

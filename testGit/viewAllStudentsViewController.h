@@ -19,5 +19,4 @@
 @property StudentCourseLink *studentCourseLink;
 @property StudentCourseLink *studentCourseLinkSender;
 
-
 @end

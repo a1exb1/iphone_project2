@@ -20,6 +20,8 @@
 @property NSMutableData *data;
 @property NSArray *saveResultArray;
 
+@property int popViews;
+
 -(IBAction)save:(id)sender;
 
 

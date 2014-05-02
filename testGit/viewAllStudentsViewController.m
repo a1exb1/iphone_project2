@@ -14,6 +14,8 @@
 
 @end
 
+int goToSlots = 0;
+
 @implementation viewAllStudentsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,7 +44,7 @@
     
     [_studentCourseLinkSender setCourse:previousCourse];
     //[_student setStudentCourseLink:studentCourseLink];
-    
+    goToSlots = 0;
 }
 
 - (void)viewDidLoad
@@ -107,7 +109,10 @@
     //[studentCourseLink setCourseID:cID];
     Course *previousCourse = [_studentCourseLink course];
     [_studentCourseLink setCourse:previousCourse];
+    goToSlots = 1;
     [self performSegueWithIdentifier:@"AllStudentsToSlot" sender:self];
+    
+    
 }
 
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
@@ -147,7 +152,10 @@
 //    item.tutorName = self.tutorNameSender;
     
     //NSLog(@"%@", [_student name]);
-    
+    if (goToSlots == 1) {
+        item.popViews = 2;
+    }
+    //
     item.studentCourseLink = _studentCourseLinkSender;
 }
 

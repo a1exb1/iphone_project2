@@ -134,6 +134,7 @@
     
     editLessonSlotViewController *view = segue.destinationViewController;
     view.studentCourseLink = _studentCourseLink;
+    view.popViews = 2;
 }
 
 

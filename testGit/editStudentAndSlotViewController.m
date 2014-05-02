@@ -8,6 +8,7 @@
 
 #import "editStudentAndSlotViewController.h"
 #import "editStudentViewController.h"
+#import "editStudentAndSlotViewController.h"
 
 @interface editStudentAndSlotViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -126,11 +127,17 @@ int cellClicked = -1;
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    editStudentViewController *item = segue.destinationViewController;
-    item.studentCourseLink = _studentCourseLink;
+    
     
     if(cellClicked == 0){
+        editStudentViewController *item = segue.destinationViewController;
+        item.studentCourseLink = _studentCourseLink;
         item.editStudentDelegate = self;
+    }
+    else if (cellClicked == 1){
+        editLessonSlotViewController *item = segue.destinationViewController;
+        item.studentCourseLink = _studentCourseLink;
+        item.popViews = 3;
     }
 }
 
