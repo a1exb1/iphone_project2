@@ -29,7 +29,21 @@
 
 
 - (void)viewDidAppear:(BOOL)animated {
-   }
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    //
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
+    UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
+    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(edit)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, editBtn, nil]];
+    
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -65,29 +79,32 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
 
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
-    
-    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
-    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
 
-    //item.tutorID = self.tutorIDSender;
-    //item.tutorName = self.tutorNameSender;
-    
-    
 }
 
--(IBAction)plus:(id)sender{
+-(void)plus{
+    _tutorSender = [[Tutor alloc] init];
     saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addTutor"];
-    view.test = 5;
+    view.tutor = _tutorSender;
     [self.navigationController pushViewController:view animated:YES];
-    //[self presentViewController:view animated:YES completion:nil];
+    
 }
+
+-(void)edit{
+    _tutorSender = [[Tutor alloc] init];
+//    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addTutor"];
+//    view.tutor = _tutorSender;
+//    [self.navigationController pushViewController:view animated:YES];
+    
+}
+
+//-(IBAction)plus:(id)sender{
+//    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addTutor"];
+//    view.tutor = _tutorSender;
+//    [self.navigationController pushViewController:view animated:YES];
+//    //[self presentViewController:view animated:YES completion:nil];
+//}
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -131,9 +148,14 @@
     self.tutorNameSender = cell.textLabel.text;
     //[self performSegueWithIdentifier:@"TutorsToCourses" sender:self];
     
+    _tutorSender = [[Tutor alloc] init];
+    [_tutorSender setTutorID:[cell.accessibilityValue intValue]];
+    [_tutorSender setName:cell.textLabel.text];
+    
     coursesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"courses"];
     view.tutorID = self.tutorIDSender;
     view.tutorName = self.tutorNameSender;
+    view.tutor = _tutorSender;
     [self.navigationController pushViewController:view animated:YES];
 }
 

@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "Tutor.h"
 
 @interface tutors2ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MenuViewControllerDelegate>
 
@@ -17,5 +18,7 @@
 @property NSMutableData *data;
 @property NSString *tutorIDSender;
 @property NSString *tutorNameSender;
+
+@property Tutor *tutorSender;
 
 @end

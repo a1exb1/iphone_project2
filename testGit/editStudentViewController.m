@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 @property (weak, nonatomic) IBOutlet UIButton *toSlotBtn;
 @property (weak, nonatomic) IBOutlet UITextField *studentPhoneTextField;
+@property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 
 @end
 
@@ -39,6 +40,7 @@
     
     if([[_studentCourseLink student] studentID] == 0) {
         self.title = @"Create student";
+        self.deleteBtn.hidden = YES;
     }
     else{
         self.title = @"Edit student info";
@@ -67,7 +69,7 @@
 
 -(IBAction)saveStudent:(id)sender
 {
-    
+    self.statusLbl.hidden = YES;
     [[_studentCourseLink student] setName:self.studentNameTextField.text];
     [[_studentCourseLink student] setPhone:self.studentPhoneTextField.text];
     
@@ -84,6 +86,25 @@
     
     _saveResultArray = [[NSArray alloc] init];
 }
+
+
+-(IBAction)deleteStudent:(id)sender
+{
+    self.statusLbl.hidden = YES;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&delete=1&clientid=%i&ts=%f", [[_studentCourseLink student] studentID], 1, [[NSDate date] timeIntervalSince1970]];
+    
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
+                 NSASCIIStringEncoding];
+    
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    _saveResultArray = [[NSArray alloc] init];
+}
+
 
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -114,10 +135,16 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
-    else{
+    else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"2"])
+    {
         self.statusLbl.text = @"Error with saving";
         self.statusLbl.hidden = NO;
         self.toSlotBtn.hidden = NO;
+    }
+    
+    else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"3"])
+    {
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
     }
 }
 
@@ -125,7 +152,7 @@
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 //
 

@@ -45,7 +45,7 @@
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%@&ts=%f", _tutorID, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
@@ -89,7 +89,7 @@
     //self.itemNameSender = cell.textLabel.text;
     
     _courseSender = [[Course alloc] init];
-    [_courseSender setTutorID:[_tutorID intValue]];
+    [_courseSender setTutorID:[_tutor tutorID]];
     [_courseSender setCourseID:[cell.accessibilityValue intValue]];
     [_courseSender setName:cell.textLabel.text];
     

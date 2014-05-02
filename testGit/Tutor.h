@@ -10,6 +10,6 @@
 
 @interface Tutor : User
 
-
+@property long tutorID;
 
 @end

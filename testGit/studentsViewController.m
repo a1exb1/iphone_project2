@@ -60,6 +60,7 @@ NSMutableArray *viewStudentsArray;
     
     viewStudentsArray = [[NSMutableArray alloc] init];
     
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -200,6 +201,7 @@ NSMutableArray *viewStudentsArray;
 {
     _data = [[NSMutableData alloc]init];
     _uniqueWeekdays = [[NSArray alloc]init];
+    //[_mainTableView reloadData];
     
 }
 

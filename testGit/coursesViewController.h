@@ -8,15 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "Course.h"
+#import "Tutor.h"
 
 @interface coursesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property NSString *tutorID;
 @property NSString *tutorName;
+@property Tutor *tutor;
 
 @property NSArray *courses;
 @property NSMutableData *data;
 @property NSString  *courseIDSender;
 @property NSString  *courseNameSender;
 @property Course *courseSender;
+
+
 @end
