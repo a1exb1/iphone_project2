@@ -34,7 +34,7 @@ int goToSlots = 0;
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [[NSURLConnection alloc] initWithRequest: request delegate:self];
+    [NSURLConnection connectionWithRequest:request delegate:self];
     
     Course *previousCourse = [_studentCourseLink course];
     //[_studentCourseLink setStudent: [[Student alloc]init]];
@@ -129,7 +129,7 @@ int goToSlots = 0;
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    _students = [NSJSONSerialization JSONObjectWithData:_data options:nil error:nil];
+    _students = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.mainTableView reloadData];
     
 }

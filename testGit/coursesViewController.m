@@ -48,7 +48,7 @@
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%@&ts=%f", _tutorID, [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [[NSURLConnection alloc] initWithRequest: request delegate:self];
+    [NSURLConnection connectionWithRequest:request delegate:self];
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -127,7 +127,7 @@
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    _courses = [NSJSONSerialization JSONObjectWithData:_data options:nil error:nil];
+    _courses = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.mainTableView reloadData];
     
     if ([_courses count] == 0) {

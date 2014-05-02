@@ -7,6 +7,7 @@
 //
 
 #import "editLessonSlotViewController.h"
+//#import "editStudentAndSlotViewController.h"
 
 @interface editLessonSlotViewController ()
 @property (weak, nonatomic) IBOutlet UIPickerView *lessonTimePicker;
@@ -127,11 +128,17 @@
 
 -(IBAction)save:(id)sender{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        int newWeekday = (int)[_lessonTimePicker selectedRowInComponent:0] ;
-       int newHour = [[_HoursArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:1 ]] intValue];
-        int newMins = [[_MinutesArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
-        int newDuration = [[_DurationArray objectAtIndex:[_lessonDurationPicker selectedRowInComponent:0 ]] intValue];
-    //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
+    
+    int newWeekday = (int)[_lessonTimePicker selectedRowInComponent:0] ;
+    int newHour = [[_HoursArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:1 ]] intValue];
+    int newMins = [[_MinutesArray objectAtIndex:[_lessonTimePicker selectedRowInComponent:2 ]] intValue];
+    int newDuration = [[_DurationArray objectAtIndex:[_lessonDurationPicker selectedRowInComponent:0 ]] intValue];
+    
+    [_studentCourseLink setWeekday:newWeekday];
+    [_studentCourseLink setHour:newHour];
+    [_studentCourseLink setMins:newMins];
+    [_studentCourseLink setDuration:newDuration];
+    
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&hour=%i&mins=%i&studentid=%li&courseid=%li&weekday=%i&duration=%i&tutorid=%li&clientid=%i&ts=%f", [_studentCourseLink StudentCourseLinkID], newHour, newMins,[[_studentCourseLink student] studentID],[[_studentCourseLink course]courseID], newWeekday,newDuration,[[_studentCourseLink course] tutorID], 1, [[NSDate date] timeIntervalSince1970]];
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
@@ -139,7 +146,7 @@
     
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [[NSURLConnection alloc] initWithRequest: request delegate:self];
+    [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
 
@@ -157,11 +164,11 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:nil error:nil];
+    _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
-
+        [self.editLessonSlotDelegate updatedSlot: _studentCourseLink];
         [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:_popViews] animated:YES];
     }
     else{

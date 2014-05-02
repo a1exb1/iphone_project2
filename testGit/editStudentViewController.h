@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "StudentCourseLink.h"
 #import "editLessonSlotViewController.h"
-#import "Course.h"
+
 @protocol editStudentDelegate <NSObject>
 
--(void)updatedStudent:(StudentCourseLink *)studentCourseLink;
+-(void)updatedSlot:(StudentCourseLink *)studentCourseLink;
 
 @end
 

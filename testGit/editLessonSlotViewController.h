@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "StudentCourseLink.h"
 
+@protocol editLessonSlotDelegate <NSObject>
+
+-(void)updatedSlot:(StudentCourseLink *)studentCourseLink;
+
+@end
+
 @interface editLessonSlotViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property StudentCourseLink *studentCourseLink;
@@ -24,5 +30,5 @@
 
 -(IBAction)save:(id)sender;
 
-
+@property (weak, nonatomic) id<editLessonSlotDelegate> editLessonSlotDelegate;
 @end

@@ -80,7 +80,7 @@
     
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [[NSURLConnection alloc] initWithRequest: request delegate:self];
+    [NSURLConnection connectionWithRequest:request delegate:self];
     
     _saveResultArray = [[NSArray alloc] init];
 }
@@ -100,7 +100,7 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:nil error:nil];
+    _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
@@ -110,7 +110,7 @@
             [self performSegueWithIdentifier:@"editStudentToEditSlot" sender:self];
         }
         else{
-            [self.editStudentDelegate updatedStudent: _studentCourseLink];
+            [self.editStudentDelegate updatedSlot: _studentCourseLink];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }

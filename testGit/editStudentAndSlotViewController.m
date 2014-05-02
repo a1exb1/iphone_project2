@@ -7,8 +7,8 @@
 //
 
 #import "editStudentAndSlotViewController.h"
-#import "editStudentViewController.h"
-#import "editStudentAndSlotViewController.h"
+
+
 
 @interface editStudentAndSlotViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -115,12 +115,11 @@ int cellClicked = -1;
 }
 
 
--(void)updatedStudent:(StudentCourseLink *)studentCourseLink{
+-(void)updatedSlot:(StudentCourseLink *)studentCourseLink{
     _cells = [[NSArray alloc] initWithObjects:[[_studentCourseLink student] name], _studentCourseLink , nil];
     _studentCourseLink = studentCourseLink;
     [_mainTableView reloadData];
 }
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -137,6 +136,7 @@ int cellClicked = -1;
     else if (cellClicked == 1){
         editLessonSlotViewController *item = segue.destinationViewController;
         item.studentCourseLink = _studentCourseLink;
+        item.editLessonSlotDelegate = self;
         item.popViews = 3;
     }
 }

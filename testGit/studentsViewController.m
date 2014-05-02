@@ -54,7 +54,7 @@ NSMutableArray *viewStudentsArray;
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbycourse&id=%li&ts=%f", [_course courseID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [[NSURLConnection alloc] initWithRequest: request delegate:self];
+    [NSURLConnection connectionWithRequest:request delegate:self];
     
     _sender = -1;
     
@@ -212,7 +212,7 @@ NSMutableArray *viewStudentsArray;
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    _students = [NSJSONSerialization JSONObjectWithData:_data options:nil error:nil];
+    _students = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     _uniqueWeekdays = [_students valueForKeyPath:@"@distinctUnionOfObjects.Weekday"];
     
     //sort array numerically

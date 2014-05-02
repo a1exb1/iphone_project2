@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "StudentCourseLink.h"
 #import "editStudentViewController.h"
+#import "editLessonSlotViewController.h"
 
-@interface editStudentAndSlotViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, editStudentDelegate>
+@interface editStudentAndSlotViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, editLessonSlotDelegate, editStudentDelegate>
 
 @property StudentCourseLink *studentCourseLink;
 @property NSArray *cells;
