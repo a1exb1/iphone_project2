@@ -92,11 +92,13 @@
 }
 
 -(void)edit{
-    _tutorSender = [[Tutor alloc] init];
+    //_tutorSender = [[Tutor alloc] init];
 //    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addTutor"];
 //    view.tutor = _tutorSender;
 //    [self.navigationController pushViewController:view animated:YES];
-    
+    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"editTutorsList"];
+    //view.tutor = _tutorSender;
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 //-(IBAction)plus:(id)sender{

@@ -47,7 +47,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drG-zx-DZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="518" y="-1512"/>
+            <point key="canvasLocation" x="530" y="-2236"/>
+        </scene>
+        <!--Edit Tutors List View Controller-->
+        <scene sceneID="Ofb-fJ-3cj">
+            <objects>
+                <viewController storyboardIdentifier="editTutorsList" id="42z-uy-3IP" customClass="editTutorsListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="730-cC-7ee"/>
+                        <viewControllerLayoutGuide type="bottom" id="1Nj-ev-NgO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h0E-hp-ZLI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="r60-0j-tfk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mainTableView" destination="r60-0j-tfk" id="Oor-bO-i9e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TJS-aE-MaN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="531" y="-1498"/>
         </scene>
         <!--View Controller - Add Course-->
         <scene sceneID="iEj-kD-uTF">
@@ -1057,7 +1085,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="koL-fA-Xti"/>
-        <segue reference="a2M-xz-gXS"/>
+        <segue reference="P5I-tD-urD"/>
+        <segue reference="Mge-Py-SjU"/>
     </inferredMetricsTieBreakers>
 </document>

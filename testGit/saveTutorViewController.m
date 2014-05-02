@@ -34,6 +34,16 @@
     UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     //UIBarButtonItem *btnRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
+    
+    self.nameTextField.text = [_tutor name];
+    self.phoneTextField.text = [_tutor phone];
+    
+    if([_tutor tutorID] == 0){
+        self.title = @"Create tutor";
+    }
+    else{
+        self.title = @"Edit details";
+    }
 }
 
 -(void)save{
@@ -45,8 +55,6 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=tutor&id=%li&name=%@&phone=%@&clientid=%i&ts=%f", [_tutor tutorID], [_tutor name], [_tutor phone], 1, [[NSDate date] timeIntervalSince1970]];
-    
-    NSLog(@"%@", urlString);
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
@@ -76,7 +84,8 @@
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
-        [self.navigationController popViewControllerAnimated:YES];
+        //[self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
 
     }
     else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"2"])

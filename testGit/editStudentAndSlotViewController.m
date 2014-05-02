@@ -80,7 +80,7 @@ int cellClicked = -1;
     
     if(indexPath.row == 0){
         cell.textLabel.text = [[_studentCourseLink student] name];
-        cell.detailTextLabel.text = @"Edit the student's details.";
+        cell.detailTextLabel.text = @"Edit the student's details";
         //cell.accessibilityValue = _student;
     }
     else if(indexPath.row == 1){
@@ -89,7 +89,7 @@ int cellClicked = -1;
         NSString *cellCourse = [[_studentCourseLink course] name];
         
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@:%@ (%i mins)", cellCourse, @"at",cellHour, cellMins, [_studentCourseLink Duration]];
-        cell.detailTextLabel.text = @"Change lesson time.";
+        cell.detailTextLabel.text = @"Change lesson time";
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
