@@ -28,7 +28,7 @@
 
 @property int popViews;
 
--(IBAction)save:(id)sender;
+
 
 @property (weak, nonatomic) id<editLessonSlotDelegate> editLessonSlotDelegate;
 @end

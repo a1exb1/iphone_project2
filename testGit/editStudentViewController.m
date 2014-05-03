@@ -141,7 +141,7 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
-    else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"2"])
+    else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"0"])
     {
         self.statusLbl.text = @"Error with saving";
         self.statusLbl.hidden = NO;

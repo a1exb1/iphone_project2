@@ -80,7 +80,26 @@
     
     self.studentNameLbl.text = [[_studentCourseLink student] name];
     self.studentCourseLbl.text = [[_studentCourseLink course] name];
+    
+    UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
+    UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, deleteBtn, nil]];
 }
+
+
+-(void)delete{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&delete=1&clientid=%i&ts=%f", [_studentCourseLink StudentCourseLinkID], 1, [[NSDate date] timeIntervalSince1970]];
+    
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
+                 NSASCIIStringEncoding];
+    
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
 
 // Number of components.
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -126,7 +145,7 @@
 }
 
 
--(IBAction)save:(id)sender{
+-(void)save{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     int newWeekday = (int)[_lessonTimePicker selectedRowInComponent:0] ;
@@ -171,12 +190,17 @@
         [self.editLessonSlotDelegate updatedSlot: _studentCourseLink];
         [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:_popViews] animated:YES];
     }
-    else{
+    else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"0"]){
         
         NSString *error = [NSString stringWithFormat:@"%@",[[_saveResultArray objectAtIndex:0] objectForKey:@"errormsg" ] ];
         
         self.statusLbl.text = error;
         self.statusLbl.hidden = NO;
+    }
+    else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"3"])
+    {
+        //[self.editLessonSlotDelegate updatedSlot: _studentCourseLink];
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
     }
     
 }
