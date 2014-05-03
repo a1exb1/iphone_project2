@@ -45,6 +45,12 @@
     else{
         self.title = @"Edit student info";
     }
+    
+    UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveStudent)];
+    UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteStudent)];
+    //UIImage *image = [[UIImage imageNamed:@"glyphicons_030_pencil.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, deleteBtn, nil]];
 }
 
 
@@ -67,7 +73,7 @@
 }
 */
 
--(IBAction)saveStudent:(id)sender
+-(void)saveStudent
 {
     self.statusLbl.hidden = YES;
     [[_studentCourseLink student] setName:self.studentNameTextField.text];
@@ -88,7 +94,7 @@
 }
 
 
--(IBAction)deleteStudent:(id)sender
+-(void)deleteStudent
 {
     self.statusLbl.hidden = YES;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -145,6 +151,10 @@
     else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"3"])
     {
         [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
+    }
+    else{
+        self.statusLbl.text = @"Error with saving";
+        self.statusLbl.hidden = NO;
     }
 }
 

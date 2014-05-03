@@ -8,6 +8,8 @@
 
 #import "coursesViewController.h"
 #import "studentsViewController.h"
+#import "editCoursesListViewController.h"
+#import "saveCourseViewController.h"
 
 @interface coursesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -26,6 +28,22 @@
     return self;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    //
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
+    
+}
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -43,15 +61,29 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
+    UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
+    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, editBtn, nil]];
+
+}
+
+-(void)plus{
+    _courseSender = [[Course alloc] init];
+    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourse"];
+    view.course = _courseSender;
+    view.tutor = _tutor;
+    [self.navigationController pushViewController:view animated:YES];
     
-    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
-    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+}
+
+-(void)edit{
+    //_tutorSender = [[Tutor alloc] init];
+    //    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addTutor"];
+    //    view.tutor = _tutorSender;
+    //    [self.navigationController pushViewController:view animated:YES];
+    editCoursesListViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"editCoursesList"];
+    view.tutor = _tutor;
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -131,6 +163,7 @@
     [self.mainTableView reloadData];
     
     if ([_courses count] == 0) {
+        _statusLbl.hidden = NO;
         _statusLbl.text = @"No courses, click the plus to add one";
         [_mainTableView setBackgroundColor:[UIColor whiteColor]];
     }

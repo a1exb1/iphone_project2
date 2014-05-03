@@ -1,21 +1,20 @@
 //
-//  editTutorsListViewController.m
+//  editCoursesListViewController.m
 //  testGit
 //
 //  Created by Alex Bechmann on 03/05/14.
 //  Copyright (c) 2014 Alex Bechmann. All rights reserved.
 //
 
-#import "editTutorsListViewController.h"
-#import "saveTutorViewController.h"
+#import "editCoursesListViewController.h"
+#import "saveCourseViewController.h"
 
-
-@interface editTutorsListViewController ()
+@interface editCoursesListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
 @end
 
-@implementation editTutorsListViewController
+@implementation editCoursesListViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +28,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
@@ -38,15 +37,16 @@
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
-
+    
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, nil]];
     
 }
 
 -(void)plus{
-    _tutorSender = [[Tutor alloc] init];
-    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveTutor"];
-    view.tutor = _tutorSender;
+    _courseSender = [[Course alloc] init];
+    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourse"];
+    view.course = _courseSender;
+    view.tutor = _tutor;
     [self.navigationController pushViewController:view animated:YES];
     
 }
@@ -58,7 +58,7 @@
     
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
-    self.title = @"Edit a tutor";
+    self.title = @"Edit a course";
     
 }
 
@@ -78,7 +78,7 @@
 //}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_tutors count];
+    return [_courses count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -90,10 +90,10 @@
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
                                                   reuseIdentifier:@"cell"];
     
-    cell.textLabel.text = [[_tutors objectAtIndex:indexPath.row] objectForKey:@"TutorName"];
-    cell.accessibilityValue = [[_tutors objectAtIndex:indexPath.row] objectForKey:@"TutorID"];
+    cell.textLabel.text = [[_courses objectAtIndex:indexPath.row] objectForKey:@"CourseName"];
+    cell.accessibilityValue = [[_courses objectAtIndex:indexPath.row] objectForKey:@"CourseID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.detailTextLabel.text = @"Edit the tutor's details";
+    cell.detailTextLabel.text = @"Edit the course's details";
     return cell;
 }
 
@@ -104,12 +104,13 @@
     //self.tutorNameSender = cell.textLabel.text;
     //[self performSegueWithIdentifier:@"TutorsToCourses" sender:self];
     
-    _tutorSender = [[Tutor alloc] init];
-    [_tutorSender setTutorID:[cell.accessibilityValue intValue]];
-    [_tutorSender setName:cell.textLabel.text];
+    _courseSender = [[Course alloc] init];
+    [_courseSender setCourseID:[cell.accessibilityValue intValue]];
+    [_courseSender setName:cell.textLabel.text];
     
-    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveTutor"];
-    view.tutor = self.tutorSender;
+    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourse"];
+    view.course = self.courseSender;
+    view.tutor = _tutor;
     [self.navigationController pushViewController:view animated:YES];
 }
 
@@ -127,10 +128,10 @@
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    _tutors = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+    _courses = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.mainTableView reloadData];
     
-    if ([_tutors count] == 0) {
+    if ([_courses count] == 0) {
         //_statusLbl.text = @"No tutors, click the plus to add one";
         [_mainTableView setBackgroundColor:[UIColor whiteColor]];
     }
@@ -145,7 +146,6 @@
     [errorView show];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
-
 
 
 - (void)didReceiveMemoryWarning

@@ -1,21 +1,20 @@
 //
-//  saveTutorViewController.m
+//  saveCourseViewController.m
 //  testGit
 //
-//  Created by Alex Bechmann on 02/05/14.
+//  Created by Alex Bechmann on 03/05/14.
 //  Copyright (c) 2014 Alex Bechmann. All rights reserved.
 //
 
-#import "saveTutorViewController.h"
+#import "saveCourseViewController.h"
 
-@interface saveTutorViewController ()
+@interface saveCourseViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 
 @end
 
-@implementation saveTutorViewController
+@implementation saveCourseViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,31 +34,30 @@
     UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, deleteBtn, nil]];
     
-    self.nameTextField.text = [_tutor name];
-    self.phoneTextField.text = [_tutor phone];
+    self.nameTextField.text = [_course name];
+    //self.phoneTextField.text = [_course phone];
     
-    if([_tutor tutorID] == 0){
-        self.title = @"Create tutor";
+    if([_course courseID] == 0){
+        self.title = @"Create course";
     }
     else{
-        self.title = @"Edit tutor";
+        self.title = @"Edit course";
     }
 }
 
 -(void)save{
     if (self.nameTextField.text && self.nameTextField.text.length > 0) {
         
-        [_tutor setName:self.nameTextField.text];
-        [_tutor setPhone:self.phoneTextField.text];
-    
+        [_course setName:self.nameTextField.text];
         self.statusLbl.hidden = YES;
     
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=tutor&id=%li&name=%@&phone=%@&clientid=%i&ts=%f", [_tutor tutorID], [_tutor name], [_tutor phone], 1, [[NSDate date] timeIntervalSince1970]];
+        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=course&id=%li&name=%@&tutorid=%li&clientid=%i&ts=%f", [_course courseID], [_course name], [_tutor tutorID], 1, [[NSDate date] timeIntervalSince1970]];
     
+        NSLog(@"%@", urlString);
         urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
-        
+    
         NSURL *url = [NSURL URLWithString: urlString];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [NSURLConnection connectionWithRequest:request delegate:self];
@@ -71,14 +69,13 @@
 }
 
 -(void)delete{
-    [_tutor setName:self.nameTextField.text];
-    [_tutor setPhone:self.phoneTextField.text];
+    [_course setName:self.nameTextField.text];
     
     self.statusLbl.hidden = YES;
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=tutor&id=%li&delete=1&clientid=%i&ts=%f", [_tutor tutorID], 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=course&id=%li&delete=1&clientid=%i&ts=%f", [_course courseID], 1, [[NSDate date] timeIntervalSince1970]];
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
@@ -108,8 +105,8 @@
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
         //[self.navigationController popViewControllerAnimated:YES];
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
-
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+        
     }
     else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"2"])
     {
@@ -120,7 +117,7 @@
     
     else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"3"])
     {
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
     }
     else{
         self.statusLbl.text = @"Error with saving";
@@ -140,6 +137,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0;
 }
 
 /*

@@ -60,6 +60,8 @@ NSMutableArray *viewStudentsArray;
     
     viewStudentsArray = [[NSMutableArray alloc] init];
     
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
 }
 
@@ -97,9 +99,9 @@ NSMutableArray *viewStudentsArray;
                                 @"Saturday",
                                 nil];
     
-    
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
     
     // need course object for title here 
     self.title = [_course name];

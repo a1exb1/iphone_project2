@@ -42,6 +42,9 @@
 		E47352801900279E008006EE /* indexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E473527F1900279E008006EE /* indexViewController.m */; };
 		E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */; };
 		E4C1C969191459F70068A10D /* editTutorsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C968191459F70068A10D /* editTutorsListViewController.m */; };
+		E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C1C96A1914F75B0068A10D /* glyphicons_030_pencil.png */; };
+		E4C1C9711914F9240068A10D /* editCoursesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C9701914F9240068A10D /* editCoursesListViewController.m */; };
+		E4C1C9741914FA960068A10D /* saveCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C9731914FA960068A10D /* saveCourseViewController.m */; };
 		E4F96CC919097441008D75D6 /* tutorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F96CC819097441008D75D6 /* tutorsTableViewController.m */; };
 		E4F96CCC19097D49008D75D6 /* tutors2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F96CCB19097D49008D75D6 /* tutors2ViewController.m */; };
 		E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F96D12190AA12B008D75D6 /* editStudentViewController.m */; };
@@ -117,6 +120,11 @@
 		E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentCourseLink.m; sourceTree = "<group>"; };
 		E4C1C967191459F70068A10D /* editTutorsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editTutorsListViewController.h; sourceTree = "<group>"; };
 		E4C1C968191459F70068A10D /* editTutorsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editTutorsListViewController.m; sourceTree = "<group>"; };
+		E4C1C96A1914F75B0068A10D /* glyphicons_030_pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_030_pencil.png; sourceTree = "<group>"; };
+		E4C1C96F1914F9240068A10D /* editCoursesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editCoursesListViewController.h; sourceTree = "<group>"; };
+		E4C1C9701914F9240068A10D /* editCoursesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editCoursesListViewController.m; sourceTree = "<group>"; };
+		E4C1C9721914FA960068A10D /* saveCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = saveCourseViewController.h; sourceTree = "<group>"; };
+		E4C1C9731914FA960068A10D /* saveCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = saveCourseViewController.m; sourceTree = "<group>"; };
 		E4F96CC719097441008D75D6 /* tutorsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tutorsTableViewController.h; sourceTree = "<group>"; };
 		E4F96CC819097441008D75D6 /* tutorsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tutorsTableViewController.m; sourceTree = "<group>"; };
 		E4F96CCA19097D49008D75D6 /* tutors2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tutors2ViewController.h; sourceTree = "<group>"; };
@@ -306,6 +314,7 @@
 		E40DF284190017E100E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4C1C96A1914F75B0068A10D /* glyphicons_030_pencil.png */,
 				E40DF285190017E100E1332A /* testGit-Info.plist */,
 				E40DF286190017E100E1332A /* InfoPlist.strings */,
 				E40DF289190017E100E1332A /* main.m */,
@@ -337,6 +346,8 @@
 			children = (
 				E441CF001913EC6B00088FEE /* saveTutorViewController.h */,
 				E441CF011913EC6B00088FEE /* saveTutorViewController.m */,
+				E4C1C9721914FA960068A10D /* saveCourseViewController.h */,
+				E4C1C9731914FA960068A10D /* saveCourseViewController.m */,
 			);
 			name = save;
 			sourceTree = "<group>";
@@ -361,6 +372,8 @@
 			children = (
 				E4C1C967191459F70068A10D /* editTutorsListViewController.h */,
 				E4C1C968191459F70068A10D /* editTutorsListViewController.m */,
+				E4C1C96F1914F9240068A10D /* editCoursesListViewController.h */,
+				E4C1C9701914F9240068A10D /* editCoursesListViewController.m */,
 			);
 			name = edit;
 			sourceTree = "<group>";
@@ -443,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E40DF294190017E100E1332A /* Main_iPad.storyboard in Resources */,
+				E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */,
 				E40DF299190017E100E1332A /* Images.xcassets in Resources */,
 				E40DF291190017E100E1332A /* Main_iPhone.storyboard in Resources */,
 				E40DF288190017E100E1332A /* InfoPlist.strings in Resources */,
@@ -477,7 +491,9 @@
 				E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */,
 				E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */,
 				795B6411190E45D900A2C879 /* UIImage+ImageWithUIView.m in Sources */,
+				E4C1C9711914F9240068A10D /* editCoursesListViewController.m in Sources */,
 				E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */,
+				E4C1C9741914FA960068A10D /* saveCourseViewController.m in Sources */,
 				E40DF28E190017E100E1332A /* ABAppDelegate.m in Sources */,
 				E47352801900279E008006EE /* indexViewController.m in Sources */,
 				E441CF021913EC6B00088FEE /* saveTutorViewController.m in Sources */,

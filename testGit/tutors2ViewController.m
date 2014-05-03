@@ -9,7 +9,7 @@
 #import "tutors2ViewController.h"
 #import "coursesViewController.h"
 #import "saveTutorViewController.h"
-
+#import "editTutorsListViewController.h"
 
 @interface tutors2ViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -38,10 +38,6 @@
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-    
-    UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
-    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(edit)];
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, editBtn, nil]];
     
 }
 
@@ -79,13 +75,16 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
 
-    
+    UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
+    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, editBtn, nil]];
+
 
 }
 
 -(void)plus{
     _tutorSender = [[Tutor alloc] init];
-    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addTutor"];
+    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveTutor"];
     view.tutor = _tutorSender;
     [self.navigationController pushViewController:view animated:YES];
     
@@ -96,7 +95,7 @@
 //    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addTutor"];
 //    view.tutor = _tutorSender;
 //    [self.navigationController pushViewController:view animated:YES];
-    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"editTutorsList"];
+    editTutorsListViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"editTutorsList"];
     //view.tutor = _tutorSender;
     [self.navigationController pushViewController:view animated:YES];
 }

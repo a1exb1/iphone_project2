@@ -17,7 +17,7 @@
     if (self) {
         
         self.studentID = 0;
-        self.name = [NSString stringWithFormat:@"Noname"];
+        self.name = [NSString stringWithFormat:@""];
        
         // name = jeff;
         
