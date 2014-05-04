@@ -64,6 +64,8 @@
     [_mainTableView reloadData];
     _statusLbl.hidden = YES;
     //_statusLbl.text = @"Loading...";
+    UIColor *barColor = [Tools colorFromHexString:@"#57AD2C"];
+    self.navigationController.navigationBar.barTintColor = barColor;
 }
 
 
@@ -84,7 +86,19 @@
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, editBtn, nil]];
     
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
+    [_mainTableView addPullToRefreshWithActionHandler:^{
+        [Tools showLoader];
+        //
+        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
+        NSURL *url = [NSURL URLWithString: urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [NSURLConnection connectionWithRequest:request delegate:self];
+    }];
 
+    UIColor *barColor = [Tools colorFromHexString:@"#57AD2C"];
+    self.navigationController.navigationBar.barTintColor = barColor;
+    
 }
 
 -(void)plus{
@@ -97,10 +111,6 @@
 }
 
 -(void)edit{
-    //_tutorSender = [[Tutor alloc] init];
-    //    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addTutor"];
-    //    view.tutor = _tutorSender;
-    //    [self.navigationController pushViewController:view animated:YES];
     editCoursesListViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"editCoursesList"];
     view.tutor = _tutor;
     [self.navigationController pushViewController:view animated:YES];
@@ -179,6 +189,7 @@
 {
     //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [Tools hideLoader];
+    [_mainTableView.pullToRefreshView stopAnimating];
     
     _courses = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.mainTableView reloadData];
@@ -198,7 +209,8 @@
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [Tools hideLoader];
+    [_mainTableView.pullToRefreshView stopAnimating];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

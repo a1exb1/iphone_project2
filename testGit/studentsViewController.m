@@ -84,6 +84,9 @@ NSMutableArray *viewStudentsArray;
     [_mainTableView reloadData];
     _statusLbl.hidden = YES;
     //_statusLbl.text = @"Loading...";
+    
+    UIColor *barColor = [Tools colorFromHexString:@"#4473b4"];
+    self.navigationController.navigationBar.barTintColor = barColor;
 }
 
 - (void)viewDidLoad
@@ -112,16 +115,22 @@ NSMutableArray *viewStudentsArray;
 
     self.title = [_course name];
     
-//    NavigationBarTitleWithSubtitleView *navigationBarTitleView = [[NavigationBarTitleWithSubtitleView alloc] init];
-//    [self.navigationItem setTitleView: navigationBarTitleView];
-//    [navigationBarTitleView setTitleText:[_course name]];
-//    [navigationBarTitleView setDetailText:[_tutor name]];
-    
     _studentCourseLinkSender = [[StudentCourseLink alloc] init];
     [_studentCourseLinkSender setCourse: _course];
     
     Student *student = [[Student alloc] init];
     [_studentCourseLinkSender setStudent:student];
+    
+    [_mainTableView addPullToRefreshWithActionHandler:^{
+        //[Tools showLoader];
+        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbycourse&id=%li&ts=%f", [_course courseID], [[NSDate date] timeIntervalSince1970]];
+        NSURL *url = [NSURL URLWithString: urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [NSURLConnection connectionWithRequest:request delegate:self];
+    }];
+    
+    UIColor *barColor = [Tools colorFromHexString:@"#4473b4"];
+    self.navigationController.navigationBar.barTintColor = barColor;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -227,6 +236,7 @@ NSMutableArray *viewStudentsArray;
 {
     //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [Tools hideLoader];
+    [_mainTableView.pullToRefreshView stopAnimating];
     
     _students = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     _uniqueWeekdays = [_students valueForKeyPath:@"@distinctUnionOfObjects.Weekday"];
@@ -261,7 +271,8 @@ NSMutableArray *viewStudentsArray;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [Tools hideLoader];
+    [_mainTableView.pullToRefreshView stopAnimating];
 }
 
 

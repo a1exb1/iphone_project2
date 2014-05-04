@@ -8,6 +8,7 @@
 
 #import "editTutorsListViewController.h"
 #import "saveTutorViewController.h"
+#import "Tools.h"
 
 
 @interface editTutorsListViewController ()
@@ -26,8 +27,12 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [Tools showLoader];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [Tools showLoader];
     //
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
@@ -56,9 +61,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [Tools showLoader];
+    
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
     self.title = @"Edit a tutor";
+    
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
 }
 
@@ -82,7 +92,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0;
+    return 1;
 }
 
 
@@ -125,7 +135,7 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [Tools hideLoader];
     
     _tutors = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.mainTableView reloadData];

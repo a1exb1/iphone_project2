@@ -8,6 +8,7 @@
 
 #import "editCoursesListViewController.h"
 #import "saveCourseViewController.h"
+#import "Tools.h"
 
 @interface editCoursesListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -25,8 +26,12 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [Tools showLoader];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [Tools showLoader];
     //
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
@@ -60,6 +65,8 @@
     self.mainTableView.delegate = self;
     self.title = @"Edit a course";
     
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -82,7 +89,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0;
+    return 1;
 }
 
 
@@ -126,7 +133,7 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [Tools hideLoader];
     
     _courses = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.mainTableView reloadData];

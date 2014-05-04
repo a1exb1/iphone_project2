@@ -27,29 +27,9 @@
      [self.slidingViewController resetTopView];
 }
 
-//-(void)showLoader{
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-//    //_statusLbl.hidden = NO;
-//    //_statusLbl.text = @"Loading...";
-//    
-//    // loader
-//    _indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//    _indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
-//    _indicator.center = self.view.center;
-//    [self.view addSubview:_indicator];
-//    [_indicator bringSubviewToFront:self.view];
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
-//    [_indicator startAnimating];
-//}
-//
-//-(void)hideLoader{
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-//    //_statusLbl.hidden = YES;
-//    [_indicator stopAnimating];
-//}
-
 - (void)viewDidAppear:(BOOL)animated {
     [Tools showLoader];
+    //[_mainTableView triggerPullToRefresh];
     //
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
@@ -58,6 +38,14 @@
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
+    UIColor *barColor = [Tools colorFromHexString:@"#b44444"];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navigationController.navigationBar.barTintColor = barColor;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setTranslucent:NO];
     
 }
 
@@ -78,6 +66,7 @@
     }
     
     [Tools showLoader];
+    //[_mainTableView triggerPullToRefresh];
     _data = [[NSMutableData alloc]init];
     _tutors = [[NSArray alloc] init];
     [_mainTableView reloadData];
@@ -93,7 +82,9 @@
         [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
     
-    
+    UIColor *barColor = [Tools colorFromHexString:@"#b44444"];
+    self.navigationController.navigationBar.barTintColor = barColor;
+
 
 }
 
@@ -108,7 +99,16 @@
     UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, editBtn, nil]];
 
-
+    [_mainTableView addPullToRefreshWithActionHandler:^{
+        //[Tools showLoader];
+        //[_mainTableView triggerPullToRefresh];
+        //
+        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
+        NSURL *url = [NSURL URLWithString: urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [NSURLConnection connectionWithRequest:request delegate:self];
+    }];
+    
 }
 
 -(void)plus{
@@ -120,21 +120,9 @@
 }
 
 -(void)edit{
-    //_tutorSender = [[Tutor alloc] init];
-//    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addTutor"];
-//    view.tutor = _tutorSender;
-//    [self.navigationController pushViewController:view animated:YES];
     editTutorsListViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"editTutorsList"];
-    //view.tutor = _tutorSender;
     [self.navigationController pushViewController:view animated:YES];
 }
-
-//-(IBAction)plus:(id)sender{
-//    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addTutor"];
-//    view.tutor = _tutorSender;
-//    [self.navigationController pushViewController:view animated:YES];
-//    //[self presentViewController:view animated:YES completion:nil];
-//}
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -201,7 +189,7 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    
+    [_mainTableView.pullToRefreshView stopAnimating];
     [Tools hideLoader];
 
     _tutors = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
@@ -221,7 +209,8 @@
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [Tools hideLoader];
+    [_mainTableView.pullToRefreshView stopAnimating];
 }
 
 
@@ -235,48 +224,7 @@
 //    item.tutorName = self.tutorNameSender;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-
-//#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 
 
 

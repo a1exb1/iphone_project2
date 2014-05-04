@@ -47,6 +47,8 @@
 		E4C1C9741914FA960068A10D /* saveCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C9731914FA960068A10D /* saveCourseViewController.m */; };
 		E4C1C9781915A4450068A10D /* NavigationBarTitleWithSubtitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C9771915A4450068A10D /* NavigationBarTitleWithSubtitleView.m */; };
 		E4C1C97B1916700F0068A10D /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C97A1916700F0068A10D /* Tools.m */; };
+		E4C1C98219167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C97F19167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m */; };
+		E4C1C98319167BA90068A10D /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C98119167BA90068A10D /* UIScrollView+SVPullToRefresh.m */; };
 		E4F96CC919097441008D75D6 /* tutorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F96CC819097441008D75D6 /* tutorsTableViewController.m */; };
 		E4F96CCC19097D49008D75D6 /* tutors2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F96CCB19097D49008D75D6 /* tutors2ViewController.m */; };
 		E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F96D12190AA12B008D75D6 /* editStudentViewController.m */; };
@@ -131,6 +133,11 @@
 		E4C1C9771915A4450068A10D /* NavigationBarTitleWithSubtitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarTitleWithSubtitleView.m; sourceTree = "<group>"; };
 		E4C1C9791916700F0068A10D /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		E4C1C97A1916700F0068A10D /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
+		E4C1C97D19167BA90068A10D /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		E4C1C97E19167BA90068A10D /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		E4C1C97F19167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		E4C1C98019167BA90068A10D /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		E4C1C98119167BA90068A10D /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		E4F96CC719097441008D75D6 /* tutorsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tutorsTableViewController.h; sourceTree = "<group>"; };
 		E4F96CC819097441008D75D6 /* tutorsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tutorsTableViewController.m; sourceTree = "<group>"; };
 		E4F96CCA19097D49008D75D6 /* tutors2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tutors2ViewController.h; sourceTree = "<group>"; };
@@ -199,8 +206,6 @@
 				795B6421190E5BC400A2C879 /* Student.m */,
 				79F7196119124FA100C644A1 /* Course.h */,
 				79F7196219124FA100C644A1 /* Course.m */,
-				E4C1C9791916700F0068A10D /* Tools.h */,
-				E4C1C97A1916700F0068A10D /* Tools.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 		E40DF283190017E100E1332A /* testGit */ = {
 			isa = PBXGroup;
 			children = (
+				E4C1C97C19167BA90068A10D /* SVPullToRefresh */,
 				795B640A190E45D900A2C879 /* Vendor */,
 				79AA222E1909439D005AC8A3 /* classes */,
 				E473527D19002785008006EE /* viewControllers */,
@@ -390,10 +396,24 @@
 		E4C1C9751915A4200068A10D /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				E4C1C9791916700F0068A10D /* Tools.h */,
+				E4C1C97A1916700F0068A10D /* Tools.m */,
 				E4C1C9761915A4450068A10D /* NavigationBarTitleWithSubtitleView.h */,
 				E4C1C9771915A4450068A10D /* NavigationBarTitleWithSubtitleView.m */,
 			);
 			name = tools;
+			sourceTree = "<group>";
+		};
+		E4C1C97C19167BA90068A10D /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				E4C1C97D19167BA90068A10D /* SVPullToRefresh.h */,
+				E4C1C97E19167BA90068A10D /* UIScrollView+SVInfiniteScrolling.h */,
+				E4C1C97F19167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m */,
+				E4C1C98019167BA90068A10D /* UIScrollView+SVPullToRefresh.h */,
+				E4C1C98119167BA90068A10D /* UIScrollView+SVPullToRefresh.m */,
+			);
+			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -501,6 +521,7 @@
 				E4C1C97B1916700F0068A10D /* Tools.m in Sources */,
 				795B641C190E56A900A2C879 /* MenuViewController.m in Sources */,
 				E4F96CCC19097D49008D75D6 /* tutors2ViewController.m in Sources */,
+				E4C1C98319167BA90068A10D /* UIScrollView+SVPullToRefresh.m in Sources */,
 				E40DF28A190017E100E1332A /* main.m in Sources */,
 				E4C1C9781915A4450068A10D /* NavigationBarTitleWithSubtitleView.m in Sources */,
 				795B6419190E4A7700A2C879 /* initialViewController.m in Sources */,
@@ -510,6 +531,7 @@
 				795B641F190E599700A2C879 /* ToDoViewController.m in Sources */,
 				E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */,
 				E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */,
+				E4C1C98219167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				795B6411190E45D900A2C879 /* UIImage+ImageWithUIView.m in Sources */,
 				E4C1C9711914F9240068A10D /* editCoursesListViewController.m in Sources */,
 				E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */,

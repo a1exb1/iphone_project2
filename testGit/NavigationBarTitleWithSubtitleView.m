@@ -33,7 +33,7 @@
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.font = [UIFont boldSystemFontOfSize:17];
         titleLabel.textAlignment = NSTextAlignmentCenter;
-        //titleLabel.textColor = [UIColor whiteColor];
+        titleLabel.textColor = [UIColor whiteColor];
        // titleLabel.shadowColor = [UIColor darkGrayColor];
         //titleLabel.shadowOffset = CGSizeMake(0, -1);
         titleLabel.text = @"";
@@ -45,7 +45,7 @@
         detailLabel.backgroundColor = [UIColor clearColor];
         detailLabel.font = [UIFont systemFontOfSize:11];
         detailLabel.textAlignment = NSTextAlignmentCenter;
-        //detailLabel.textColor = [UIColor whiteColor];
+        detailLabel.textColor = [UIColor whiteColor];
         //detailLabel.shadowColor = [UIColor darkGrayColor];
         //detailLabel.shadowOffset = CGSizeMake(0, -1);
         detailLabel.text = @"";

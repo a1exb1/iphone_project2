@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SVPullToRefresh.h"
 
 @interface Tools : NSObject
 
 +(void)showLoader;
 +(void)hideLoader;
+
+// Assumes input like "#00FF00" (#RRGGBB).
++ (UIColor *)colorFromHexString:(NSString *)hexString;
 
 @end
