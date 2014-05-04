@@ -10,6 +10,8 @@
 #import "studentsViewController.h"
 #import "editCoursesListViewController.h"
 #import "saveCourseViewController.h"
+#import "NavigationBarTitleWithSubtitleView.h"
+#import "Tools.h"
 
 @interface coursesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -30,7 +32,8 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    //[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [Tools showLoader];
     //
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
@@ -39,6 +42,7 @@
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
     
     
 }
@@ -52,7 +56,16 @@
     if (selection) {
         [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
+    
+    [Tools showLoader];
+    
+    _data = [[NSMutableData alloc]init];
+    _courses = [[NSArray alloc] init];
+    [_mainTableView reloadData];
+    _statusLbl.hidden = YES;
+    //_statusLbl.text = @"Loading...";
 }
+
 
 - (void)viewDidLoad
 {
@@ -61,9 +74,16 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
     
+    NavigationBarTitleWithSubtitleView *navigationBarTitleView = [[NavigationBarTitleWithSubtitleView alloc] init];
+    [self.navigationItem setTitleView: navigationBarTitleView];
+    [navigationBarTitleView setTitleText:@"Courses"];
+    [navigationBarTitleView setDetailText:[_tutor name]];
+    
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
     UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, editBtn, nil]];
+    
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 
 }
 
@@ -157,7 +177,8 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [Tools hideLoader];
     
     _courses = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.mainTableView reloadData];
@@ -187,6 +208,7 @@
     
     studentsViewController *item = segue.destinationViewController;
     item.course = _courseSender;
+    item.tutor = _tutor;
 //    item.courseName = self.courseNameSender;
 //    item.courseID = self.courseIDSender;
     

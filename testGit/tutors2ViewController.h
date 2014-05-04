@@ -21,4 +21,6 @@
 
 @property Tutor *tutorSender;
 
+@property UIActivityIndicatorView *indicator;
+
 @end

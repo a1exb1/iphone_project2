@@ -10,6 +10,7 @@
 #import "coursesViewController.h"
 #import "saveTutorViewController.h"
 #import "editTutorsListViewController.h"
+#import "Tools.h"
 
 @interface tutors2ViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -26,10 +27,29 @@
      [self.slidingViewController resetTopView];
 }
 
-
+//-(void)showLoader{
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+//    //_statusLbl.hidden = NO;
+//    //_statusLbl.text = @"Loading...";
+//    
+//    // loader
+//    _indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//    _indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+//    _indicator.center = self.view.center;
+//    [self.view addSubview:_indicator];
+//    [_indicator bringSubviewToFront:self.view];
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
+//    [_indicator startAnimating];
+//}
+//
+//-(void)hideLoader{
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//    //_statusLbl.hidden = YES;
+//    [_indicator stopAnimating];
+//}
 
 - (void)viewDidAppear:(BOOL)animated {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [Tools showLoader];
     //
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
@@ -57,6 +77,13 @@
         [(MenuViewController *)self.slidingViewController.underLeftViewController setDelegate:self];
     }
     
+    [Tools showLoader];
+    _data = [[NSMutableData alloc]init];
+    _tutors = [[NSArray alloc] init];
+    [_mainTableView reloadData];
+    
+    _statusLbl.hidden = YES;
+    
     // Add the pan gesture to allow sliding
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     
@@ -65,6 +92,8 @@
     if (selection) {
         [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
+    
+    
 
 }
 
@@ -172,12 +201,14 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    [Tools hideLoader];
 
     _tutors = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.mainTableView reloadData];
     
     if ([_tutors count] == 0) {
+        _statusLbl.hidden = NO;
         _statusLbl.text = @"No tutors, click the plus to add one";
         [_mainTableView setBackgroundColor:[UIColor whiteColor]];
     }

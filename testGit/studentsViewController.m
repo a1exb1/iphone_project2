@@ -10,6 +10,8 @@
 #import "editStudentAndSlotViewController.h"
 #import "editStudentViewController.h"
 #import "viewAllStudentsViewController.h"
+#import "NavigationBarTitleWithSubtitleView.h"
+#import "Tools.h"
 
 @interface studentsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -47,7 +49,7 @@ NSMutableArray *viewStudentsArray;
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+    [Tools showLoader];
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
     
@@ -74,10 +76,14 @@ NSMutableArray *viewStudentsArray;
         [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
     
+    [Tools showLoader];
     
-    
-    _statusLbl.hidden = NO;
-    _statusLbl.text = @"Loading...";
+    _data = [[NSMutableData alloc]init];
+    _uniqueWeekdays = [[NSArray alloc]init];
+    _students = [[NSArray alloc] init];
+    [_mainTableView reloadData];
+    _statusLbl.hidden = YES;
+    //_statusLbl.text = @"Loading...";
 }
 
 - (void)viewDidLoad
@@ -103,8 +109,13 @@ NSMutableArray *viewStudentsArray;
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     
-    // need course object for title here 
+
     self.title = [_course name];
+    
+//    NavigationBarTitleWithSubtitleView *navigationBarTitleView = [[NavigationBarTitleWithSubtitleView alloc] init];
+//    [self.navigationItem setTitleView: navigationBarTitleView];
+//    [navigationBarTitleView setTitleText:[_course name]];
+//    [navigationBarTitleView setDetailText:[_tutor name]];
     
     _studentCourseLinkSender = [[StudentCourseLink alloc] init];
     [_studentCourseLinkSender setCourse: _course];
@@ -125,7 +136,7 @@ NSMutableArray *viewStudentsArray;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 10;
+    return 0.2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -214,7 +225,8 @@ NSMutableArray *viewStudentsArray;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [Tools hideLoader];
     
     _students = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     _uniqueWeekdays = [_students valueForKeyPath:@"@distinctUnionOfObjects.Weekday"];
@@ -235,6 +247,7 @@ NSMutableArray *viewStudentsArray;
     [self.mainTableView reloadData];
         
     if ([_students count] == 0) {
+        _statusLbl.hidden = NO;
         _statusLbl.text = @"No students, click the plus to add one";
         [_mainTableView setBackgroundColor:[UIColor whiteColor]];
     }

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StudentCourseLink.h"
 #import "Course.h"
+#import "Tutor.h"
 @interface studentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 //@property NSString *courseID;
@@ -21,6 +22,7 @@
 
 @property StudentCourseLink *studentCourseLinkSender;
 @property Course *course;
+@property Tutor *tutor;
 @property int sender;
 
 @end
