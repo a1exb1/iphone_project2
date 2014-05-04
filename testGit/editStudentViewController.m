@@ -48,8 +48,6 @@
     
     UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveStudent)];
     UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteStudent)];
-    //UIImage *image = [[UIImage imageNamed:@"glyphicons_030_pencil.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    //UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, deleteBtn, nil]];
 }
 

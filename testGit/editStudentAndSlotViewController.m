@@ -56,6 +56,16 @@ int cellClicked = -1;
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
+    _weekdayArray = [[NSArray alloc] initWithObjects:
+                     @"Sunday",
+                     @"Monday",
+                     @"Tuesday",
+                     @"Wednesday",
+                     @"Thursday",
+                     @"Friday",
+                     @"Saturday",
+                     nil];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -87,9 +97,11 @@ int cellClicked = -1;
         NSString *cellHour = [NSString stringWithFormat:@"%02d", [_studentCourseLink Hour]];
         NSString *cellMins = [NSString stringWithFormat:@"%02d", [_studentCourseLink Mins]];
         NSString *cellCourse = [[_studentCourseLink course] name];
+        NSString *cellWeekday = [_weekdayArray objectAtIndex:[_studentCourseLink Weekday]];
         
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@:%@ (%i mins)", cellCourse, @"at",cellHour, cellMins, [_studentCourseLink Duration]];
-        cell.detailTextLabel.text = @"Change lesson time";
+        //cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@:%@ (%i mins)", cellCourse, @"at",cellHour, cellMins, [_studentCourseLink Duration]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ on %@", cellCourse, cellWeekday];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@:%@ (%i mins) • Tap to change", cellHour, cellMins, [_studentCourseLink Duration]];
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

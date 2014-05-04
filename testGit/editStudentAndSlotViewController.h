@@ -16,5 +16,6 @@
 @property StudentCourseLink *studentCourseLink;
 @property NSArray *cells;
 
+@property NSArray *weekdayArray;
 
 @end

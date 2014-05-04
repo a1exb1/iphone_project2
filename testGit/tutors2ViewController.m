@@ -39,13 +39,7 @@
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
-    UIColor *barColor = [Tools colorFromHexString:@"#b44444"];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    self.navigationController.navigationBar.barTintColor = barColor;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    [self.navigationController.navigationBar setTranslucent:NO];
     
 }
 
@@ -84,8 +78,6 @@
     
     UIColor *barColor = [Tools colorFromHexString:@"#b44444"];
     self.navigationController.navigationBar.barTintColor = barColor;
-
-
 }
 
 - (void)viewDidLoad
@@ -109,6 +101,13 @@
         [NSURLConnection connectionWithRequest:request delegate:self];
     }];
     
+    UIColor *barColor = [Tools colorFromHexString:@"#b44444"];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navigationController.navigationBar.barTintColor = barColor;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setTranslucent:NO];
 }
 
 -(void)plus{
