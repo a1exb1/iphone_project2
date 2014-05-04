@@ -88,7 +88,7 @@
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     [_mainTableView addPullToRefreshWithActionHandler:^{
-        [Tools showLoader];
+        //[Tools showLoader];
         //
         NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
         NSURL *url = [NSURL URLWithString: urlString];
@@ -200,6 +200,7 @@
         [_mainTableView setBackgroundColor:[UIColor whiteColor]];
     }
     else{
+        [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
         _statusLbl.hidden = YES;
         
     }

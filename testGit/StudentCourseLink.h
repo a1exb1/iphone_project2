@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Student.h"
 #import "Course.h"
+#import "Tutor.h"
 
 @interface StudentCourseLink : NSObject
 
@@ -21,6 +22,7 @@
 @property int Mins;
 @property Course *course;
 @property Student *student;
+@property Tutor *tutor;
 
 -(void) load;
 -(void) loadByID: (long)linkID;

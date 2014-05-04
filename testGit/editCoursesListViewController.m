@@ -12,6 +12,7 @@
 
 @interface editCoursesListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
+@property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 
 @end
 
@@ -28,6 +29,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [Tools showLoader];
+    
+    _data = [[NSMutableData alloc]init];
+    _courses = [[NSArray alloc] init];
+    [_mainTableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -66,6 +71,14 @@
     self.title = @"Edit a course";
     
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
+    [_mainTableView addPullToRefreshWithActionHandler:^{
+        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
+        NSURL *url = [NSURL URLWithString: urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [NSURLConnection connectionWithRequest:request delegate:self];
+        
+    }];
     
 }
 
@@ -134,16 +147,19 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [Tools hideLoader];
+    [_mainTableView.pullToRefreshView stopAnimating];
     
     _courses = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.mainTableView reloadData];
     
     if ([_courses count] == 0) {
-        //_statusLbl.text = @"No tutors, click the plus to add one";
+        _statusLbl.text = @"No courses, click the plus to add one";
+        _statusLbl.hidden = NO;
         [_mainTableView setBackgroundColor:[UIColor whiteColor]];
     }
     else{
-        //_statusLbl.hidden = YES;
+        _statusLbl.hidden = YES;
+        [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     }
 }
 
@@ -151,7 +167,8 @@
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [_mainTableView.pullToRefreshView stopAnimating];
+    [Tools hideLoader];
 }
 
 

@@ -8,9 +8,11 @@
 
 #import "viewAllStudentsViewController.h"
 #import "editLessonSlotViewController.h"
+#import "Tools.h"
 
 @interface viewAllStudentsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
+@property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 
 @end
 
@@ -27,11 +29,19 @@ int goToSlots = 0;
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [Tools showLoader];
+    
+    _data = [[NSMutableData alloc]init];
+    _students = [[NSArray alloc] init];
+    [_mainTableView reloadData];
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [Tools showLoader];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbytutor&id=%li&ts=%f", [[_studentCourseLink tutor] tutorID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
@@ -45,6 +55,7 @@ int goToSlots = 0;
     [_studentCourseLinkSender setCourse:previousCourse];
     //[_student setStudentCourseLink:studentCourseLink];
     goToSlots = 0;
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 }
 
 - (void)viewDidLoad
@@ -53,6 +64,16 @@ int goToSlots = 0;
     // Do any additional setup after loading the view.
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
+    
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    [Tools showLoader];
+    
+    [_mainTableView addPullToRefreshWithActionHandler:^{
+        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbytutor&id=%li&ts=%f", [[_studentCourseLink tutor] tutorID], [[NSDate date] timeIntervalSince1970]];
+        NSURL *url = [NSURL URLWithString: urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [NSURLConnection connectionWithRequest:request delegate:self];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,7 +103,7 @@ int goToSlots = 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0;
+    return 1;
 }
 
 
@@ -127,8 +148,8 @@ int goToSlots = 0;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
+    [Tools hideLoader];
+    [_mainTableView.pullToRefreshView stopAnimating];
     _students = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.mainTableView reloadData];
     
@@ -138,7 +159,8 @@ int goToSlots = 0;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [Tools hideLoader];
+    [_mainTableView.pullToRefreshView stopAnimating];
 }
 
 

@@ -200,6 +200,7 @@
         [_mainTableView setBackgroundColor:[UIColor whiteColor]];
     }
     else{
+        [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
         _statusLbl.hidden = YES;
     }
 }

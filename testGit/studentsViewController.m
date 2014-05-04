@@ -120,6 +120,7 @@ NSMutableArray *viewStudentsArray;
     
     Student *student = [[Student alloc] init];
     [_studentCourseLinkSender setStudent:student];
+    [_studentCourseLinkSender setTutor:_tutor];
     
     [_mainTableView addPullToRefreshWithActionHandler:^{
         //[Tools showLoader];
@@ -263,6 +264,7 @@ NSMutableArray *viewStudentsArray;
     }
     else{
         _statusLbl.hidden = YES;
+        [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     }
     
 }

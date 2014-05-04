@@ -54,7 +54,6 @@
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=course&id=%li&name=%@&tutorid=%li&clientid=%i&ts=%f", [_course courseID], [_course name], [_tutor tutorID], 1, [[NSDate date] timeIntervalSince1970]];
     
-        NSLog(@"%@", urlString);
         urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
     
