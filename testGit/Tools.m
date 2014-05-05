@@ -7,6 +7,7 @@
 //
 
 #import "Tools.h"
+#import "ABAppDelegate.h"
 
 
 @implementation Tools
@@ -52,6 +53,10 @@ UIActivityIndicatorView *indicator;
 {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     //UIView *view = window.rootViewController.view;
+    //UINavigationController *controller = ((UINavigationController*)window.rootViewController).visibleViewController;
+    
+    UIViewController *pVC = window.rootViewController.navigationController.visibleViewController;
+    
     //status bar
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
@@ -61,19 +66,19 @@ UIActivityIndicatorView *indicator;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
         //title colour
-        window.rootViewController.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+        pVC.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     }
     else{
         //status bar
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
         
         //title colour
-        window.rootViewController.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+        pVC.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     }
 
-    window.rootViewController.navigationController.navigationBar.barTintColor = bgCol;
-    window.rootViewController.navigationController.navigationBar.tintColor = tint;
-    [window.rootViewController.navigationController.navigationBar setTranslucent:YES];
+    pVC.navigationController.navigationBar.barTintColor = bgCol;
+    pVC.navigationController.navigationBar.tintColor = tint;
+    [pVC.navigationController.navigationBar setTranslucent:YES];
     
     NSLog(@"heli");
 }
