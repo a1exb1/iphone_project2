@@ -25,4 +25,6 @@
 @property Tutor *tutor;
 @property int sender;
 
+@property bool editing;
+
 @end

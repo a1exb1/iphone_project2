@@ -95,7 +95,7 @@ NSMutableArray *viewStudentsArray;
 	// Do any additional setup after loading the view.
     
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [Tools showLoader];
     //
     
     daysOfWeekArray = [[NSArray alloc] initWithObjects:
@@ -132,6 +132,84 @@ NSMutableArray *viewStudentsArray;
     
     UIColor *barColor = [Tools colorFromHexString:@"#4473b4"];
     self.navigationController.navigationBar.barTintColor = barColor;
+    
+    UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
+    UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, deleteBtn, nil]];
+}
+
+-(void)plus
+{
+    [self performSegueWithIdentifier:@"studentsForCourseToStudentsList" sender:self];
+}
+
+-(void)startEditingTable{
+    [_mainTableView setEditing:YES animated:YES];
+    UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
+    UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(delete)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, deleteBtn, nil]];
+    _editing = true;
+}
+
+-(void)endEditingTable{
+    [_mainTableView setEditing:NO animated:YES];
+    UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
+    UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, deleteBtn, nil]];
+    _editing = false;
+}
+
+-(void)delete
+{
+    if (_editing == true) {
+        [self endEditingTable];
+            }
+    else{
+        [self startEditingTable];
+    }
+}
+
+//-(void)delete{
+//}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        //[_mainTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        //[Tools showLoader];
+        
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        self.studentIDSender = cell.accessibilityValue;
+        NSMutableArray *sectionArray = [[NSMutableArray alloc]init];
+        sectionArray = [viewStudentsArray objectAtIndex:indexPath.section];
+        
+        StudentCourseLink *link = [[StudentCourseLink alloc] init];
+        [link setStudentCourseLinkID:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentCourseLinkID"] intValue]];
+        [link setWeekday:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Weekday"] intValue]];
+        [link setHour:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Hour"] intValue]];
+        [link setMins:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Minute"] intValue]];
+        [link setDuration:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]];
+        
+        
+        Student *student = [[Student alloc] init];
+        [student setStudentID: [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentID"] intValue]];
+        [student setName: [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
+        [link setStudent:student];
+        
+        NSLog(@"delete %li", [link StudentCourseLinkID]);
+
+//        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&delete=1&clientid=%i&ts=%f", [link StudentCourseLinkID], 1, [[NSDate date] timeIntervalSince1970]];
+//        
+//        urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
+//                     NSASCIIStringEncoding];
+//        
+//        NSURL *url = [NSURL URLWithString: urlString];
+//        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//        [NSURLConnection connectionWithRequest:request delegate:self];
+        
+        [self endEditingTable];
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -197,7 +275,6 @@ NSMutableArray *viewStudentsArray;
     NSMutableArray *sectionArray = [[NSMutableArray alloc]init];
     sectionArray = [viewStudentsArray objectAtIndex:indexPath.section];
     
-    
     [_studentCourseLinkSender setStudentCourseLinkID:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentCourseLinkID"] intValue]];
     [_studentCourseLinkSender setWeekday:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Weekday"] intValue]];
     [_studentCourseLinkSender setHour:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Hour"] intValue]];
@@ -209,13 +286,8 @@ NSMutableArray *viewStudentsArray;
     [student setStudentID: [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentID"] intValue]];
     [student setName: [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
     
-
     [_studentCourseLinkSender setStudent:student];
-    
-    //_studentCourseLinkSender = studentCourseLink;
-    
     _sender = 0;
-    
     [self performSegueWithIdentifier:@"StudentsToEditStudentAndLink" sender:self];
     
 }
@@ -224,7 +296,6 @@ NSMutableArray *viewStudentsArray;
 {
     _data = [[NSMutableData alloc]init];
     _uniqueWeekdays = [[NSArray alloc]init];
-    //[_mainTableView reloadData];
     
 }
 
@@ -282,12 +353,10 @@ NSMutableArray *viewStudentsArray;
 {    
     if (_sender == 1){
         viewAllStudentsViewController *item = segue.destinationViewController;
-        //item.studentID = self.studentIDSender;
         item.studentCourseLink = self.studentCourseLinkSender;
     }
     else{
         editStudentAndSlotViewController *item = segue.destinationViewController;
-        //item.studentID = self.studentIDSender;
         item.studentCourseLink = self.studentCourseLinkSender;
     }
     

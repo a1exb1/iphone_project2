@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 @property (weak, nonatomic) IBOutlet UIButton *toSlotBtn;
 @property (weak, nonatomic) IBOutlet UITextField *studentPhoneTextField;
-@property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 
 @end
 
@@ -38,17 +37,20 @@
     
     _saveResultArray = [[NSArray alloc] init];
     
+    UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveStudent)];
+    
     if([[_studentCourseLink student] studentID] == 0) {
         self.title = @"Create student";
-        self.deleteBtn.hidden = YES;
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
     }
     else{
         self.title = @"Edit student info";
+        UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(authorizeDelete)];
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, deleteBtn, nil]];
     }
     
-    UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveStudent)];
-    UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteStudent)];
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, deleteBtn, nil]];
+    
+    
 }
 
 
@@ -70,6 +72,25 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the OK/Cancel buttons
+    if (buttonIndex == 1)
+    {
+        [self deleteStudent];
+        
+    }
+
+}
+
+-(void)authorizeDelete{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm delete"
+                                                    message:@"Are you sure you want to delete?"
+                                                   delegate:self    // <------
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Delete student", nil];
+    [alert show];
+}
 
 -(void)saveStudent
 {

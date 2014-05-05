@@ -82,10 +82,35 @@
     self.studentCourseLbl.text = [[_studentCourseLink course] name];
     
     UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
-    UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, deleteBtn, nil]];
+    
+    if ([_studentCourseLink StudentCourseLinkID] > 0) {
+        UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(authorizeDelete)];
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, deleteBtn, nil]];
+    }
+    else{
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
+    }
+    
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the OK/Cancel buttons
+    if (buttonIndex == 1)
+    {
+        [self delete];
+        
+    }
+    
+}
+
+-(void)authorizeDelete{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm delete"
+                                                    message:@"Are you sure you want to delete?"
+                                                   delegate:self    // <------
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Delete lesson", nil];
+    [alert show];
+}
 
 -(void)delete{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

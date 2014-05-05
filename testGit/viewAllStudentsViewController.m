@@ -47,13 +47,10 @@ int goToSlots = 0;
     [NSURLConnection connectionWithRequest:request delegate:self];
     
     Course *previousCourse = [_studentCourseLink course];
-    //[_studentCourseLink setStudent: [[Student alloc]init]];
     
     _studentCourseLinkSender = [[StudentCourseLink alloc]init];
     [_studentCourseLinkSender setStudent:[[Student alloc] init]];
-    
     [_studentCourseLinkSender setCourse:previousCourse];
-    //[_student setStudentCourseLink:studentCourseLink];
     goToSlots = 0;
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 }
@@ -74,6 +71,8 @@ int goToSlots = 0;
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [NSURLConnection connectionWithRequest:request delegate:self];
     }];
+    
+    //[self.mainTableView setEditing:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
