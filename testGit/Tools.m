@@ -79,8 +79,6 @@ UIActivityIndicatorView *indicator;
     pVC.navigationController.navigationBar.barTintColor = bgCol;
     pVC.navigationController.navigationBar.tintColor = tint;
     [pVC.navigationController.navigationBar setTranslucent:YES];
-    
-    NSLog(@"heli");
 }
 
 

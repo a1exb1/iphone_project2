@@ -39,7 +39,7 @@
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
     }
     
-    
+    self.navigationItem.title = @"Back";
     self.nameTextField.text = [_course name];
     //self.phoneTextField.text = [_course phone];
     

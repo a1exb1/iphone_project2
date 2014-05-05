@@ -54,13 +54,7 @@
     _tutors = [[NSArray alloc] init];
     [_mainTableView reloadData];
     
-    [Tools showLoader];
-    //[_mainTableView triggerPullToRefresh];
-    //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
+    
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -79,6 +73,14 @@
     UIColor *barColor = [Tools colorFromHexString:@"#b44444"];
     self.navigationController.navigationBar.barTintColor = barColor;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    [Tools showLoader];
+    //[_mainTableView triggerPullToRefresh];
+    //
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
 - (void)viewDidLoad
@@ -111,6 +113,7 @@
     [self.navigationController.navigationBar setTranslucent:YES];
     
     //[Tools setNavigationHeaderColorWithBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
+    [Tools showLoader];
 }
 
 -(void)plus{

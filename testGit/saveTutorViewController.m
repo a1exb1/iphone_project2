@@ -40,8 +40,6 @@
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
     }
     
-    
-    
     self.nameTextField.text = [_tutor name];
     self.phoneTextField.text = [_tutor phone];
     
