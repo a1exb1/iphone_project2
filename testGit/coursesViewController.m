@@ -66,6 +66,7 @@
     //_statusLbl.text = @"Loading...";
     UIColor *barColor = [Tools colorFromHexString:@"#57AD2C"];
     self.navigationController.navigationBar.barTintColor = barColor;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 

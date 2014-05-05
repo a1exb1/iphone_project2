@@ -34,6 +34,11 @@
     _data = [[NSMutableData alloc]init];
     _tutors = [[NSArray alloc] init];
     [_mainTableView reloadData];
+    
+//    UIColor *barColor = [Tools colorFromHexString:@"#b44444"];
+//    self.navigationController.navigationBar.barTintColor = UIBarStyleDefault;
+//    self.navigationController.navigationBar.tintColor = barColor;
+//    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

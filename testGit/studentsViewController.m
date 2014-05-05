@@ -87,6 +87,7 @@ NSMutableArray *viewStudentsArray;
     
     UIColor *barColor = [Tools colorFromHexString:@"#4473b4"];
     self.navigationController.navigationBar.barTintColor = barColor;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)viewDidLoad
