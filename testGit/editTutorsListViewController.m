@@ -28,20 +28,11 @@
     return self;
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [Tools showLoader];
-    
+-(void)viewWillAppear:(BOOL)animated{    
     _data = [[NSMutableData alloc]init];
     _tutors = [[NSArray alloc] init];
     [_mainTableView reloadData];
     
-//    UIColor *barColor = [Tools colorFromHexString:@"#b44444"];
-//    self.navigationController.navigationBar.barTintColor = UIBarStyleDefault;
-//    self.navigationController.navigationBar.tintColor = barColor;
-//    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
     [Tools showLoader];
     //
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
@@ -51,6 +42,15 @@
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
+//    UIColor *barColor = [Tools colorFromHexString:@"#b44444"];
+//    self.navigationController.navigationBar.barTintColor = UIBarStyleDefault;
+//    self.navigationController.navigationBar.tintColor = barColor;
+//    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
     
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
 

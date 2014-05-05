@@ -28,20 +28,20 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [Tools showLoader];
-    
     _data = [[NSMutableData alloc]init];
     _courses = [[NSArray alloc] init];
     [_mainTableView reloadData];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
+    
     [Tools showLoader];
     //
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];

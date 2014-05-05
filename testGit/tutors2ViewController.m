@@ -28,16 +28,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [Tools showLoader];
-    //[_mainTableView triggerPullToRefresh];
-    //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
     
-    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
-    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
  
 }
 
@@ -57,11 +48,22 @@
         [(MenuViewController *)self.slidingViewController.underLeftViewController setDelegate:self];
     }
     
-    [Tools showLoader];
+   
     //[_mainTableView triggerPullToRefresh];
     _data = [[NSMutableData alloc]init];
     _tutors = [[NSArray alloc] init];
     [_mainTableView reloadData];
+    
+    [Tools showLoader];
+    //[_mainTableView triggerPullToRefresh];
+    //
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     _statusLbl.hidden = YES;
     

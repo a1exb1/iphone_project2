@@ -33,15 +33,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     //[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [Tools showLoader];
-    //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
     
-    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
-    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     
     
@@ -57,8 +49,6 @@
         [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
     
-    [Tools showLoader];
-    
     _data = [[NSMutableData alloc]init];
     _courses = [[NSArray alloc] init];
     [_mainTableView reloadData];
@@ -67,6 +57,16 @@
     UIColor *barColor = [Tools colorFromHexString:@"#57AD2C"];
     self.navigationController.navigationBar.barTintColor = barColor;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    [Tools showLoader];
+    //
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 }
 
 

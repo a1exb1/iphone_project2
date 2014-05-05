@@ -49,6 +49,19 @@ NSMutableArray *viewStudentsArray;
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // Unselect the selected row if any
+    NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
+    if (selection) {
+        [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
+    }
+    
     [Tools showLoader];
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
@@ -64,19 +77,6 @@ NSMutableArray *viewStudentsArray;
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    // Unselect the selected row if any
-    NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
-    if (selection) {
-        [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
-    }
-    
-    [Tools showLoader];
     
     _data = [[NSMutableData alloc]init];
     _uniqueWeekdays = [[NSArray alloc]init];
