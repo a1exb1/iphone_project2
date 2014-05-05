@@ -48,4 +48,35 @@ UIActivityIndicatorView *indicator;
     return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
 }
 
++(void)setNavigationHeaderColorWithBackground: (UIColor *)bgCol andTint: (UIColor *)tint theme: (NSString *)theme
+{
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    //UIView *view = window.rootViewController.view;
+    //status bar
+    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    if([theme isEqualToString:@"dark"])
+    {
+        //status bar
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        
+        //title colour
+        window.rootViewController.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    }
+    else{
+        //status bar
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+        
+        //title colour
+        window.rootViewController.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    }
+
+    window.rootViewController.navigationController.navigationBar.barTintColor = bgCol;
+    window.rootViewController.navigationController.navigationBar.tintColor = tint;
+    [window.rootViewController.navigationController.navigationBar setTranslucent:YES];
+    
+    NSLog(@"heli");
+}
+
+
 @end

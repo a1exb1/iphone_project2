@@ -107,6 +107,10 @@
     self.navigationController.navigationBar.barTintColor = barColor;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationController.navigationBar setTranslucent:YES];
+    
+    //[Tools setNavigationHeaderColorWithBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
+    
+    
 }
 
 -(void)plus{
