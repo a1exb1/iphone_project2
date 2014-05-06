@@ -12,8 +12,14 @@
 
 @interface indexViewController ()
 @property (strong, nonatomic) IBOutlet UIView *box1View;
-
 @property (weak, nonatomic) IBOutlet UILabel *lessonTimeLbl;
+
+@property (weak, nonatomic) IBOutlet UIView *courseView;
+@property (weak, nonatomic) IBOutlet UILabel *courseNameLbl;
+
+@property (weak, nonatomic) IBOutlet UIView *studentView;
+@property (weak, nonatomic) IBOutlet UILabel *studentNameLbl;
+
 
 @end
 
@@ -35,20 +41,30 @@
 
 - (void)viewDidLoad
 {
-    CALayer *TopBorder = [CALayer layer];
-    TopBorder.frame = CGRectMake(0.0f, 0.0f, _box1View.frame.size.width, 3.0f);
-    TopBorder.backgroundColor = [Tools colorFromHexString:@"#4473b4"].CGColor;
-    [_box1View.layer addSublayer:TopBorder];
-    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-//    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
-//    [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-//    NSLog(@"%@",[DateFormatter stringFromDate:[NSDate date]]);
-//    
-//    NSDate* testDate = [DateFormatter dateFromString:@"1995-04-21 03:31:30"];
-//    NSLog(@"%@", testDate);
+    // now box border
+    CALayer *TopBorder = [CALayer layer];
+    TopBorder.frame = CGRectMake(0.0f, 0.0f, _box1View.frame.size.width, 3.0f);
+    TopBorder.backgroundColor = [Tools colorFromHexString:@"#990f60"].CGColor;
+    //#
+    [_box1View.layer addSublayer:TopBorder];
+    [Tools addShadowToViewWithView:_box1View];
+    
+    //student box border
+    TopBorder = [CALayer layer];
+    TopBorder.frame = CGRectMake(0.0f, 0.0f, _box1View.frame.size.width, 3.0f);
+    TopBorder.backgroundColor = [Tools colorFromHexString:@"#4473b4"].CGColor;
+    [_studentView.layer addSublayer:TopBorder];
+    [Tools addShadowToViewWithView:_studentView];
+    
+    //course box border
+    TopBorder = [CALayer layer];
+    TopBorder.frame = CGRectMake(0.0f, 0.0f, _box1View.frame.size.width, 3.0f);
+    TopBorder.backgroundColor = [Tools colorFromHexString:@"#57AD2C"].CGColor;
+    [_courseView.layer addSublayer:TopBorder];
+    [Tools addShadowToViewWithView:_courseView];
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[_studentCourseLink dateTime]];
@@ -61,6 +77,9 @@
                            [_studentCourseLink Hour],
                            [_studentCourseLink Mins]
                            ];
+    
+    _courseNameLbl.text = [[_studentCourseLink course] name];
+    _studentNameLbl.text = [[_studentCourseLink student] name];
 }
 
 - (void)didReceiveMemoryWarning

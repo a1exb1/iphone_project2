@@ -19,5 +19,6 @@
 
 +(void)setNavigationHeaderColorWithNavigationController: (UINavigationController *)view  andTabBar: (UITabBar*)tabBar andBackground: (UIColor *)bgCol andTint: (UIColor *)tint theme: (NSString *)theme;
 
++(void)addShadowToViewWithView:(UIView *)view;
 
 @end

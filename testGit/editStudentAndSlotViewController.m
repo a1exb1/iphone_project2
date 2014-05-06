@@ -7,7 +7,7 @@
 //
 
 #import "editStudentAndSlotViewController.h"
-
+#import "Tools.h"
 
 
 @interface editStudentAndSlotViewController ()
@@ -38,6 +38,8 @@ int cellClicked = -1;
     if (selection) {
         [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
+    
+//    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"dark"];
 }
 
 -(void)viewDidAppear:(BOOL)animated

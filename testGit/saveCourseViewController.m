@@ -7,6 +7,7 @@
 //
 
 #import "saveCourseViewController.h"
+#import "Tools.h"
 
 @interface saveCourseViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
@@ -23,6 +24,11 @@
         // Custom initialization
     }
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+//    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#57AD2C"] theme:@"dark"];
 }
 
 - (void)viewDidLoad

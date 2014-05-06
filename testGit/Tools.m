@@ -87,4 +87,12 @@ UIActivityIndicatorView *indicator;
     [tabBar setTintColor:tabCol];
 }
 
++(void)addShadowToViewWithView:(UIView *)view
+{
+    view.layer.masksToBounds = NO;
+    view.layer.shadowOffset = CGSizeMake(4, 4);
+    view.layer.shadowRadius = 2;
+    view.layer.shadowOpacity = 0.15;
+}
+
 @end

@@ -38,6 +38,8 @@
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
+    
+//    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#57AD2C"] theme:@"dark"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -112,8 +112,8 @@
     cell.textLabel.text = [[_lessons objectAtIndex:indexPath.row] objectForKey:@"StudentName"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ at %02li:%02li (%i minutes)",
                                  [[_lessons objectAtIndex:indexPath.row] objectForKey:@"CourseName"],
-                                 lessonDateHour,
-                                 lessonDateMinute,
+                                 (long)lessonDateHour,
+                                 (long)lessonDateMinute,
                                  [[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]
                                  ];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -132,8 +132,14 @@
     
     Course *course = [[Course alloc]init];
     [course setCourseID:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"CourseID"] intValue]];
-    [course setName:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"CourseID"]];
-
+    [course setName:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"CourseName"]];
+    [_studentCourseLinkSender setCourse:course];
+    
+    Student *student = [[Student alloc]init];
+    [student setStudentID:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"StudentID"] intValue]];
+    [student setName:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
+    [_studentCourseLinkSender setStudent:student];
+    
     indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
     view.studentCourseLink = _studentCourseLinkSender;
     
