@@ -22,10 +22,10 @@
 
 @implementation tutors2ViewController
 
-- (void)menuViewControllerDidFinishWithMenuItemID:(NSInteger)menuItemID
-{
-     [self.slidingViewController resetTopView];
-}
+//- (void)menuViewControllerDidFinishWithMenuItemID:(NSInteger)menuItemID
+//{
+//     [self.slidingViewController resetTopView];
+//}
 
 - (void)viewDidAppear:(BOOL)animated {
     
@@ -41,12 +41,12 @@
     self.view.layer.shadowRadius = 10.0f;
     self.view.layer.shadowColor = [[UIColor blackColor] CGColor];
     
-    // Tell it which view should be created under left
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
-        self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuView"];
-        //[(MenuViewController *)self.slidingViewController.underLeftViewController setCategoryList:self.toDoCategories];
-        [(MenuViewController *)self.slidingViewController.underLeftViewController setDelegate:self];
-    }
+//    // Tell it which view should be created under left
+//    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
+//        self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuView"];
+//        //[(MenuViewController *)self.slidingViewController.underLeftViewController setCategoryList:self.toDoCategories];
+//        [(MenuViewController *)self.slidingViewController.underLeftViewController setDelegate:self];
+//    }
     
    
     //[_mainTableView triggerPullToRefresh];
@@ -62,7 +62,7 @@
     _statusLbl.hidden = YES;
     
     // Add the pan gesture to allow sliding
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+    //[self.view addGestureRecognizer:self.slidingViewController.panGesture];
     
     // Unselect the selected row if any
     NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
@@ -70,7 +70,7 @@
         [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
     
-    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
     
     [Tools showLoader];
     //[_mainTableView triggerPullToRefresh];

@@ -85,7 +85,7 @@ NSMutableArray *viewStudentsArray;
     _statusLbl.hidden = YES;
     //_statusLbl.text = @"Loading...";
     
-    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
 }
 
 - (void)viewDidLoad

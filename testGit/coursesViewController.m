@@ -55,7 +55,7 @@
     _statusLbl.hidden = YES;
     //_statusLbl.text = @"Loading...";
     
-    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andBackground:[Tools colorFromHexString:@"#57AD2C"] andTint:[UIColor whiteColor] theme:@"dark"];
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#57AD2C"] andTint:[UIColor whiteColor] theme:@"dark"];
     
     [Tools showLoader];
     //

@@ -49,7 +49,7 @@ UIActivityIndicatorView *indicator;
     return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
 }
 
-+(void)setNavigationHeaderColorWithNavigationController: (UINavigationController *)view andBackground: (UIColor *)bgCol andTint: (UIColor *)tint theme: (NSString *)theme
++(void)setNavigationHeaderColorWithNavigationController: (UINavigationController *)view andTabBar: (UITabBar*)tabBar andBackground: (UIColor *)bgCol andTint: (UIColor *)tint theme: (NSString *)theme
 {
     
     if([theme isEqualToString:@"dark"])
@@ -71,6 +71,20 @@ UIActivityIndicatorView *indicator;
     view.navigationBar.barTintColor = bgCol;
     view.navigationBar.tintColor = tint;
     [view.navigationBar setTranslucent:YES];
+    
+    UIColor *tabCol;
+    
+    if (bgCol != nil && bgCol != [UIColor whiteColor]) {
+        tabCol = bgCol;
+    }
+    else if (tint != nil && tint != [UIColor whiteColor]) {
+        tabCol = tint;
+    }
+    else{
+        tabCol = bgCol;
+    }
+    
+    [tabBar setTintColor:tabCol];
 }
 
 @end

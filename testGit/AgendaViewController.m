@@ -60,7 +60,7 @@
     [Tools showLoader];
     [self jsonRequestGetAgenda];
     
-    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
     
     //pVC.navigationController.navigationBar
 }

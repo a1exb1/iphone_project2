@@ -28,6 +28,11 @@
     return self;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
+}
+
 - (void)viewDidLoad
 {
     CALayer *TopBorder = [CALayer layer];

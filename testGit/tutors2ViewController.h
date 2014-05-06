@@ -12,7 +12,8 @@
 #import "MenuViewController.h"
 #import "Tutor.h"
 
-@interface tutors2ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MenuViewControllerDelegate>
+@interface tutors2ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+//MenuViewControllerDelegate
 
 @property NSArray *tutors;
 @property NSMutableData *data;
