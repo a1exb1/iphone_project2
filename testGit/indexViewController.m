@@ -12,6 +12,7 @@
 @interface indexViewController ()
 @property (strong, nonatomic) IBOutlet UIView *box1View;
 
+@property (weak, nonatomic) IBOutlet UILabel *lessonTimeLbl;
 
 @end
 
@@ -36,14 +37,24 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
-    [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-    NSLog(@"%@",[DateFormatter stringFromDate:[NSDate date]]);
+//    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+//    [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+//    NSLog(@"%@",[DateFormatter stringFromDate:[NSDate date]]);
+//    
+//    NSDate* testDate = [DateFormatter dateFromString:@"1995-04-21 03:31:30"];
+//    NSLog(@"%@", testDate);
     
-    NSDate* testDate = [DateFormatter dateFromString:@"1995-04-21 03:31:30"];
-    NSLog(@"%@", testDate);
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[_studentCourseLink dateTime]];
+    NSInteger lessonDateHour = [components hour];
+    NSInteger lessonDateMinute = [components minute];
+    [_studentCourseLink setHour:(int)lessonDateHour];
+    [_studentCourseLink setMins:(int)lessonDateMinute];
     
-    
+    _lessonTimeLbl.text = [NSString stringWithFormat:@"%02d:%02d",
+                           [_studentCourseLink Hour],
+                           [_studentCourseLink Mins]
+                           ];
 }
 
 - (void)didReceiveMemoryWarning

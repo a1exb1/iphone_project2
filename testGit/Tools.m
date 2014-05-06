@@ -49,13 +49,13 @@ UIActivityIndicatorView *indicator;
     return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
 }
 
-+(void)setNavigationHeaderColorWithBackground: (UIColor *)bgCol andTint: (UIColor *)tint theme: (NSString *)theme
++(void)setNavigationHeaderColorWithNavigationController: (UINavigationController *)view andBackground: (UIColor *)bgCol andTint: (UIColor *)tint theme: (NSString *)theme
 {
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    //UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     //UIView *view = window.rootViewController.view;
     //UINavigationController *controller = ((UINavigationController*)window.rootViewController).visibleViewController;
     
-    UIViewController *pVC = window.rootViewController.navigationController.visibleViewController;
+    //UIViewController *pVC = window.rootViewController.navigationController.visibleViewController;
     
     //status bar
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -66,19 +66,19 @@ UIActivityIndicatorView *indicator;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
         //title colour
-        pVC.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+        view.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     }
     else{
         //status bar
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
         
         //title colour
-        pVC.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+        view.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     }
 
-    pVC.navigationController.navigationBar.barTintColor = bgCol;
-    pVC.navigationController.navigationBar.tintColor = tint;
-    [pVC.navigationController.navigationBar setTranslucent:YES];
+    view.navigationController.navigationBar.barTintColor = bgCol;
+    view.navigationController.navigationBar.tintColor = tint;
+    [view.navigationController.navigationBar setTranslucent:YES];
 }
 
 

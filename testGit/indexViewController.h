@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StudentCourseLink.h"
 
 @interface indexViewController : UIViewController
+
+@property StudentCourseLink *studentCourseLink;
 
 @end

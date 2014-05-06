@@ -15,6 +15,7 @@
 		795B641F190E599700A2C879 /* ToDoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 795B641E190E599700A2C879 /* ToDoViewController.m */; };
 		795B6422190E5BC400A2C879 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 795B6421190E5BC400A2C879 /* Student.m */; };
 		79F7196319124FA100C644A1 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F7196219124FA100C644A1 /* Course.m */; };
+		E4001B3819191DD40063B066 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4001B3719191DD40063B066 /* AgendaViewController.m */; };
 		E40DF27E190017E100E1332A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF27D190017E100E1332A /* Foundation.framework */; };
 		E40DF280190017E100E1332A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF27F190017E100E1332A /* CoreGraphics.framework */; };
 		E40DF282190017E100E1332A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF281190017E100E1332A /* UIKit.framework */; };
@@ -80,6 +81,8 @@
 		795B6421190E5BC400A2C879 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
 		79F7196119124FA100C644A1 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
 		79F7196219124FA100C644A1 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		E4001B3619191DD40063B066 /* AgendaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaViewController.h; sourceTree = "<group>"; };
+		E4001B3719191DD40063B066 /* AgendaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaViewController.m; sourceTree = "<group>"; };
 		E40DF27A190017E100E1332A /* testGit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testGit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E40DF27D190017E100E1332A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E40DF27F190017E100E1332A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -238,6 +241,8 @@
 		79AA2231190943B8005AC8A3 /* agenda */ = {
 			isa = PBXGroup;
 			children = (
+				E4001B3619191DD40063B066 /* AgendaViewController.h */,
+				E4001B3719191DD40063B066 /* AgendaViewController.m */,
 			);
 			name = agenda;
 			sourceTree = "<group>";
@@ -532,6 +537,7 @@
 				E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */,
 				E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */,
 				E4C1C98219167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				E4001B3819191DD40063B066 /* AgendaViewController.m in Sources */,
 				795B6411190E45D900A2C879 /* UIImage+ImageWithUIView.m in Sources */,
 				E4C1C9711914F9240068A10D /* editCoursesListViewController.m in Sources */,
 				E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */,

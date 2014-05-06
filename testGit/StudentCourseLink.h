@@ -20,6 +20,7 @@
 @property int Weekday;
 @property int Hour;
 @property int Mins;
+@property NSDate *dateTime;
 @property Course *course;
 @property Student *student;
 @property Tutor *tutor;

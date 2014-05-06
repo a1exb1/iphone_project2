@@ -17,6 +17,6 @@
 // Assumes input like "#00FF00" (#RRGGBB).
 + (UIColor *)colorFromHexString:(NSString *)hexString;
 
-+(void)setNavigationHeaderColorWithBackground: (UIColor *)bgCol andTint: (UIColor *)tint theme: (NSString *)theme;
++(void)setNavigationHeaderColorWithNavigationController: (UINavigationController *)view  andBackground: (UIColor *)bgCol andTint: (UIColor *)tint theme: (NSString *)theme;
 
 @end
