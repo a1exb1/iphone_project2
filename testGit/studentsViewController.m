@@ -85,9 +85,7 @@ NSMutableArray *viewStudentsArray;
     _statusLbl.hidden = YES;
     //_statusLbl.text = @"Loading...";
     
-    UIColor *barColor = [Tools colorFromHexString:@"#4473b4"];
-    self.navigationController.navigationBar.barTintColor = barColor;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
 }
 
 - (void)viewDidLoad
@@ -112,8 +110,6 @@ NSMutableArray *viewStudentsArray;
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
-    
-
     self.title = [_course name];
     
     _studentCourseLinkSender = [[StudentCourseLink alloc] init];
@@ -130,10 +126,7 @@ NSMutableArray *viewStudentsArray;
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [NSURLConnection connectionWithRequest:request delegate:self];
     }];
-    
-    UIColor *barColor = [Tools colorFromHexString:@"#4473b4"];
-    self.navigationController.navigationBar.barTintColor = barColor;
-    
+        
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
     UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, deleteBtn, nil]];

@@ -8,6 +8,7 @@
 
 #import "indexViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Tools.h"
 
 @interface indexViewController ()
 @property (strong, nonatomic) IBOutlet UIView *box1View;
@@ -31,7 +32,7 @@
 {
     CALayer *TopBorder = [CALayer layer];
     TopBorder.frame = CGRectMake(0.0f, 0.0f, _box1View.frame.size.width, 3.0f);
-    TopBorder.backgroundColor = [UIColor blueColor].CGColor;
+    TopBorder.backgroundColor = [Tools colorFromHexString:@"#4473b4"].CGColor;
     [_box1View.layer addSublayer:TopBorder];
     
     [super viewDidLoad];

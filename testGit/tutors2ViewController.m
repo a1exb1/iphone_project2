@@ -70,9 +70,7 @@
         [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
     
-    UIColor *barColor = [Tools colorFromHexString:@"#b44444"];
-    self.navigationController.navigationBar.barTintColor = barColor;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
     
     [Tools showLoader];
     //[_mainTableView triggerPullToRefresh];
@@ -104,15 +102,6 @@
         [NSURLConnection connectionWithRequest:request delegate:self];
     }];
     
-    UIColor *barColor = [Tools colorFromHexString:@"#b44444"];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    self.navigationController.navigationBar.barTintColor = barColor;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    [self.navigationController.navigationBar setTranslucent:YES];
-    
-    //[Tools setNavigationHeaderColorWithBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
     [Tools showLoader];
 }
 

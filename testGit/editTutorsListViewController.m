@@ -43,10 +43,8 @@
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
-//    UIColor *barColor = [Tools colorFromHexString:@"#b44444"];
-//    self.navigationController.navigationBar.barTintColor = UIBarStyleDefault;
-//    self.navigationController.navigationBar.tintColor = barColor;
-//    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andBackground: nil andTint: [Tools colorFromHexString:@"#b44444"] theme:@"light"];
+ 
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -54,9 +54,8 @@
     [_mainTableView reloadData];
     _statusLbl.hidden = YES;
     //_statusLbl.text = @"Loading...";
-    UIColor *barColor = [Tools colorFromHexString:@"#57AD2C"];
-    self.navigationController.navigationBar.barTintColor = barColor;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andBackground:[Tools colorFromHexString:@"#57AD2C"] andTint:[UIColor whiteColor] theme:@"dark"];
     
     [Tools showLoader];
     //
@@ -96,9 +95,6 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [NSURLConnection connectionWithRequest:request delegate:self];
     }];
-
-    UIColor *barColor = [Tools colorFromHexString:@"#57AD2C"];
-    self.navigationController.navigationBar.barTintColor = barColor;
     
 }
 

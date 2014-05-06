@@ -47,7 +47,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drG-zx-DZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="530" y="-2236"/>
+            <point key="canvasLocation" x="1056" y="-2236"/>
         </scene>
         <!--Save Course View Controller-->
         <scene sceneID="Rxc-l3-4sw">
@@ -84,7 +84,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0E9-tk-Msd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="-2236"/>
+            <point key="canvasLocation" x="1464" y="-2236"/>
         </scene>
         <!--Edit Tutors List View Controller-->
         <scene sceneID="Ofb-fJ-3cj">
@@ -129,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TJS-aE-MaN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="531" y="-1498"/>
+            <point key="canvasLocation" x="1057" y="-1498"/>
         </scene>
         <!--Edit Courses List View Controller - Add Course-->
         <scene sceneID="iEj-kD-uTF">
@@ -175,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bn4-Kh-F4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="-1498"/>
+            <point key="canvasLocation" x="1464" y="-1498"/>
         </scene>
         <!--Tutors2 View Controller - Tutors-->
         <scene sceneID="2Ya-kq-dMJ">
@@ -535,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lEt-AY-rSi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2059" y="-1524"/>
+            <point key="canvasLocation" x="2585" y="-1524"/>
         </scene>
         <!--View All Students View Controller - Add student to course-->
         <scene sceneID="MAg-zo-M08">
@@ -659,7 +659,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BFS-ao-96Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-442" y="-442"/>
+            <point key="canvasLocation" x="-1250" y="-458"/>
         </scene>
         <!--Agenda View Controller - Agenda-->
         <scene sceneID="Mcp-uw-dtl">
@@ -762,10 +762,11 @@
             </objects>
             <point key="canvasLocation" x="938" y="-64"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - Manage-->
         <scene sceneID="Myu-Lo-9dJ">
             <objects>
                 <navigationController storyboardIdentifier="manageView" automaticallyAdjustsScrollViewInsets="NO" id="6gc-r8-CT0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Manage" image="glyphicons_137_cogwheels.png" id="7HW-ow-T3c"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="R7R-FD-eay">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1070,12 +1071,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2H-MV-sE3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-439" y="243"/>
+            <point key="canvasLocation" x="-1247" y="227"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - Calender-->
         <scene sceneID="ffX-99-tOn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ayl-xW-ke5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Calender" image="glyphicons_045_calendar.png" id="D3z-zG-UmC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YtV-pa-js5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1142,10 +1144,11 @@
             </objects>
             <point key="canvasLocation" x="-45" y="1279"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - Agenda-->
         <scene sceneID="IGV-X6-vl6">
             <objects>
                 <navigationController storyboardIdentifier="agendaView" automaticallyAdjustsScrollViewInsets="NO" id="25d-2k-JIA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Agenda" image="glyphicons_239_albums.png" id="VQZ-ds-b3U"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mNm-bD-txY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1160,7 +1163,32 @@
             </objects>
             <point key="canvasLocation" x="-41" y="-83"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="gSM-hp-5Su">
+            <objects>
+                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="Fcd-Lq-4KS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="to6-dQ-EPA">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="25d-2k-JIA" kind="relationship" relationship="viewControllers" id="ltc-ug-55x"/>
+                        <segue destination="ayl-xW-ke5" kind="relationship" relationship="viewControllers" id="HPU-Zl-aMj"/>
+                        <segue destination="6gc-r8-CT0" kind="relationship" relationship="viewControllers" id="XpC-n1-x7S"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6fM-cA-846" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-596" y="-83"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="glyphicons_045_calendar.png" width="23" height="24"/>
+        <image name="glyphicons_137_cogwheels.png" width="34" height="27"/>
+        <image name="glyphicons_239_albums.png" width="28" height="18"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

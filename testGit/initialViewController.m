@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"agendaView"];}
+    self.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];}
 
 - (void)didReceiveMemoryWarning
 {

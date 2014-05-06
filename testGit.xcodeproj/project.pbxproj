@@ -16,6 +16,10 @@
 		795B6422190E5BC400A2C879 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 795B6421190E5BC400A2C879 /* Student.m */; };
 		79F7196319124FA100C644A1 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F7196219124FA100C644A1 /* Course.m */; };
 		E4001B3819191DD40063B066 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4001B3719191DD40063B066 /* AgendaViewController.m */; };
+		E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DACC19195D1A00A05318 /* glyphicons_045_calendar.png */; };
+		E401DAD019195D4100A05318 /* glyphicons_136_cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DACE19195D4100A05318 /* glyphicons_136_cogwheel.png */; };
+		E401DAD119195D4100A05318 /* glyphicons_137_cogwheels.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DACF19195D4100A05318 /* glyphicons_137_cogwheels.png */; };
+		E401DAD319195D8600A05318 /* glyphicons_239_albums.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DAD219195D8600A05318 /* glyphicons_239_albums.png */; };
 		E40DF27E190017E100E1332A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF27D190017E100E1332A /* Foundation.framework */; };
 		E40DF280190017E100E1332A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF27F190017E100E1332A /* CoreGraphics.framework */; };
 		E40DF282190017E100E1332A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF281190017E100E1332A /* UIKit.framework */; };
@@ -83,6 +87,10 @@
 		79F7196219124FA100C644A1 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
 		E4001B3619191DD40063B066 /* AgendaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaViewController.h; sourceTree = "<group>"; };
 		E4001B3719191DD40063B066 /* AgendaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaViewController.m; sourceTree = "<group>"; };
+		E401DACC19195D1A00A05318 /* glyphicons_045_calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_045_calendar.png; sourceTree = "<group>"; };
+		E401DACE19195D4100A05318 /* glyphicons_136_cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_136_cogwheel.png; sourceTree = "<group>"; };
+		E401DACF19195D4100A05318 /* glyphicons_137_cogwheels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_137_cogwheels.png; sourceTree = "<group>"; };
+		E401DAD219195D8600A05318 /* glyphicons_239_albums.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_239_albums.png; sourceTree = "<group>"; };
 		E40DF27A190017E100E1332A /* testGit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testGit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E40DF27D190017E100E1332A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E40DF27F190017E100E1332A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -334,6 +342,10 @@
 		E40DF284190017E100E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E401DAD219195D8600A05318 /* glyphicons_239_albums.png */,
+				E401DACE19195D4100A05318 /* glyphicons_136_cogwheel.png */,
+				E401DACF19195D4100A05318 /* glyphicons_137_cogwheels.png */,
+				E401DACC19195D1A00A05318 /* glyphicons_045_calendar.png */,
 				E4C1C96A1914F75B0068A10D /* glyphicons_030_pencil.png */,
 				E40DF285190017E100E1332A /* testGit-Info.plist */,
 				E40DF286190017E100E1332A /* InfoPlist.strings */,
@@ -499,8 +511,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E40DF294190017E100E1332A /* Main_iPad.storyboard in Resources */,
+				E401DAD119195D4100A05318 /* glyphicons_137_cogwheels.png in Resources */,
+				E401DAD019195D4100A05318 /* glyphicons_136_cogwheel.png in Resources */,
+				E401DAD319195D8600A05318 /* glyphicons_239_albums.png in Resources */,
 				E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */,
 				E40DF299190017E100E1332A /* Images.xcassets in Resources */,
+				E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */,
 				E40DF291190017E100E1332A /* Main_iPhone.storyboard in Resources */,
 				E40DF288190017E100E1332A /* InfoPlist.strings in Resources */,
 			);

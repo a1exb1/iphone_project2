@@ -19,4 +19,5 @@
 
 +(void)setNavigationHeaderColorWithNavigationController: (UINavigationController *)view  andBackground: (UIColor *)bgCol andTint: (UIColor *)tint theme: (NSString *)theme;
 
+
 @end

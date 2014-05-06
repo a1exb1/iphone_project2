@@ -51,14 +51,6 @@ UIActivityIndicatorView *indicator;
 
 +(void)setNavigationHeaderColorWithNavigationController: (UINavigationController *)view andBackground: (UIColor *)bgCol andTint: (UIColor *)tint theme: (NSString *)theme
 {
-    //UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    //UIView *view = window.rootViewController.view;
-    //UINavigationController *controller = ((UINavigationController*)window.rootViewController).visibleViewController;
-    
-    //UIViewController *pVC = window.rootViewController.navigationController.visibleViewController;
-    
-    //status bar
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     if([theme isEqualToString:@"dark"])
     {
@@ -66,20 +58,19 @@ UIActivityIndicatorView *indicator;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
         //title colour
-        view.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+        view.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     }
     else{
         //status bar
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
         
         //title colour
-        view.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+        view.navigationBar.barStyle = UIBarStyleDefault;
     }
 
-    view.navigationController.navigationBar.barTintColor = bgCol;
-    view.navigationController.navigationBar.tintColor = tint;
-    [view.navigationController.navigationBar setTranslucent:YES];
+    view.navigationBar.barTintColor = bgCol;
+    view.navigationBar.tintColor = tint;
+    [view.navigationBar setTranslucent:YES];
 }
-
 
 @end
