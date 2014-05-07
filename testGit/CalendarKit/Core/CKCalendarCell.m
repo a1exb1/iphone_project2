@@ -190,7 +190,7 @@
         [self setBackgroundColor:[self todaySelectedBackgroundColor]];
         [[self label] setShadowColor:[self todayTextShadowColor]];
         [[self label] setTextColor:[self todayTextColor]];
-        [self setBorderColor:[self backgroundColor]];
+        [self setBorderColor:[Tools colorFromHexString:@"#e4e4e4"]];
     }
     
     //  Today cell, selected
@@ -199,7 +199,7 @@
         [self setBackgroundColor:[self todayBackgroundColor]];
         [[self label] setShadowColor:[self todayTextShadowColor]];
         [[self label] setTextColor:[self todayTextColor]];
-        [self setBorderColor:[self backgroundColor]];
+        [self setBorderColor:[Tools colorFromHexString:@"#e4e4e4"]];
         [self showBorder];
     }
     

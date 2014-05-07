@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StudentCourseLink.h"
+#import "Lesson.h"
 
 
 @interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
@@ -16,6 +16,7 @@
 @property NSMutableData *data;
 
 @property Tutor *tutor;
-@property StudentCourseLink *studentCourseLinkSender;
+@property Lesson *lessonSender;
+@property bool editing;
 
 @end

@@ -9,6 +9,7 @@
 #import "indexViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Tools.h"
+#import "NotesViewController.h"
 
 @interface indexViewController ()
 @property (strong, nonatomic) IBOutlet UIView *box1View;
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIView *studentView;
 @property (weak, nonatomic) IBOutlet UILabel *studentNameLbl;
 
+@property (weak, nonatomic) IBOutlet UIButton *lessonNotesBtn;
 
 @end
 
@@ -34,9 +36,11 @@
     return self;
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
+    
+
 }
 
 - (void)viewDidLoad
@@ -67,19 +71,30 @@
     [Tools addShadowToViewWithView:_courseView];
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[_studentCourseLink dateTime]];
+    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[_lesson dateTime]];
     NSInteger lessonDateHour = [components hour];
     NSInteger lessonDateMinute = [components minute];
-    [_studentCourseLink setHour:(int)lessonDateHour];
-    [_studentCourseLink setMins:(int)lessonDateMinute];
+    [_lesson setHour:(int)lessonDateHour];
+    [_lesson setMins:(int)lessonDateMinute];
     
     _lessonTimeLbl.text = [NSString stringWithFormat:@"%02d:%02d",
-                           [_studentCourseLink Hour],
-                           [_studentCourseLink Mins]
+                           [_lesson Hour],
+                           [_lesson Mins]
                            ];
     
-    _courseNameLbl.text = [[_studentCourseLink course] name];
-    _studentNameLbl.text = [[_studentCourseLink student] name];
+    _courseNameLbl.text = [[_lesson course] name];
+    _studentNameLbl.text = [[_lesson student] name];
+    
+    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editLesson)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:editBtn, nil]];
+}
+
+-(IBAction)lessonNotes:(id)sender
+{
+        NotesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allNotesView"];
+        view.lesson = _lesson;
+    
+        [self.navigationController pushViewController:view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

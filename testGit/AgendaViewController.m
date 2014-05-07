@@ -44,6 +44,8 @@
     [_mainTableView addPullToRefreshWithActionHandler:^{
         [self jsonRequestGetAgenda];
     }];
+    
+    [self finishedAttendance];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -62,7 +64,26 @@
     
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
     
-    //pVC.navigationController.navigationBar
+    
+
+}
+
+-(void)prepareForAttendance{
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishedAttendance)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:doneBtn, nil]];
+    _editing = true;
+    [_mainTableView reloadData];
+    //[_mainTableView setEditing:YES animated:YES];
+}
+
+
+-(void)finishedAttendance{
+    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"glyphicons_029_notes_2.png"] style:UIBarButtonItemStylePlain target:self action:@selector(prepareForAttendance)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:editBtn, nil]];
+    _editing = false;
+    [_mainTableView reloadData];
+    
+    //[_mainTableView setEditing:NO animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -116,32 +137,46 @@
                                  (long)lessonDateMinute,
                                  [[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]
                                  ];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    if(_editing){
+        UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+        cell.accessoryView = switchview;
+        switchview.tag = indexPath.row;
+        [switchview addTarget:self action:@selector(updateSwitchAtIndexPath) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else{
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
     return cell;
 }
 
+- (void)updateSwitchAtIndexPath{
+
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    _studentCourseLinkSender = [[StudentCourseLink alloc] init];
-    [_studentCourseLinkSender setStudentCourseLinkID: [[[_lessons objectAtIndex:indexPath.row] objectForKey:@"LessonID"] intValue]];
-    [_studentCourseLinkSender setTutor:_tutor];
+    _lessonSender = [[Lesson alloc] init];
+    [_lessonSender setStudentCourseLinkID: [[[_lessons objectAtIndex:indexPath.row] objectForKey:@"LessonID"] intValue]];
+    [_lessonSender setTutor:_tutor];
     
     NSString* str = [[_lessons objectAtIndex:indexPath.row] objectForKey:@"LessonDateTime"];
     NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
-    [_studentCourseLinkSender setDateTime:[formatter dateFromString:str]];
+    [_lessonSender setDateTime:[formatter dateFromString:str]];
     
     Course *course = [[Course alloc]init];
     [course setCourseID:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"CourseID"] intValue]];
     [course setName:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"CourseName"]];
-    [_studentCourseLinkSender setCourse:course];
+    [_lessonSender setCourse:course];
     
     Student *student = [[Student alloc]init];
     [student setStudentID:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"StudentID"] intValue]];
     [student setName:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
-    [_studentCourseLinkSender setStudent:student];
+    [_lessonSender setStudent:student];
     
     indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
-    view.studentCourseLink = _studentCourseLinkSender;
+    view.lesson = _lessonSender;
     
     [self.navigationController pushViewController:view animated:YES];
 }

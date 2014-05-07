@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "CKCalendarMonthCellStates.h"
+#import "Tools.h"
 
 @interface CKCalendarCell : UIView
 

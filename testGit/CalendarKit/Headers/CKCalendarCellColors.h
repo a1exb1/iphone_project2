@@ -39,7 +39,8 @@
 #define kCalendarColorLightTextGradient [@"#495a6d" toColor]
 
 #define kCalendarColorCellBorder [@"#e4e4e4" toColor]
-#define kCalendarColorSelectedCellBorder [@"#e5534b" toColor]
+#define kCalendarColorSelectedCellBorder [@"#e4e4e4" toColor]
+//e5534b
 
 
 //#define kCalendarColorBluishGray [@"#7389a5" toColor]

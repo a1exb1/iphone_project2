@@ -22,4 +22,6 @@
 +(void)addShadowToViewWithView:(UIView *)view;
 
 +(UIColor *) defaultNavigationBarColour;
+
++(UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)newSize;
 @end
