@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "ECSlidingViewController.h"
-#import "MenuViewController.h"
 #import "Tutor.h"
 
 @interface tutors2ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
