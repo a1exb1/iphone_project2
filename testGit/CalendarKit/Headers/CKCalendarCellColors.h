@@ -27,18 +27,29 @@
 
 #import "NSString+Color.h"
 
-#define kCalendarColorBlue [@"#1980e5" toColor]
-#define kCalendarColorLightGray [@"#e2e2e4" toColor]
-#define kCalendarColorDarkGray [@"#cccbd0" toColor]
+#define kCalendarColorBlue [@"#e5534b" toColor]
+#define kCalendarColorLightGray [@"#ffffff" toColor] //e2e2e4
+#define kCalendarColorDarkGray [@"#ffffff" toColor] //cccbd0
 
-#define kCalendarColorBluishGray [@"#7389a5" toColor]
-#define kCalendarColorTodayShadowBlue [@"#394452" toColor]
+#define kCalendarColorBluishGray [@"#5aa1f8" toColor]
+#define kCalendarColorTodayShadowBlue [@"#e4e4e4" toColor]
 #define kCalendarColorSelectedShadowBlue [@"#294f75" toColor]
 
 #define kCalendarColorDarkTextGradient [@"#2b3540" toColor]
 #define kCalendarColorLightTextGradient [@"#495a6d" toColor]
 
-#define kCalendarColorCellBorder [@"#9da0a9" toColor]
-#define kCalendarColorSelectedCellBorder [@"#293649" toColor]
+#define kCalendarColorCellBorder [@"#e4e4e4" toColor]
+#define kCalendarColorSelectedCellBorder [@"#e5534b" toColor]
+
+
+//#define kCalendarColorBluishGray [@"#7389a5" toColor]
+//#define kCalendarColorTodayShadowBlue [@"#394452" toColor]
+//#define kCalendarColorSelectedShadowBlue [@"#294f75" toColor]
+//
+//#define kCalendarColorDarkTextGradient [@"#2b3540" toColor]
+//#define kCalendarColorLightTextGradient [@"#495a6d" toColor]
+//
+//#define kCalendarColorCellBorder [@"#9da0a9" toColor]
+//#define kCalendarColorSelectedCellBorder [@"#293649" toColor]
 
 #endif

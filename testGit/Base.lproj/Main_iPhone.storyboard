@@ -805,70 +805,6 @@
             </objects>
             <point key="canvasLocation" x="-41" y="-760"/>
         </scene>
-        <!--Table View Controller - Calendar-->
-        <scene sceneID="a3v-so-Z5r">
-            <objects>
-                <tableViewController id="k8Y-Re-mVu" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ffR-dp-9nt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="a" id="UyQ-p3-WxY">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UyQ-p3-WxY" id="p7d-8U-Dmt">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="QVs-Jx-OSG" kind="push" identifier="CalendarToLessons" id="J4X-uz-FG3"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="k8Y-Re-mVu" id="jDZ-6u-kXO"/>
-                            <outlet property="delegate" destination="k8Y-Re-mVu" id="BlD-QM-WkJ"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Calendar" id="xpQ-Pv-J85"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XZu-My-m61" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="481" y="575"/>
-        </scene>
-        <!--Table View Controller - Lessons-->
-        <scene sceneID="GTU-Im-Jgf">
-            <objects>
-                <tableViewController id="QVs-Jx-OSG" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VUq-8w-BI6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="a" id="pWp-cH-2rC">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pWp-cH-2rC" id="KGY-3Y-Jpc">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="CVm-xD-aEx" kind="push" identifier="LessonsToLesson" id="abv-Pl-uRk"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="QVs-Jx-OSG" id="rqJ-Th-KiW"/>
-                            <outlet property="delegate" destination="QVs-Jx-OSG" id="bCV-TS-dbj"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Lessons" id="ffg-LF-u8U"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ql0-Bl-7c4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="949" y="583"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="YiD-fO-cSQ">
             <objects>
@@ -894,35 +830,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vm8-1B-2ug" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="949" y="1266"/>
-        </scene>
-        <!--Table View Controller - Lesson-->
-        <scene sceneID="Ynk-6v-C17">
-            <objects>
-                <tableViewController id="CVm-xD-aEx" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SxG-U5-uYz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="a" id="BCD-Xn-GUy">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BCD-Xn-GUy" id="LUl-S6-8Gn">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="CVm-xD-aEx" id="GGF-fe-Fz0"/>
-                            <outlet property="delegate" destination="CVm-xD-aEx" id="2z9-bs-Ptv"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Lesson" id="nlz-Qh-fgV"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZdZ-Cq-4H5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1407" y="583"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="jVc-DR-r5v">
@@ -1048,12 +955,31 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="k8Y-Re-mVu" kind="relationship" relationship="rootViewController" id="Q5Y-AJ-5Ps"/>
+                        <segue destination="jAS-Ag-wIA" kind="relationship" relationship="rootViewController" id="ULh-E1-Drh"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XqF-b9-AxX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-41" y="575"/>
+        </scene>
+        <!--Calender View Controller - Calender-->
+        <scene sceneID="1eB-PC-EkO">
+            <objects>
+                <viewController id="jAS-Ag-wIA" customClass="CalenderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Iu1-3V-xJS"/>
+                        <viewControllerLayoutGuide type="bottom" id="atL-Gn-fXh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2gY-wF-pPg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Calender" id="W3o-ee-SVR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qfq-Lf-MhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="512" y="585"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5CI-Gw-hhi">

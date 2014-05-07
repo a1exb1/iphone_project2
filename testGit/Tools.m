@@ -77,7 +77,7 @@ UIActivityIndicatorView *indicator;
     if (bgCol != nil && bgCol != [UIColor whiteColor]) {
         tabCol = bgCol;
     }
-    else if (tint != nil && tint != [UIColor whiteColor]) {
+    else if (tint != nil && tint != [UIColor whiteColor] && tint != [self defaultNavigationBarColour]) {
         tabCol = tint;
     }
     else{
@@ -93,6 +93,11 @@ UIActivityIndicatorView *indicator;
     view.layer.shadowOffset = CGSizeMake(4, 4);
     view.layer.shadowRadius = 2;
     view.layer.shadowOpacity = 0.15;
+}
+
++(UIColor *) defaultNavigationBarColour{
+//   return [UIColor colorWithRed:(247/255.0) green:(247/255.0) blue:(247/255.0) alpha:1];
+    return [self colorFromHexString:@"#f8f8f8"];
 }
 
 @end

@@ -28,6 +28,7 @@
 		79AC18C0191A3E2E00D2BAAF /* MBPolygonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AC18A3191A3E2E00D2BAAF /* MBPolygonView.m */; };
 		79AC18C1191A3E2E00D2BAAF /* CKCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AC18AD191A3E2E00D2BAAF /* CKCalendarViewController.m */; };
 		79AC18C2191A3E2E00D2BAAF /* CKCalendarViewControllerInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AC18AF191A3E2E00D2BAAF /* CKCalendarViewControllerInternal.m */; };
+		79AC18C5191A429700D2BAAF /* CalenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AC18C4191A429700D2BAAF /* CalenderViewController.m */; };
 		79F7196319124FA100C644A1 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F7196219124FA100C644A1 /* Course.m */; };
 		E4001B3819191DD40063B066 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4001B3719191DD40063B066 /* AgendaViewController.m */; };
 		E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DACC19195D1A00A05318 /* glyphicons_045_calendar.png */; };
@@ -133,6 +134,8 @@
 		79AC18AD191A3E2E00D2BAAF /* CKCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCalendarViewController.m; sourceTree = "<group>"; };
 		79AC18AE191A3E2E00D2BAAF /* CKCalendarViewControllerInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCalendarViewControllerInternal.h; sourceTree = "<group>"; };
 		79AC18AF191A3E2E00D2BAAF /* CKCalendarViewControllerInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCalendarViewControllerInternal.m; sourceTree = "<group>"; };
+		79AC18C3191A429700D2BAAF /* CalenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalenderViewController.h; sourceTree = "<group>"; };
+		79AC18C4191A429700D2BAAF /* CalenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderViewController.m; sourceTree = "<group>"; };
 		79F7196119124FA100C644A1 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
 		79F7196219124FA100C644A1 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
 		E4001B3619191DD40063B066 /* AgendaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaViewController.h; sourceTree = "<group>"; };
@@ -290,6 +293,8 @@
 			isa = PBXGroup;
 			children = (
 				79AC1878191A3E2E00D2BAAF /* CalendarKit */,
+				79AC18C3191A429700D2BAAF /* CalenderViewController.h */,
+				79AC18C4191A429700D2BAAF /* CalenderViewController.m */,
 			);
 			name = calender;
 			sourceTree = "<group>";
@@ -694,6 +699,7 @@
 				79AC18C0191A3E2E00D2BAAF /* MBPolygonView.m in Sources */,
 				79AC18BB191A3E2E00D2BAAF /* UIView+Border.m in Sources */,
 				E40DF297190017E100E1332A /* ABViewController.m in Sources */,
+				79AC18C5191A429700D2BAAF /* CalenderViewController.m in Sources */,
 				E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */,
 				E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */,
 				79AC18BD191A3E2E00D2BAAF /* CKCalendarEvent.m in Sources */,

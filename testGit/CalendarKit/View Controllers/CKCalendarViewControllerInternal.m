@@ -36,7 +36,7 @@
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
     
-    [self setTitle:NSLocalizedString(@"Calendar", @"A title for the calendar view.")];
+    [self setTitle:NSLocalizedString(@"Calender", @"A title for the calendar view.")];
     
     /* Prepare the events array */
     
@@ -53,23 +53,23 @@
     [[self calendarView] setDisplayMode:CKCalendarViewModeMonth animated:NO];
     
     /* Mode Picker */
-    
-    NSArray *items = @[NSLocalizedString(@"Month", @"A title for the month view button."), NSLocalizedString(@"Week",@"A title for the week view button."), NSLocalizedString(@"Day", @"A title for the day view button.")];
-    
-    [self setModePicker:[[UISegmentedControl alloc] initWithItems:items]];
-    [[self modePicker] setSegmentedControlStyle:UISegmentedControlStyleBar];
-    [[self modePicker] addTarget:self action:@selector(modeChangedUsingControl:) forControlEvents:UIControlEventValueChanged];
-    [[self modePicker] setSelectedSegmentIndex:0];
+//    
+//    NSArray *items = @[NSLocalizedString(@"Month", @"A title for the month view button."), NSLocalizedString(@"Week",@"A title for the week view button."), NSLocalizedString(@"Day", @"A title for the day view button.")];
+//    
+//    [self setModePicker:[[UISegmentedControl alloc] initWithItems:items]];
+//    [[self modePicker] setSegmentedControlStyle:UISegmentedControlStyleBar];
+//    [[self modePicker] addTarget:self action:@selector(modeChangedUsingControl:) forControlEvents:UIControlEventValueChanged];
+//    [[self modePicker] setSelectedSegmentIndex:0];
     
     /* Toolbar setup */
-    
-    NSString *todayTitle = NSLocalizedString(@"Today", @"A button which sets the calendar to today.");
-    UIBarButtonItem *todayButton = [[UIBarButtonItem alloc] initWithTitle:todayTitle style:UIBarButtonItemStyleBordered target:self action:@selector(todayButtonTapped:)];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:[self modePicker]];
-    
-    [self setToolbarItems:@[todayButton, item] animated:NO];
-    [[self navigationController] setToolbarHidden:NO animated:NO];
-
+//    
+//    NSString *todayTitle = NSLocalizedString(@"Today", @"A button which sets the calendar to today.");
+//    UIBarButtonItem *todayButton = [[UIBarButtonItem alloc] initWithTitle:todayTitle style:UIBarButtonItemStyleBordered target:self action:@selector(todayButtonTapped:)];
+//    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:[self modePicker]];
+//    
+//    [self setToolbarItems:@[todayButton, item] animated:NO];
+//    [[self navigationController] setToolbarHidden:NO animated:NO];
+//
 }
 
 - (void)didReceiveMemoryWarning

@@ -126,9 +126,9 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
-    [[self layer] setShadowColor:[[UIColor darkGrayColor] CGColor]];
-    [[self layer] setShadowOffset:CGSizeMake(0, 3)];
-    [[self layer] setShadowOpacity:1.0];
+    //[[self layer] setShadowColor:[[UIColor darkGrayColor] CGColor]];
+//    [[self layer] setShadowOffset:CGSizeMake(0, 3)];
+//    [[self layer] setShadowOpacity:1.0];
     
     [self reloadAnimated:NO];
     
@@ -223,7 +223,7 @@
 - (CGSize)_cellSize
 {
     // These values must be hard coded in order for rectForDisplayMode: to work correctly
-    return CGSizeMake(46, 44);
+    return CGSizeMake(46, 35);
 }
 
 #pragma mark - Layout

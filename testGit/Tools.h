@@ -21,4 +21,5 @@
 
 +(void)addShadowToViewWithView:(UIView *)view;
 
++(UIColor *) defaultNavigationBarColour;
 @end

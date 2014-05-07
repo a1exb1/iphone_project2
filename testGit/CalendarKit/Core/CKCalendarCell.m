@@ -45,7 +45,7 @@
         _textColor = kCalendarColorDarkTextGradient;
         _textShadowColor = [UIColor whiteColor];
         _textSelectedColor = [UIColor whiteColor];
-        _textSelectedShadowColor = kCalendarColorSelectedShadowBlue;
+        _textSelectedShadowColor = [UIColor whiteColor];
         
         _dotColor = kCalendarColorDarkTextGradient;
         _selectedDotColor = [UIColor whiteColor];
