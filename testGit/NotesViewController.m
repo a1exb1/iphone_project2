@@ -82,7 +82,7 @@ NSMutableArray *audioNotes;
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if(section == 0){
-        return @"Text notes";
+        return @"Written notes";
     }
     else{
         return @"Audio notes";
@@ -118,13 +118,13 @@ NSMutableArray *audioNotes;
     UIImage *image;
     
     if(indexPath.section == 0) {
-        image =  [UIImage imageNamed:@"audio_icon.jpg"];
+        image =  [UIImage imageNamed:@"text_note_icon_large.png"];
     }
     else {
-        image =  [UIImage imageNamed:@"audio_icon.jpg"];
+        image =  [UIImage imageNamed:@"audio_icon.png"];
     }
-    // Pass your image size as paramater
-    UIImage *buttonBk = [Tools scaleImage:image toSize:CGSizeMake(20.0,20.0)];
+
+    UIImage *buttonBk = [Tools scaleImage:image toSize:CGSizeMake(60,88.0)];
     cell.imageView.image = buttonBk;
 
     return cell;
