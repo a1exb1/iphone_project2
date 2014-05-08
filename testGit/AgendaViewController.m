@@ -83,7 +83,7 @@
     //    [window makeKeyAndVisible];
     //    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
     //    view.lesson = _lessonSender;
-    view.agenda
+    //view.agenda
     
     [self.navigationController pushViewController:view animated:YES];
 }

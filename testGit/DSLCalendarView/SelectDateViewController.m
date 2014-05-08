@@ -23,11 +23,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.calendarView.delegate = self;
-//    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-//    ViewController *viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-//    window.rootViewController = viewController;
-    //[window makeKeyAndVisible];
+
 }
 
 - (void)viewDidUnload
