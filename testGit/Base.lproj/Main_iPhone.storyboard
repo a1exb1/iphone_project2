@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fcd-Lq-4KS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fcd-Lq-4KS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -698,7 +698,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Agenda" id="Xek-jw-pXC"/>
+                    <navigationItem key="navigationItem" title="Agenda" id="Xek-jw-pXC">
+                        <barButtonItem key="leftBarButtonItem" image="glyphicons_045_calendar.png" id="VK1-zN-5aK">
+                            <connections>
+                                <action selector="selectDate" destination="ioq-z8-exQ" id="VyK-K4-udP"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="glyphicons_029_notes_2.png" id="KVG-yf-yqO">
+                            <connections>
+                                <action selector="prepareForAttendance" destination="ioq-z8-exQ" id="Bbz-SE-Avl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mainTableView" destination="XnU-zN-KwO" id="zvV-VU-dam"/>
                         <outlet property="statusLbl" destination="iIb-ko-aM0" id="Z6B-Sd-Ory"/>
@@ -1046,6 +1057,18 @@
                     <view key="view" contentMode="scaleToFill" id="2gY-wF-pPg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PV1-NG-BWe">
+                                <rect key="frame" x="125" y="212" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cald:" destination="jAS-Ag-wIA" eventType="touchUpInside" id="IHt-6f-cUJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Calender" id="W3o-ee-SVR"/>
@@ -1147,6 +1170,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="glyphicons_029_notes_2.png" width="20" height="27"/>
         <image name="glyphicons_045_calendar.png" width="23" height="24"/>
         <image name="glyphicons_137_cogwheels.png" width="34" height="27"/>
         <image name="glyphicons_239_albums.png" width="28" height="18"/>
@@ -1157,7 +1181,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="koL-fA-Xti"/>
+        <segue reference="P5I-tD-urD"/>
         <segue reference="Mge-Py-SjU"/>
     </inferredMetricsTieBreakers>
 </document>

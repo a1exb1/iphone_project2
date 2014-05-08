@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Lesson.h"
+#import "ViewController.h"
 
 
 @interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>

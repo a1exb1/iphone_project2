@@ -76,6 +76,17 @@
     //[_mainTableView setEditing:YES animated:YES];
 }
 
+-(IBAction)selectDate{
+    
+    ViewController *viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    //    window.rootViewController = viewController;
+    //    [window makeKeyAndVisible];
+    //    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+    //    view.lesson = _lessonSender;
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
 
 -(void)finishedAttendance{
     UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"glyphicons_029_notes_2.png"] style:UIBarButtonItemStylePlain target:self action:@selector(prepareForAttendance)];

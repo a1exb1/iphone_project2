@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DSLCalendarView.h"
 
-@interface CalenderViewController : UIViewController
+@interface ViewController : UIViewController <DSLCalendarViewDelegate>
 
 @end
