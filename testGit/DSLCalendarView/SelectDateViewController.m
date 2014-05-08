@@ -7,15 +7,15 @@
 //
 
 #import "DSLCalendarView.h"
-#import "ViewController.h"
+#import "SelectDateViewController.h"
 
-@interface ViewController ()
+@interface SelectDateViewController ()
 
 @property (nonatomic, weak) IBOutlet DSLCalendarView *calendarView;
 
 @end
 
-@implementation ViewController
+@implementation SelectDateViewController
 
 - (void)viewDidLoad
 {
@@ -46,7 +46,7 @@
 
 - (void)calendarView:(DSLCalendarView *)calendarView didSelectRange:(DSLCalendarRange *)range {
     if (range != nil) {
-        NSLog( @"Selected %ld/%ld - %ld/%ld", (long)range.startDay.day, (long)range.startDay.month, (long)range.endDay.day, (long)range.endDay.month);
+        NSLog( @"Selected %02d/%02d/%i", (int)range.startDay.day, (int)range.startDay.month, (int)self.calendarView.visibleMonth.month) ;
     }
     else {
         NSLog( @"No selection" );

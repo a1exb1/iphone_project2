@@ -32,8 +32,8 @@
 		79A86869191B93EC00AA4058 /* DSLCalendarDaySelection.png in Resources */ = {isa = PBXBuildFile; fileRef = 79A86851191B93EC00AA4058 /* DSLCalendarDaySelection.png */; };
 		79A8686A191B93EC00AA4058 /* DSLCalendarDaySelection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79A86852191B93EC00AA4058 /* DSLCalendarDaySelection@2x.png */; };
 		79A8686B191B93EC00AA4058 /* NSDate+DSLCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A86854191B93EC00AA4058 /* NSDate+DSLCalendarView.m */; };
-		79A8686E191B941C00AA4058 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A8686D191B941C00AA4058 /* ViewController.m */; };
-		79A86870191B950900AA4058 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A8686F191B950900AA4058 /* ViewController.xib */; };
+		79A8686E191B941C00AA4058 /* SelectDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A8686D191B941C00AA4058 /* SelectDateViewController.m */; };
+		79A86870191B950900AA4058 /* SelectDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A8686F191B950900AA4058 /* SelectDateViewController.xib */; };
 		79AC18C5191A429700D2BAAF /* CalenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AC18C4191A429700D2BAAF /* CalenderViewController.m */; };
 		79F7196319124FA100C644A1 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F7196219124FA100C644A1 /* Course.m */; };
 		E4001B3819191DD40063B066 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4001B3719191DD40063B066 /* AgendaViewController.m */; };
@@ -129,9 +129,9 @@
 		79A86852191B93EC00AA4058 /* DSLCalendarDaySelection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection@2x.png"; sourceTree = "<group>"; };
 		79A86853191B93EC00AA4058 /* NSDate+DSLCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DSLCalendarView.h"; sourceTree = "<group>"; };
 		79A86854191B93EC00AA4058 /* NSDate+DSLCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DSLCalendarView.m"; sourceTree = "<group>"; };
-		79A8686C191B941C00AA4058 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		79A8686D191B941C00AA4058 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		79A8686F191B950900AA4058 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		79A8686C191B941C00AA4058 /* SelectDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectDateViewController.h; path = DSLCalendarView/SelectDateViewController.h; sourceTree = "<group>"; };
+		79A8686D191B941C00AA4058 /* SelectDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectDateViewController.m; path = DSLCalendarView/SelectDateViewController.m; sourceTree = "<group>"; };
+		79A8686F191B950900AA4058 /* SelectDateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectDateViewController.xib; path = DSLCalendarView/SelectDateViewController.xib; sourceTree = "<group>"; };
 		79AC18C3191A429700D2BAAF /* CalenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalenderViewController.h; sourceTree = "<group>"; };
 		79AC18C4191A429700D2BAAF /* CalenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderViewController.m; sourceTree = "<group>"; };
 		79F7196119124FA100C644A1 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
@@ -242,9 +242,6 @@
 		79A86835191B93EC00AA4058 /* DSLCalendarView */ = {
 			isa = PBXGroup;
 			children = (
-				79A8686F191B950900AA4058 /* ViewController.xib */,
-				79A8686C191B941C00AA4058 /* ViewController.h */,
-				79A8686D191B941C00AA4058 /* ViewController.m */,
 				79A86836191B93EC00AA4058 /* DSLCalendarDayCalloutView.h */,
 				79A86837191B93EC00AA4058 /* DSLCalendarDayCalloutView.m */,
 				79A86838191B93EC00AA4058 /* DSLCalendarDayCalloutView.xib */,
@@ -346,6 +343,9 @@
 		79AA2232190943BF005AC8A3 /* calender */ = {
 			isa = PBXGroup;
 			children = (
+				79A8686F191B950900AA4058 /* SelectDateViewController.xib */,
+				79A8686C191B941C00AA4058 /* SelectDateViewController.h */,
+				79A8686D191B941C00AA4058 /* SelectDateViewController.m */,
 				79A86835191B93EC00AA4058 /* DSLCalendarView */,
 				79AC18C3191A429700D2BAAF /* CalenderViewController.h */,
 				79AC18C4191A429700D2BAAF /* CalenderViewController.m */,
@@ -600,7 +600,7 @@
 				79A86869191B93EC00AA4058 /* DSLCalendarDaySelection.png in Resources */,
 				E401DAD119195D4100A05318 /* glyphicons_137_cogwheels.png in Resources */,
 				79A86867191B93EC00AA4058 /* DSLCalendarDaySelection-right.png in Resources */,
-				79A86870191B950900AA4058 /* ViewController.xib in Resources */,
+				79A86870191B950900AA4058 /* SelectDateViewController.xib in Resources */,
 				E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */,
 				79A8686A191B93EC00AA4058 /* DSLCalendarDaySelection@2x.png in Resources */,
 				E401DAD5191AA0AF00A05318 /* glyphicons_029_notes_2.png in Resources */,
@@ -656,7 +656,7 @@
 				E4C1C9711914F9240068A10D /* editCoursesListViewController.m in Sources */,
 				E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */,
 				E4C1C9741914FA960068A10D /* saveCourseViewController.m in Sources */,
-				79A8686E191B941C00AA4058 /* ViewController.m in Sources */,
+				79A8686E191B941C00AA4058 /* SelectDateViewController.m in Sources */,
 				E40DF28E190017E100E1332A /* ABAppDelegate.m in Sources */,
 				79A86857191B93EC00AA4058 /* DSLCalendarDayView.m in Sources */,
 				E47352801900279E008006EE /* indexViewController.m in Sources */,

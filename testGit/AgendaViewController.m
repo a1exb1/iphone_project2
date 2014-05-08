@@ -78,13 +78,14 @@
 
 -(IBAction)selectDate{
     
-    ViewController *viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    SelectDateViewController *view = [[SelectDateViewController alloc] initWithNibName:@"SelectDateViewController" bundle:nil];
     //    window.rootViewController = viewController;
     //    [window makeKeyAndVisible];
     //    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
     //    view.lesson = _lessonSender;
+    view.agenda
     
-    [self.navigationController pushViewController:viewController animated:YES];
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 
@@ -246,5 +247,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+-(void)sendDateToAgendaWithDate:(NSDate *) Date{
+    [_lessonSender setDateTime:Date];
+}
+
 
 @end

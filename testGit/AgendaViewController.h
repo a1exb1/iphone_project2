@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Lesson.h"
-#import "ViewController.h"
+#import "SelectDateViewController.h"
 
 
-@interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SelectDateDelegate>
 
 @property NSArray *lessons;
 @property NSMutableData *data;

@@ -8,7 +8,7 @@
 
 #import "DSLCalendarView.h"
 #import "CalenderViewController.h"
-#import "ViewController.h"
+#import "SelectDateViewController.h"
 
 @interface CalenderViewController () <DSLCalendarViewDelegate>
 
@@ -29,7 +29,7 @@
 
 -(IBAction)cald:(id)sender
 {
-    ViewController *viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    SelectDateViewController *viewController = [[SelectDateViewController alloc] initWithNibName:@"SelectDateViewController" bundle:nil];
     //    window.rootViewController = viewController;
     //    [window makeKeyAndVisible];
 //    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
