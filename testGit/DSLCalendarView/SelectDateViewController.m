@@ -30,7 +30,39 @@
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools defaultNavigationBarColour] andTint:[Tools colorFromHexString:@"#e5534b"] theme:@"light"];
     self.navigationController.navigationBar.translucent = NO;
     [self.tabBarController.tabBar setTintColor:[Tools colorFromHexString:@"#e5534b"]];
+    // red e5534b
+    //blue 4473b4
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationItem.leftBarButtonItem = item;
+    
+    NSDate *today = _previousDate;
+    NSDate *end = [today dateByAddingTimeInterval:7 * 24 * 3600];
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [calendar setTimeZone:[NSTimeZone systemTimeZone]];
+    NSDateComponents *dateCompStart = [calendar components:NSCalendarCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate:today];
+    NSDateComponents *dateCompEnd = [calendar components:NSCalendarCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate:end];
+    
+    DSLCalendarRange *range = [[DSLCalendarRange alloc] initWithStartDay:dateCompStart endDay:dateCompStart];
+    
+    [self.calendarView setSelectedRange:range];
 }
+
+-(void)back {
+    [UIView animateWithDuration:0.45
+                     animations:^{
+                         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+                         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
+                     }];
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    //[self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+
+}
+
+
 
 - (void)viewDidUnload
 {
@@ -49,15 +81,15 @@
 - (void)calendarView:(DSLCalendarView *)calendarView didSelectRange:(DSLCalendarRange *)range {
     if (range != nil) {
         //N  ;
-        NSLog(@"%02d/%02d/%i", (int)range.startDay.day, (int)range.startDay.month, (int)range.startDay.year);
+        //NSLog(@"%02d/%02d/%i", (int)range.startDay.day, (int)range.startDay.month, (int)range.startDay.year);
         NSString *str = [[NSString alloc] initWithFormat: @"%02d/%02d/%i", (int)range.startDay.day, (int)range.startDay.month, (int)range.startDay.year];
         NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"dd/MM/yyyy"];
         NSDate* lessonDate = [formatter dateFromString:str];
                 
         [self.selectDateDelegate sendDateToAgendaWithDate: lessonDate];
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
         
+        [self back];
         
     }
     else {

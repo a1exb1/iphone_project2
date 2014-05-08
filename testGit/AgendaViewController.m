@@ -75,7 +75,8 @@
     [self jsonRequestGetAgenda];
     
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
-    
+    //red e5534b
+    //blue 4473b4
     
 
 }
@@ -96,8 +97,15 @@
     //    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
     //    view.lesson = _lessonSender;
     view.selectDateDelegate = self;
+    view.previousDate = _dayDate;
+    [UIView animateWithDuration:0.45
+                     animations:^{
+                         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+                         [self.navigationController pushViewController:view animated:NO];
+                         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
+                     }];
     
-    [self.navigationController pushViewController:view animated:YES];
+    //[self.navigationController pushViewController:view animated:YES];
 }
 
 

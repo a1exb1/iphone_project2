@@ -128,13 +128,14 @@
 		}
 		else {
 			if ([date isEqualToDate:dateToday]) {
-				[[UIColor lightGrayColor] setFill]; //even if it is not current month, current day is colored
+				[[Tools colorFromHexString:@"#5aa1f8"] setFill]; //even if it is not current month, current day is colored
 			}
 			else {
 				[[UIColor colorWithWhite:225.0 / 255.0 alpha:1.0] setFill];
 			}
 		}
 		UIRectFill(self.bounds);
+        //END custom drawing Today cell bg
     }
     else {
         switch (self.selectionState) {
@@ -189,8 +190,40 @@
 
 - (void)drawDayNumber {
     if (self.selectionState == DSLCalendarDayViewNotSelected) {
-        [[UIColor colorWithWhite:66.0/255.0 alpha:1.0] set];
+        
+		NSUInteger flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+		NSCalendar *calendar = [NSCalendar currentCalendar];
+        
+		NSDateComponents *components = [calendar components:flags fromDate:[self.day date]];
+		NSDateComponents *componentsOfToday = [calendar components:flags fromDate:[NSDate date]];
+        
+		NSDate *date = [calendar dateFromComponents:components];
+		NSDate *dateToday = [calendar dateFromComponents:componentsOfToday];
+        
+		if (self.isInCurrentMonth) {
+			if ([date isEqualToDate:dateToday]) {
+				[[UIColor whiteColor] set]; //from now current day is colored
+			}
+			else {
+				[[UIColor colorWithWhite:66.0/255.0 alpha:1.0] set];
+			}
+		}
+		else {
+			if ([date isEqualToDate:dateToday]) {
+				[[UIColor whiteColor] set]; //even if it is not current month, current day is colored
+			}
+			else {
+				[[UIColor colorWithWhite:66.0/255.0 alpha:1.0] set];
+			}
+		}
+		//UIRectFill(self.bounds);
+        //END custom drawing Today cell
     }
+
+//    
+//    if (self.selectionState == DSLCalendarDayViewNotSelected) {
+//        [[UIColor colorWithWhite:66.0/255.0 alpha:1.0] set];
+//    }
     else {
         [[UIColor whiteColor] set];
     }

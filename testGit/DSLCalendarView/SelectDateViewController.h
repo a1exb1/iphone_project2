@@ -19,4 +19,7 @@
 @interface SelectDateViewController : UIViewController <DSLCalendarViewDelegate>
 
 @property (weak, nonatomic) id<SelectDateDelegate> selectDateDelegate;
+
+@property NSDate *previousDate;
+
 @end
