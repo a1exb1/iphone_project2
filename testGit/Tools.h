@@ -24,4 +24,6 @@
 +(UIColor *) defaultNavigationBarColour;
 
 +(UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)newSize;
+
++ (UIImage*) imageWithColor:(UIColor*)color size:(CGSize)size;
 @end

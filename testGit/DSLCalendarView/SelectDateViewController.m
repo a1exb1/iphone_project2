@@ -20,6 +20,16 @@
 
 @implementation SelectDateViewController
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools defaultNavigationBarColour] andTint:[Tools colorFromHexString:@"#e5534b"] theme:@"light"];
+    self.navigationController.navigationBar.translucent = NO;
+    [self.tabBarController.tabBar setTintColor:[Tools colorFromHexString:@"#e5534b"]];
+    // red e5534b
+    //blue 4473b4
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -27,18 +37,12 @@
     
     self.calendarView.delegate = self;
     
-    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools defaultNavigationBarColour] andTint:[Tools colorFromHexString:@"#e5534b"] theme:@"light"];
-    self.navigationController.navigationBar.translucent = NO;
-    [self.tabBarController.tabBar setTintColor:[Tools colorFromHexString:@"#e5534b"]];
-    // red e5534b
-    //blue 4473b4
-    
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.leftBarButtonItem = item;
     
     NSDate *today = _previousDate;
-    NSDate *end = [today dateByAddingTimeInterval:7 * 24 * 3600];
+    NSDate *end = _previousDate;
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     [calendar setTimeZone:[NSTimeZone systemTimeZone]];
@@ -51,7 +55,7 @@
 }
 
 -(void)back {
-    [UIView animateWithDuration:0.45
+    [UIView animateWithDuration:0.35
                      animations:^{
                          [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
                          [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];

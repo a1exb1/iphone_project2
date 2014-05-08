@@ -98,7 +98,7 @@
     //    view.lesson = _lessonSender;
     view.selectDateDelegate = self;
     view.previousDate = _dayDate;
-    [UIView animateWithDuration:0.45
+    [UIView animateWithDuration:0.35
                      animations:^{
                          [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
                          [self.navigationController pushViewController:view animated:NO];
@@ -271,6 +271,7 @@
 
 -(void)sendDateToAgendaWithDate:(NSDate *) Date{
     _dayDate = Date;
+    [self finishedAttendance];
     [self jsonRequestGetAgenda];
 }
 

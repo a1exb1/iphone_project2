@@ -138,26 +138,32 @@
         //END custom drawing Today cell bg
     }
     else {
+        //overide bg images
+        CGSize cgsize = CGSizeMake(20, 20);
+        UIColor *bgCol = [Tools colorFromHexString:@"#e5534b"];
+        
         switch (self.selectionState) {
             case DSLCalendarDayViewNotSelected:
                 break;
                 
             case DSLCalendarDayViewStartOfSelection:
-                [[[UIImage imageNamed:@"DSLCalendarDaySelection-left"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)] drawInRect:self.bounds];
+                [[[Tools imageWithColor:bgCol size:cgsize] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)] drawInRect:self.bounds];
                 break;
                 
             case DSLCalendarDayViewEndOfSelection:
-                [[[UIImage imageNamed:@"DSLCalendarDaySelection-right"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)] drawInRect:self.bounds];
+                [[[Tools imageWithColor:bgCol size:cgsize] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)] drawInRect:self.bounds];
                 break;
                 
             case DSLCalendarDayViewWithinSelection:
-                [[[UIImage imageNamed:@"DSLCalendarDaySelection-middle"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)] drawInRect:self.bounds];
+                [[[Tools imageWithColor:bgCol size:cgsize] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)] drawInRect:self.bounds];
                 break;
                 
             case DSLCalendarDayViewWholeSelection:
-                [[[UIImage imageNamed:@"DSLCalendarDaySelection"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)] drawInRect:self.bounds];
+                [[[Tools imageWithColor:bgCol size:cgsize] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)] drawInRect:self.bounds];
                 break;
         }
+        
+        // end overide
     }
 }
 

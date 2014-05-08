@@ -23,7 +23,6 @@
 		79A86860191B93EC00AA4058 /* DSLCalendar-previousMonth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79A86848191B93EC00AA4058 /* DSLCalendar-previousMonth@2x.png */; };
 		79A86861191B93EC00AA4058 /* DSLCalendarDayCallout.png in Resources */ = {isa = PBXBuildFile; fileRef = 79A86849191B93EC00AA4058 /* DSLCalendarDayCallout.png */; };
 		79A86862191B93EC00AA4058 /* DSLCalendarDayCallout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79A8684A191B93EC00AA4058 /* DSLCalendarDayCallout@2x.png */; };
-		79A86863191B93EC00AA4058 /* DSLCalendarDaySelection-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 79A8684B191B93EC00AA4058 /* DSLCalendarDaySelection-left.png */; };
 		79A86864191B93EC00AA4058 /* DSLCalendarDaySelection-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79A8684C191B93EC00AA4058 /* DSLCalendarDaySelection-left@2x.png */; };
 		79A86865191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 79A8684D191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png */; };
 		79A86866191B93EC00AA4058 /* DSLCalendarDaySelection-middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79A8684E191B93EC00AA4058 /* DSLCalendarDaySelection-middle@2x.png */; };
@@ -72,6 +71,7 @@
 		E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8860191AC6F0001A70D9 /* audio_icon.png */; };
 		E4AB8863191AC725001A70D9 /* audio_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8862191AC725001A70D9 /* audio_icon_large.png */; };
 		E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8866191ACA3F001A70D9 /* text_note_icon_large.png */; };
+		E4AB8869191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8868191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png */; };
 		E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */; };
 		E4C1C969191459F70068A10D /* editTutorsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C968191459F70068A10D /* editTutorsListViewController.m */; };
 		E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C1C96A1914F75B0068A10D /* glyphicons_030_pencil.png */; };
@@ -119,7 +119,6 @@
 		79A86848191B93EC00AA4058 /* DSLCalendar-previousMonth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendar-previousMonth@2x.png"; sourceTree = "<group>"; };
 		79A86849191B93EC00AA4058 /* DSLCalendarDayCallout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DSLCalendarDayCallout.png; sourceTree = "<group>"; };
 		79A8684A191B93EC00AA4058 /* DSLCalendarDayCallout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDayCallout@2x.png"; sourceTree = "<group>"; };
-		79A8684B191B93EC00AA4058 /* DSLCalendarDaySelection-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection-left.png"; sourceTree = "<group>"; };
 		79A8684C191B93EC00AA4058 /* DSLCalendarDaySelection-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection-left@2x.png"; sourceTree = "<group>"; };
 		79A8684D191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection-middle.png"; sourceTree = "<group>"; };
 		79A8684E191B93EC00AA4058 /* DSLCalendarDaySelection-middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection-middle@2x.png"; sourceTree = "<group>"; };
@@ -190,6 +189,7 @@
 		E4AB8860191AC6F0001A70D9 /* audio_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_icon.png; sourceTree = "<group>"; };
 		E4AB8862191AC725001A70D9 /* audio_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_icon_large.png; sourceTree = "<group>"; };
 		E4AB8866191ACA3F001A70D9 /* text_note_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text_note_icon_large.png; sourceTree = "<group>"; };
+		E4AB8868191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection-left.png"; sourceTree = "<group>"; };
 		E4B1DF7C190BCB3C0069DB6A /* StudentCourseLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentCourseLink.h; sourceTree = "<group>"; };
 		E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentCourseLink.m; sourceTree = "<group>"; };
 		E4C1C967191459F70068A10D /* editTutorsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editTutorsListViewController.h; sourceTree = "<group>"; };
@@ -266,13 +266,13 @@
 		79A86844191B93EC00AA4058 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E4AB8868191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png */,
 				79A86845191B93EC00AA4058 /* DSLCalendar-nextMonth.png */,
 				79A86846191B93EC00AA4058 /* DSLCalendar-nextMonth@2x.png */,
 				79A86847191B93EC00AA4058 /* DSLCalendar-previousMonth.png */,
 				79A86848191B93EC00AA4058 /* DSLCalendar-previousMonth@2x.png */,
 				79A86849191B93EC00AA4058 /* DSLCalendarDayCallout.png */,
 				79A8684A191B93EC00AA4058 /* DSLCalendarDayCallout@2x.png */,
-				79A8684B191B93EC00AA4058 /* DSLCalendarDaySelection-left.png */,
 				79A8684C191B93EC00AA4058 /* DSLCalendarDaySelection-left@2x.png */,
 				79A8684D191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png */,
 				79A8684E191B93EC00AA4058 /* DSLCalendarDaySelection-middle@2x.png */,
@@ -607,7 +607,6 @@
 				79A86865191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png in Resources */,
 				79A86868191B93EC00AA4058 /* DSLCalendarDaySelection-right@2x.png in Resources */,
 				E401DAD019195D4100A05318 /* glyphicons_136_cogwheel.png in Resources */,
-				79A86863191B93EC00AA4058 /* DSLCalendarDaySelection-left.png in Resources */,
 				E401DAD319195D8600A05318 /* glyphicons_239_albums.png in Resources */,
 				79A86861191B93EC00AA4058 /* DSLCalendarDayCallout.png in Resources */,
 				E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */,
@@ -617,6 +616,7 @@
 				79A8685F191B93EC00AA4058 /* DSLCalendar-previousMonth.png in Resources */,
 				E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */,
 				E40DF291190017E100E1332A /* Main_iPhone.storyboard in Resources */,
+				E4AB8869191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png in Resources */,
 				E40DF288190017E100E1332A /* InfoPlist.strings in Resources */,
 				79A86862191B93EC00AA4058 /* DSLCalendarDayCallout@2x.png in Resources */,
 				E4AB8863191AC725001A70D9 /* audio_icon_large.png in Resources */,
