@@ -39,7 +39,7 @@ int cellClicked = -1;
         [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
     
-//    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"dark"];
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
 }
 
 -(void)viewDidAppear:(BOOL)animated

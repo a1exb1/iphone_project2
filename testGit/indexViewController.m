@@ -97,6 +97,17 @@
         [self.navigationController pushViewController:view animated:YES];
 }
 
+-(IBAction)call:(id)sender
+{
+    UIDevice *device = [UIDevice currentDevice];
+    if ([[device model] isEqualToString:@"iPhone"] ) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:000-000-0000"]]];
+    } else {
+        UIAlertView *notPermitted=[[UIAlertView alloc] initWithTitle:@"Phone call unsuccessful" message:@"You cannot make phone calls from this device!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [notPermitted show];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

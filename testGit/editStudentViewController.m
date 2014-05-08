@@ -8,6 +8,7 @@
 
 #import "editStudentViewController.h"
 #import "Student.h"
+#import "Tools.h"
 
 @interface editStudentViewController ()
 
@@ -27,6 +28,11 @@
         // Custom initialization
     }
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
 }
 
 - (void)viewDidLoad

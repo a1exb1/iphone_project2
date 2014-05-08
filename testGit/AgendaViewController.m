@@ -216,7 +216,10 @@
     indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
     view.lesson = _lessonSender;
     
-    [self.navigationController pushViewController:view animated:YES];
+    if(!_editing){
+        [self.navigationController pushViewController:view animated:YES];
+    }
+    
 }
 
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response

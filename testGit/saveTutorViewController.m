@@ -29,7 +29,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground: nil andTint: [Tools colorFromHexString:@"#b44444"] theme:@"light"];
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
 }
 
 - (void)viewDidLoad

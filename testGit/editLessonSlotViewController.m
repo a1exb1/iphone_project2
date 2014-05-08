@@ -7,6 +7,7 @@
 //
 
 #import "editLessonSlotViewController.h"
+#import "Tools.h"
 //#import "editStudentAndSlotViewController.h"
 
 @interface editLessonSlotViewController ()
@@ -27,6 +28,11 @@
         // Custom initialization
     }
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
 }
 
 - (void)viewDidLoad
