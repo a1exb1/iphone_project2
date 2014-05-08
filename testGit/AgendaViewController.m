@@ -37,7 +37,7 @@
     int yy = (int)[components year]; // gives you year
     
     NSString *dateString = [[NSString alloc] initWithFormat:@"%02d/%02d/%i", dd, mm, yy ];
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%d&date=%@&ts=%f", 2, dateString, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%li&date=%@&ts=%f", [_tutor tutorID], dateString, [[NSDate date] timeIntervalSince1970]];
     
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -66,7 +66,7 @@
     self.mainTableView.delegate = self;
     
     _tutor = [[Tutor alloc] init];
-    [_tutor setTutorID:2];
+    [_tutor setTutorID:3];
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
