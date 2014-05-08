@@ -8,6 +8,7 @@
 
 #import "DSLCalendarView.h"
 #import "SelectDateViewController.h"
+#import "Tools.h"
 
 @interface SelectDateViewController ()
 
@@ -26,6 +27,9 @@
     
     self.calendarView.delegate = self;
     
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools defaultNavigationBarColour] andTint:[Tools colorFromHexString:@"#e5534b"] theme:@"light"];
+    self.navigationController.navigationBar.translucent = NO;
+    [self.tabBarController.tabBar setTintColor:[Tools colorFromHexString:@"#e5534b"]];
 }
 
 - (void)viewDidUnload
@@ -45,16 +49,16 @@
 - (void)calendarView:(DSLCalendarView *)calendarView didSelectRange:(DSLCalendarRange *)range {
     if (range != nil) {
         //N  ;
+        NSLog(@"%02d/%02d/%i", (int)range.startDay.day, (int)range.startDay.month, (int)range.startDay.year);
+        NSString *str = [[NSString alloc] initWithFormat: @"%02d/%02d/%i", (int)range.startDay.day, (int)range.startDay.month, (int)range.startDay.year];
+        NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"dd/MM/yyyy"];
+        NSDate* lessonDate = [formatter dateFromString:str];
+                
+        [self.selectDateDelegate sendDateToAgendaWithDate: lessonDate];
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
         
-//        NSString* str = [NSString alloc] initWithString: @"%02d/%02d/%i", (int)range.startDay.day, (int)range.startDay.month, [(int)range.startDay.year  ];
-//        NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-//        [formatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
-//        NSDate* lessonDate = [formatter dateFromString:str];
-//        
-//        NSCalendar *calendar = [NSCalendar currentCalendar];
-//        NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:lessonDate];
-//        NSInteger lessonDateHour = [components hour];
-//        NSInteger lessonDateMinute = [components minute];
+        
     }
     else {
         NSLog( @"No selection" );
@@ -62,7 +66,7 @@
 }
 
 - (DSLCalendarRange*)calendarView:(DSLCalendarView *)calendarView didDragToDay:(NSDateComponents *)day selectingRange:(DSLCalendarRange *)range {
-    if (NO) { // Only select a single day
+    if (YES) { // Only select a single day
         return [[DSLCalendarRange alloc] initWithStartDay:day endDay:day];
     }
     else if (NO) { // Don't allow selections before today

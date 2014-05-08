@@ -29,8 +29,16 @@
 
 -(void)jsonRequestGetAgenda
 {
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:_dayDate]; // Get necessary date components
     
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%d&date=%@&ts=%f", 2, @"06/05/2014", [[NSDate date] timeIntervalSince1970]];
+    int dd = (int)[components day]; //gives you day
+    int mm = (int)[components month]; //gives you month
+    int yy = (int)[components year]; // gives you year
+    
+    NSString *dateString = [[NSString alloc] initWithFormat:@"%02d/%02d/%i", dd, mm, yy ];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%d&date=%@&ts=%f", 2, dateString, [[NSDate date] timeIntervalSince1970]];
+    
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
@@ -46,6 +54,10 @@
     }];
     
     [self finishedAttendance];
+    
+    _dayDate = [[NSDate alloc] init];
+    _dayDate = [NSDate date];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -83,7 +95,7 @@
     //    [window makeKeyAndVisible];
     //    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
     //    view.lesson = _lessonSender;
-    //view.agenda
+    view.selectDateDelegate = self;
     
     [self.navigationController pushViewController:view animated:YES];
 }
@@ -250,7 +262,8 @@
 
 
 -(void)sendDateToAgendaWithDate:(NSDate *) Date{
-    [_lessonSender setDateTime:Date];
+    _dayDate = Date;
+    [self jsonRequestGetAgenda];
 }
 
 

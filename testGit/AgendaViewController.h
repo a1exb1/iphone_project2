@@ -20,4 +20,6 @@
 @property Lesson *lessonSender;
 @property bool editing;
 
+@property NSDate *dayDate;
+
 @end
