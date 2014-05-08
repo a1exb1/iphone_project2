@@ -29,8 +29,14 @@
 
 -(void)jsonRequestGetAgenda
 {
+    //self.mainTableView.hidden = YES;
+    [Tools showLoader];
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:_dayDate]; // Get necessary date components
+    
+    _data = [[NSMutableData alloc]init];
+    _lessons = [[NSArray alloc] init];
+    [_mainTableView reloadData];
     
     int dd = (int)[components day]; //gives you day
     int mm = (int)[components month]; //gives you month
@@ -71,7 +77,7 @@
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
-    [Tools showLoader];
+    
     [self jsonRequestGetAgenda];
     
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
