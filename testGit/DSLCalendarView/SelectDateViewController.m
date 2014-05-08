@@ -11,9 +11,11 @@
 
 @interface SelectDateViewController ()
 
+
 @property (nonatomic, weak) IBOutlet DSLCalendarView *calendarView;
 
 @end
+
 
 @implementation SelectDateViewController
 
@@ -23,7 +25,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.calendarView.delegate = self;
-
+    
 }
 
 - (void)viewDidUnload
@@ -42,7 +44,17 @@
 
 - (void)calendarView:(DSLCalendarView *)calendarView didSelectRange:(DSLCalendarRange *)range {
     if (range != nil) {
-        NSLog( @"Selected %02d/%02d/%i", (int)range.startDay.day, (int)range.startDay.month, (int)self.calendarView.visibleMonth.month) ;
+        //N  ;
+        
+//        NSString* str = [NSString alloc] initWithString: @"%02d/%02d/%i", (int)range.startDay.day, (int)range.startDay.month, [(int)range.startDay.year  ];
+//        NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+//        [formatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
+//        NSDate* lessonDate = [formatter dateFromString:str];
+//        
+//        NSCalendar *calendar = [NSCalendar currentCalendar];
+//        NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:lessonDate];
+//        NSInteger lessonDateHour = [components hour];
+//        NSInteger lessonDateMinute = [components minute];
     }
     else {
         NSLog( @"No selection" );
