@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Lesson.h"
 #import "SelectDateViewController.h"
+#import "MZDayPicker.h"
+#import "DIDatepicker.h"
 
 
-@interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SelectDateDelegate>
+@interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SelectDateDelegate, MZDayPickerDataSource, MZDayPickerDelegate>
 
 @property NSArray *lessons;
 @property NSMutableData *data;
@@ -21,5 +23,10 @@
 @property bool editing;
 
 @property NSDate *dayDate;
+@property (weak, nonatomic) IBOutlet MZDayPicker *dayPicker;
+
+@property (weak, nonatomic) IBOutlet DIDatepicker *datePicker;
+
+@property int counter;
 
 @end

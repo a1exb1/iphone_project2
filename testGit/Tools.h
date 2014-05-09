@@ -26,4 +26,8 @@
 +(UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)newSize;
 
 + (UIImage*) imageWithColor:(UIColor*)color size:(CGSize)size;
+
++ (NSDate *)getFirstDayOfTheWeekFromDate:(NSDate *)givenDate;
++ (NSDate *)getLastDayOfTheWeekFromDate:(NSDate *)givenDate;
+
 @end

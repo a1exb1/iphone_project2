@@ -43,6 +43,8 @@
 		E401DAD5191AA0AF00A05318 /* glyphicons_029_notes_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DAD4191AA0AF00A05318 /* glyphicons_029_notes_2.png */; };
 		E401DAD8191AB82400A05318 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E401DAD7191AB82400A05318 /* NotesViewController.m */; };
 		E401DADB191ABA3000A05318 /* Lesson.m in Sources */ = {isa = PBXBuildFile; fileRef = E401DADA191ABA3000A05318 /* Lesson.m */; };
+		E407AD6C191D620200F22977 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E407AD69191D620200F22977 /* DIDatepicker.m */; };
+		E407AD6D191D620200F22977 /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E407AD6B191D620200F22977 /* DIDatepickerDateView.m */; };
 		E40DF27E190017E100E1332A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF27D190017E100E1332A /* Foundation.framework */; };
 		E40DF280190017E100E1332A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF27F190017E100E1332A /* CoreGraphics.framework */; };
 		E40DF282190017E100E1332A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF281190017E100E1332A /* UIKit.framework */; };
@@ -68,10 +70,14 @@
 		E4494DD4190D84B700585CB8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E4494DD3190D84B700585CB8 /* User.m */; };
 		E4494DD7190D851E00585CB8 /* Tutor.m in Sources */ = {isa = PBXBuildFile; fileRef = E4494DD6190D851E00585CB8 /* Tutor.m */; };
 		E47352801900279E008006EE /* indexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E473527F1900279E008006EE /* indexViewController.m */; };
+		E4AA7DDB191D501D00269A3F /* NVDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AA7DDA191D501D00269A3F /* NVDate.m */; };
 		E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8860191AC6F0001A70D9 /* audio_icon.png */; };
 		E4AB8863191AC725001A70D9 /* audio_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8862191AC725001A70D9 /* audio_icon_large.png */; };
 		E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8866191ACA3F001A70D9 /* text_note_icon_large.png */; };
 		E4AB8869191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8868191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png */; };
+		E4AB8871191D4199001A70D9 /* MZDay.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB886C191D4199001A70D9 /* MZDay.m */; };
+		E4AB8872191D4199001A70D9 /* MZDayPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB886E191D4199001A70D9 /* MZDayPicker.m */; };
+		E4AB8873191D4199001A70D9 /* MZDayPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB8870191D4199001A70D9 /* MZDayPickerCell.m */; };
 		E4ADAB58191CC94F00C1AC5A /* glyphicons_043_group.png in Resources */ = {isa = PBXBuildFile; fileRef = E4ADAB57191CC94F00C1AC5A /* glyphicons_043_group.png */; };
 		E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */; };
 		E4C1C969191459F70068A10D /* editTutorsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C968191459F70068A10D /* editTutorsListViewController.m */; };
@@ -147,6 +153,10 @@
 		E401DAD7191AB82400A05318 /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
 		E401DAD9191ABA3000A05318 /* Lesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lesson.h; sourceTree = "<group>"; };
 		E401DADA191ABA3000A05318 /* Lesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lesson.m; sourceTree = "<group>"; };
+		E407AD68191D620200F22977 /* DIDatepicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepicker.h; sourceTree = "<group>"; };
+		E407AD69191D620200F22977 /* DIDatepicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepicker.m; sourceTree = "<group>"; };
+		E407AD6A191D620200F22977 /* DIDatepickerDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepickerDateView.h; sourceTree = "<group>"; };
+		E407AD6B191D620200F22977 /* DIDatepickerDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepickerDateView.m; sourceTree = "<group>"; };
 		E40DF27A190017E100E1332A /* testGit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testGit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E40DF27D190017E100E1332A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E40DF27F190017E100E1332A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -187,10 +197,18 @@
 		E4494DD6190D851E00585CB8 /* Tutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutor.m; sourceTree = "<group>"; };
 		E473527E1900279E008006EE /* indexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indexViewController.h; sourceTree = "<group>"; };
 		E473527F1900279E008006EE /* indexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = indexViewController.m; sourceTree = "<group>"; };
+		E4AA7DD9191D501D00269A3F /* NVDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDate.h; sourceTree = "<group>"; };
+		E4AA7DDA191D501D00269A3F /* NVDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVDate.m; sourceTree = "<group>"; };
 		E4AB8860191AC6F0001A70D9 /* audio_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_icon.png; sourceTree = "<group>"; };
 		E4AB8862191AC725001A70D9 /* audio_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_icon_large.png; sourceTree = "<group>"; };
 		E4AB8866191ACA3F001A70D9 /* text_note_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text_note_icon_large.png; sourceTree = "<group>"; };
 		E4AB8868191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection-left.png"; sourceTree = "<group>"; };
+		E4AB886B191D4199001A70D9 /* MZDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDay.h; sourceTree = "<group>"; };
+		E4AB886C191D4199001A70D9 /* MZDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDay.m; sourceTree = "<group>"; };
+		E4AB886D191D4199001A70D9 /* MZDayPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDayPicker.h; sourceTree = "<group>"; };
+		E4AB886E191D4199001A70D9 /* MZDayPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDayPicker.m; sourceTree = "<group>"; };
+		E4AB886F191D4199001A70D9 /* MZDayPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDayPickerCell.h; sourceTree = "<group>"; };
+		E4AB8870191D4199001A70D9 /* MZDayPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDayPickerCell.m; sourceTree = "<group>"; };
 		E4ADAB57191CC94F00C1AC5A /* glyphicons_043_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_043_group.png; sourceTree = "<group>"; };
 		E4B1DF7C190BCB3C0069DB6A /* StudentCourseLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentCourseLink.h; sourceTree = "<group>"; };
 		E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentCourseLink.m; sourceTree = "<group>"; };
@@ -334,6 +352,7 @@
 		79AA2231190943B8005AC8A3 /* agenda */ = {
 			isa = PBXGroup;
 			children = (
+				E407AD67191D620200F22977 /* Sources */,
 				E4001B3619191DD40063B066 /* AgendaViewController.h */,
 				E4001B3719191DD40063B066 /* AgendaViewController.m */,
 				E401DAD6191AB82400A05318 /* NotesViewController.h */,
@@ -367,6 +386,17 @@
 			children = (
 			);
 			name = login;
+			sourceTree = "<group>";
+		};
+		E407AD67191D620200F22977 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E407AD68191D620200F22977 /* DIDatepicker.h */,
+				E407AD69191D620200F22977 /* DIDatepicker.m */,
+				E407AD6A191D620200F22977 /* DIDatepickerDateView.h */,
+				E407AD6B191D620200F22977 /* DIDatepickerDateView.m */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		E40DF271190017E100E1332A = {
@@ -421,6 +451,9 @@
 		E40DF284190017E100E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4AA7DD9191D501D00269A3F /* NVDate.h */,
+				E4AA7DDA191D501D00269A3F /* NVDate.m */,
+				E4AB886A191D4199001A70D9 /* MZDayPicker */,
 				E4ADAB57191CC94F00C1AC5A /* glyphicons_043_group.png */,
 				E4AB8866191ACA3F001A70D9 /* text_note_icon_large.png */,
 				E4AB8862191AC725001A70D9 /* audio_icon_large.png */,
@@ -480,6 +513,19 @@
 				E473527F1900279E008006EE /* indexViewController.m */,
 			);
 			name = viewControllers;
+			sourceTree = "<group>";
+		};
+		E4AB886A191D4199001A70D9 /* MZDayPicker */ = {
+			isa = PBXGroup;
+			children = (
+				E4AB886B191D4199001A70D9 /* MZDay.h */,
+				E4AB886C191D4199001A70D9 /* MZDay.m */,
+				E4AB886D191D4199001A70D9 /* MZDayPicker.h */,
+				E4AB886E191D4199001A70D9 /* MZDayPicker.m */,
+				E4AB886F191D4199001A70D9 /* MZDayPickerCell.h */,
+				E4AB8870191D4199001A70D9 /* MZDayPickerCell.m */,
+			);
+			path = MZDayPicker;
 			sourceTree = "<group>";
 		};
 		E4C1C966191459D60068A10D /* edit */ = {
@@ -645,10 +691,12 @@
 				79F7196319124FA100C644A1 /* Course.m in Sources */,
 				79A8686B191B93EC00AA4058 /* NSDate+DSLCalendarView.m in Sources */,
 				E42B6112190C0582001B977F /* studentNote.m in Sources */,
+				E4AB8872191D4199001A70D9 /* MZDayPicker.m in Sources */,
 				E4C1C97B1916700F0068A10D /* Tools.m in Sources */,
 				E4F96CCC19097D49008D75D6 /* tutors2ViewController.m in Sources */,
 				E4C1C98319167BA90068A10D /* UIScrollView+SVPullToRefresh.m in Sources */,
 				E40DF28A190017E100E1332A /* main.m in Sources */,
+				E407AD6C191D620200F22977 /* DIDatepicker.m in Sources */,
 				E4C1C9781915A4450068A10D /* NavigationBarTitleWithSubtitleView.m in Sources */,
 				E4494DD4190D84B700585CB8 /* User.m in Sources */,
 				E40DF297190017E100E1332A /* ABViewController.m in Sources */,
@@ -660,6 +708,7 @@
 				E4C1C9711914F9240068A10D /* editCoursesListViewController.m in Sources */,
 				E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */,
 				E4C1C9741914FA960068A10D /* saveCourseViewController.m in Sources */,
+				E4AA7DDB191D501D00269A3F /* NVDate.m in Sources */,
 				79A8686E191B941C00AA4058 /* SelectDateViewController.m in Sources */,
 				E40DF28E190017E100E1332A /* ABAppDelegate.m in Sources */,
 				79A86857191B93EC00AA4058 /* DSLCalendarDayView.m in Sources */,
@@ -675,10 +724,13 @@
 				E401DADB191ABA3000A05318 /* Lesson.m in Sources */,
 				E441CEF819101C7D00088FEE /* editLessonSlotViewController.m in Sources */,
 				E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */,
+				E407AD6D191D620200F22977 /* DIDatepickerDateView.m in Sources */,
+				E4AB8871191D4199001A70D9 /* MZDay.m in Sources */,
 				79A8685C191B93EC00AA4058 /* DSLCalendarView.m in Sources */,
 				E4C1C969191459F70068A10D /* editTutorsListViewController.m in Sources */,
 				E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */,
 				E4494DD7190D851E00585CB8 /* Tutor.m in Sources */,
+				E4AB8873191D4199001A70D9 /* MZDayPickerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

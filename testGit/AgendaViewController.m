@@ -9,12 +9,23 @@
 #import "AgendaViewController.h"
 #import "Tools.h"
 #import "indexViewController.h"
+#import "NVDate.h"
 
 @interface AgendaViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 
+@property (nonatomic,strong) NSDateFormatter *dateFormatter;
+
 @end
+
+NSCalendar* calendar;
+NSDateComponents* components;
+int dd;
+int mm;
+int yy;
+NSArray *months;
+NSArray *daysOfWeekArray;
 
 @implementation AgendaViewController
 
@@ -31,16 +42,17 @@
 {
     //self.mainTableView.hidden = YES;
     [Tools showLoader];
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:_dayDate]; // Get necessary date components
+    
+    calendar = [NSCalendar currentCalendar];
+    components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:_dayDate]; // Get necessary date components
+    
+    dd = (int)[components day]; //gives you day
+    mm = (int)[components month]; //gives you month
+    yy = (int)[components year]; // gives you year
     
     _data = [[NSMutableData alloc]init];
     _lessons = [[NSArray alloc] init];
     [_mainTableView reloadData];
-    
-    int dd = (int)[components day]; //gives you day
-    int mm = (int)[components month]; //gives you month
-    int yy = (int)[components year]; // gives you year
     
     NSString *dateString = [[NSString alloc] initWithFormat:@"%02d/%02d/%i", dd, mm, yy ];
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%li&date=%@&ts=%f", [_tutor tutorID], dateString, [[NSDate date] timeIntervalSince1970]];
@@ -64,12 +76,33 @@
     _dayDate = [[NSDate alloc] init];
     _dayDate = [NSDate date];
     
+    self.dayPicker.delegate = self;
+    self.dayPicker.dataSource = self;
+    
+    //[self.dayPicker setStartDate:[NSDate dateFromDay:28 month:9 year:2013] endDate:[NSDate dateFromDay:5 month:10 year:2013]];
+    [Tools showLoader];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
+    
+    //[self.dayPicker setCurrentDate:_dayDate animated:NO];
+    //[NSDate dateFromDay:3 month:10 year:2013]
+
+    //NVDate *agendaDate = [[NVDate alloc] initUsingDate:_dayDate];
+    
+    NVDate *firstDateOfMonth = [[NVDate alloc] initUsingDate:_dayDate];
+    [firstDateOfMonth firstDayOfMonth];
+    NVDate *lastDateOfMonth = [[NVDate alloc] initUsingDate:_dayDate];
+    [lastDateOfMonth lastDayOfMonth];
+    
+    [self.dayPicker setStartDate:[NSDate dateFromDay:[firstDateOfMonth day] month:[firstDateOfMonth month] year:[firstDateOfMonth year]] endDate:[NSDate dateFromDay:[lastDateOfMonth day] month:[lastDateOfMonth month] year:[lastDateOfMonth year]]];
+    //[NSDate dateFromDay:28 month:9 year:2013]
+    [self.dayPicker setCurrentDate:_dayDate animated:NO];
+    //[self.dayPicker setCurrentDate:[NSDate dateFromDay:3 month:10 year:2013] animated:NO];
     
     _tutor = [[Tutor alloc] init];
     [_tutor setTutorID:3];
@@ -78,14 +111,120 @@
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     
-    [self jsonRequestGetAgenda];
+   
     
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
     //red e5534b
     //blue 4473b4
     
+    //self.dayPicker.bottomBorderColor = [Tools colorFromHexString:@"#4473b4"];
+    
+    //self.mainTableView.frame = CGRectMake(0, self.dayPicker.frame.origin.y + self.dayPicker.frame.size.height, self.mainTableView.frame.size.width, self.view.bounds.size.height-self.dayPicker.frame.size.height);
+    
 
+    
+    [self.datePicker addTarget:self action:@selector(updateSelectedDate) forControlEvents:UIControlEventValueChanged];
+    
+    //    [self.datepicker fillDatesFromCurrentDate:14];
+    //[self.datePicker fillCurrentWeek];
+    //    [self.datepicker fillCurrentMonth];
+
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* comps = [calendar components:NSYearForWeekOfYearCalendarUnit |NSYearCalendarUnit|NSMonthCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit fromDate:_dayDate];
+    
+    [comps setWeekday:2]; // 2: monday
+    NSDate *firstDayOfTheWeek = [calendar dateFromComponents:comps];
+
+    [self.datePicker fillDatesFromDate:firstDayOfTheWeek numberOfDays:7];
+    
+    NSDateComponents *currentDayOfWeek = [calendar components:NSYearForWeekOfYearCalendarUnit |NSYearCalendarUnit|NSMonthCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit fromDate:_dayDate];
+    
+    NSLog(@"%ld", (long)[currentDayOfWeek weekday]);
+    //[self.datepicker fillCurrentYear];
+    [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] -2)];
+    //[self.datepicker selectDate:dayDate];
+
+     [self jsonRequestGetAgenda];
 }
+
+- (void)updateSelectedDate
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEEEddMMMM" options:0 locale:nil];
+    
+    NSLog(@"%@", [formatter stringFromDate:self.datePicker.selectedDate]);
+        
+    if(_counter > 0){
+        _dayDate = self.datePicker.selectedDate;
+        [self jsonRequestGetAgenda];
+        
+        
+    }
+    _counter++;
+    
+}
+
+//- (NSString *)dayPicker:(MZDayPicker *)dayPicker titleForCellDayNameLabelInDay:(MZDay *)day
+//{
+//    return [self.dateFormatter stringFromDate:day.date];
+//}
+//
+//- (NSString *)dayPicker:(MZDayPicker *)dayPicker titleForCellDayLabelInDay:(MZDay *)day
+//{
+//    return @"hi";
+//}
+
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    months = [[NSArray alloc] initWithObjects:
+              @"",
+              @"January",
+              @"February",
+              @"March",
+              @"April",
+              @"May",
+              @"June",
+              @"July",
+              @"August",
+              @"September",
+              @"October",
+              @"November",
+              @"December",
+              nil];
+    
+    daysOfWeekArray = [[NSArray alloc] initWithObjects:
+                       @"",
+                       @"Monday",
+                       @"Tuesday",
+                       @"Wednesday",
+                       @"Thursday",
+                       @"Friday",
+                       @"Saturday",
+                       @"Sunday",
+                       nil];
+    
+    NVDate *agendaDate = [[NVDate alloc] initUsingDate:_dayDate];
+    return [NSString stringWithFormat:@"%i %@", (int)[agendaDate day], [months objectAtIndex:[agendaDate month]]];
+}
+
+//- (void)dayPicker:(MZDayPicker *)dayPicker didSelectDay:(MZDay *)day
+//{
+//    //NSLog(@"Did select day %@ ",day.date);
+//    _dayDate = day.date;
+//    [self jsonRequestGetAgenda];
+//    
+//    //[self.tableData addObject:day];
+//    //[self.tableView reloadData];
+//}
+
+//- (void)dayPicker:(MZDayPicker *)dayPicker willSelectDay:(MZDay *)day
+//{
+//    NSLog(@"Will select day %@",day.day);
+//}
+
+
 
 -(void)prepareForAttendance{
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishedAttendance)];
@@ -149,7 +288,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0;
+    return 40;
     
 }
 
@@ -282,6 +421,32 @@
     _dayDate = Date;
     [self finishedAttendance];
     [self jsonRequestGetAgenda];
+}
+
++(NSDate *)getFirstDayOfTheWeekFromDate:(NSDate *)givenDate
+{
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* comps = [calendar components:NSYearForWeekOfYearCalendarUnit |NSYearCalendarUnit|NSMonthCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit fromDate:givenDate];
+    
+    [comps setWeekday:2]; // 2: monday
+    NSDate *firstDayOfTheWeek = [calendar dateFromComponents:comps];
+    [comps setWeekday:7]; // 7: saturday
+    //NSDate *lastDayOfTheWeek = [calendar dateFromComponents:comps];
+    
+    return firstDayOfTheWeek;
+}
+
++(NSDate *)getLastDayOfTheWeekFromDate:(NSDate *)givenDate
+{
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* comps = [calendar components:NSYearForWeekOfYearCalendarUnit |NSYearCalendarUnit|NSMonthCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit fromDate:givenDate];
+    
+    [comps setWeekday:2]; // 2: monday
+    //NSDate *firstDayOfTheWeek = [calendar dateFromComponents:comps];
+    [comps setWeekday:7]; // 7: saturday
+    NSDate *lastDayOfTheWeek = [calendar dateFromComponents:comps];
+    
+    return lastDayOfTheWeek;
 }
 
 

@@ -41,6 +41,9 @@
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.leftBarButtonItem = item;
     
+    UIBarButtonItem *todayBtn = [[UIBarButtonItem alloc] initWithTitle:@"Today" style:UIBarButtonItemStyleBordered target:self action:@selector(selectToday)];
+    self.navigationItem.rightBarButtonItem = todayBtn;
+    
     NSDate *today = _previousDate;
     //NSDate *end = _previousDate;
     
@@ -71,6 +74,12 @@
 
 }
 
+-(void)selectToday{
+    NSDate *dayDate = [[NSDate alloc] init];
+    dayDate = [NSDate date];
+    [self.selectDateDelegate sendDateToAgendaWithDate: dayDate];
+    [self back];
+}
 
 
 - (void)viewDidUnload
