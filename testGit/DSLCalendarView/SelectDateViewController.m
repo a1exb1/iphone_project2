@@ -59,8 +59,15 @@
     int mm = (int)[dateCompStart month]; //gives you month
     NSDateComponents *newMonth = self.calendarView.visibleMonth;
     newMonth.month = mm;
+    
+//    int yy = (int)[dateCompStart year]; //gives you month
+//    NSDateComponents *newYear = self.calendarView.visibleMonth;
+//    newMonth.year = yy;
     //
-    [self.calendarView setVisibleMonth:newMonth animated:YES];}
+    [self.calendarView setVisibleMonth:newMonth animated:YES];
+    //[self.calendarView :newMonth animated:YES];
+
+}
 
 -(void)back {
     [UIView animateWithDuration:0.35

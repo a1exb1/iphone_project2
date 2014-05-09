@@ -89,6 +89,8 @@ NSArray *daysOfWeekArray;
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
     
+    _counter = 0;
+    
     //[self.dayPicker setCurrentDate:_dayDate animated:NO];
     //[NSDate dateFromDay:3 month:10 year:2013]
 
