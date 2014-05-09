@@ -42,17 +42,22 @@
     self.navigationItem.leftBarButtonItem = item;
     
     NSDate *today = _previousDate;
-    NSDate *end = _previousDate;
+    //NSDate *end = _previousDate;
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     [calendar setTimeZone:[NSTimeZone systemTimeZone]];
     NSDateComponents *dateCompStart = [calendar components:NSCalendarCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate:today];
-    NSDateComponents *dateCompEnd = [calendar components:NSCalendarCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate:end];
+//    NSDateComponents *dateCompEnd = [calendar components:NSCalendarCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate:end];
     
     DSLCalendarRange *range = [[DSLCalendarRange alloc] initWithStartDay:dateCompStart endDay:dateCompStart];
     
     [self.calendarView setSelectedRange:range];
-}
+    
+    int mm = (int)[dateCompStart month]; //gives you month
+    NSDateComponents *newMonth = self.calendarView.visibleMonth;
+    newMonth.month = mm;
+    //
+    [self.calendarView setVisibleMonth:newMonth animated:YES];}
 
 -(void)back {
     [UIView animateWithDuration:0.35

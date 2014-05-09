@@ -880,11 +880,11 @@
             </objects>
             <point key="canvasLocation" x="1334" y="-83"/>
         </scene>
-        <!--Navigation Controller - Manage-->
+        <!--Navigation Controller - People-->
         <scene sceneID="Myu-Lo-9dJ">
             <objects>
                 <navigationController storyboardIdentifier="manageView" automaticallyAdjustsScrollViewInsets="NO" id="6gc-r8-CT0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Manage" image="glyphicons_137_cogwheels.png" id="7HW-ow-T3c"/>
+                    <tabBarItem key="tabBarItem" title="People" image="glyphicons_043_group.png" id="7HW-ow-T3c"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="R7R-FD-eay">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1037,11 +1037,11 @@
             </objects>
             <point key="canvasLocation" x="-1247" y="227"/>
         </scene>
-        <!--Navigation Controller - Calender-->
+        <!--Navigation Controller - Manage-->
         <scene sceneID="ffX-99-tOn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ayl-xW-ke5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calender" image="glyphicons_045_calendar.png" id="D3z-zG-UmC"/>
+                    <tabBarItem key="tabBarItem" title="Manage" image="glyphicons_137_cogwheels.png" id="D3z-zG-UmC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YtV-pa-js5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1170,8 +1170,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="25d-2k-JIA" kind="relationship" relationship="viewControllers" id="ltc-ug-55x"/>
-                        <segue destination="ayl-xW-ke5" kind="relationship" relationship="viewControllers" id="HPU-Zl-aMj"/>
                         <segue destination="6gc-r8-CT0" kind="relationship" relationship="viewControllers" id="XpC-n1-x7S"/>
+                        <segue destination="ayl-xW-ke5" kind="relationship" relationship="viewControllers" id="HPU-Zl-aMj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fM-cA-846" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1181,6 +1181,7 @@
     </scenes>
     <resources>
         <image name="glyphicons_029_notes_2.png" width="20" height="27"/>
+        <image name="glyphicons_043_group.png" width="35" height="22"/>
         <image name="glyphicons_045_calendar.png" width="23" height="24"/>
         <image name="glyphicons_137_cogwheels.png" width="34" height="27"/>
         <image name="glyphicons_239_albums.png" width="28" height="18"/>
