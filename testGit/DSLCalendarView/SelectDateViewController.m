@@ -60,12 +60,17 @@
     NSDateComponents *newMonth = self.calendarView.visibleMonth;
     newMonth.month = mm;
     
-//    int yy = (int)[dateCompStart year]; //gives you month
-//    NSDateComponents *newYear = self.calendarView.visibleMonth;
-//    newMonth.year = yy;
+    
+    int yy = (int)[dateCompStart year]; //gives you month
+    //NSDateComponents *newYear = self.calendarView.visibleMonth;
+    newMonth.year = yy;
     //
     [self.calendarView setVisibleMonth:newMonth animated:YES];
+    
+    //[self.calendarView s:range];
     //[self.calendarView :newMonth animated:YES];
+    //DSLCalendarRange *newRamnge=[[DSLCalendarRange alloc] initWithStartDay:range endDay:range];
+    //[self calendarView:self.calendarView didDragToDay:dateCompStart selectingRange:range];
 
 }
 
