@@ -65,7 +65,7 @@
     //NSDateComponents *newYear = self.calendarView.visibleMonth;
     newMonth.year = yy;
     //
-    [self.calendarView setVisibleMonth:newMonth animated:YES];
+    [self.calendarView setVisibleMonth:newMonth animated:NO];
     
     //[self.calendarView s:range];
     //[self.calendarView :newMonth animated:YES];
