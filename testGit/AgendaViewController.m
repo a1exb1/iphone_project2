@@ -131,7 +131,10 @@ NSArray *daysOfWeekArray;
     //[self.datePicker fillCurrentWeek];
     //    [self.datepicker fillCurrentMonth];
 
-    NSCalendar* calendar = [NSCalendar currentCalendar];
+    //NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [calendar setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"GB"]];
+
     NSDateComponents* comps = [calendar components:NSYearForWeekOfYearCalendarUnit |NSYearCalendarUnit|NSMonthCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit fromDate:_dayDate];
     
     [comps setWeekday:2]; // 2: monday

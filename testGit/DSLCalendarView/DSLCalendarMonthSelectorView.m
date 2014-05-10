@@ -79,8 +79,12 @@
     [super awakeFromNib];
 
     // Get a dictionary of localised day names
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate:[NSDate date]];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [gregorian setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"GB"]];
+    
+    NSDateComponents *dateComponents = [gregorian components:NSCalendarCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate:[NSDate date]];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //[formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"GB"]];
     formatter.dateFormat = @"EEE";
     NSMutableDictionary *dayNames = [[NSMutableDictionary alloc] init];
     

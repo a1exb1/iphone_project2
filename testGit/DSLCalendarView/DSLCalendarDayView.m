@@ -110,7 +110,9 @@
     if (self.selectionState == DSLCalendarDayViewNotSelected) {
         
 		NSUInteger flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-		NSCalendar *calendar = [NSCalendar currentCalendar];
+		//NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        [calendar setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"GB"]];
         
 		NSDateComponents *components = [calendar components:flags fromDate:[self.day date]];
 		NSDateComponents *componentsOfToday = [calendar components:flags fromDate:[NSDate date]];
@@ -198,7 +200,10 @@
     if (self.selectionState == DSLCalendarDayViewNotSelected) {
         
 		NSUInteger flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-		NSCalendar *calendar = [NSCalendar currentCalendar];
+		//NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        [calendar setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"GB"]];
+
         
 		NSDateComponents *components = [calendar components:flags fromDate:[self.day date]];
 		NSDateComponents *componentsOfToday = [calendar components:flags fromDate:[NSDate date]];
