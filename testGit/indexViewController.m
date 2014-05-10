@@ -40,7 +40,17 @@
 {
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
     
+    
+    
+}
 
+-(void)viewDidAppear:(BOOL)animated
+{
+//    if(_loaded == true){
+//        [self.navigationController popViewControllerAnimated:NO];
+//    }
+//    
+//    _loaded = true;
 }
 
 - (void)viewDidLoad
@@ -85,9 +95,18 @@
     _courseNameLbl.text = [[_lesson course] name];
     _studentNameLbl.text = [[_lesson student] name];
     
-    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editLesson)];
+    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithTitle:@"Re-schedule" style:UIBarButtonItemStyleBordered target:self action:@selector(editLesson)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:editBtn, nil]];
+    
+    
+    
+    
 }
+
+-(void)editLesson{
+    
+}
+
 
 -(IBAction)lessonNotes:(id)sender
 {

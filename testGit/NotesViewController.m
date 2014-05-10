@@ -7,6 +7,8 @@
 //
 
 #import "NotesViewController.h"
+#import "textNoteViewController.h"
+#import "audioNoteViewController.h"
 
 @interface NotesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -62,6 +64,26 @@ NSMutableArray *audioNotes;
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
+    UIBarButtonItem *textNoteBtn = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addTextNote)];
+    
+     UIBarButtonItem *audioNoteBtn = [[UIBarButtonItem alloc]  initWithTitle: @"Add audio note" style:UIBarButtonItemStyleBordered target:self action:@selector(addAudioNote)];
+    
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:textNoteBtn,audioNoteBtn, nil]];
+    
+}
+
+-(void)addAudioNote
+{
+    audioNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"audioNoteView"];
+    view.lesson = _lesson;
+    [self.navigationController pushViewController:view animated:YES];
+}
+
+-(void)addTextNote
+{
+    textNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"textNoteView"];
+    view.lesson = _lesson;
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -70,6 +92,7 @@ NSMutableArray *audioNotes;
     [view setBackgroundColor:[UIColor clearColor]];
     return view;
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 40;

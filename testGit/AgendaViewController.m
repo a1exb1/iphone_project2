@@ -162,7 +162,7 @@ NSArray *daysOfWeekArray;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEEEddMMMM" options:0 locale:nil];
     
-    NSLog(@"%@", [formatter stringFromDate:self.datePicker.selectedDate]);
+    //NSLog(@"%@", [formatter stringFromDate:self.datePicker.selectedDate]);
         
     if(_counter > 0){
         _dayDate = self.datePicker.selectedDate;

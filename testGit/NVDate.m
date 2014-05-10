@@ -276,7 +276,7 @@
 }
 
 - (instancetype)previousDayOfDayName:(NVDayUnit)dayUnit {
-    int currentWeekDay = [_calendar components:_dateTimeCalendarUnit fromDate:_date].weekday;
+    int currentWeekDay = (int)[_calendar components:_dateTimeCalendarUnit fromDate:_date].weekday;
     
     if (currentWeekDay == dayUnit)
         return [self previousWeek];
@@ -294,7 +294,7 @@
 }
 
 - (instancetype)nextDayOfDayName:(NVDayUnit)dayUnit {
-    int currentWeekDay = [_calendar components:_dateTimeCalendarUnit fromDate:_date].weekday;
+    int currentWeekDay = (int)[_calendar components:_dateTimeCalendarUnit fromDate:_date].weekday;
     
     if (currentWeekDay == dayUnit)
         return [self nextWeek];
