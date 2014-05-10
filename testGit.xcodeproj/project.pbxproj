@@ -352,7 +352,7 @@
 		79AA2231190943B8005AC8A3 /* agenda */ = {
 			isa = PBXGroup;
 			children = (
-				E407AD67191D620200F22977 /* Sources */,
+				E407AD67191D620200F22977 /* DIDatepicker */,
 				E4001B3619191DD40063B066 /* AgendaViewController.h */,
 				E4001B3719191DD40063B066 /* AgendaViewController.m */,
 				E401DAD6191AB82400A05318 /* NotesViewController.h */,
@@ -388,7 +388,7 @@
 			name = login;
 			sourceTree = "<group>";
 		};
-		E407AD67191D620200F22977 /* Sources */ = {
+		E407AD67191D620200F22977 /* DIDatepicker */ = {
 			isa = PBXGroup;
 			children = (
 				E407AD68191D620200F22977 /* DIDatepicker.h */,
@@ -396,6 +396,7 @@
 				E407AD6A191D620200F22977 /* DIDatepickerDateView.h */,
 				E407AD6B191D620200F22977 /* DIDatepickerDateView.m */,
 			);
+			name = DIDatepicker;
 			path = Sources;
 			sourceTree = "<group>";
 		};

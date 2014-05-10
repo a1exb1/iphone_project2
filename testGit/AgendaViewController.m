@@ -141,10 +141,15 @@ NSArray *daysOfWeekArray;
     
     NSDateComponents *currentDayOfWeek = [calendar components:NSYearForWeekOfYearCalendarUnit |NSYearCalendarUnit|NSMonthCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit fromDate:_dayDate];
     
-    NSLog(@"%ld", (long)[currentDayOfWeek weekday]);
+    //NSLog(@"we're here curreent weekday = %ld", (long)[currentDayOfWeek weekday]);
     //[self.datepicker fillCurrentYear];
-    [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] -2)];
-    //[self.datepicker selectDate:dayDate];
+    
+    if((long)[currentDayOfWeek weekday] == 1){
+        [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] +5)];
+    }
+    else{
+        [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] -2)];
+    }
 
      [self jsonRequestGetAgenda];
 }
@@ -208,7 +213,7 @@ NSArray *daysOfWeekArray;
                        nil];
     
     NVDate *agendaDate = [[NVDate alloc] initUsingDate:_dayDate];
-    return [NSString stringWithFormat:@"%i %@", (int)[agendaDate day], [months objectAtIndex:[agendaDate month]]];
+    return [NSString stringWithFormat:@"%i %@ %ld", (int)[agendaDate day], [months objectAtIndex:[agendaDate month]], (long)[agendaDate year]];
 }
 
 //- (void)dayPicker:(MZDayPicker *)dayPicker didSelectDay:(MZDay *)day
