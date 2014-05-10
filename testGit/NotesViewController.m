@@ -30,6 +30,21 @@ NSMutableArray *audioNotes;
     return self;
 }
 
+-(void)jsonRequestGetData
+{
+    //self.mainTableView.hidden = YES;
+    
+    _data = [[NSMutableData alloc]init];
+    _lessons = [[NSArray alloc] init];
+    [_mainTableView reloadData];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=notesbystudent&id=%li&ts=%f", [[_lesson student] studentID], [[NSDate date] timeIntervalSince1970]];
+    
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     
@@ -39,27 +54,34 @@ NSMutableArray *audioNotes;
 
 - (void)viewDidLoad
 {
+    NSLog(@"%li", [[_lesson student] studentID]);
+    
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
     
     [super viewDidLoad];
     
-    textNotes = [[NSMutableArray alloc ]initWithObjects:
-                 @"text note 1",
-                 @"text note 2",
-                 @"text note 3",
-                 @"text note 4",
-                 nil];
+//    textNotes = [[NSMutableArray alloc ]initWithObjects:
+//                 @"text note 1",
+//                 @"text note 2",
+//                 @"text note 3",
+//                 @"text note 4",
+//                 nil];
+//    
+//    audioNotes = [[NSMutableArray alloc ]initWithObjects:
+//                  @"audio note 1",
+//                  @"audio note 2",
+//                  @"audio note 3",
+//                  @"audio note 4",
+//                  nil];
     
-    audioNotes = [[NSMutableArray alloc ]initWithObjects:
-                  @"audio note 1",
-                  @"audio note 2",
-                  @"audio note 3",
-                  @"audio note 4",
-                  nil];
+    textNotes = [[NSMutableArray alloc] init];
     
-    NSArray *allNotes = [[NSArray alloc] initWithObjects:textNotes, audioNotes, nil];
-    [_lesson setNotes:allNotes];
+    audioNotes = [[NSMutableArray alloc] init];
+    
+    //NSArray *allNotes = [[NSArray alloc] initWithObjects:textNotes, audioNotes, nil];
+    //[_lesson setNotes:allNotes];
+    [self jsonRequestGetData];
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -134,7 +156,7 @@ NSMutableArray *audioNotes;
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
                                                   reuseIdentifier:@"cell"];
     
-    cell.textLabel.text = [[[_lesson Notes] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[[[_lesson Notes] objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"Note"];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -181,6 +203,22 @@ NSMutableArray *audioNotes;
     [Tools hideLoader];
     
     _lessons = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+    
+    int cnt = (int)[_lessons count];
+    int i = 0;
+    for(i = 0; i < cnt; i++)
+    {
+        if ([[[_lessons objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"text"]) {
+            [textNotes addObject: [_lessons objectAtIndex:i]];
+        }
+        else if ([[[_lessons objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"audio"])
+        {
+            [audioNotes addObject: [_lessons objectAtIndex:i]];
+        }
+    }
+    
+    NSArray *allNotes = [[NSArray alloc] initWithObjects:textNotes, audioNotes, nil];
+    [_lesson setNotes:allNotes];
     [self.mainTableView reloadData];
     
     if ([_lessons count] == 0) {

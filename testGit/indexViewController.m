@@ -62,6 +62,7 @@
     CALayer *TopBorder = [CALayer layer];
     TopBorder.frame = CGRectMake(0.0f, 0.0f, _box1View.frame.size.width, 3.0f);
     TopBorder.backgroundColor = [Tools colorFromHexString:@"#990f60"].CGColor;
+    //orange : e84721
     //#
     [_box1View.layer addSublayer:TopBorder];
     [Tools addShadowToViewWithView:_box1View];

@@ -41,7 +41,7 @@ NSArray *daysOfWeekArray;
 -(void)jsonRequestGetAgenda
 {
     //self.mainTableView.hidden = YES;
-    [Tools showLoader];
+    
     
     calendar = [NSCalendar currentCalendar];
     components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:_dayDate]; // Get necessary date components
@@ -154,7 +154,8 @@ NSArray *daysOfWeekArray;
         [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] -2)];
     }
 
-     [self jsonRequestGetAgenda];
+    [Tools showLoader];
+    [self jsonRequestGetAgenda];
 }
 
 - (void)updateSelectedDate
