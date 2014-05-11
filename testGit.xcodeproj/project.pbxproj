@@ -72,6 +72,8 @@
 		E4494DD4190D84B700585CB8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E4494DD3190D84B700585CB8 /* User.m */; };
 		E4494DD7190D851E00585CB8 /* Tutor.m in Sources */ = {isa = PBXBuildFile; fileRef = E4494DD6190D851E00585CB8 /* Tutor.m */; };
 		E47352801900279E008006EE /* indexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E473527F1900279E008006EE /* indexViewController.m */; };
+		E4A36089191F87C900F5221B /* AudioNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A36088191F87C900F5221B /* AudioNote.m */; };
+		E4A3608C191F87E900F5221B /* TextNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3608B191F87E900F5221B /* TextNote.m */; };
 		E4AA7DDB191D501D00269A3F /* NVDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AA7DDA191D501D00269A3F /* NVDate.m */; };
 		E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8860191AC6F0001A70D9 /* audio_icon.png */; };
 		E4AB8863191AC725001A70D9 /* audio_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8862191AC725001A70D9 /* audio_icon_large.png */; };
@@ -203,6 +205,10 @@
 		E4494DD6190D851E00585CB8 /* Tutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutor.m; sourceTree = "<group>"; };
 		E473527E1900279E008006EE /* indexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indexViewController.h; sourceTree = "<group>"; };
 		E473527F1900279E008006EE /* indexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = indexViewController.m; sourceTree = "<group>"; };
+		E4A36087191F87C900F5221B /* AudioNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioNote.h; sourceTree = "<group>"; };
+		E4A36088191F87C900F5221B /* AudioNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioNote.m; sourceTree = "<group>"; };
+		E4A3608A191F87E900F5221B /* TextNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextNote.h; sourceTree = "<group>"; };
+		E4A3608B191F87E900F5221B /* TextNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextNote.m; sourceTree = "<group>"; };
 		E4AA7DD9191D501D00269A3F /* NVDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDate.h; sourceTree = "<group>"; };
 		E4AA7DDA191D501D00269A3F /* NVDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVDate.m; sourceTree = "<group>"; };
 		E4AB8860191AC6F0001A70D9 /* audio_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_icon.png; sourceTree = "<group>"; };
@@ -328,6 +334,10 @@
 				79F7196219124FA100C644A1 /* Course.m */,
 				E401DAD9191ABA3000A05318 /* Lesson.h */,
 				E401DADA191ABA3000A05318 /* Lesson.m */,
+				E4A36087191F87C900F5221B /* AudioNote.h */,
+				E4A36088191F87C900F5221B /* AudioNote.m */,
+				E4A3608A191F87E900F5221B /* TextNote.h */,
+				E4A3608B191F87E900F5221B /* TextNote.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -711,6 +721,7 @@
 				79A8686B191B93EC00AA4058 /* NSDate+DSLCalendarView.m in Sources */,
 				E42B6112190C0582001B977F /* studentNote.m in Sources */,
 				E4AB8872191D4199001A70D9 /* MZDayPicker.m in Sources */,
+				E4A3608C191F87E900F5221B /* TextNote.m in Sources */,
 				E4C1C97B1916700F0068A10D /* Tools.m in Sources */,
 				E4F96CCC19097D49008D75D6 /* tutors2ViewController.m in Sources */,
 				E4C1C98319167BA90068A10D /* UIScrollView+SVPullToRefresh.m in Sources */,
@@ -727,6 +738,7 @@
 				E4001B3819191DD40063B066 /* AgendaViewController.m in Sources */,
 				E4C1C9711914F9240068A10D /* editCoursesListViewController.m in Sources */,
 				E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */,
+				E4A36089191F87C900F5221B /* AudioNote.m in Sources */,
 				E4C1C9741914FA960068A10D /* saveCourseViewController.m in Sources */,
 				E4AA7DDB191D501D00269A3F /* NVDate.m in Sources */,
 				79A8686E191B941C00AA4058 /* SelectDateViewController.m in Sources */,

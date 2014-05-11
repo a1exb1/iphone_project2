@@ -9,6 +9,7 @@
 #import "textNoteViewController.h"
 
 @interface textNoteViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *noteTextView;
 
 @end
 
@@ -23,6 +24,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -30,20 +33,98 @@
     
     UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveNote)];
     
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
+    UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteNote)];
+    
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, deleteBtn, nil]];
+    
+    self.noteTextView.text = [_note note];
 }
 
 -(void)saveNote
 {
+    NSLog(@"hi");
+    _data = [[NSMutableData alloc]init];
+    _noteSaveArray = [[NSArray alloc] init];
     
+    [_note setNote: self.noteTextView.text];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=textnote&id=%li&note=%@&studentid=%li&ts=%f", [_note studentNoteID], [_note note], [[_lesson student] studentID], [[NSDate date] timeIntervalSince1970]];
+    
+    NSLog(urlString);
+    
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
+                 NSASCIIStringEncoding];
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
+-(void)deleteNote
+{
+    _data = [[NSMutableData alloc]init];
+    _noteSaveArray = [[NSArray alloc] init];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=textnote&id=%li&delete=delete&ts=%f", [_note studentNoteID], [[NSDate date] timeIntervalSince1970]];
+    
+    NSLog(@"%@", urlString);
+    
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
+{
+    _data = [[NSMutableData alloc]init];
+    
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
+{
+    [_data appendData:theData];
+    
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+    
+    if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
+    {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"0"])
+    {
+        UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error with saving." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [errorView show];
+
+    }
+    
+    else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"3"])
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error with saving." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [errorView show];
+    }
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [errorView show];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
 
 /*
 #pragma mark - Navigation

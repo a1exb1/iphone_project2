@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Lesson.h"
+#import "TextNote.h"
 
 @interface textNoteViewController : UIViewController
 
 @property Lesson *lesson;
+@property TextNote *note;
+
+@property NSMutableData *data;
+@property NSArray *saveResultArray;
+@property NSArray *noteSaveArray;
 
 @end

@@ -9,6 +9,8 @@
 #import "NotesViewController.h"
 #import "textNoteViewController.h"
 #import "audioNoteViewController.h"
+#import "TextNote.h"
+#import "AudioNote.h"
 
 @interface NotesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -38,7 +40,9 @@ NSMutableArray *audioNotes;
     _lessons = [[NSArray alloc] init];
     [_mainTableView reloadData];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=notesbystudent&id=%li&ts=%f", [[_lesson student] studentID], [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=notesbystudent&id=%li&lessonid=%li&ts=%f", [[_lesson student] studentID], [_lesson LessonID], [[NSDate date] timeIntervalSince1970]];
+    
+    NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -47,9 +51,11 @@ NSMutableArray *audioNotes;
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [Tools showLoader];
+    _mainTableView.delegate = self;
+    _mainTableView.dataSource = self;
+    [self jsonRequestGetData];
     
-    
-    //[Tools showLoader];
 }
 
 - (void)viewDidLoad
@@ -57,9 +63,7 @@ NSMutableArray *audioNotes;
    
     [super viewDidLoad];
     
-    _mainTableView.delegate = self;
-    _mainTableView.dataSource = self;
-    [self jsonRequestGetData];
+    
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -181,10 +185,22 @@ NSMutableArray *audioNotes;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
-//    view.studentCourseLink = _studentCourseLinkSender;
-//    
-//    [self.navigationController pushViewController:view animated:YES];
+    NSLog(@"%@", [_lessons objectAtIndex:indexPath.row]);
+    
+    if(indexPath.section == 0){
+        TextNote *note = [[TextNote alloc] init];
+        [note setStudentNoteID: [[[[[_lesson Notes] objectAtIndex:indexPath.section]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"] intValue]];
+        [note setNote: [[[[_lesson Notes] objectAtIndex:indexPath.section]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"]];
+        [note setNote: [[textNotes objectAtIndex:indexPath.row] objectForKey:@"Note"]];
+        
+        //[[[[[_lesson Notes] objectAtIndex:indexPath.section]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"] intValue];
+        
+        textNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"textNoteView"];
+        view.note = note;
+        view.lesson = _lesson;
+        [self.navigationController pushViewController:view animated:YES];
+    }
+    
 }
 
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
@@ -209,11 +225,11 @@ NSMutableArray *audioNotes;
     
     for(id obj in _lessons)
     {
-        if ([[obj objectForKey:@"type"] isEqualToString:@"text"])
+        if ([[obj objectForKey:@"NoteType"] isEqualToString:@"text"])
         {
             [textNotes addObject: obj];
         }
-        else if ([[obj objectForKey:@"type"] isEqualToString:@"audio"])
+        else if ([[obj objectForKey:@"NoteType"] isEqualToString:@"audio"])
         {
             [audioNotes addObject: obj];
         }

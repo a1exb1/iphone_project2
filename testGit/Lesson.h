@@ -13,7 +13,7 @@
 
 @interface Lesson : NSObject
 
-@property long StudentCourseLinkID;
+@property long LessonID;
 //@property long StudentID;
 //@property long CourseID;
 @property int Duration;

@@ -346,7 +346,7 @@ NSArray *daysOfWeekArray;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _lessonSender = [[Lesson alloc] init];
-    [_lessonSender setStudentCourseLinkID: [[[_lessons objectAtIndex:indexPath.row] objectForKey:@"LessonID"] intValue]];
+    [_lessonSender setLessonID: [[[_lessons objectAtIndex:indexPath.row] objectForKey:@"LessonID"] intValue]];
     [_lessonSender setTutor:_tutor];
     
     NSString* str = [[_lessons objectAtIndex:indexPath.row] objectForKey:@"LessonDateTime"];
