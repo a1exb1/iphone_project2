@@ -54,33 +54,11 @@ NSMutableArray *audioNotes;
 
 - (void)viewDidLoad
 {
-    NSLog(@"%li", [[_lesson student] studentID]);
+   
+    [super viewDidLoad];
     
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
-    
-    [super viewDidLoad];
-    
-//    textNotes = [[NSMutableArray alloc ]initWithObjects:
-//                 @"text note 1",
-//                 @"text note 2",
-//                 @"text note 3",
-//                 @"text note 4",
-//                 nil];
-//    
-//    audioNotes = [[NSMutableArray alloc ]initWithObjects:
-//                  @"audio note 1",
-//                  @"audio note 2",
-//                  @"audio note 3",
-//                  @"audio note 4",
-//                  nil];
-    
-    textNotes = [[NSMutableArray alloc] init];
-    
-    audioNotes = [[NSMutableArray alloc] init];
-    
-    //NSArray *allNotes = [[NSArray alloc] initWithObjects:textNotes, audioNotes, nil];
-    //[_lesson setNotes:allNotes];
     [self jsonRequestGetData];
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
@@ -91,6 +69,17 @@ NSMutableArray *audioNotes;
      UIBarButtonItem *audioNoteBtn = [[UIBarButtonItem alloc]  initWithTitle: @"Add audio note" style:UIBarButtonItemStyleBordered target:self action:@selector(addAudioNote)];
     
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:textNoteBtn,audioNoteBtn, nil]];
+    
+    
+    [_mainTableView addPullToRefreshWithActionHandler:^{
+        [self jsonRequestGetData];
+    }];
+    
+    
+    textNotes = [[NSMutableArray alloc] init];
+    audioNotes = [[NSMutableArray alloc] init];
+    NSArray *allNotes = [[NSArray alloc] initWithObjects:textNotes, audioNotes, nil];
+    [_lesson setNotes:allNotes];
     
 }
 
@@ -117,7 +106,18 @@ NSMutableArray *audioNotes;
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40;
+    int r = 0;
+    if(section == 0){
+        if([textNotes  count] > 0){
+            r = 40;
+        }
+    }
+    else if(section == 1){
+        if([textNotes  count] > 0){
+            r = 40;
+        }
+    }
+    return r;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -199,21 +199,23 @@ NSMutableArray *audioNotes;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    //[_mainTableView.pullToRefreshView stopAnimating];
+    [_mainTableView.pullToRefreshView stopAnimating];
     [Tools hideLoader];
     
     _lessons = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
-    int cnt = (int)[_lessons count];
-    int i = 0;
-    for(i = 0; i < cnt; i++)
+    textNotes = [[NSMutableArray alloc] init];
+    audioNotes = [[NSMutableArray alloc] init];
+    
+    for(id obj in _lessons)
     {
-        if ([[[_lessons objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"text"]) {
-            [textNotes addObject: [_lessons objectAtIndex:i]];
-        }
-        else if ([[[_lessons objectAtIndex:i] objectForKey:@"type"] isEqualToString:@"audio"])
+        if ([[obj objectForKey:@"type"] isEqualToString:@"text"])
         {
-            [audioNotes addObject: [_lessons objectAtIndex:i]];
+            [textNotes addObject: obj];
+        }
+        else if ([[obj objectForKey:@"type"] isEqualToString:@"audio"])
+        {
+            [audioNotes addObject: obj];
         }
     }
     

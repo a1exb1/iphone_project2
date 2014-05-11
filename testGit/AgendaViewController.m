@@ -40,8 +40,8 @@ NSArray *daysOfWeekArray;
 
 -(void)jsonRequestGetAgenda
 {
-    //self.mainTableView.hidden = YES;
-    
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    _statusLbl.hidden = YES;
     
     calendar = [NSCalendar currentCalendar];
     components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:_dayDate]; // Get necessary date components
@@ -167,6 +167,7 @@ NSArray *daysOfWeekArray;
         
     if(_counter > 0){
         _dayDate = self.datePicker.selectedDate;
+        [Tools showLoader];
         [self jsonRequestGetAgenda];
         
         

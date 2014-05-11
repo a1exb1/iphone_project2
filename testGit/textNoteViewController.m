@@ -27,7 +27,17 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveNote)];
+    
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
 }
+
+-(void)saveNote
+{
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
