@@ -41,9 +41,7 @@ NSMutableArray *audioNotes;
     [_mainTableView reloadData];
     
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=notesbystudent&id=%li&lessonid=%li&ts=%f", [[_lesson student] studentID], [_lesson LessonID], [[NSDate date] timeIntervalSince1970]];
-    
-    NSLog(@"%@", urlString);
-    
+
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
@@ -111,15 +109,9 @@ NSMutableArray *audioNotes;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     int r = 0;
-    if(section == 0){
-        if([textNotes  count] > 0){
-            r = 40;
-        }
-    }
-    else if(section == 1){
-        if([textNotes  count] > 0){
-            r = 40;
-        }
+    if([[[_lesson Notes] objectAtIndex:section]count ] > 0)
+    {
+        r = 40;
     }
     return r;
 }
@@ -185,7 +177,7 @@ NSMutableArray *audioNotes;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSLog(@"%@", [_lessons objectAtIndex:indexPath.row]);
+    //NSLog(@"%@", [[[_lesson Notes] objectAtIndex:indexPath.section]objectAtIndex:indexPath.row]);
     
     if(indexPath.section == 0){
         TextNote *note = [[TextNote alloc] init];

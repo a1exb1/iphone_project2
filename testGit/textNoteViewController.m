@@ -42,15 +42,12 @@
 
 -(void)saveNote
 {
-    NSLog(@"hi");
     _data = [[NSMutableData alloc]init];
     _noteSaveArray = [[NSArray alloc] init];
     
     [_note setNote: self.noteTextView.text];
     
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=textnote&id=%li&note=%@&studentid=%li&ts=%f", [_note studentNoteID], [_note note], [[_lesson student] studentID], [[NSDate date] timeIntervalSince1970]];
-    
-    NSLog(urlString);
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
