@@ -48,7 +48,6 @@
 		79A8686B191B93EC00AA4058 /* NSDate+DSLCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A86854191B93EC00AA4058 /* NSDate+DSLCalendarView.m */; };
 		79A8686E191B941C00AA4058 /* SelectDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A8686D191B941C00AA4058 /* SelectDateViewController.m */; };
 		79A86870191B950900AA4058 /* SelectDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A8686F191B950900AA4058 /* SelectDateViewController.xib */; };
-		79AC18C5191A429700D2BAAF /* CalenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AC18C4191A429700D2BAAF /* CalenderViewController.m */; };
 		79F7196319124FA100C644A1 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F7196219124FA100C644A1 /* Course.m */; };
 		E4001B3819191DD40063B066 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4001B3719191DD40063B066 /* AgendaViewController.m */; };
 		E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DACC19195D1A00A05318 /* glyphicons_045_calendar.png */; };
@@ -180,8 +179,6 @@
 		79A8686C191B941C00AA4058 /* SelectDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectDateViewController.h; path = DSLCalendarView/SelectDateViewController.h; sourceTree = "<group>"; };
 		79A8686D191B941C00AA4058 /* SelectDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectDateViewController.m; path = DSLCalendarView/SelectDateViewController.m; sourceTree = "<group>"; };
 		79A8686F191B950900AA4058 /* SelectDateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectDateViewController.xib; path = DSLCalendarView/SelectDateViewController.xib; sourceTree = "<group>"; };
-		79AC18C3191A429700D2BAAF /* CalenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalenderViewController.h; sourceTree = "<group>"; };
-		79AC18C4191A429700D2BAAF /* CalenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderViewController.m; sourceTree = "<group>"; };
 		79F7196119124FA100C644A1 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
 		79F7196219124FA100C644A1 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
 		E4001B3619191DD40063B066 /* AgendaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaViewController.h; sourceTree = "<group>"; };
@@ -427,7 +424,6 @@
 			isa = PBXGroup;
 			children = (
 				E407AD6E191E961100F22977 /* Notes */,
-				E407AD67191D620200F22977 /* DIDatepicker */,
 				E4001B3619191DD40063B066 /* AgendaViewController.h */,
 				E4001B3719191DD40063B066 /* AgendaViewController.m */,
 				E401DAD6191AB82400A05318 /* NotesViewController.h */,
@@ -442,9 +438,6 @@
 				79A8686F191B950900AA4058 /* SelectDateViewController.xib */,
 				79A8686C191B941C00AA4058 /* SelectDateViewController.h */,
 				79A8686D191B941C00AA4058 /* SelectDateViewController.m */,
-				79A86835191B93EC00AA4058 /* DSLCalendarView */,
-				79AC18C3191A429700D2BAAF /* CalenderViewController.h */,
-				79AC18C4191A429700D2BAAF /* CalenderViewController.m */,
 			);
 			name = calender;
 			sourceTree = "<group>";
@@ -523,7 +516,7 @@
 		E40DF283190017E100E1332A /* testGit */ = {
 			isa = PBXGroup;
 			children = (
-				E4C1C97C19167BA90068A10D /* SVPullToRefresh */,
+				E4FED276192174FF00E31223 /* plugins */,
 				79AA222E1909439D005AC8A3 /* classes */,
 				E473527D19002785008006EE /* viewControllers */,
 				E40DF28C190017E100E1332A /* ABAppDelegate.h */,
@@ -556,9 +549,6 @@
 				792B23B51920CAE200CAE285 /* glyphicons_175_stop.png */,
 				792B23B61920CAE200CAE285 /* glyphicons_173_play.png */,
 				792B23B71920CAE200CAE285 /* glyphicons_169_record.png */,
-				E4AA7DD9191D501D00269A3F /* NVDate.h */,
-				E4AA7DDA191D501D00269A3F /* NVDate.m */,
-				E4AB886A191D4199001A70D9 /* MZDayPicker */,
 				E4ADAB57191CC94F00C1AC5A /* glyphicons_043_group.png */,
 				E4AB8866191ACA3F001A70D9 /* text_note_icon_large.png */,
 				E4AB8862191AC725001A70D9 /* audio_icon_large.png */,
@@ -666,6 +656,19 @@
 				E4C1C98119167BA90068A10D /* UIScrollView+SVPullToRefresh.m */,
 			);
 			path = SVPullToRefresh;
+			sourceTree = "<group>";
+		};
+		E4FED276192174FF00E31223 /* plugins */ = {
+			isa = PBXGroup;
+			children = (
+				E4AA7DD9191D501D00269A3F /* NVDate.h */,
+				E4AA7DDA191D501D00269A3F /* NVDate.m */,
+				E4AB886A191D4199001A70D9 /* MZDayPicker */,
+				E407AD67191D620200F22977 /* DIDatepicker */,
+				79A86835191B93EC00AA4058 /* DSLCalendarView */,
+				E4C1C97C19167BA90068A10D /* SVPullToRefresh */,
+			);
+			name = plugins;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -827,7 +830,6 @@
 				E407AD74191E963E00F22977 /* audioNoteViewController.m in Sources */,
 				E4494DD4190D84B700585CB8 /* User.m in Sources */,
 				E40DF297190017E100E1332A /* ABViewController.m in Sources */,
-				79AC18C5191A429700D2BAAF /* CalenderViewController.m in Sources */,
 				E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */,
 				E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */,
 				E4C1C98219167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m in Sources */,

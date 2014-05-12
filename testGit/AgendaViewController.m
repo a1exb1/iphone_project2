@@ -170,17 +170,6 @@ NSArray *daysOfWeekArray;
     
 }
 
-//- (NSString *)dayPicker:(MZDayPicker *)dayPicker titleForCellDayNameLabelInDay:(MZDay *)day
-//{
-//    return [self.dateFormatter stringFromDate:day.date];
-//}
-//
-//- (NSString *)dayPicker:(MZDayPicker *)dayPicker titleForCellDayLabelInDay:(MZDay *)day
-//{
-//    return @"hi";
-//}
-
-
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -214,23 +203,6 @@ NSArray *daysOfWeekArray;
     NVDate *agendaDate = [[NVDate alloc] initUsingDate:_dayDate];
     return [NSString stringWithFormat:@"%i %@ %ld", (int)[agendaDate day], [months objectAtIndex:[agendaDate month]], (long)[agendaDate year]];
 }
-
-//- (void)dayPicker:(MZDayPicker *)dayPicker didSelectDay:(MZDay *)day
-//{
-//    //NSLog(@"Did select day %@ ",day.date);
-//    _dayDate = day.date;
-//    [self jsonRequestGetAgenda];
-//    
-//    //[self.tableData addObject:day];
-//    //[self.tableView reloadData];
-//}
-
-//- (void)dayPicker:(MZDayPicker *)dayPicker willSelectDay:(MZDay *)day
-//{
-//    NSLog(@"Will select day %@",day.day);
-//}
-
-
 
 -(void)prepareForAttendance{
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishedAttendance)];
@@ -363,6 +335,10 @@ NSArray *daysOfWeekArray;
     
     if(!_editing){
         [self.navigationController pushViewController:view animated:YES];
+    }
+    else{
+        NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
+        [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
     
 }
