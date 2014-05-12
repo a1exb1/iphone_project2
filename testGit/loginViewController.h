@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Tools.h"
-#import "Client.h"
+#import "Session.h"
 #import "AgendaViewController.h"
 
 @interface loginViewController : UIViewController
@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImg;
 
 @property (strong, nonatomic) UITabBarController *tabController;
 

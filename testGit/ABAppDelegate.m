@@ -11,14 +11,19 @@
 
 @implementation ABAppDelegate
 
-Client *client;
+Session *session;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //[application setStatusBarStyle:UIBarStyleBlackOpaque];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     // Override point for customization after application launch.
-    client = [[Client alloc]init];
+    Client *client = [[Client alloc]init];
+    Tutor *tutor = [[Tutor alloc] init];
+    
+    session = [[Session alloc] init];
+    [session setClient:client];
+    [session setTutor:tutor];
     return YES;
 }
 							

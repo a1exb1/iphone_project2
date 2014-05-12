@@ -107,6 +107,11 @@
 		E4C1C97B1916700F0068A10D /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C97A1916700F0068A10D /* Tools.m */; };
 		E4C1C98219167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C97F19167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m */; };
 		E4C1C98319167BA90068A10D /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C98119167BA90068A10D /* UIScrollView+SVPullToRefresh.m */; };
+		E4D231E419212A6A00E5797B /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D231E319212A6A00E5797B /* Session.m */; };
+		E4D231E6192133FB00E5797B /* Document Checklist.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E5192133FB00E5797B /* Document Checklist.png */; };
+		E4D231E8192134C400E5797B /* Note Sticky.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E7192134C400E5797B /* Note Sticky.png */; };
+		E4D231EA1921367900E5797B /* login_landscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E91921367900E5797B /* login_landscape.jpg */; };
+		E4D231EC1921368000E5797B /* login_portrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4D231EB1921368000E5797B /* login_portrait.jpg */; };
 		E4F96CCC19097D49008D75D6 /* tutors2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F96CCB19097D49008D75D6 /* tutors2ViewController.m */; };
 		E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F96D12190AA12B008D75D6 /* editStudentViewController.m */; };
 /* End PBXBuildFile section */
@@ -273,6 +278,12 @@
 		E4C1C97F19167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
 		E4C1C98019167BA90068A10D /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		E4C1C98119167BA90068A10D /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		E4D231E219212A6A00E5797B /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
+		E4D231E319212A6A00E5797B /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
+		E4D231E5192133FB00E5797B /* Document Checklist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Document Checklist.png"; sourceTree = "<group>"; };
+		E4D231E7192134C400E5797B /* Note Sticky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Note Sticky.png"; sourceTree = "<group>"; };
+		E4D231E91921367900E5797B /* login_landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_landscape.jpg; sourceTree = "<group>"; };
+		E4D231EB1921368000E5797B /* login_portrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_portrait.jpg; sourceTree = "<group>"; };
 		E4F96CCA19097D49008D75D6 /* tutors2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tutors2ViewController.h; sourceTree = "<group>"; };
 		E4F96CCB19097D49008D75D6 /* tutors2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tutors2ViewController.m; sourceTree = "<group>"; };
 		E4F96D11190AA12B008D75D6 /* editStudentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editStudentViewController.h; sourceTree = "<group>"; };
@@ -383,6 +394,8 @@
 				E4A3608B191F87E900F5221B /* TextNote.m */,
 				792B23C81920FB1700CAE285 /* Client.h */,
 				792B23C91920FB1700CAE285 /* Client.m */,
+				E4D231E219212A6A00E5797B /* Session.h */,
+				E4D231E319212A6A00E5797B /* Session.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -528,6 +541,10 @@
 		E40DF284190017E100E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4D231EB1921368000E5797B /* login_portrait.jpg */,
+				E4D231E91921367900E5797B /* login_landscape.jpg */,
+				E4D231E7192134C400E5797B /* Note Sticky.png */,
+				E4D231E5192133FB00E5797B /* Document Checklist.png */,
 				792B23D61921098500CAE285 /* Button White Remove.png */,
 				792B23D41921090F00CAE285 /* logout.png */,
 				792B23D21921076A00CAE285 /* Button White Add.png */,
@@ -739,6 +756,7 @@
 				E40DF294190017E100E1332A /* Main_iPad.storyboard in Resources */,
 				792B23C41920D04C00CAE285 /* Button Record.png in Resources */,
 				792B23C11920D04C00CAE285 /* Button Pause.png in Resources */,
+				E4D231EC1921368000E5797B /* login_portrait.jpg in Resources */,
 				79A86860191B93EC00AA4058 /* DSLCalendar-previousMonth@2x.png in Resources */,
 				792B23C21920D04C00CAE285 /* Button Play.png in Resources */,
 				792B23C31920D04C00CAE285 /* Button Record Active.png in Resources */,
@@ -763,12 +781,15 @@
 				79A86861191B93EC00AA4058 /* DSLCalendarDayCallout.png in Resources */,
 				E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */,
 				E40DF299190017E100E1332A /* Images.xcassets in Resources */,
+				E4D231EA1921367900E5797B /* login_landscape.jpg in Resources */,
 				79A86866191B93EC00AA4058 /* DSLCalendarDaySelection-middle@2x.png in Resources */,
 				79A8685D191B93EC00AA4058 /* DSLCalendar-nextMonth.png in Resources */,
 				79A8685F191B93EC00AA4058 /* DSLCalendar-previousMonth.png in Resources */,
+				E4D231E6192133FB00E5797B /* Document Checklist.png in Resources */,
 				792B23B91920CAE200CAE285 /* glyphicons_173_play.png in Resources */,
 				E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */,
 				E40DF291190017E100E1332A /* Main_iPhone.storyboard in Resources */,
+				E4D231E8192134C400E5797B /* Note Sticky.png in Resources */,
 				E4AB8869191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png in Resources */,
 				E40DF288190017E100E1332A /* InfoPlist.strings in Resources */,
 				79A86862191B93EC00AA4058 /* DSLCalendarDayCallout@2x.png in Resources */,
@@ -811,6 +832,7 @@
 				E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */,
 				E4C1C98219167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				E4001B3819191DD40063B066 /* AgendaViewController.m in Sources */,
+				E4D231E419212A6A00E5797B /* Session.m in Sources */,
 				E4C1C9711914F9240068A10D /* editCoursesListViewController.m in Sources */,
 				E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */,
 				E4A36089191F87C900F5221B /* AudioNote.m in Sources */,

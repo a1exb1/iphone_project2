@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Client.h"
+#import "Session.h"
 
 @class ViewController;
 

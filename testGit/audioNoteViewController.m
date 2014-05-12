@@ -47,64 +47,60 @@
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
 }
 
--(void) save{
+- (void) save
+{
+    NSURL *pathURL = _tempRecFile; //File Url of the recorded audio
+    NSData *voiceData = [[NSData alloc]initWithContentsOfURL:pathURL];
+    NSString *urlString = @"http://iroboticshowoff.com/img2/upload.php"; // You can give your url here for uploading
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
     
-//    NSURL *pathURL = urlOfAudioFile; //File Url of the recorded audio
-//    NSData *voiceData = [[NSData alloc]initWithContentsOfURL:_tempRecFile];
-//    NSString *urlString = @"http://iroboticshowoff.com/img2/upload.php"; // You can give your url here for uploading
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
-//    
-//    @try
-//    {
-//        [request setURL:[NSURL URLWithString:urlString]];
-//        [request setHTTPMethod:@"POST"];
-//        NSString *boundary = @"---------------------------14737809831466499882746641449";
-//        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-//        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
-//        
-//        NSMutableData *body = [NSMutableData data];
-//        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//        [body appendData:@"Content-Disposition: form-data; name=\"userfile\"; filename=\".caf\"\r\n"  dataUsingEncoding:NSUTF8StringEncoding];
-//        [body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"]dataUsingEncoding:NSUTF8StringEncoding]];
-//        [body appendData:[NSData dataWithData:voiceData]];
-//        [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary]dataUsingEncoding:NSUTF8StringEncoding]];
-//        
-//        [request setHTTPBody:body];
-//        
-//        NSError *error = nil;
-//        NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
-//        NSString *returnString = [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
-//        UIAlertView *alert = nil;
-//        if(error)
-//        {
-//            alert = [[UIAlertView alloc]initWithTitle:@"Message" message:@"Error in Uploading the File" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        }
-//        else
-//        {
-//            NSLog(@"Success %@",returnString);
-//            alert = [[UIAlertView alloc]initWithTitle:@"Message" message:@"File get uploaded" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        }
-//        [alert show];
-//        [alert release];
-//        alert = nil;
-//        [returnString release];
-//        returnString = nil;
-//        boundary = nil;
-//        contentType = nil;
-//        body = nil;
-//    }
-//    @catch (NSException * exception)
-//    {
-//        NSLog(@"pushLoader in ViewController :Caught %@ : %@",[exception name],[exception reason]);
-//    }
-//    @finally
-//    {
-//        [voiceData release];
-//        voiceData = nil;
-//        pathURL = nil;
-//        urlString = nil;
-//    }
-//
+    @try
+    {
+        [request setURL:[NSURL URLWithString:urlString]];
+        [request setHTTPMethod:@"POST"];
+        NSString *boundary = @"---------------------------14737809831466499882746641449";
+        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+        
+        NSMutableData *body = [NSMutableData data];
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"userfile\"; filename=\".wav\"\r\n"]dataUsingEncoding:NSUTF8StringEncoding]]; // .caf ?
+        [body appendData:[[NSString stringWithFormat:@"Content-Type: application/octet-stream\r\n\r\n"]dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[NSData dataWithData:voiceData]];
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary]dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [request setHTTPBody:body];
+        
+        NSError *error = nil;
+        NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+        NSString *returnString = [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
+        UIAlertView *alert = nil;
+        if(error)
+        {
+            alert = [[UIAlertView alloc]initWithTitle:@"Message" message:@"Error in Uploading the File" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        }
+        else
+        {
+            NSLog(@"Success %@",returnString);
+            alert = [[UIAlertView alloc]initWithTitle:@"Message" message:@"File get uploaded" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        }
+        [alert show];
+        alert = nil;
+        returnString = nil;
+        boundary = nil;
+        contentType = nil;
+        body = nil;
+    }
+    @catch (NSException * exception)
+    {
+        NSLog(@"pushLoader in ViewController :Caught %@ : %@",[exception name],[exception reason]);
+    }
+    @finally
+    {
+        voiceData = nil;
+        pathURL = nil;
+        urlString = nil;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -174,6 +170,7 @@
     _player = [[AVAudioPlayer alloc]init ];
     [_playButton setImage:[UIImage imageNamed:@"Button Play.png"] forState:UIControlStateNormal];
     _recStateLabel.text = @"Stopped";
+    _playbackTimerLabel.text = [NSString stringWithFormat:@"00:00 / %@", _timerLabel.text];
     [_timer invalidate];
 }
 

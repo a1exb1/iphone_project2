@@ -7,6 +7,7 @@
 //
 
 #import "ManageTableViewController.h"
+#import "Tools.h"
 
 @interface ManageTableViewController ()
 
@@ -23,21 +24,26 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[UIColor orangeColor] theme:@"light"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     _cellsArray =[[NSMutableArray alloc ]init];
     
-    NSArray *cell = [[NSArray alloc]initWithObjects:@"Button White Add.png", @"Add multiple lessons", nil];
+    NSArray *cell = [[NSArray alloc]initWithObjects:@"Button White Add.png", @"Add multiple lessons", @"", nil];
     [_cellsArray addObject:cell];
     
     cell = [[NSArray alloc]initWithObjects:@"Button White Remove.png", @"Clear lessons", @"Clear schedule between selected dates", nil];
     [_cellsArray addObject:cell];
     
-     cell = [[NSArray alloc]initWithObjects:@"logout.png", @"Logout", nil];
+     cell = [[NSArray alloc]initWithObjects:@"", @"Logout", @"", nil];
     [_cellsArray addObject:cell];
-    
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -56,14 +62,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [_cellsArray count];
 }
@@ -71,17 +75,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    
     // Configure the cell...
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    
+    if(![[[_cellsArray objectAtIndex:indexPath.row] objectAtIndex: 2] isEqualToString:@""]){
+        //UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        cell.detailTextLabel.text = [[_cellsArray objectAtIndex:indexPath.row] objectAtIndex: 2];
+    }
     
     cell.imageView.image = [UIImage imageNamed:[[_cellsArray objectAtIndex:indexPath.row] objectAtIndex: 0]];
     
     cell.textLabel.text = [[_cellsArray objectAtIndex:indexPath.row] objectAtIndex: 1];
-//    
-//    if([[_cellsArray objectAtIndex:indexPath.row] objectAtIndex: 2] != NULL){
-        //cell.detailTextLabel.text = [[_cellsArray objectAtIndex:indexPath.row] objectAtIndex: 2];
-   // }
-    
     
     return cell;
 }

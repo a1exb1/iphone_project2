@@ -116,14 +116,6 @@ NSArray *daysOfWeekArray;
    
     
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
-    //red e5534b
-    //blue 4473b4
-    
-    //self.dayPicker.bottomBorderColor = [Tools colorFromHexString:@"#4473b4"];
-    
-    //self.mainTableView.frame = CGRectMake(0, self.dayPicker.frame.origin.y + self.dayPicker.frame.size.height, self.mainTableView.frame.size.width, self.view.bounds.size.height-self.dayPicker.frame.size.height);
-    
-
     
     [self.datePicker addTarget:self action:@selector(updateSelectedDate) forControlEvents:UIControlEventValueChanged];
     

@@ -39,9 +39,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
-    
-    
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -98,10 +95,6 @@
     
     UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithTitle:@"Re-schedule" style:UIBarButtonItemStyleBordered target:self action:@selector(editLesson)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:editBtn, nil]];
-    
-    
-    
-    
 }
 
 -(void)editLesson{
