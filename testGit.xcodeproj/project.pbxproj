@@ -18,6 +18,10 @@
 		792B23C41920D04C00CAE285 /* Button Record.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23BF1920D04C00CAE285 /* Button Record.png */; };
 		792B23C71920EF9100CAE285 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 792B23C61920EF9100CAE285 /* loginViewController.m */; };
 		792B23CA1920FB1700CAE285 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 792B23C91920FB1700CAE285 /* Client.m */; };
+		792B23D11921057A00CAE285 /* ManageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 792B23D01921057A00CAE285 /* ManageTableViewController.m */; };
+		792B23D31921076A00CAE285 /* Button White Add.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23D21921076A00CAE285 /* Button White Add.png */; };
+		792B23D51921090F00CAE285 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23D41921090F00CAE285 /* logout.png */; };
+		792B23D71921098500CAE285 /* Button White Remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23D61921098500CAE285 /* Button White Remove.png */; };
 		795B6413190E460A00A2C879 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 795B6412190E460A00A2C879 /* QuartzCore.framework */; };
 		795B6422190E5BC400A2C879 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 795B6421190E5BC400A2C879 /* Student.m */; };
 		79A86855191B93EC00AA4058 /* DSLCalendarDayCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A86837191B93EC00AA4058 /* DSLCalendarDayCalloutView.m */; };
@@ -131,6 +135,11 @@
 		792B23C61920EF9100CAE285 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		792B23C81920FB1700CAE285 /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		792B23C91920FB1700CAE285 /* Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
+		792B23CF1921057A00CAE285 /* ManageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageTableViewController.h; sourceTree = "<group>"; };
+		792B23D01921057A00CAE285 /* ManageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageTableViewController.m; sourceTree = "<group>"; };
+		792B23D21921076A00CAE285 /* Button White Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button White Add.png"; sourceTree = "<group>"; };
+		792B23D41921090F00CAE285 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		792B23D61921098500CAE285 /* Button White Remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button White Remove.png"; sourceTree = "<group>"; };
 		795B6412190E460A00A2C879 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		795B6420190E5BC400A2C879 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		795B6421190E5BC400A2C879 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
@@ -296,6 +305,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		792B23CE1921050200CAE285 /* Manage */ = {
+			isa = PBXGroup;
+			children = (
+				792B23CF1921057A00CAE285 /* ManageTableViewController.h */,
+				792B23D01921057A00CAE285 /* ManageTableViewController.m */,
+			);
+			name = Manage;
+			sourceTree = "<group>";
+		};
 		79A86835191B93EC00AA4058 /* DSLCalendarView */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,7 +387,7 @@
 			name = classes;
 			sourceTree = "<group>";
 		};
-		79AA2230190943B2005AC8A3 /* manage */ = {
+		79AA2230190943B2005AC8A3 /* People */ = {
 			isa = PBXGroup;
 			children = (
 				E4C1C966191459D60068A10D /* edit */,
@@ -389,7 +407,7 @@
 				E441CEF919115BF900088FEE /* viewAllStudentsViewController.h */,
 				E441CEFA19115BF900088FEE /* viewAllStudentsViewController.m */,
 			);
-			name = manage;
+			name = People;
 			sourceTree = "<group>";
 		};
 		79AA2231190943B8005AC8A3 /* agenda */ = {
@@ -510,6 +528,9 @@
 		E40DF284190017E100E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				792B23D61921098500CAE285 /* Button White Remove.png */,
+				792B23D41921090F00CAE285 /* logout.png */,
+				792B23D21921076A00CAE285 /* Button White Add.png */,
 				792B23BB1920D04C00CAE285 /* Button White Stop.png */,
 				792B23BC1920D04C00CAE285 /* Button Pause.png */,
 				792B23BD1920D04C00CAE285 /* Button Play.png */,
@@ -571,11 +592,12 @@
 		E473527D19002785008006EE /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				792B23CE1921050200CAE285 /* Manage */,
 				79AA223519094410005AC8A3 /* login */,
 				79AA2233190943CE005AC8A3 /* multipleLessons */,
 				79AA2232190943BF005AC8A3 /* calender */,
 				79AA2231190943B8005AC8A3 /* agenda */,
-				79AA2230190943B2005AC8A3 /* manage */,
+				79AA2230190943B2005AC8A3 /* People */,
 				E473527E1900279E008006EE /* indexViewController.h */,
 				E473527F1900279E008006EE /* indexViewController.m */,
 			);
@@ -710,6 +732,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79A8685E191B93EC00AA4058 /* DSLCalendar-nextMonth@2x.png in Resources */,
+				792B23D51921090F00CAE285 /* logout.png in Resources */,
 				79A86859191B93EC00AA4058 /* DSLCalendarMonthSelectorView.xib in Resources */,
 				79A86864191B93EC00AA4058 /* DSLCalendarDaySelection-left@2x.png in Resources */,
 				E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */,
@@ -725,11 +748,13 @@
 				79A86867191B93EC00AA4058 /* DSLCalendarDaySelection-right.png in Resources */,
 				79A86870191B950900AA4058 /* SelectDateViewController.xib in Resources */,
 				792B23B81920CAE200CAE285 /* glyphicons_175_stop.png in Resources */,
+				792B23D71921098500CAE285 /* Button White Remove.png in Resources */,
 				E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */,
 				79A8686A191B93EC00AA4058 /* DSLCalendarDaySelection@2x.png in Resources */,
 				E401DAD5191AA0AF00A05318 /* glyphicons_029_notes_2.png in Resources */,
 				E4ADAB58191CC94F00C1AC5A /* glyphicons_043_group.png in Resources */,
 				79A86865191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png in Resources */,
+				792B23D31921076A00CAE285 /* Button White Add.png in Resources */,
 				79A86868191B93EC00AA4058 /* DSLCalendarDaySelection-right@2x.png in Resources */,
 				E401DAD019195D4100A05318 /* glyphicons_136_cogwheel.png in Resources */,
 				792B23BA1920CAE200CAE285 /* glyphicons_169_record.png in Resources */,
@@ -804,6 +829,7 @@
 				795B6422190E5BC400A2C879 /* Student.m in Sources */,
 				79A86858191B93EC00AA4058 /* DSLCalendarMonthSelectorView.m in Sources */,
 				E441CEFB19115BF900088FEE /* viewAllStudentsViewController.m in Sources */,
+				792B23D11921057A00CAE285 /* ManageTableViewController.m in Sources */,
 				E401DADB191ABA3000A05318 /* Lesson.m in Sources */,
 				E441CEF819101C7D00088FEE /* editLessonSlotViewController.m in Sources */,
 				E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */,
