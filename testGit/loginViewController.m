@@ -85,8 +85,9 @@ extern Client *client;
     [self loginSuccess];
     
     if ([_clientArray count] == 0) {
-        UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [errorView show];
+//        UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//        [errorView show];
+        NSLog(@"login failed1");
     }
     else{
         if([[[_clientArray objectAtIndex:0] objectForKey:@"Success"] isEqualToString:@"1" ]){
@@ -106,25 +107,12 @@ extern Client *client;
 }
 
 -(void) loginSuccess{
-    NSLog(@"loginSuccess method");
-    
     [client setClientID:1];
     [client setPremium:0];
-    AgendaViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
-    
-    [self.navigationController presentViewController:view animated:YES completion:nil];
-    
-}
 
-/*
-#pragma mark - Navigation
+    UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [self presentViewController:view animated:YES completion:nil];
 }
-*/
 
 @end

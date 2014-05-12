@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
+@property (strong, nonatomic) UITabBarController *tabController;
 
 @property NSArray *clientArray;
 @property NSMutableData *data;

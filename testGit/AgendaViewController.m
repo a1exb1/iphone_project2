@@ -10,6 +10,7 @@
 #import "Tools.h"
 #import "indexViewController.h"
 #import "NVDate.h"
+#import "Client.h"
 
 @interface AgendaViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -18,6 +19,8 @@
 @property (nonatomic,strong) NSDateFormatter *dateFormatter;
 
 @end
+
+extern Client *client;
 
 NSCalendar* calendar;
 NSDateComponents* components;
@@ -81,7 +84,6 @@ NSArray *daysOfWeekArray;
     
     //[self.dayPicker setStartDate:[NSDate dateFromDay:28 month:9 year:2013] endDate:[NSDate dateFromDay:5 month:10 year:2013]];
     [Tools showLoader];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -111,8 +113,6 @@ NSArray *daysOfWeekArray;
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-    
-    
    
     
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
