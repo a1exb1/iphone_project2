@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		792B23B41920BC3E00CAE285 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 792B23B31920BC3E00CAE285 /* AVFoundation.framework */; };
+		792B23B81920CAE200CAE285 /* glyphicons_175_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23B51920CAE200CAE285 /* glyphicons_175_stop.png */; };
+		792B23B91920CAE200CAE285 /* glyphicons_173_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23B61920CAE200CAE285 /* glyphicons_173_play.png */; };
+		792B23BA1920CAE200CAE285 /* glyphicons_169_record.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23B71920CAE200CAE285 /* glyphicons_169_record.png */; };
+		792B23C01920D04C00CAE285 /* Button White Stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23BB1920D04C00CAE285 /* Button White Stop.png */; };
+		792B23C11920D04C00CAE285 /* Button Pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23BC1920D04C00CAE285 /* Button Pause.png */; };
+		792B23C21920D04C00CAE285 /* Button Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23BD1920D04C00CAE285 /* Button Play.png */; };
+		792B23C31920D04C00CAE285 /* Button Record Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23BE1920D04C00CAE285 /* Button Record Active.png */; };
+		792B23C41920D04C00CAE285 /* Button Record.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23BF1920D04C00CAE285 /* Button Record.png */; };
 		795B6413190E460A00A2C879 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 795B6412190E460A00A2C879 /* QuartzCore.framework */; };
 		795B6422190E5BC400A2C879 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 795B6421190E5BC400A2C879 /* Student.m */; };
 		79A86855191B93EC00AA4058 /* DSLCalendarDayCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A86837191B93EC00AA4058 /* DSLCalendarDayCalloutView.m */; };
@@ -107,6 +116,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		792B23B31920BC3E00CAE285 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		792B23B51920CAE200CAE285 /* glyphicons_175_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_175_stop.png; sourceTree = "<group>"; };
+		792B23B61920CAE200CAE285 /* glyphicons_173_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_173_play.png; sourceTree = "<group>"; };
+		792B23B71920CAE200CAE285 /* glyphicons_169_record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_169_record.png; sourceTree = "<group>"; };
+		792B23BB1920D04C00CAE285 /* Button White Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button White Stop.png"; sourceTree = "<group>"; };
+		792B23BC1920D04C00CAE285 /* Button Pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button Pause.png"; sourceTree = "<group>"; };
+		792B23BD1920D04C00CAE285 /* Button Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button Play.png"; sourceTree = "<group>"; };
+		792B23BE1920D04C00CAE285 /* Button Record Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button Record Active.png"; sourceTree = "<group>"; };
+		792B23BF1920D04C00CAE285 /* Button Record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button Record.png"; sourceTree = "<group>"; };
 		795B6412190E460A00A2C879 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		795B6420190E5BC400A2C879 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		795B6421190E5BC400A2C879 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
@@ -251,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				792B23B41920BC3E00CAE285 /* AVFoundation.framework in Frameworks */,
 				795B6413190E460A00A2C879 /* QuartzCore.framework in Frameworks */,
 				E40DF280190017E100E1332A /* CoreGraphics.framework in Frameworks */,
 				E40DF282190017E100E1332A /* UIKit.framework in Frameworks */,
@@ -450,6 +469,7 @@
 		E40DF27C190017E100E1332A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				792B23B31920BC3E00CAE285 /* AVFoundation.framework */,
 				795B6412190E460A00A2C879 /* QuartzCore.framework */,
 				E40DF27D190017E100E1332A /* Foundation.framework */,
 				E40DF27F190017E100E1332A /* CoreGraphics.framework */,
@@ -480,6 +500,14 @@
 		E40DF284190017E100E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				792B23BB1920D04C00CAE285 /* Button White Stop.png */,
+				792B23BC1920D04C00CAE285 /* Button Pause.png */,
+				792B23BD1920D04C00CAE285 /* Button Play.png */,
+				792B23BE1920D04C00CAE285 /* Button Record Active.png */,
+				792B23BF1920D04C00CAE285 /* Button Record.png */,
+				792B23B51920CAE200CAE285 /* glyphicons_175_stop.png */,
+				792B23B61920CAE200CAE285 /* glyphicons_173_play.png */,
+				792B23B71920CAE200CAE285 /* glyphicons_169_record.png */,
 				E4AA7DD9191D501D00269A3F /* NVDate.h */,
 				E4AA7DDA191D501D00269A3F /* NVDate.m */,
 				E4AB886A191D4199001A70D9 /* MZDayPicker */,
@@ -639,6 +667,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Alex Bechmann";
 				TargetAttributes = {
+					E40DF279190017E100E1332A = {
+						DevelopmentTeam = TF3KX6TP3E;
+					};
 					E40DF29D190017E200E1332A = {
 						TestTargetID = E40DF279190017E100E1332A;
 					};
@@ -673,12 +704,17 @@
 				79A86864191B93EC00AA4058 /* DSLCalendarDaySelection-left@2x.png in Resources */,
 				E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */,
 				E40DF294190017E100E1332A /* Main_iPad.storyboard in Resources */,
+				792B23C41920D04C00CAE285 /* Button Record.png in Resources */,
+				792B23C11920D04C00CAE285 /* Button Pause.png in Resources */,
 				79A86860191B93EC00AA4058 /* DSLCalendar-previousMonth@2x.png in Resources */,
+				792B23C21920D04C00CAE285 /* Button Play.png in Resources */,
+				792B23C31920D04C00CAE285 /* Button Record Active.png in Resources */,
 				79A86856191B93EC00AA4058 /* DSLCalendarDayCalloutView.xib in Resources */,
 				79A86869191B93EC00AA4058 /* DSLCalendarDaySelection.png in Resources */,
 				E401DAD119195D4100A05318 /* glyphicons_137_cogwheels.png in Resources */,
 				79A86867191B93EC00AA4058 /* DSLCalendarDaySelection-right.png in Resources */,
 				79A86870191B950900AA4058 /* SelectDateViewController.xib in Resources */,
+				792B23B81920CAE200CAE285 /* glyphicons_175_stop.png in Resources */,
 				E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */,
 				79A8686A191B93EC00AA4058 /* DSLCalendarDaySelection@2x.png in Resources */,
 				E401DAD5191AA0AF00A05318 /* glyphicons_029_notes_2.png in Resources */,
@@ -686,13 +722,16 @@
 				79A86865191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png in Resources */,
 				79A86868191B93EC00AA4058 /* DSLCalendarDaySelection-right@2x.png in Resources */,
 				E401DAD019195D4100A05318 /* glyphicons_136_cogwheel.png in Resources */,
+				792B23BA1920CAE200CAE285 /* glyphicons_169_record.png in Resources */,
 				E401DAD319195D8600A05318 /* glyphicons_239_albums.png in Resources */,
+				792B23C01920D04C00CAE285 /* Button White Stop.png in Resources */,
 				79A86861191B93EC00AA4058 /* DSLCalendarDayCallout.png in Resources */,
 				E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */,
 				E40DF299190017E100E1332A /* Images.xcassets in Resources */,
 				79A86866191B93EC00AA4058 /* DSLCalendarDaySelection-middle@2x.png in Resources */,
 				79A8685D191B93EC00AA4058 /* DSLCalendar-nextMonth.png in Resources */,
 				79A8685F191B93EC00AA4058 /* DSLCalendar-previousMonth.png in Resources */,
+				792B23B91920CAE200CAE285 /* glyphicons_173_play.png in Resources */,
 				E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */,
 				E40DF291190017E100E1332A /* Main_iPhone.storyboard in Resources */,
 				E4AB8869191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png in Resources */,
@@ -898,10 +937,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "testGit/testGit-Prefix.pch";
 				INFOPLIST_FILE = "testGit/testGit-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -911,10 +953,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "testGit/testGit-Prefix.pch";
 				INFOPLIST_FILE = "testGit/testGit-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
