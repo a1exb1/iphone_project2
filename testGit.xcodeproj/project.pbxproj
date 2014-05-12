@@ -16,6 +16,7 @@
 		792B23C21920D04C00CAE285 /* Button Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23BD1920D04C00CAE285 /* Button Play.png */; };
 		792B23C31920D04C00CAE285 /* Button Record Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23BE1920D04C00CAE285 /* Button Record Active.png */; };
 		792B23C41920D04C00CAE285 /* Button Record.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23BF1920D04C00CAE285 /* Button Record.png */; };
+		792B23C71920EF9100CAE285 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 792B23C61920EF9100CAE285 /* loginViewController.m */; };
 		795B6413190E460A00A2C879 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 795B6412190E460A00A2C879 /* QuartzCore.framework */; };
 		795B6422190E5BC400A2C879 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 795B6421190E5BC400A2C879 /* Student.m */; };
 		79A86855191B93EC00AA4058 /* DSLCalendarDayCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A86837191B93EC00AA4058 /* DSLCalendarDayCalloutView.m */; };
@@ -125,6 +126,8 @@
 		792B23BD1920D04C00CAE285 /* Button Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button Play.png"; sourceTree = "<group>"; };
 		792B23BE1920D04C00CAE285 /* Button Record Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button Record Active.png"; sourceTree = "<group>"; };
 		792B23BF1920D04C00CAE285 /* Button Record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button Record.png"; sourceTree = "<group>"; };
+		792B23C51920EF9100CAE285 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
+		792B23C61920EF9100CAE285 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		795B6412190E460A00A2C879 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		795B6420190E5BC400A2C879 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		795B6421190E5BC400A2C879 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
@@ -420,6 +423,8 @@
 		79AA223519094410005AC8A3 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				792B23C51920EF9100CAE285 /* loginViewController.h */,
+				792B23C61920EF9100CAE285 /* loginViewController.m */,
 			);
 			name = login;
 			sourceTree = "<group>";
@@ -796,6 +801,7 @@
 				E401DADB191ABA3000A05318 /* Lesson.m in Sources */,
 				E441CEF819101C7D00088FEE /* editLessonSlotViewController.m in Sources */,
 				E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */,
+				792B23C71920EF9100CAE285 /* loginViewController.m in Sources */,
 				E407AD6D191D620200F22977 /* DIDatepickerDateView.m in Sources */,
 				E4AB8871191D4199001A70D9 /* MZDay.m in Sources */,
 				79A8685C191B93EC00AA4058 /* DSLCalendarView.m in Sources */,

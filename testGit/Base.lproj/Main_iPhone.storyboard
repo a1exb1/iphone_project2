@@ -593,10 +593,10 @@
             </objects>
             <point key="canvasLocation" x="2042" y="-768"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="VAS-VI-gMx">
             <objects>
-                <viewController id="CUf-QQ-mdg" sceneMemberID="viewController">
+                <viewController id="CUf-QQ-mdg" customClass="loginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eJb-gy-fw7"/>
                         <viewControllerLayoutGuide type="bottom" id="wtn-bV-qa6"/>
@@ -645,6 +645,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="login:" destination="CUf-QQ-mdg" eventType="touchUpInside" id="jNW-BG-W85"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gb6-fa-WEi">
                                 <rect key="frame" x="243" y="285" width="57" height="30"/>
@@ -653,9 +656,20 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqo-rS-PcY">
+                                <rect key="frame" x="183" y="168" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="QKq-7O-ctJ" id="ME1-5J-y87"/>
+                        <outlet property="statusLbl" destination="zqo-rS-PcY" id="VId-tA-53G"/>
+                        <outlet property="usernameTextField" destination="12J-vF-nRf" id="KSg-TQ-ese"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BFS-ao-96Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
