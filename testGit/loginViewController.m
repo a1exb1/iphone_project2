@@ -15,6 +15,8 @@
 
 @implementation loginViewController
 
+extern Client *client;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -28,8 +30,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _data = [[NSMutableData alloc]init];
-    _client = [[NSArray alloc] init];
+    
+    _clientArray = [[NSArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,6 +67,7 @@
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
 {
     _data = [[NSMutableData alloc]init];
+    
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
@@ -76,16 +79,17 @@
 {
     [Tools hideLoader];
     
-    _client = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+    _clientArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+    NSLog(@"yoyo%@", _clientArray);
     
-    NSLog(@"yoyo%@", _client);
+    [self loginSuccess];
     
-    if ([_client count] == 0) {
+    if ([_clientArray count] == 0) {
         UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [errorView show];
     }
     else{
-        if([[[_client objectAtIndex:0] objectForKey:@"Success"] isEqualToString:@"1" ]){
+        if([[[_clientArray objectAtIndex:0] objectForKey:@"Success"] isEqualToString:@"1" ]){
             NSLog(@"login success");
         }
         else{
@@ -99,6 +103,17 @@
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
     [Tools hideLoader];
+}
+
+-(void) loginSuccess{
+    NSLog(@"loginSuccess method");
+    
+    [client setClientID:1];
+    [client setPremium:0];
+    AgendaViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+    
+    [self.navigationController presentViewController:view animated:YES completion:nil];
+    
 }
 
 /*

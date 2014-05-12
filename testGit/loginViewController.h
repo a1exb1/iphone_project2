@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Tools.h"
+#import "Client.h"
+#import "AgendaViewController.h"
 
 @interface loginViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
@@ -16,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 
-@property NSArray *client;
+@property NSArray *clientArray;
 @property NSMutableData *data;
 -(IBAction)login:(id)sender;
 
