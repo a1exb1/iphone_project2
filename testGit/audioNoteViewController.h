@@ -18,8 +18,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *recButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
+@property (weak, nonatomic) IBOutlet UILabel *playbackTimerLabel;
+
+
 @property bool isRecording;
 @property bool isPlaying;
+
+@property NSInteger secondsSinceStart;
+@property NSInteger PlaybackSecondsSinceStart;
+@property NSTimer *timer;
 
 @property NSURL *tempRecFile;
 
