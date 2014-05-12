@@ -112,13 +112,10 @@
 -(void)viewDidUnload{
 
     NSFileManager *fileHandler = [NSFileManager defaultManager];
-    [fileHandler removeItemAtPath:_tempRecFile error:nil];
+    [fileHandler removeItemAtPath:[NSString stringWithFormat:@"%@", _tempRecFile] error:nil];
     _recorder=nil;
     _tempRecFile=nil;
     _playButton.hidden = YES;
-    
-
-
 }
 
 -(void) startRecording{
@@ -238,8 +235,6 @@
         result = [NSString stringWithFormat:@"%02ld:%02ld", (long)minutes, (long)seconds];
     }
     _timerLabel.text = result;
-    NSLog(@"result: %@", result);
-
 }
 
 
@@ -261,10 +256,7 @@
     }
     else{
         [self stopPlayback];
-    }
-    
-    //NSLog(@"result: %@", result);
-    
+    }    
 }
 
 

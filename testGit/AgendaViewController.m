@@ -43,6 +43,8 @@ NSArray *daysOfWeekArray;
 
 -(void)jsonRequestGetAgenda
 {
+    [self finishedAttendance];
+    
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     _statusLbl.hidden = YES;
     
