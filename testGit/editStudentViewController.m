@@ -9,6 +9,7 @@
 #import "editStudentViewController.h"
 #import "Student.h"
 #import "Tools.h"
+#import "Session.h"
 
 @interface editStudentViewController ()
 
@@ -20,6 +21,8 @@
 @end
 
 @implementation editStudentViewController
+
+extern Session *session;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -104,7 +107,7 @@
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&name=%@&phone=%@&clientid=%i&ts=%f", [[_studentCourseLink student] studentID], [[_studentCourseLink student]name], [[_studentCourseLink student] phone], 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&name=%@&phone=%@&clientid=%li&ts=%f", [[_studentCourseLink student] studentID], [[_studentCourseLink student]name], [[_studentCourseLink student] phone], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
@@ -122,7 +125,7 @@
     self.statusLbl.hidden = YES;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&delete=1&clientid=%i&ts=%f", [[_studentCourseLink student] studentID], 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&delete=1&clientid=%i&ts=%f", [[_studentCourseLink student] studentID], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];

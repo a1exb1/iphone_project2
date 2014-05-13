@@ -18,9 +18,6 @@
         
         self.studentID = 0;
         self.name = [NSString stringWithFormat:@""];
-       
-        // name = jeff;
-        
     }
     
     return self;

@@ -22,5 +22,4 @@
 @property NSString  *courseNameSender;
 @property Course *courseSender;
 
-
 @end

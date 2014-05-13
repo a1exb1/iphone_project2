@@ -90,6 +90,20 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    
+    if(indexPath.row == 2){
+        UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"loginView"];
+        
+        [self presentViewController:view animated:YES completion:nil];
+    }
+    
+}
+
+
+
+
 
 /*
 // Override to support conditional editing of the table view.

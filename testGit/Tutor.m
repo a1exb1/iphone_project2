@@ -10,5 +10,18 @@
 
 @implementation Tutor
 
+- (id)init {
+    
+    self = [super init];
+    
+    if (self) {
+        
+        self.tutorID = 0;
+        self.accountType = 2;
+    }
+    
+    return self;
+    
+}
 
 @end

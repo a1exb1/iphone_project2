@@ -9,7 +9,7 @@
 #import "editTutorsListViewController.h"
 #import "saveTutorViewController.h"
 #import "Tools.h"
-
+#import "Session.h"
 
 @interface editTutorsListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -18,6 +18,8 @@
 @end
 
 @implementation editTutorsListViewController
+
+extern Session *session;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,7 +37,7 @@
     
     [Tools showLoader];
     //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%ld&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
@@ -79,7 +81,7 @@
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     [_mainTableView addPullToRefreshWithActionHandler:^{
-        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
+        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%ld&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
         NSURL *url = [NSURL URLWithString: urlString];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [NSURLConnection connectionWithRequest:request delegate:self];
@@ -132,6 +134,9 @@
     _tutorSender = [[Tutor alloc] init];
     [_tutorSender setTutorID:[cell.accessibilityValue intValue]];
     [_tutorSender setName:cell.textLabel.text];
+    [_tutorSender setAccountType:[[[_tutors objectAtIndex:indexPath.row] objectForKey:@"AccountType"] intValue]];
+    [_tutorSender setUsername:[[_tutors objectAtIndex:indexPath.row] objectForKey:@"UserName"]];
+    [_tutorSender setPassword:[[_tutors objectAtIndex:indexPath.row] objectForKey:@"Password"]];
     
     saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveTutor"];
     view.tutor = self.tutorSender;
@@ -155,6 +160,8 @@
     
     _tutors = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.mainTableView reloadData];
+    
+    NSLog(@"%@", _tutors);
     
     if ([_tutors count] == 0) {
         _statusLbl.text = @"No tutors, click the plus to add one";

@@ -11,6 +11,7 @@
 #import "indexViewController.h"
 #import "NVDate.h"
 #import "Client.h"
+#import "Session.h"
 
 @interface AgendaViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -20,7 +21,7 @@
 
 @end
 
-extern Client *client;
+extern Session *session;
 
 NSCalendar* calendar;
 NSDateComponents* components;
@@ -60,7 +61,7 @@ NSArray *daysOfWeekArray;
     [_mainTableView reloadData];
 
     NSString *dateString = [[NSString alloc] initWithFormat:@"%02d/%02d/%i", dd, mm, yy ];
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%li&date=%@&ts=%f", [_tutor tutorID], dateString, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%li&date=%@&ts=%f", [[session tutor] tutorID], dateString, [[NSDate date] timeIntervalSince1970]];
     
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

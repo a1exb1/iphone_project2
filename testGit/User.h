@@ -13,4 +13,6 @@
 
 @property NSString *name;
 @property NSString *phone;
+@property NSString *password;
+
 @end

@@ -12,6 +12,7 @@
 #import "saveCourseViewController.h"
 #import "NavigationBarTitleWithSubtitleView.h"
 #import "Tools.h"
+#import "Session.h"
 
 @interface coursesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -20,6 +21,8 @@
 @end
 
 @implementation coursesViewController
+
+extern Session *session;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,6 +46,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if ([[session tutor] accountType] > 1) {
+        [self.navigationItem setHidesBackButton:YES animated:NO];
+    }
     // Unselect the selected row if any
     NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
     if (selection) {
@@ -76,10 +83,10 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
     
-    NavigationBarTitleWithSubtitleView *navigationBarTitleView = [[NavigationBarTitleWithSubtitleView alloc] init];
-    [self.navigationItem setTitleView: navigationBarTitleView];
-    [navigationBarTitleView setTitleText:@"Courses"];
-    [navigationBarTitleView setDetailText:[_tutor name]];
+//    NavigationBarTitleWithSubtitleView *navigationBarTitleView = [[NavigationBarTitleWithSubtitleView alloc] init];
+//    [self.navigationItem setTitleView: navigationBarTitleView];
+//    [navigationBarTitleView setTitleText:@"Courses"];
+//    [navigationBarTitleView setDetailText:[_tutor name]];
     
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
     UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];

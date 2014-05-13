@@ -53,12 +53,13 @@ extern Session *session;
         _timerLabel.hidden = YES;
         _existingPlayBtn.hidden = NO;
         _recStateLabel.hidden = YES;
-    }
-    else{
         self.title = @"Audio note";
         UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteNote)];
         
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects: deleteBtn, nil]];
+    }
+    else{
+
     }
 }
 

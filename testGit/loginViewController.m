@@ -10,6 +10,7 @@
 
 
 @interface loginViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
 @end
 
@@ -60,13 +61,14 @@ extern Session *session;
 -(void)jsonRequestGetData
 {
     //[Tools showLoader];
+    self.loginBtn.hidden = YES;
     
      _clientArray = [[NSArray alloc] init];
     
     NSString *username = self.usernameTextField.text;
     NSString *password = self.passwordTextField.text;
   
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=login&id=%@&username=%@&password=%@&ts=%f", username, username, password, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=login&id=0&username=%@&password=%@&ts=%f", username, password, [[NSDate date] timeIntervalSince1970]];
     
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -87,9 +89,11 @@ extern Session *session;
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     //[Tools hideLoader];
+    self.loginBtn.hidden = NO;
     
     _clientArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
+
     if ([_clientArray count] == 0) {
         UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection error" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [errorView show];
@@ -101,8 +105,11 @@ extern Session *session;
             //NSLog(@"login success");
             
             [[session client] setClientID:[[[_clientArray objectAtIndex:0] objectForKey:@"clientid"] intValue]];
-            [[session client] setPremium:[[[_clientArray objectAtIndex:0] objectForKey:@"success"] intValue]];
-            
+            [[session client] setPremium:[[[_clientArray objectAtIndex:0] objectForKey:@"clientaccounttype"] intValue]];
+            [[session client] setClientUserName:[[_clientArray objectAtIndex:0] objectForKey:@"clientusername"]];
+            [[session tutor] setTutorID:[[[_clientArray objectAtIndex:0] objectForKey:@"tutorid"] intValue]];
+            [[session tutor] setAccountType:[[[_clientArray objectAtIndex:0] objectForKey:@"tutoraccounttype"] intValue]];
+                        
             [self loginSuccess];
         }
         else{
@@ -119,6 +126,7 @@ extern Session *session;
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
     //[Tools hideLoader];
+    self.loginBtn.hidden = NO;
 }
 
 -(void) loginSuccess{

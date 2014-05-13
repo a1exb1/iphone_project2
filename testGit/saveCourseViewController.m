@@ -8,6 +8,7 @@
 
 #import "saveCourseViewController.h"
 #import "Tools.h"
+#import "Session.h"
 
 @interface saveCourseViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
@@ -16,6 +17,8 @@
 @end
 
 @implementation saveCourseViewController
+
+extern Session *session;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -83,7 +86,7 @@
         self.statusLbl.hidden = YES;
     
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=course&id=%li&name=%@&tutorid=%li&clientid=%i&ts=%f", [_course courseID], [_course name], [_tutor tutorID], 1, [[NSDate date] timeIntervalSince1970]];
+        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=course&id=%li&name=%@&tutorid=%li&clientid=%li&ts=%f", [_course courseID], [_course name], [_tutor tutorID], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
         urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
@@ -105,7 +108,7 @@
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=course&id=%li&delete=1&clientid=%i&ts=%f", [_course courseID], 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=course&id=%li&delete=1&clientid=%li&ts=%f", [_course courseID], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];

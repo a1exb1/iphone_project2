@@ -13,4 +13,6 @@
 
 @property int premium;
 @property long clientID;
+@property NSString *clientUserName;
+
 @end

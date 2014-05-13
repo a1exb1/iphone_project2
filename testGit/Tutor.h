@@ -11,5 +11,7 @@
 @interface Tutor : User
 
 @property long tutorID;
+@property int accountType;
+@property NSString *username;
 
 @end

@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "Tutor.h"
 
-@interface saveTutorViewController : UIViewController
+@interface saveTutorViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property Tutor *tutor;
 
 @property NSMutableData *data;
 @property NSArray *saveResultArray;
+
+@property NSArray *ComponentsArray;
 
 @end

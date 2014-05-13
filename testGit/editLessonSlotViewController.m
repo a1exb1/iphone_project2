@@ -9,6 +9,7 @@
 #import "editLessonSlotViewController.h"
 #import "Tools.h"
 //#import "editStudentAndSlotViewController.h"
+#import "Session.h"
 
 @interface editLessonSlotViewController ()
 @property (weak, nonatomic) IBOutlet UIPickerView *lessonTimePicker;
@@ -20,6 +21,8 @@
 @end
 
 @implementation editLessonSlotViewController
+
+extern Session *session;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -121,7 +124,7 @@
 -(void)delete{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&delete=1&clientid=%i&ts=%f", [_studentCourseLink StudentCourseLinkID], 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&delete=1&clientid=%li&ts=%f", [_studentCourseLink StudentCourseLinkID], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
@@ -189,7 +192,7 @@
     [_studentCourseLink setMins:newMins];
     [_studentCourseLink setDuration:newDuration];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&hour=%i&mins=%i&studentid=%li&courseid=%li&weekday=%i&duration=%i&tutorid=%li&clientid=%i&ts=%f", [_studentCourseLink StudentCourseLinkID], newHour, newMins,[[_studentCourseLink student] studentID],[[_studentCourseLink course]courseID], newWeekday,newDuration,[[_studentCourseLink course] tutorID], 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&hour=%i&mins=%i&studentid=%li&courseid=%li&weekday=%i&duration=%i&tutorid=%li&clientid=%li&ts=%f", [_studentCourseLink StudentCourseLinkID], newHour, newMins,[[_studentCourseLink student] studentID],[[_studentCourseLink course]courseID], newWeekday,newDuration,[[_studentCourseLink course] tutorID], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];

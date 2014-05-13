@@ -11,6 +11,7 @@
 #import "saveTutorViewController.h"
 #import "editTutorsListViewController.h"
 #import "Tools.h"
+#import "Session.h"
 
 @interface tutors2ViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -21,6 +22,8 @@
 
 
 @implementation tutors2ViewController
+
+extern Session *session;
 
 //- (void)menuViewControllerDidFinishWithMenuItemID:(NSInteger)menuItemID
 //{
@@ -75,7 +78,7 @@
     [Tools showLoader];
     //[_mainTableView triggerPullToRefresh];
     //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%li&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
@@ -83,7 +86,23 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"%i", [[session tutor] accountType]);
+    
     [super viewDidLoad];
+    if ([[session tutor] accountType] > 1) {
+        
+        coursesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"courses"];
+        //view.tutorID = [[session tutor] tutorID];
+        //view.tutorName = self.tutorNameSender;
+        
+        [view.tutor setTutorID:[[session tutor] tutorID]];
+        [view.tutor setAccountType:[[session tutor] accountType]];
+        [view.tutor setName:[[session tutor] name]];
+        
+        view.tutor = _tutorSender;
+        [self.navigationController pushViewController:view animated:NO];
+    }
+    
 	// Do any additional setup after loading the view.
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
@@ -96,7 +115,7 @@
         //[Tools showLoader];
         //[_mainTableView triggerPullToRefresh];
         //
-        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%d&ts=%f", 1, [[NSDate date] timeIntervalSince1970]];
+        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%li&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
         NSURL *url = [NSURL URLWithString: urlString];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [NSURLConnection connectionWithRequest:request delegate:self];

@@ -29,20 +29,53 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7z-wt-0bE">
-                                <rect key="frame" x="20" y="210" width="280" height="21"/>
+                                <rect key="frame" x="20" y="70" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wTE-gM-y6v">
+                                <rect key="frame" x="89" y="175" width="211" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OMp-wq-SJX">
+                                <rect key="frame" x="20" y="175" width="61" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TqH-rR-e83">
+                                <rect key="frame" x="0.0" y="283" width="320" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Account Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoO-98-M7B">
+                                <rect key="frame" x="108" y="272" width="105" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5cQ-Rz-P6d">
+                                <rect key="frame" x="20" y="213" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Tutor" id="lGl-2U-FOP"/>
                     <connections>
+                        <outlet property="accountTypePicker" destination="TqH-rR-e83" id="LMJ-Zf-6uu"/>
+                        <outlet property="clientUserNameLbl" destination="OMp-wq-SJX" id="1E7-gw-lc6"/>
                         <outlet property="nameTextField" destination="YWc-zS-dgR" id="Fqq-cO-asz"/>
+                        <outlet property="passwordTextField" destination="5cQ-Rz-P6d" id="wtk-wL-5UW"/>
                         <outlet property="phoneTextField" destination="Ukc-NM-1CM" id="875-Bh-d5p"/>
                         <outlet property="statusLbl" destination="f7z-wt-0bE" id="DOC-QV-OYH"/>
+                        <outlet property="usernameLbl" destination="wTE-gM-y6v" id="dWo-hP-xOs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drG-zx-DZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -596,7 +629,7 @@
         <!--Login View Controller-->
         <scene sceneID="VAS-VI-gMx">
             <objects>
-                <viewController id="CUf-QQ-mdg" customClass="loginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginView" id="CUf-QQ-mdg" customClass="loginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eJb-gy-fw7"/>
                         <viewControllerLayoutGuide type="bottom" id="wtn-bV-qa6"/>
@@ -630,7 +663,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="12J-vF-nRf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="bm.alex" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="12J-vF-nRf">
                                 <rect key="frame" x="122" y="109" width="178" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -643,7 +676,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SOh-EW-Inw">
-                                <rect key="frame" x="20" y="197" width="280" height="30"/>
+                                <rect key="frame" x="20" y="196" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.66000000000000003" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Login">
@@ -675,6 +708,7 @@
                     </view>
                     <connections>
                         <outlet property="bgImg" destination="CYH-2n-hRs" id="dsb-pw-dsh"/>
+                        <outlet property="loginBtn" destination="SOh-EW-Inw" id="Efv-Xg-RyI"/>
                         <outlet property="passwordTextField" destination="QKq-7O-ctJ" id="ME1-5J-y87"/>
                         <outlet property="statusLbl" destination="zqo-rS-PcY" id="VId-tA-53G"/>
                         <outlet property="usernameTextField" destination="12J-vF-nRf" id="KSg-TQ-ese"/>
@@ -1347,7 +1381,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Mge-Py-SjU"/>
         <segue reference="P5I-tD-urD"/>
+        <segue reference="a2M-xz-gXS"/>
     </inferredMetricsTieBreakers>
 </document>
