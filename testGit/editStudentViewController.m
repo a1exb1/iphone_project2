@@ -105,7 +105,7 @@ extern Session *session;
     [[_studentCourseLink student] setName:self.studentNameTextField.text];
     [[_studentCourseLink student] setPhone:self.studentPhoneTextField.text];
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [Tools showLoader];
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&name=%@&phone=%@&clientid=%li&ts=%f", [[_studentCourseLink student] studentID], [[_studentCourseLink student]name], [[_studentCourseLink student] phone], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
@@ -123,9 +123,9 @@ extern Session *session;
 -(void)deleteStudent
 {
     self.statusLbl.hidden = YES;
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [Tools showLoader];
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&delete=1&clientid=%i&ts=%f", [[_studentCourseLink student] studentID], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&delete=1&clientid=%li&ts=%f", [[_studentCourseLink student] studentID], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
@@ -152,7 +152,7 @@ extern Session *session;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [Tools hideLoader];
     _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
@@ -188,7 +188,7 @@ extern Session *session;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [Tools hideLoader];
 }
 //
 

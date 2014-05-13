@@ -49,6 +49,7 @@ extern Session *session;
     
     if ([[session tutor] accountType] > 1) {
         [self.navigationItem setHidesBackButton:YES animated:NO];
+        _tutor = [session tutor];
     }
     // Unselect the selected row if any
     NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];

@@ -60,7 +60,7 @@ extern Session *session;
 
 -(void)jsonRequestGetData
 {
-    //[Tools showLoader];
+    [Tools showLoader];
     self.loginBtn.hidden = YES;
     
      _clientArray = [[NSArray alloc] init];
@@ -88,15 +88,14 @@ extern Session *session;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    //[Tools hideLoader];
-    self.loginBtn.hidden = NO;
-    
+    [Tools hideLoader];
+
     _clientArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
-
     if ([_clientArray count] == 0) {
         UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection error" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [errorView show];
+        self.loginBtn.hidden = NO;
         //self.statusLbl.hidden = NO;
         //NSLog(@"Connection error!");
     }
@@ -117,6 +116,7 @@ extern Session *session;
 //            NSLog(@"Incorrect login details!");
             UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Incorrect username or password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [errorView show];
+            self.loginBtn.hidden = NO;
         }
     }
 }
@@ -125,12 +125,12 @@ extern Session *session;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    //[Tools hideLoader];
+    [Tools hideLoader];
     self.loginBtn.hidden = NO;
 }
 
 -(void) loginSuccess{
-    //[Tools hideLoader];
+    [Tools hideLoader];
     
     UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
 

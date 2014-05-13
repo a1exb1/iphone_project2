@@ -112,6 +112,8 @@ extern Session *session;
 -(void)save{
     if (self.nameTextField.text && self.nameTextField.text.length > 0 && ![self.passwordTextField.text isEqualToString:@""]) {
         
+        [Tools showLoader];
+        
         [_tutor setName:self.nameTextField.text];
         [_tutor setPhone:self.phoneTextField.text];
     
@@ -130,7 +132,6 @@ extern Session *session;
             accType++;
         }
         
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=tutor&id=%li&name=%@&phone=%@&clientid=%li&username=%@&accounttype=%li&password=%@&ts=%f", [_tutor tutorID], [_tutor name], [_tutor phone], [[session client] clientID], username, accType, self.passwordTextField.text, [[NSDate date] timeIntervalSince1970]];
     
         urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
@@ -150,12 +151,13 @@ extern Session *session;
 }
 
 -(void)delete{
+    [Tools showLoader];
+    
     [_tutor setName:self.nameTextField.text];
     [_tutor setPhone:self.phoneTextField.text];
     
     self.statusLbl.hidden = YES;
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=tutor&id=%li&delete=1&clientid=%li&ts=%f", [_tutor tutorID], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
@@ -181,7 +183,7 @@ extern Session *session;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [Tools hideLoader];
     _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
@@ -211,6 +213,7 @@ extern Session *session;
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    [Tools hideLoader];
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

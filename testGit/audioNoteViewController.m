@@ -7,6 +7,7 @@
 //
 
 #import "audioNoteViewController.h"
+#import "Tools.h"
 
 @interface audioNoteViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *playbackWebView;
@@ -61,10 +62,13 @@ extern Session *session;
     else{
 
     }
+
 }
 
 -(void)deleteNote
 {
+    [Tools showLoader];
+    
     _data = [[NSMutableData alloc]init];
     _noteSaveArray = [[NSArray alloc] init];
     
@@ -91,7 +95,7 @@ extern Session *session;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [Tools hideLoader];
     _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
@@ -118,14 +122,16 @@ extern Session *session;
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    [Tools hideLoader];
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 
 - (void) save
 {
+    [Tools showLoader];
+    
     NSURL *pathURL = _tempRecFile; //File Url of the recorded audio
     NSData *voiceData = [[NSData alloc]initWithContentsOfURL:pathURL];
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/upload_file.aspx?datatype=audio&id=0&studentid=%li&lessonid=%li&clientid=%li", [[_lesson student] studentID], [_lesson LessonID], [[session client] clientID]]; // You can give your url here for uploading

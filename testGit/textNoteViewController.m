@@ -7,6 +7,7 @@
 //
 
 #import "textNoteViewController.h"
+#import "Tools.h"
 
 @interface textNoteViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *noteTextView;
@@ -41,6 +42,8 @@
 
 -(void)saveNote
 {
+    [Tools showLoader];
+    
     _data = [[NSMutableData alloc]init];
     _noteSaveArray = [[NSArray alloc] init];
     
@@ -58,6 +61,8 @@
 
 -(void)deleteNote
 {
+    [Tools showLoader];
+    
     _data = [[NSMutableData alloc]init];
     _noteSaveArray = [[NSArray alloc] init];
     
@@ -90,7 +95,7 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [Tools hideLoader];
     _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
@@ -117,6 +122,7 @@
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    [Tools hideLoader];
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

@@ -44,7 +44,7 @@ NSArray *daysOfWeekArray;
 
 -(void)jsonRequestGetAgenda
 {
-    [self finishedAttendance];
+    self.navigationItem.rightBarButtonItem = nil;
     
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     _statusLbl.hidden = YES;
@@ -363,10 +363,12 @@ NSArray *daysOfWeekArray;
         _statusLbl.hidden = NO;
         _statusLbl.text = @"No lessons";
         [_mainTableView setBackgroundColor:[UIColor whiteColor]];
+        
     }
     else{
         [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
         _statusLbl.hidden = YES;
+        [self finishedAttendance];
     }
 }
 

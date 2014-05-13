@@ -85,7 +85,7 @@ extern Session *session;
         [_course setName:self.nameTextField.text];
         self.statusLbl.hidden = YES;
     
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        [Tools showLoader];
         NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=course&id=%li&name=%@&tutorid=%li&clientid=%li&ts=%f", [_course courseID], [_course name], [_tutor tutorID], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
         urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
@@ -106,7 +106,7 @@ extern Session *session;
     
     self.statusLbl.hidden = YES;
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [Tools showLoader];
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=course&id=%li&delete=1&clientid=%li&ts=%f", [_course courseID], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
@@ -132,7 +132,7 @@ extern Session *session;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [Tools hideLoader];
     _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
@@ -162,7 +162,7 @@ extern Session *session;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [Tools hideLoader];
 }
 
 

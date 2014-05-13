@@ -25,9 +25,16 @@ UIActivityIndicatorView *indicator;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+    
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    CGFloat screenWidth = screenSize.width;
+    CGFloat screenHeight = screenSize.height;
+    
+    indicator.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
+    [indicator setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.25]];
     indicator.center = view.center;
-    [view addSubview:indicator];
+    [window addSubview:indicator];
     //[view.window addSubview:indicator];
     [indicator bringSubviewToFront:view];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
