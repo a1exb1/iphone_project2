@@ -58,7 +58,7 @@ NSArray *daysOfWeekArray;
     _data = [[NSMutableData alloc]init];
     _lessons = [[NSArray alloc] init];
     [_mainTableView reloadData];
-    
+
     NSString *dateString = [[NSString alloc] initWithFormat:@"%02d/%02d/%i", dd, mm, yy ];
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%li&date=%@&ts=%f", [_tutor tutorID], dateString, [[NSDate date] timeIntervalSince1970]];
     
@@ -75,8 +75,6 @@ NSArray *daysOfWeekArray;
     [_mainTableView addPullToRefreshWithActionHandler:^{
         [self jsonRequestGetAgenda];
     }];
-    
-    [self finishedAttendance];
     
     _dayDate = [[NSDate alloc] init];
     _dayDate = [NSDate date];
@@ -149,7 +147,6 @@ NSArray *daysOfWeekArray;
     }
 
     [Tools showLoader];
-    [self jsonRequestGetAgenda];
 }
 
 - (void)updateSelectedDate

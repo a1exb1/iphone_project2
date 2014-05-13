@@ -1001,12 +1001,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQl-CR-xJO">
+                                <rect key="frame" x="117" y="181" width="87" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Button Play.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="existingFilePlayback" destination="VbY-N3-1G8" eventType="touchUpInside" id="RpM-g9-Vj5"/>
+                                </connections>
+                            </button>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hcA-Hy-ZOm">
+                                <rect key="frame" x="0.0" y="221" width="320" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="existingPlayBtn" destination="VQl-CR-xJO" id="O7I-Le-nvw"/>
                         <outlet property="playButton" destination="smZ-1f-KZA" id="X25-8o-jay"/>
                         <outlet property="playbackTimerLabel" destination="YdR-fg-g7E" id="O7n-ho-gEP"/>
+                        <outlet property="playbackWebView" destination="hcA-Hy-ZOm" id="Mf9-Nj-gg4"/>
                         <outlet property="recButton" destination="F8v-vG-VjI" id="Ila-SD-vrY"/>
                         <outlet property="recStateLabel" destination="sHp-Z9-zoY" id="FNX-IQ-8sP"/>
                         <outlet property="timerLabel" destination="IN5-Sb-dWV" id="Rld-6r-gwn"/>
@@ -1330,7 +1347,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="koL-fA-Xti"/>
         <segue reference="Mge-Py-SjU"/>
+        <segue reference="P5I-tD-urD"/>
     </inferredMetricsTieBreakers>
 </document>

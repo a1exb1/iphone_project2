@@ -9,12 +9,15 @@
 #import "audioNoteViewController.h"
 
 @interface audioNoteViewController ()
+@property (weak, nonatomic) IBOutlet UIWebView *playbackWebView;
 
 @end
 
 
 
 @implementation audioNoteViewController
+
+extern Session *session;
 
 @synthesize secondsSinceStart;
 
@@ -41,17 +44,90 @@
     [audioSession setActive:YES error:nil];
     
     self.title = @"Record audio note";
- 
-    // Do any additional setup after loading the view.
-    UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
+    
+    _existingPlayBtn.hidden = YES;
+    
+    if ([_note studentNoteID] > 0) {
+        _playButton.hidden = YES;
+        _recButton.hidden = YES;
+        _timerLabel.hidden = YES;
+        _existingPlayBtn.hidden = NO;
+        _recStateLabel.hidden = YES;
+    }
+    else{
+        self.title = @"Audio note";
+        UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteNote)];
+        
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects: deleteBtn, nil]];
+    }
 }
+
+-(void)deleteNote
+{
+    _data = [[NSMutableData alloc]init];
+    _noteSaveArray = [[NSArray alloc] init];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=textnote&id=%li&delete=delete&clientid=%li&ts=%f", [_note studentNoteID], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
+    
+    NSLog(@"%@", urlString);
+    
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+-(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
+{
+    _data = [[NSMutableData alloc]init];
+    
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
+{
+    [_data appendData:theData];
+    
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+    
+    if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
+    {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"0"])
+    {
+        UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error with saving." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [errorView show];
+        
+    }
+    
+    else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"3"])
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error with saving." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [errorView show];
+    }
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [errorView show];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
 
 - (void) save
 {
     NSURL *pathURL = _tempRecFile; //File Url of the recorded audio
     NSData *voiceData = [[NSData alloc]initWithContentsOfURL:pathURL];
-    NSString *urlString = @"http://iroboticshowoff.com/img2/upload.php"; // You can give your url here for uploading
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/upload_file.aspx?datatype=audio&id=0&studentid=%li&lessonid=%li&clientid=%li", [[_lesson student] studentID], [_lesson LessonID], [[session client] clientID]]; // You can give your url here for uploading
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
     
     @try
@@ -81,8 +157,9 @@
         }
         else
         {
-            NSLog(@"Success %@",returnString);
-            alert = [[UIAlertView alloc]initWithTitle:@"Message" message:@"File get uploaded" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            //NSLog(@"Success %@",returnString);
+            ///alert = [[UIAlertView alloc]initWithTitle:@"Message" message:@"File get uploaded" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [self.navigationController popViewControllerAnimated:YES];
         }
         [alert show];
         alert = nil;
@@ -124,7 +201,17 @@
     _playButton.hidden = YES;
     _recStateLabel.text = @"Recording";
     _tempRecFile = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"VoiceFile"]];
-    _recorder = [[AVAudioRecorder alloc]initWithURL:_tempRecFile settings: nil error:nil];
+    
+    NSDictionary *recordSettings = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithFloat: 44100.0],AVSampleRateKey,
+                              [NSNumber numberWithInt: kAudioFormatLinearPCM],AVFormatIDKey,// kAudioFormatLinearPCM
+                              [NSNumber numberWithInt:16],AVLinearPCMBitDepthKey,
+                              [NSNumber numberWithInt: 2], AVNumberOfChannelsKey,
+                              [NSNumber numberWithBool:NO],AVLinearPCMIsBigEndianKey,
+                              [NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,
+                              [NSNumber numberWithInt: AVAudioQualityMedium],AVEncoderAudioQualityKey,nil];
+    
+    _recorder = [[AVAudioRecorder alloc]initWithURL:_tempRecFile settings: recordSettings error:nil];
     
     [_recorder setDelegate:self];
     [_recorder prepareToRecord];
@@ -149,17 +236,33 @@
     _playbackTimerLabel.text = [NSString stringWithFormat:@"00:00 / %@", _timerLabel.text];
     _playbackTimerLabel.hidden = NO;
     _timerLabel.hidden = YES;
+    
+    UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
 }
 
 -(void) startPlayback{
-    _isPlaying = YES;
-    _player = [[AVAudioPlayer alloc]initWithContentsOfURL:_tempRecFile error:nil];
-    _player.volume =1;
-    [_player play];
-    [_playButton setImage:[UIImage imageNamed:@"Button White Stop.png"] forState:UIControlStateNormal];
-    _recStateLabel.text = @"Playing";
-    _PlaybackSecondsSinceStart = (NSInteger)[[NSDate date] timeIntervalSinceDate:[[NSDate alloc]init]];
-    _timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updatePlayback:) userInfo:nil repeats:YES];
+    if ([_note studentNoteID] == 0) {
+        _isPlaying = YES;
+        _player = [[AVAudioPlayer alloc]initWithContentsOfURL:_tempRecFile error:nil];
+        _player.volume =1;
+        [_player play];
+        [_playButton setImage:[UIImage imageNamed:@"Button White Stop.png"] forState:UIControlStateNormal];
+        _recStateLabel.text = @"Playing";
+        _PlaybackSecondsSinceStart = (NSInteger)[[NSDate date] timeIntervalSinceDate:[[NSDate alloc]init]];
+        _timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updatePlayback:) userInfo:nil repeats:YES];
+    }
+    else{
+        //NSLog(@"%@", [_note filename]);
+        _existingPlayBtn.hidden = YES;
+        NSString *stream = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/uploads/%li/audio_files/%@", [[session client] clientID], [_note filename]]; //000045_75c1ab.mp3
+        
+        NSLog(@"%@", stream);
+        
+        NSURL *url = [NSURL URLWithString:stream];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [_playbackWebView loadRequest:request];
+    }
 }
 
 -(void) stopPlayback{
@@ -179,6 +282,17 @@
         [self stopRecording];
     }
 
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //[Tools hideLoader];
+}
+
+-(IBAction)existingFilePlayback
+{
+    //[Tools showLoader];
+    [self startPlayback];
 }
 
 -(IBAction)playback{
@@ -258,6 +372,7 @@
         [self stopPlayback];
     }
 }
+
 
 
 @end

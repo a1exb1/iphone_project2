@@ -46,7 +46,7 @@
     
     [_note setNote: self.noteTextView.text];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=textnote&id=%li&note=%@&studentid=%li&ts=%f", [_note studentNoteID], [_note note], [[_lesson student] studentID], [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=textnote&id=%li&note=%@&studentid=%li&lessonid=%li&ts=%f", [_note studentNoteID], self.noteTextView.text, [[_lesson student] studentID], [_lesson LessonID], [[NSDate date] timeIntervalSince1970]];
     
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];

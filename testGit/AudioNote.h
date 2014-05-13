@@ -10,6 +10,6 @@
 
 @interface AudioNote : studentNote
 
-
+@property NSString *filename;
 
 @end

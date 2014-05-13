@@ -10,8 +10,11 @@
 #import "Lesson.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
+#import "AudioNote.h"
+#import "Session.h"
+#import "Tools.h"
 
-@interface audioNoteViewController : UIViewController <AVAudioRecorderDelegate>
+@interface audioNoteViewController : UIViewController <AVAudioRecorderDelegate, UIWebViewDelegate>
 
 @property Lesson *lesson;
 @property (weak, nonatomic) IBOutlet UILabel *recStateLabel;
@@ -19,7 +22,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playbackTimerLabel;
+@property (weak, nonatomic) IBOutlet UIButton *existingPlayBtn;
 
+@property AudioNote *note;
 
 @property bool isRecording;
 @property bool isPlaying;
@@ -34,4 +39,10 @@
 @property AVAudioPlayer *player;
 -(IBAction)recording;
 -(IBAction)playback;
+
+-(IBAction)existingFilePlayback;
+
+@property NSMutableData *data;
+@property NSArray *saveResultArray;
+@property NSArray *noteSaveArray;
 @end

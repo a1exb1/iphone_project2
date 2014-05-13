@@ -115,7 +115,7 @@ NSMutableArray *audioNotes;
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
                                                   reuseIdentifier:@"cell"];
     
-    cell.textLabel.text = [[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"Note"];
+    cell.textLabel.text = [[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"EnteredDate"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     UIImage *image;
     
@@ -141,7 +141,7 @@ NSMutableArray *audioNotes;
     if([[[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"NoteType"] isEqualToString:@"text"]){
         TextNote *note = [[TextNote alloc] init];
         [note setStudentNoteID: [[[[_lesson Notes]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"] intValue]];
-        [note setNote: [[[_lesson Notes]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"]];
+        //[note setNote: [[[_lesson Notes]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"]];
         [note setNote: [[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"Note"]];
         
         textNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"textNoteView"];
@@ -149,7 +149,23 @@ NSMutableArray *audioNotes;
         view.lesson = _lesson;
         [self.navigationController pushViewController:view animated:YES];
     }
-    
+    else if([[[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"NoteType"] isEqualToString:@"audio"]){
+
+        AudioNote *note = [[AudioNote alloc] init];
+        [note setFilename: [[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"Filename"]];
+        
+        [note setStudentNoteID: [[[[_lesson Notes]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"] intValue]];
+        //[note setNote: [[[_lesson Notes]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"]];
+        //[note setNote: [[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"Note"]];
+        
+        
+        
+        audioNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"audioNoteView"];
+        view.note = note;
+        view.lesson = _lesson;
+        [self.navigationController pushViewController:view animated:YES];
+        
+    }
 }
 
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response

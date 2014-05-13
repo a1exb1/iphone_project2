@@ -59,7 +59,7 @@ extern Session *session;
 
 -(void)jsonRequestGetData
 {
-    [Tools showLoader];
+    //[Tools showLoader];
     
      _clientArray = [[NSArray alloc] init];
     
@@ -86,7 +86,7 @@ extern Session *session;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [Tools hideLoader];
+    //[Tools hideLoader];
     
     _clientArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
@@ -118,11 +118,11 @@ extern Session *session;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [Tools hideLoader];
+    //[Tools hideLoader];
 }
 
 -(void) loginSuccess{
-    
+    //[Tools hideLoader];
     
     UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
 
