@@ -147,4 +147,21 @@ UIActivityIndicatorView *indicator;
     return image;
 }
 
++(NSString * )convertSecondsToTimeStringWithSeconds: (int)secondsFrom
+{
+    NSInteger seconds = secondsFrom % 60;
+    NSInteger minutes = (secondsFrom / 60) % 60;
+    NSInteger hours = secondsFrom / (60 * 60);
+    NSString *result = nil;
+    if (hours > 0) {
+        result = [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)hours, (long)minutes, (long)seconds];
+    }
+    else {
+        result = [NSString stringWithFormat:@"%02ld:%02ld", (long)minutes, (long)seconds];
+    }
+    
+    return result;
+
+}
+
 @end

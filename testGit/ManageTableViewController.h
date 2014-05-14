@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddLessonsViewController.h"
 
 @interface ManageTableViewController : UITableViewController
 

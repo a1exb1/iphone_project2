@@ -45,4 +45,6 @@
 @property NSMutableData *data;
 @property NSArray *saveResultArray;
 @property NSArray *noteSaveArray;
+
+@property int recordedSoundLength;
 @end

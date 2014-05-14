@@ -114,11 +114,12 @@
 {
     UIDevice *device = [UIDevice currentDevice];
     if ([[device model] isEqualToString:@"iPhone"] ) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:000-000-0000"]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[_lesson student] phone]]]];        
     } else {
         UIAlertView *notPermitted=[[UIAlertView alloc] initWithTitle:@"Phone call unsuccessful" message:@"You cannot make phone calls from this device!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [notPermitted show];
     }
+    NSLog(@"Students phone number: %@", [[_lesson student] phone]);
 }
 
 - (void)didReceiveMemoryWarning

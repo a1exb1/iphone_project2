@@ -326,6 +326,7 @@ NSArray *daysOfWeekArray;
     Student *student = [[Student alloc]init];
     [student setStudentID:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"StudentID"] intValue]];
     [student setName:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
+    [student setPhone:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Telephone"]];
     [_lessonSender setStudent:student];
     
     indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
@@ -358,7 +359,7 @@ NSArray *daysOfWeekArray;
     
     _lessons = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];    
     [self.mainTableView reloadData];
-    
+
     if ([_lessons count] == 0) {
         _statusLbl.hidden = NO;
         _statusLbl.text = @"No lessons";

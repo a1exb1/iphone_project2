@@ -22,6 +22,7 @@
 		792B23D31921076A00CAE285 /* Button White Add.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23D21921076A00CAE285 /* Button White Add.png */; };
 		792B23D51921090F00CAE285 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23D41921090F00CAE285 /* logout.png */; };
 		792B23D71921098500CAE285 /* Button White Remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 792B23D61921098500CAE285 /* Button White Remove.png */; };
+		79481D64192364EC00674ACF /* AddLessonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79481D63192364EC00674ACF /* AddLessonsViewController.m */; };
 		795B6413190E460A00A2C879 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 795B6412190E460A00A2C879 /* QuartzCore.framework */; };
 		795B6422190E5BC400A2C879 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 795B6421190E5BC400A2C879 /* Student.m */; };
 		79A86855191B93EC00AA4058 /* DSLCalendarDayCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A86837191B93EC00AA4058 /* DSLCalendarDayCalloutView.m */; };
@@ -144,6 +145,8 @@
 		792B23D21921076A00CAE285 /* Button White Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button White Add.png"; sourceTree = "<group>"; };
 		792B23D41921090F00CAE285 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 		792B23D61921098500CAE285 /* Button White Remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button White Remove.png"; sourceTree = "<group>"; };
+		79481D62192364EC00674ACF /* AddLessonsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLessonsViewController.h; sourceTree = "<group>"; };
+		79481D63192364EC00674ACF /* AddLessonsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLessonsViewController.m; sourceTree = "<group>"; };
 		795B6412190E460A00A2C879 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		795B6420190E5BC400A2C879 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		795B6421190E5BC400A2C879 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
@@ -607,6 +610,8 @@
 				79AA2230190943B2005AC8A3 /* People */,
 				E473527E1900279E008006EE /* indexViewController.h */,
 				E473527F1900279E008006EE /* indexViewController.m */,
+				79481D62192364EC00674ACF /* AddLessonsViewController.h */,
+				79481D63192364EC00674ACF /* AddLessonsViewController.m */,
 			);
 			name = viewControllers;
 			sourceTree = "<group>";
@@ -864,6 +869,7 @@
 				E4C1C969191459F70068A10D /* editTutorsListViewController.m in Sources */,
 				E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */,
 				E4494DD7190D851E00585CB8 /* Tutor.m in Sources */,
+				79481D64192364EC00674ACF /* AddLessonsViewController.m in Sources */,
 				E4AB8873191D4199001A70D9 /* MZDayPickerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

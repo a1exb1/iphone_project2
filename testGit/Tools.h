@@ -30,4 +30,6 @@
 //+ (NSDate *)getFirstDayOfTheWeekFromDate:(NSDate *)givenDate;
 //+ (NSDate *)getLastDayOfTheWeekFromDate:(NSDate *)givenDate;
 
++(NSString *) convertSecondsToTimeStringWithSeconds: (int) seconds;
+
 @end

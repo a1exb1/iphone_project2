@@ -92,6 +92,19 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    if(indexPath.row == 0){
+        AddLessonsViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addLessonsView"];
+        
+        view.shouldClear = NO;
+        [self.navigationController pushViewController:view animated:YES];
+    }
+    
+    if(indexPath.row == 1){
+        AddLessonsViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addLessonsView"];
+        
+        view.shouldClear = YES;
+        [self.navigationController pushViewController:view animated:YES];
+    }
     
     if(indexPath.row == 2){
         UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"loginView"];

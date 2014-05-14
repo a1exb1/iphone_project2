@@ -52,7 +52,7 @@ extern Session *session;
         _playButton.hidden = YES;
         _recButton.hidden = YES;
         _timerLabel.hidden = YES;
-        _existingPlayBtn.hidden = NO;
+         [self startPlayback];
         _recStateLabel.hidden = YES;
         self.title = @"Audio note";
         UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteNote)];
@@ -203,6 +203,7 @@ extern Session *session;
 }
 
 -(void) startRecording{
+    
     _isRecording = YES;
     [_recButton setImage:[UIImage imageNamed:@"Button Record Active.png"]  forState:UIControlStateNormal];
     _playButton.hidden = YES;
@@ -229,6 +230,7 @@ extern Session *session;
     
     _timerLabel.hidden = NO;
     _playbackTimerLabel.hidden = YES;
+    [self updateRecordLabel];
 }
 
 
@@ -240,12 +242,33 @@ extern Session *session;
     [_recorder stop];
     [_playButton setImage:[UIImage imageNamed:@"Button Play.png"]  forState:UIControlStateNormal];
     [_timer invalidate];
-    _playbackTimerLabel.text = [NSString stringWithFormat:@"00:00 / %@", _timerLabel.text];
+    _playbackTimerLabel.text = [NSString stringWithFormat:@"00:00 / %@", [Tools convertSecondsToTimeStringWithSeconds:(int)_recordedSoundLength]];
     _playbackTimerLabel.hidden = NO;
     _timerLabel.hidden = YES;
     
     UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
+    
+    
+}
+
+-(void)showUpgradeAlert{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Record time exceeded!"
+                                                    message:@"To record more than 15 seconds, upgrade to premium."
+                                                   delegate:self    // <------
+                                          cancelButtonTitle:@"Maybe later"
+                                          otherButtonTitles:@"Upgrade now", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the OK/Cancel buttons
+    if (buttonIndex == 1)
+    {
+        [[session client] setPremium:1];
+        
+    }
+    
 }
 
 -(void) startPlayback{
@@ -258,6 +281,7 @@ extern Session *session;
         _recStateLabel.text = @"Playing";
         _PlaybackSecondsSinceStart = (NSInteger)[[NSDate date] timeIntervalSinceDate:[[NSDate alloc]init]];
         _timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updatePlayback:) userInfo:nil repeats:YES];
+        [self updatePlaybackFunction];
     }
     else{
         //NSLog(@"%@", [_note filename]);
@@ -277,7 +301,7 @@ extern Session *session;
     _player = [[AVAudioPlayer alloc]init ];
     [_playButton setImage:[UIImage imageNamed:@"Button Play.png"] forState:UIControlStateNormal];
     _recStateLabel.text = @"Stopped";
-    _playbackTimerLabel.text = [NSString stringWithFormat:@"00:00 / %@", _timerLabel.text];
+    _playbackTimerLabel.text = [NSString stringWithFormat:@"00:00 / %@", [Tools convertSecondsToTimeStringWithSeconds:(int)_recordedSoundLength]];
     [_timer invalidate];
 }
 
@@ -296,11 +320,7 @@ extern Session *session;
     //[Tools hideLoader];
 }
 
--(IBAction)existingFilePlayback
-{
-    //[Tools showLoader];
-    [self startPlayback];
-}
+
 
 -(IBAction)playback{
 
@@ -325,6 +345,7 @@ extern Session *session;
 
 -(void)recordingInterval{
     
+   
     NSMethodSignature *sgn = [self methodSignatureForSelector:@selector(onTick:)];
     NSInvocation *inv = [NSInvocation invocationWithMethodSignature: sgn];
     [inv setTarget: self];
@@ -336,18 +357,39 @@ extern Session *session;
     
     NSRunLoop *runner = [NSRunLoop currentRunLoop];
     [runner addTimer: t forMode: NSDefaultRunLoopMode];
-    
+
     
     
   
 }
 
 -(void)onTick:(NSTimer *)timer {
+    [self updateRecordLabel];
+
+}
+
+-(void)updateRecordLabel{
+    int maxCount = 15;
+    if([[session client] premium] ==1){
+        maxCount = 30;
+        
+    }
+    int secondsFromMax = maxCount - (int)secondsSinceStart;
+    if(secondsFromMax == -1)
+    {
+        [self stopRecording];
+        if([[session client] premium] == 0 && [[session tutor] accountType] <=1){
+            
+            [self showUpgradeAlert];
+        }
+    }
     
-    secondsSinceStart++;
-    NSInteger seconds = secondsSinceStart % 60;
-    NSInteger minutes = (secondsSinceStart / 60) % 60;
-    NSInteger hours = secondsSinceStart / (60 * 60);
+    
+    
+    
+    NSInteger seconds = secondsFromMax % 60;
+    NSInteger minutes = (secondsFromMax / 60) % 60;
+    NSInteger hours = secondsFromMax / (60 * 60);
     NSString *result = nil;
     if (hours > 0) {
         result = [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)hours, (long)minutes, (long)seconds];
@@ -356,13 +398,20 @@ extern Session *session;
         result = [NSString stringWithFormat:@"%02ld:%02ld", (long)minutes, (long)seconds];
     }
     _timerLabel.text = result;
+    _recordedSoundLength = (int)secondsSinceStart;
+    NSLog(@"%ld", (long)secondsSinceStart);
+    secondsSinceStart++;
 }
 
 
 -(void)updatePlayback:(NSTimer *)timer {
+    [self updatePlaybackFunction];
     
+}
+
+-(void)updatePlaybackFunction{
     if (_PlaybackSecondsSinceStart < secondsSinceStart) {
-        _PlaybackSecondsSinceStart++;
+        
         NSInteger seconds = _PlaybackSecondsSinceStart % 60;
         NSInteger minutes = (_PlaybackSecondsSinceStart / 60) % 60;
         NSInteger hours = _PlaybackSecondsSinceStart / (60 * 60);
@@ -373,7 +422,8 @@ extern Session *session;
         else {
             result = [NSString stringWithFormat:@"%02ld:%02ld", (long)minutes, (long)seconds];
         }
-        _playbackTimerLabel.text = [NSString stringWithFormat:@"%@ / %@", result, _timerLabel.text];
+        _playbackTimerLabel.text = [NSString stringWithFormat:@"%@ / %@", result, [ Tools convertSecondsToTimeStringWithSeconds:(int)_recordedSoundLength]];
+        _PlaybackSecondsSinceStart++;
     }
     else{
         [self stopPlayback];
