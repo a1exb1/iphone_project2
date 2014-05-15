@@ -144,17 +144,22 @@ NSMutableArray *audioNotes;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40;
+    if ([[[_lesson Notes] objectAtIndex:section ] count] == 0) {
+        return 0;
+    }
+    else{
+        return 40;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionName;
     if(section == 0){
-        sectionName = @"This lesson";
+        sectionName = @"Notes for this lesson";
     }
     else{
-        sectionName = @"All other lessons";
+        sectionName = @"Notes not for this lesson";
     }
     return sectionName;
 }
