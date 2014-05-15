@@ -34,9 +34,16 @@ NSMutableArray *audioNotes;
 
 -(void)jsonRequestGetData
 {
-    _data = [[NSMutableData alloc]init];
+    _thisLessonNotes = [[NSMutableArray alloc] init];
+    _otherLessonNotes =[[NSMutableArray alloc] init];
     _lessons = [[NSArray alloc] init];
-    [_lesson setNotes:_lessons];
+    
+    _notes = [[NSMutableArray alloc]init];
+    [_notes addObject:_thisLessonNotes];
+    [_notes addObject:_otherLessonNotes];
+    [_lesson setNotes:_notes];
+
+    _data = [[NSMutableData alloc]init];
     [_mainTableView reloadData];
     
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=notesbystudent&id=%li&lessonid=%li&ts=%f", [[_lesson student] studentID], [_lesson LessonID], [[NSDate date] timeIntervalSince1970]];
@@ -103,23 +110,23 @@ NSMutableArray *audioNotes;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[_lesson Notes] count];
+    return [[[_lesson Notes] objectAtIndex:section ] count];
 }
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return [[_lesson Notes] count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
                                                   reuseIdentifier:@"cell"];
     
-    cell.textLabel.text = [[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"EnteredDate"];
+    cell.textLabel.text = [[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"EnteredDate"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     UIImage *image;
     
-    if([[[_lessons objectAtIndex:indexPath.row] objectForKey:@"NoteType"] isEqualToString:@"text"]) {
+    if([[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"NoteType"] isEqualToString:@"text"]) {
         image =  [UIImage imageNamed:@"text_note_icon_large.png"];
     }
     else {
@@ -136,25 +143,41 @@ NSMutableArray *audioNotes;
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 40;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    if(section == 0){
+        sectionName = @"This lesson";
+    }
+    else{
+        sectionName = @"All other lessons";
+    }
+    return sectionName;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if([[[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"NoteType"] isEqualToString:@"text"]){
+    if([[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"NoteType"] isEqualToString:@"text"]){
         TextNote *note = [[TextNote alloc] init];
-        [note setStudentNoteID: [[[[_lesson Notes]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"] intValue]];
+        [note setStudentNoteID: [[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"] intValue]];
         //[note setNote: [[[_lesson Notes]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"]];
-        [note setNote: [[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"Note"]];
+        [note setNote: [[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"Note"]];
         
         textNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"textNoteView"];
         view.note = note;
         view.lesson = _lesson;
         [self.navigationController pushViewController:view animated:YES];
     }
-    else if([[[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"NoteType"] isEqualToString:@"audio"]){
+    else if([[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"NoteType"] isEqualToString:@"audio"]){
 
         AudioNote *note = [[AudioNote alloc] init];
-        [note setFilename: [[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"Filename"]];
+        [note setFilename: [[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"FileName"]];
         
-        [note setStudentNoteID: [[[[_lesson Notes]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"] intValue]];
+        [note setStudentNoteID: [[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"] intValue]];
         //[note setNote: [[[_lesson Notes]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"]];
         //[note setNote: [[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"Note"]];
         
@@ -183,9 +206,28 @@ NSMutableArray *audioNotes;
     [_mainTableView.pullToRefreshView stopAnimating];
     [Tools hideLoader];
     
+    _thisLessonNotes = [[NSMutableArray alloc] init];
+    _otherLessonNotes =[[NSMutableArray alloc] init];
+    
     _lessons = [[NSArray alloc] init];
     _lessons = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
-    [_lesson setNotes:_lessons];
+    
+    
+    for (int c=0; c < [_lessons count]; c++) {
+        if ([[[_lessons objectAtIndex:c] objectForKey:@"LessonID"] isEqualToString:[NSString stringWithFormat:@"%li", [_lesson LessonID]]]) {
+            [_thisLessonNotes addObject:[_lessons objectAtIndex:c]];
+        }
+        else{
+            [_otherLessonNotes addObject:[_lessons objectAtIndex:c]];
+        }
+    }
+    
+    _notes = [[NSMutableArray alloc]init];
+    [_notes addObject:_thisLessonNotes];
+    [_notes addObject:_otherLessonNotes];
+    [_lesson setNotes:_notes];
+    
+    NSLog(@"%@", [_lesson Notes]);
     
     [self.mainTableView reloadData];
     

@@ -12,8 +12,12 @@
 
 @interface NotesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property NSMutableArray *notes;
 @property Lesson *lesson;
 @property NSArray *lessons;
 @property NSMutableData *data;
+
+@property NSMutableArray *thisLessonNotes;
+@property NSMutableArray *otherLessonNotes;
 
 @end
