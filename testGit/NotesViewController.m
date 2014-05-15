@@ -36,7 +36,7 @@ NSMutableArray *audioNotes;
 {
     _thisLessonNotes = [[NSMutableArray alloc] init];
     _otherLessonNotes =[[NSMutableArray alloc] init];
-    _lessons = [[NSArray alloc] init];
+    _allNotes = [[NSArray alloc] init];
     
     _notes = [[NSMutableArray alloc]init];
     [_notes addObject:_thisLessonNotes];
@@ -169,7 +169,6 @@ NSMutableArray *audioNotes;
     if([[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"NoteType"] isEqualToString:@"text"]){
         TextNote *note = [[TextNote alloc] init];
         [note setStudentNoteID: [[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"] intValue]];
-        //[note setNote: [[[_lesson Notes]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"]];
         [note setNote: [[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"Note"]];
         
         textNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"textNoteView"];
@@ -183,11 +182,7 @@ NSMutableArray *audioNotes;
         [note setFilename: [[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"FileName"]];
         
         [note setStudentNoteID: [[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"] intValue]];
-        //[note setNote: [[[_lesson Notes]objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"]];
-        //[note setNote: [[[_lesson Notes] objectAtIndex:indexPath.row] objectForKey:@"Note"]];
-        
-        
-        
+
         audioNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"audioNoteView"];
         view.note = note;
         view.lesson = _lesson;
@@ -214,16 +209,15 @@ NSMutableArray *audioNotes;
     _thisLessonNotes = [[NSMutableArray alloc] init];
     _otherLessonNotes =[[NSMutableArray alloc] init];
     
-    _lessons = [[NSArray alloc] init];
-    _lessons = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+    _allNotes = [[NSArray alloc] init];
+    _allNotes = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
-    
-    for (int c=0; c < [_lessons count]; c++) {
-        if ([[[_lessons objectAtIndex:c] objectForKey:@"LessonID"] isEqualToString:[NSString stringWithFormat:@"%li", [_lesson LessonID]]]) {
-            [_thisLessonNotes addObject:[_lessons objectAtIndex:c]];
+    for (int c=0; c < [_allNotes count]; c++) {
+        if ([[[_allNotes objectAtIndex:c] objectForKey:@"LessonID"] isEqualToString:[NSString stringWithFormat:@"%li", [_lesson LessonID]]]) {
+            [_thisLessonNotes addObject:[_allNotes objectAtIndex:c]];
         }
         else{
-            [_otherLessonNotes addObject:[_lessons objectAtIndex:c]];
+            [_otherLessonNotes addObject:[_allNotes objectAtIndex:c]];
         }
     }
     
@@ -232,11 +226,9 @@ NSMutableArray *audioNotes;
     [_notes addObject:_otherLessonNotes];
     [_lesson setNotes:_notes];
     
-    NSLog(@"%@", [_lesson Notes]);
-    
     [self.mainTableView reloadData];
     
-    if ([_lessons count] == 0) {
+    if ([_allNotes count] == 0) {
         _statusLbl.hidden = NO;
         _statusLbl.text = @"No notes";
         [_mainTableView setBackgroundColor:[UIColor whiteColor]];

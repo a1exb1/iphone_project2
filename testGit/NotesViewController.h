@@ -14,7 +14,7 @@
 
 @property NSMutableArray *notes;
 @property Lesson *lesson;
-@property NSArray *lessons;
+@property NSArray *allNotes;
 @property NSMutableData *data;
 
 @property NSMutableArray *thisLessonNotes;
