@@ -9,6 +9,7 @@
 #import "audioNoteViewController.h"
 #import "Tools.h"
 
+
 @interface audioNoteViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *playbackWebView;
 
@@ -61,7 +62,25 @@ extern Session *session;
     else{
 
     }
+    
+}
 
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    if ([[session client] premium] == 1) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:1];
+        [banner setAlpha:1];
+        [UIView commitAnimations];
+    }
+    
+}
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1];
+    [banner setAlpha:0];
+    [UIView commitAnimations];
 }
 
 -(void)deleteNote
@@ -377,6 +396,7 @@ extern Session *session;
     if(secondsFromMax == -1)
     {
         [self stopRecording];
+        // premium 0 = premium account & 1 = standard account
         if([[session client] premium] == 1 && [[session tutor] accountType] <=1){
             
             [self showUpgradeAlert];

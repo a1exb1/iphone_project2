@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Lesson.h"
+#import "NVDate.h"
 
 @interface indexViewController : UIViewController 
 
 @property Lesson *lesson;
 @property bool loaded;
+@property NSTimer *timer;
 
 @end

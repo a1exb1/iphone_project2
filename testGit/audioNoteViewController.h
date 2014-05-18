@@ -13,8 +13,9 @@
 #import "AudioNote.h"
 #import "Session.h"
 #import "Tools.h"
+#import <iAd/iAd.h>
 
-@interface audioNoteViewController : UIViewController <AVAudioRecorderDelegate, UIWebViewDelegate>
+@interface audioNoteViewController : UIViewController <AVAudioRecorderDelegate, UIWebViewDelegate, ADBannerViewDelegate>
 
 @property Lesson *lesson;
 @property (weak, nonatomic) IBOutlet UILabel *recStateLabel;

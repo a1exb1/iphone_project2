@@ -95,6 +95,19 @@
     
     UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithTitle:@"Re-schedule" style:UIBarButtonItemStyleBordered target:self action:@selector(editLesson)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:editBtn, nil]];
+    
+    //timer
+    _timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTick:) userInfo:nil repeats:YES];
+    
+}
+
+-(void)onTick:(NSTimer *)timer {
+    NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
+    NVDate *nowDate = [[NVDate alloc] initUsingToday];
+    
+    
+    
+
 }
 
 -(void)editLesson{

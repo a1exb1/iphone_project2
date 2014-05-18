@@ -90,6 +90,7 @@
 		E4A36089191F87C900F5221B /* AudioNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A36088191F87C900F5221B /* AudioNote.m */; };
 		E4A3608C191F87E900F5221B /* TextNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3608B191F87E900F5221B /* TextNote.m */; };
 		E4AA7DDB191D501D00269A3F /* NVDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AA7DDA191D501D00269A3F /* NVDate.m */; };
+		E4AAC5EF192966CE008E0BD7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4AAC5EE192966CE008E0BD7 /* iAd.framework */; };
 		E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8860191AC6F0001A70D9 /* audio_icon.png */; };
 		E4AB8863191AC725001A70D9 /* audio_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8862191AC725001A70D9 /* audio_icon_large.png */; };
 		E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8866191ACA3F001A70D9 /* text_note_icon_large.png */; };
@@ -249,6 +250,7 @@
 		E4A3608B191F87E900F5221B /* TextNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextNote.m; sourceTree = "<group>"; };
 		E4AA7DD9191D501D00269A3F /* NVDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDate.h; sourceTree = "<group>"; };
 		E4AA7DDA191D501D00269A3F /* NVDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVDate.m; sourceTree = "<group>"; };
+		E4AAC5EE192966CE008E0BD7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		E4AB8860191AC6F0001A70D9 /* audio_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_icon.png; sourceTree = "<group>"; };
 		E4AB8862191AC725001A70D9 /* audio_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_icon_large.png; sourceTree = "<group>"; };
 		E4AB8866191ACA3F001A70D9 /* text_note_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text_note_icon_large.png; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4AAC5EF192966CE008E0BD7 /* iAd.framework in Frameworks */,
 				792B23B41920BC3E00CAE285 /* AVFoundation.framework in Frameworks */,
 				795B6413190E460A00A2C879 /* QuartzCore.framework in Frameworks */,
 				E40DF280190017E100E1332A /* CoreGraphics.framework in Frameworks */,
@@ -506,6 +509,7 @@
 		E40DF27C190017E100E1332A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E4AAC5EE192966CE008E0BD7 /* iAd.framework */,
 				792B23B31920BC3E00CAE285 /* AVFoundation.framework */,
 				795B6412190E460A00A2C879 /* QuartzCore.framework */,
 				E40DF27D190017E100E1332A /* Foundation.framework */,
