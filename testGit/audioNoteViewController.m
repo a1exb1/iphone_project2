@@ -38,10 +38,9 @@ extern Session *session;
     _playButton.hidden = YES;
     _recStateLabel.text = @"Not Recording";
     _playbackTimerLabel.hidden = YES;
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-   
-    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     [audioSession setActive:YES error:nil];
     
     self.title = @"Record audio note";
@@ -370,7 +369,7 @@ extern Session *session;
 
 -(void)updateRecordLabel{
     int maxCount = 15;
-    if([[session client] premium] ==1){
+    if([[session client] premium] ==0){
         maxCount = 30;
         
     }
@@ -378,7 +377,7 @@ extern Session *session;
     if(secondsFromMax == -1)
     {
         [self stopRecording];
-        if([[session client] premium] == 0 && [[session tutor] accountType] <=1){
+        if([[session client] premium] == 1 && [[session tutor] accountType] <=1){
             
             [self showUpgradeAlert];
         }

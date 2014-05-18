@@ -92,6 +92,8 @@ extern Session *session;
 
     _clientArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
+    NSLog(@"%@", _clientArray);
+    
     if ([_clientArray count] == 0) {
         UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection error" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [errorView show];
