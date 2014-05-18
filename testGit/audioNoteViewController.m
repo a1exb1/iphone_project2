@@ -12,6 +12,7 @@
 
 @interface audioNoteViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *playbackWebView;
+@property (weak, nonatomic) IBOutlet ADBannerView *banner;
 
 @end
 
@@ -63,10 +64,19 @@ extern Session *session;
 
     }
     
+    //this bit maybe unnecessary
+    if ([[session client] premium] == 1) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:1];
+        [self.banner setAlpha:1];
+        [UIView commitAnimations];
+    }
+    
 }
 
 -(void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
+    NSLog(@"%d", [[session client] premium]);
     if ([[session client] premium] == 1) {
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:1];

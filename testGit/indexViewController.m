@@ -101,13 +101,34 @@
     
 }
 
+
+
+- (NSDate *)beginningOfDay:(NSDate *)date {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    NSDateComponents *comp = [calendar components:unitFlags fromDate:date];
+    
+    return [calendar dateFromComponents:comp];
+}
+
 -(void)onTick:(NSTimer *)timer {
     NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
     NVDate *nowDate = [[NVDate alloc] initUsingToday];
     
+    if ([[self beginningOfDay:lessonDate.date] isEqualToDate:[self beginningOfDay:nowDate.date]])
+    {
+        NSTimeInterval secondsBetween = [lessonDate.date timeIntervalSinceDate:nowDate.date];
+        NSLog(@"Lesson in: %@", [Tools convertSecondsToTimeStringWithSeconds:secondsBetween]);
+    }
     
     
 
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [_timer invalidate];
 }
 
 -(void)editLesson{

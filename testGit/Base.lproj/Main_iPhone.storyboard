@@ -1051,6 +1051,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="banner" destination="ARC-2X-zh1" id="o56-5z-e7Y"/>
                         <outlet property="existingPlayBtn" destination="VQl-CR-xJO" id="O7I-Le-nvw"/>
                         <outlet property="playButton" destination="smZ-1f-KZA" id="X25-8o-jay"/>
                         <outlet property="playbackTimerLabel" destination="YdR-fg-g7E" id="O7n-ho-gEP"/>
