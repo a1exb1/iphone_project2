@@ -317,6 +317,7 @@ NSArray *daysOfWeekArray;
     NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
     [_lessonSender setDateTime:[formatter dateFromString:str]];
+    [_lessonSender setDuration:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]];
     
     Course *course = [[Course alloc]init];
     [course setCourseID:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"CourseID"] intValue]];

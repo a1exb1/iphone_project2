@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *studentNameLbl;
 
 @property (weak, nonatomic) IBOutlet UIButton *lessonNotesBtn;
+@property (weak, nonatomic) IBOutlet UILabel *dayDescLbl;
 
 @end
 
@@ -85,9 +86,23 @@
     [_lesson setHour:(int)lessonDateHour];
     [_lesson setMins:(int)lessonDateMinute];
     
-    _lessonTimeLbl.text = [NSString stringWithFormat:@"%02d:%02d",
+//    NSString *dayDesc = @"";
+//    NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
+//    NVDate *nowDate = [[NVDate alloc] initUsingToday];
+//    
+//    if ([[self beginningOfDay:lessonDate.date] isEqualToDate:[self beginningOfDay:nowDate.date]])
+//    {
+//        dayDesc = @"Today";
+//    }
+//    else{
+//        dayDesc = [NSString stringWithFormat:@"%li.%li.%li", (long)lessonDate.day, (long)lessonDate.month, (long)lessonDate.year];
+//    }
+    
+    //_dayDescLbl.text = dayDesc;
+    _lessonTimeLbl.text = [NSString stringWithFormat:@"%02d:%02d (%02d mins)",
                            [_lesson Hour],
-                           [_lesson Mins]
+                           [_lesson Mins],
+                           [_lesson Duration]
                            ];
     
     _courseNameLbl.text = [[_lesson course] name];
@@ -97,6 +112,7 @@
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:editBtn, nil]];
     
     //timer
+    [self updateLabels];
     _timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTick:) userInfo:nil repeats:YES];
     
 }
@@ -113,16 +129,58 @@
 }
 
 -(void)onTick:(NSTimer *)timer {
+    [self updateLabels];
+    
+
+}
+
+-(void)updateLabels{
     NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
+    NSDate *lessonEnd = lessonDate.date;
+    lessonEnd = [lessonDate.date dateByAddingTimeInterval:[_lesson Duration]*60];
     NVDate *nowDate = [[NVDate alloc] initUsingToday];
+    
+    NSString *dayDesc;
     
     if ([[self beginningOfDay:lessonDate.date] isEqualToDate:[self beginningOfDay:nowDate.date]])
     {
-        NSTimeInterval secondsBetween = [lessonDate.date timeIntervalSinceDate:nowDate.date];
-        NSLog(@"Lesson in: %@", [Tools convertSecondsToTimeStringWithSeconds:secondsBetween]);
+        dayDesc = @"Today";
+        _dayDescLbl.text = dayDesc;
+        
+        if (
+            ([nowDate.date timeIntervalSinceReferenceDate] > [lessonDate.date timeIntervalSinceReferenceDate]) &&
+            ([nowDate.date timeIntervalSinceReferenceDate] < [lessonEnd timeIntervalSinceReferenceDate])
+            ) {
+            dayDesc = @"Now";
+            _dayDescLbl.text = dayDesc;
+        }
+        
+        else if ([nowDate.date timeIntervalSinceReferenceDate] > [lessonDate.date timeIntervalSinceReferenceDate]) {
+            dayDesc = @"Earlier";
+            _dayDescLbl.text = dayDesc;
+        }
+        
+        else if ([nowDate.date timeIntervalSinceReferenceDate] < [lessonEnd timeIntervalSinceReferenceDate]) {
+            NSTimeInterval secondsBetween = [lessonDate.date timeIntervalSinceDate:nowDate.date];
+            dayDesc = [NSString stringWithFormat:@"Lesson in: %@", [Tools convertSecondsToTimeStringWithSeconds:secondsBetween]];
+            _dayDescLbl.text = dayDesc;
+        }
+        
+        
+        //        if ([nowDate.date compare:lessonDate.date] == NSOrderedDescending &&
+        //            [nowDate.date compare:lessonEnd] == NSOrderedAscending) {
+        //
+        //        }
+        //        else if([[nowDate.date laterDate:lessonEnd] isEqualToDate:lessonEnd]){
+        //            NSTimeInterval secondsBetween = [lessonDate.date timeIntervalSinceDate:nowDate.date];
+        //            NSLog(@"Lesson in: %@", [Tools convertSecondsToTimeStringWithSeconds:secondsBetween]);
+        //        }
+        
     }
-    
-    
+    else{
+        dayDesc = [NSString stringWithFormat:@"%li.%li.%li", (long)lessonDate.day, (long)lessonDate.month, (long)lessonDate.year];
+        _dayDescLbl.text = dayDesc;
+    }
 
 }
 
