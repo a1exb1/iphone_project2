@@ -93,6 +93,9 @@
 		E4AAC5EF192966CE008E0BD7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4AAC5EE192966CE008E0BD7 /* iAd.framework */; };
 		E4AAC5F11929FF03008E0BD7 /* glyphicons_054_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AAC5F01929FF03008E0BD7 /* glyphicons_054_clock.png */; };
 		E4AAC5F31929FFA1008E0BD7 /* glyphicons_442_earphone.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AAC5F21929FFA1008E0BD7 /* glyphicons_442_earphone.png */; };
+		E4AAC5F5192A2DA3008E0BD7 /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AAC5F4192A2DA2008E0BD7 /* SplashScreen.png */; };
+		E4AAC5F7192A2E35008E0BD7 /* SplashScreenLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AAC5F6192A2E35008E0BD7 /* SplashScreenLogin.png */; };
+		E4AAC5F9192A2E86008E0BD7 /* SplashScreenLogin2.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AAC5F8192A2E86008E0BD7 /* SplashScreenLogin2.png */; };
 		E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8860191AC6F0001A70D9 /* audio_icon.png */; };
 		E4AB8863191AC725001A70D9 /* audio_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8862191AC725001A70D9 /* audio_icon_large.png */; };
 		E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8866191ACA3F001A70D9 /* text_note_icon_large.png */; };
@@ -255,6 +258,9 @@
 		E4AAC5EE192966CE008E0BD7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		E4AAC5F01929FF03008E0BD7 /* glyphicons_054_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_054_clock.png; sourceTree = "<group>"; };
 		E4AAC5F21929FFA1008E0BD7 /* glyphicons_442_earphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_442_earphone.png; sourceTree = "<group>"; };
+		E4AAC5F4192A2DA2008E0BD7 /* SplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashScreen.png; sourceTree = "<group>"; };
+		E4AAC5F6192A2E35008E0BD7 /* SplashScreenLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashScreenLogin.png; sourceTree = "<group>"; };
+		E4AAC5F8192A2E86008E0BD7 /* SplashScreenLogin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashScreenLogin2.png; sourceTree = "<group>"; };
 		E4AB8860191AC6F0001A70D9 /* audio_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_icon.png; sourceTree = "<group>"; };
 		E4AB8862191AC725001A70D9 /* audio_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_icon_large.png; sourceTree = "<group>"; };
 		E4AB8866191ACA3F001A70D9 /* text_note_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text_note_icon_large.png; sourceTree = "<group>"; };
@@ -545,6 +551,9 @@
 		E40DF284190017E100E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4AAC5F8192A2E86008E0BD7 /* SplashScreenLogin2.png */,
+				E4AAC5F6192A2E35008E0BD7 /* SplashScreenLogin.png */,
+				E4AAC5F4192A2DA2008E0BD7 /* SplashScreen.png */,
 				E4AAC5F21929FFA1008E0BD7 /* glyphicons_442_earphone.png */,
 				E4AAC5F01929FF03008E0BD7 /* glyphicons_054_clock.png */,
 				E4D231EB1921368000E5797B /* login_portrait.jpg */,
@@ -766,6 +775,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4AAC5F7192A2E35008E0BD7 /* SplashScreenLogin.png in Resources */,
 				79A8685E191B93EC00AA4058 /* DSLCalendar-nextMonth@2x.png in Resources */,
 				792B23D51921090F00CAE285 /* logout.png in Resources */,
 				79A86859191B93EC00AA4058 /* DSLCalendarMonthSelectorView.xib in Resources */,
@@ -780,6 +790,7 @@
 				792B23C31920D04C00CAE285 /* Button Record Active.png in Resources */,
 				79A86856191B93EC00AA4058 /* DSLCalendarDayCalloutView.xib in Resources */,
 				79A86869191B93EC00AA4058 /* DSLCalendarDaySelection.png in Resources */,
+				E4AAC5F5192A2DA3008E0BD7 /* SplashScreen.png in Resources */,
 				E401DAD119195D4100A05318 /* glyphicons_137_cogwheels.png in Resources */,
 				79A86867191B93EC00AA4058 /* DSLCalendarDaySelection-right.png in Resources */,
 				79A86870191B950900AA4058 /* SelectDateViewController.xib in Resources */,
@@ -788,6 +799,7 @@
 				792B23D71921098500CAE285 /* Button White Remove.png in Resources */,
 				E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */,
 				79A8686A191B93EC00AA4058 /* DSLCalendarDaySelection@2x.png in Resources */,
+				E4AAC5F9192A2E86008E0BD7 /* SplashScreenLogin2.png in Resources */,
 				E401DAD5191AA0AF00A05318 /* glyphicons_029_notes_2.png in Resources */,
 				E4ADAB58191CC94F00C1AC5A /* glyphicons_043_group.png in Resources */,
 				79A86865191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png in Resources */,

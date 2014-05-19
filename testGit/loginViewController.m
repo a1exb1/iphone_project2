@@ -27,13 +27,16 @@ extern Session *session;
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
    
-    _bgImg.image = [UIImage imageNamed:@"login_portrait.jpg"];
+    //_bgImg.image = [UIImage imageNamed:@"login_portrait.jpg"];
+    _bgImg.image = [UIImage imageNamed:@"SplashScreenLogin2.png"];
     
 }
 

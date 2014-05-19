@@ -24,6 +24,9 @@ Session *session;
     session = [[Session alloc] init];
     [session setClient:client];
     [session setTutor:tutor];
+    
+    sleep(2);
+    
     return YES;
 }
 							
