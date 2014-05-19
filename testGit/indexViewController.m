@@ -99,11 +99,6 @@
 //    }
     
     //_dayDescLbl.text = dayDesc;
-    _lessonTimeLbl.text = [NSString stringWithFormat:@"%02d:%02d (%02d mins)",
-                           [_lesson Hour],
-                           [_lesson Mins],
-                           [_lesson Duration]
-                           ];
     
     _courseNameLbl.text = [[_lesson course] name];
     _studentNameLbl.text = [[_lesson student] name];
@@ -148,6 +143,13 @@
     
     NSString *dayDesc;
     
+    _lessonTimeLbl.text = [NSString stringWithFormat:@"%02d:%02d - %@ (%02d mins)",
+                           [_lesson Hour],
+                           [_lesson Mins],
+                           [Tools convertDateToTimeStringWithDate:lessonEnd],
+                           [_lesson Duration]
+                           ];
+    
     if ([[self beginningOfDay:lessonDate.date] isEqualToDate:[self beginningOfDay:nowDate.date]])
     {
         dayDesc = @"Today";
@@ -174,18 +176,9 @@
         }
         
         
-        //        if ([nowDate.date compare:lessonDate.date] == NSOrderedDescending &&
-        //            [nowDate.date compare:lessonEnd] == NSOrderedAscending) {
-        //
-        //        }
-        //        else if([[nowDate.date laterDate:lessonEnd] isEqualToDate:lessonEnd]){
-        //            NSTimeInterval secondsBetween = [lessonDate.date timeIntervalSinceDate:nowDate.date];
-        //            NSLog(@"Lesson in: %@", [Tools convertSecondsToTimeStringWithSeconds:secondsBetween]);
-        //        }
-        
     }
     else{
-        dayDesc = [NSString stringWithFormat:@"%li.%li.%li", (long)lessonDate.day, (long)lessonDate.month, (long)lessonDate.year];
+        dayDesc = [NSString stringWithFormat:@"%02ld.%02ld.%li", (long)lessonDate.day, (long)lessonDate.month, (long)lessonDate.year];
         _dayDescLbl.text = dayDesc;
     }
 

@@ -32,5 +32,6 @@
 
 +(NSString *) convertSecondsToTimeStringWithSeconds: (int) seconds;
 +(NSString *) convertSecondsToTimeStringWithSecondsWithAlternativeStyle: (int) seconds;
++(NSString *) convertDateToTimeStringWithDate: (NSDate *) date;
 
 @end

@@ -91,6 +91,8 @@
 		E4A3608C191F87E900F5221B /* TextNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3608B191F87E900F5221B /* TextNote.m */; };
 		E4AA7DDB191D501D00269A3F /* NVDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AA7DDA191D501D00269A3F /* NVDate.m */; };
 		E4AAC5EF192966CE008E0BD7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4AAC5EE192966CE008E0BD7 /* iAd.framework */; };
+		E4AAC5F11929FF03008E0BD7 /* glyphicons_054_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AAC5F01929FF03008E0BD7 /* glyphicons_054_clock.png */; };
+		E4AAC5F31929FFA1008E0BD7 /* glyphicons_442_earphone.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AAC5F21929FFA1008E0BD7 /* glyphicons_442_earphone.png */; };
 		E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8860191AC6F0001A70D9 /* audio_icon.png */; };
 		E4AB8863191AC725001A70D9 /* audio_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8862191AC725001A70D9 /* audio_icon_large.png */; };
 		E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AB8866191ACA3F001A70D9 /* text_note_icon_large.png */; };
@@ -251,6 +253,8 @@
 		E4AA7DD9191D501D00269A3F /* NVDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDate.h; sourceTree = "<group>"; };
 		E4AA7DDA191D501D00269A3F /* NVDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVDate.m; sourceTree = "<group>"; };
 		E4AAC5EE192966CE008E0BD7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		E4AAC5F01929FF03008E0BD7 /* glyphicons_054_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_054_clock.png; sourceTree = "<group>"; };
+		E4AAC5F21929FFA1008E0BD7 /* glyphicons_442_earphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_442_earphone.png; sourceTree = "<group>"; };
 		E4AB8860191AC6F0001A70D9 /* audio_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_icon.png; sourceTree = "<group>"; };
 		E4AB8862191AC725001A70D9 /* audio_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_icon_large.png; sourceTree = "<group>"; };
 		E4AB8866191ACA3F001A70D9 /* text_note_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text_note_icon_large.png; sourceTree = "<group>"; };
@@ -541,6 +545,8 @@
 		E40DF284190017E100E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4AAC5F21929FFA1008E0BD7 /* glyphicons_442_earphone.png */,
+				E4AAC5F01929FF03008E0BD7 /* glyphicons_054_clock.png */,
 				E4D231EB1921368000E5797B /* login_portrait.jpg */,
 				E4D231E91921367900E5797B /* login_landscape.jpg */,
 				E4D231E7192134C400E5797B /* Note Sticky.png */,
@@ -778,6 +784,7 @@
 				79A86867191B93EC00AA4058 /* DSLCalendarDaySelection-right.png in Resources */,
 				79A86870191B950900AA4058 /* SelectDateViewController.xib in Resources */,
 				792B23B81920CAE200CAE285 /* glyphicons_175_stop.png in Resources */,
+				E4AAC5F11929FF03008E0BD7 /* glyphicons_054_clock.png in Resources */,
 				792B23D71921098500CAE285 /* Button White Remove.png in Resources */,
 				E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */,
 				79A8686A191B93EC00AA4058 /* DSLCalendarDaySelection@2x.png in Resources */,
@@ -799,6 +806,7 @@
 				79A8685F191B93EC00AA4058 /* DSLCalendar-previousMonth.png in Resources */,
 				E4D231E6192133FB00E5797B /* Document Checklist.png in Resources */,
 				792B23B91920CAE200CAE285 /* glyphicons_173_play.png in Resources */,
+				E4AAC5F31929FFA1008E0BD7 /* glyphicons_442_earphone.png in Resources */,
 				E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */,
 				E40DF291190017E100E1332A /* Main_iPhone.storyboard in Resources */,
 				E4D231E8192134C400E5797B /* Note Sticky.png in Resources */,

@@ -29,4 +29,6 @@
 
 @property int counter;
 
+@property int NSURLType;
+
 @end

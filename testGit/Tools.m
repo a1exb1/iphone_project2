@@ -180,4 +180,16 @@ UIActivityIndicatorView *indicator;
     return result;
 }
 
++(NSString *) convertDateToTimeStringWithDate:(NSDate *)date;
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //[dateFormatter setDateFormat:@""];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:date];
+    NSInteger hour = [components hour];
+    NSInteger minute = [components minute];
+    
+    return [NSString stringWithFormat:@"%02ld:%02ld", (long)hour, (long)minute];
+}
+
 @end

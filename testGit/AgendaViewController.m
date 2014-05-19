@@ -45,6 +45,7 @@ NSArray *daysOfWeekArray;
 -(void)jsonRequestGetAgenda
 {
     self.navigationItem.rightBarButtonItem = nil;
+    _NSURLType = 0;
     
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     _statusLbl.hidden = YES;
@@ -358,19 +359,27 @@ NSArray *daysOfWeekArray;
     [_mainTableView.pullToRefreshView stopAnimating];
     [Tools hideLoader];
     
-    _lessons = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];    
-    [self.mainTableView reloadData];
+    //GET DATA
+    if (_NSURLType == 0) {
+        _lessons = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+        [self.mainTableView reloadData];
 
-    if ([_lessons count] == 0) {
-        _statusLbl.hidden = NO;
-        _statusLbl.text = @"No lessons";
-        [_mainTableView setBackgroundColor:[UIColor whiteColor]];
+        if ([_lessons count] == 0) {
+            _statusLbl.hidden = NO;
+            _statusLbl.text = @"No lessons";
+            [_mainTableView setBackgroundColor:[UIColor whiteColor]];
         
+        }
+        else{
+            [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+            _statusLbl.hidden = YES;
+            [self finishedAttendance];
+        }
     }
-    else{
-        [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-        _statusLbl.hidden = YES;
-        [self finishedAttendance];
+    
+    //SAVE ATTENDANCE
+    else if (_NSURLType == 1) {
+        
     }
 }
 
