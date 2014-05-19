@@ -126,6 +126,7 @@ int goToSlots = 0;
     [_studentCourseLinkSender setStudent:[[Student alloc] init]];
     [[_studentCourseLinkSender student] setStudentID:[cell.accessibilityValue intValue]];
     [[_studentCourseLinkSender student] setName:cell.textLabel.text];
+    [[_studentCourseLinkSender student] setPhone:[[_students objectAtIndex:indexPath.row] objectForKey:@"Phone"]];
     
     //StudentCourseLink *studentCourseLink = [[StudentCourseLink alloc]init];
     //[studentCourseLink setCourseID:cID];

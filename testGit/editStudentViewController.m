@@ -43,6 +43,7 @@ extern Session *session;
     [super viewDidLoad];
         // Do any additional setup after loading the view.
     self.studentNameTextField.text = [NSString stringWithFormat:@"%@", [[_studentCourseLink student] name]];
+    self.studentPhoneTextField.text = [NSString stringWithFormat:@"%@", [[_studentCourseLink student] phone]];
     
     _saveResultArray = [[NSArray alloc] init];
     

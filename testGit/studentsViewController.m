@@ -121,6 +121,14 @@ NSMutableArray *viewStudentsArray;
     
     [_mainTableView addPullToRefreshWithActionHandler:^{
         //[Tools showLoader];
+        viewStudentsArray = [[NSMutableArray alloc] init];        
+        _data = [[NSMutableData alloc]init];
+        _uniqueWeekdays = [[NSArray alloc]init];
+        _students = [[NSArray alloc] init];
+        [_mainTableView reloadData];
+        _statusLbl.hidden = YES;
+
+        
         NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbycourse&id=%li&ts=%f", [_course courseID], [[NSDate date] timeIntervalSince1970]];
         NSURL *url = [NSURL URLWithString: urlString];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -185,10 +193,10 @@ NSMutableArray *viewStudentsArray;
         [link setMins:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Minute"] intValue]];
         [link setDuration:[[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]];
         
-        
         Student *student = [[Student alloc] init];
         [student setStudentID: [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentID"] intValue]];
         [student setName: [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
+        
         [link setStudent:student];
         
         NSLog(@"delete %li", [link StudentCourseLinkID]);
@@ -279,6 +287,7 @@ NSMutableArray *viewStudentsArray;
     Student *student = [[Student alloc] init];
     [student setStudentID: [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentID"] intValue]];
     [student setName: [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
+    [student setPhone: [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Telephone"]];
     
     [_studentCourseLinkSender setStudent:student];
     _sender = 0;
