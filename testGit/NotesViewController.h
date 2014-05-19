@@ -21,4 +21,5 @@
 @property NSMutableArray *thisLessonNotes;
 @property NSMutableArray *otherLessonNotes;
 
+
 @end

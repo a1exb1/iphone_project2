@@ -880,6 +880,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" id="UNm-Pa-xXx"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="attendenceControl" destination="pTi-JA-ckX" id="3jj-tY-vXs"/>
                         <outlet property="box1View" destination="M4n-3n-rci" id="HVr-yu-tfL"/>
                         <outlet property="courseNameLbl" destination="yF6-8P-7uR" id="VFp-tY-vyp"/>
                         <outlet property="courseView" destination="qBM-Zj-kNL" id="kKU-1l-ziu"/>

@@ -25,6 +25,8 @@
 @property Student *student;
 @property Tutor *tutor;
 
+@property int status;
+
 @property NSArray *Notes;
 
 @end

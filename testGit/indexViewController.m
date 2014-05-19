@@ -86,6 +86,8 @@
     [_lesson setHour:(int)lessonDateHour];
     [_lesson setMins:(int)lessonDateMinute];
     
+    _attendenceControl.selectedSegmentIndex = [_lesson status];
+    
 //    NSString *dayDesc = @"";
 //    NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
 //    NVDate *nowDate = [[NVDate alloc] initUsingToday];
@@ -113,7 +115,56 @@
     [self updateLabels];
     _timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTick:) userInfo:nil repeats:YES];
     
+    [_attendenceControl addTarget:self
+                           action:@selector(changeAttendence:)
+                 forControlEvents:UIControlEventValueChanged];
+    
 }
+
+-(void)changeAttendence:(UISegmentedControl *)segment
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=lessonstatus&id=%li&status=%li&ts=%f", [_lesson LessonID], (long)[segment selectedSegmentIndex], [[NSDate date] timeIntervalSince1970]];
+    
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+-(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
+{
+    _data = [[NSMutableData alloc]init];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
+{
+    [_data appendData:theData];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    _resultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+    
+    if ([_resultArray count] == 0) {
+
+    }
+    else{
+
+    }
+
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [errorView show];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
+}
+
 
 -(void)goToNotes
 {

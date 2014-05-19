@@ -31,4 +31,6 @@
 
 @property int NSURLType;
 
+@property bool keepEditing;
+
 @end

@@ -157,7 +157,9 @@ NSArray *daysOfWeekArray;
     formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEEEddMMMM" options:0 locale:nil];
     
     //NSLog(@"%@", [formatter stringFromDate:self.datePicker.selectedDate]);
-        
+    
+    [self finishedAttendanceBtn];
+    
     if(_counter > 0){
         _dayDate = self.datePicker.selectedDate;
         [Tools showLoader];
@@ -204,7 +206,7 @@ NSArray *daysOfWeekArray;
 }
 
 -(void)prepareForAttendance{
-    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishedAttendance)];
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishedAttendanceBtn)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:doneBtn, nil]];
     _editing = true;
     [_mainTableView reloadData];
@@ -232,12 +234,25 @@ NSArray *daysOfWeekArray;
 
 
 -(void)finishedAttendance{
-    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"glyphicons_029_notes_2.png"] style:UIBarButtonItemStylePlain target:self action:@selector(prepareForAttendance)];
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:editBtn, nil]];
-    _editing = false;
+    
+    
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishedAttendanceBtn)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:doneBtn, nil]];
+    if(_keepEditing == NO)
+    {
+        _editing = false;
+        UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"glyphicons_029_notes_2.png"] style:UIBarButtonItemStylePlain target:self action:@selector(prepareForAttendance)];
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:editBtn, nil]];
+    }
+    
     [_mainTableView reloadData];
     
     //[_mainTableView setEditing:NO animated:YES];
+}
+
+-(void)finishedAttendanceBtn{
+    _keepEditing = NO;
+    [self finishedAttendance];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -284,19 +299,37 @@ NSArray *daysOfWeekArray;
     NSInteger lessonDateHour = [components hour];
     NSInteger lessonDateMinute = [components minute];
     
-    cell.textLabel.text = [[_lessons objectAtIndex:indexPath.row] objectForKey:@"StudentName"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ at %02li:%02li (%i minutes)",
-                                 [[_lessons objectAtIndex:indexPath.row] objectForKey:@"CourseName"],
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", [[_lessons objectAtIndex:indexPath.row] objectForKey:@"StudentName"], [[_lessons objectAtIndex:indexPath.row] objectForKey:@"CourseName"]];
+    
+    NSString *statusString = @"";
+    if ([[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Status"] intValue] == 0) {
+        statusString = @"Attendence not set";
+    }
+    else if ([[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Status"] intValue] == 1) {
+        statusString = @"Cancelled";
+    }
+    else if ([[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Status"] intValue] == 2) {
+        statusString = @"Absent";
+    }
+    else if ([[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Status"] intValue] == 3) {
+        statusString = @"Present";
+    }
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%02li:%02li (%i min) • %@",
                                  (long)lessonDateHour,
                                  (long)lessonDateMinute,
-                                 [[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]
+                                 [[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue],
+                                 statusString
                                  ];
     
     if(_editing){
         UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
         cell.accessoryView = switchview;
         switchview.tag = indexPath.row;
-        [switchview addTarget:self action:@selector(updateSwitchAtIndexPath) forControlEvents:UIControlEventTouchUpInside];
+        [switchview addTarget:self action:@selector(updateSwitchAtIndexPath:) forControlEvents:UIControlEventTouchUpInside];
+        if ([[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Status"] intValue] == 3) {
+            [switchview setOn:YES animated:NO];
+        }
     }
     else{
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -305,8 +338,24 @@ NSArray *daysOfWeekArray;
     return cell;
 }
 
-- (void)updateSwitchAtIndexPath{
-
+- (void)updateSwitchAtIndexPath: (UISwitch *) attendenceSwitch{
+    int status = 2;
+    if ([attendenceSwitch isOn]) {
+        status = 3;
+    }
+    
+    [Tools showLoader];
+    _NSURLType = 1;
+    _keepEditing = YES;
+    
+    long lessonid = [[[_lessons objectAtIndex:attendenceSwitch.tag] objectForKey:@"LessonID"] intValue] ;
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=lessonstatus&id=%li&status=%i&ts=%f", lessonid, status, [[NSDate date] timeIntervalSince1970]];
+    
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -319,6 +368,7 @@ NSArray *daysOfWeekArray;
     [formatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
     [_lessonSender setDateTime:[formatter dateFromString:str]];
     [_lessonSender setDuration:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]];
+    [_lessonSender setStatus:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Status"] intValue]];
     
     Course *course = [[Course alloc]init];
     [course setCourseID:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"CourseID"] intValue]];
@@ -373,13 +423,16 @@ NSArray *daysOfWeekArray;
         else{
             [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
             _statusLbl.hidden = YES;
-            [self finishedAttendance];
+            //if(_keepEditing == NO)
+            //{
+                [self finishedAttendance];
+            //}
         }
     }
     
     //SAVE ATTENDANCE
     else if (_NSURLType == 1) {
-        
+        [self jsonRequestGetAgenda];
     }
 }
 

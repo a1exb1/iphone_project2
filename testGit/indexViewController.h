@@ -10,11 +10,17 @@
 #import "Lesson.h"
 #import "NVDate.h"
 
-@interface indexViewController : UIViewController 
+@interface indexViewController : UIViewController
 
 @property Lesson *lesson;
 @property bool loaded;
 @property NSTimer *timer;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *attendenceControl;
+
+@property NSArray *resultArray;
+@property NSMutableData *data;
+
 
 
 @end
