@@ -38,6 +38,8 @@ extern Session *session;
     //_bgImg.image = [UIImage imageNamed:@"login_portrait.jpg"];
     _bgImg.image = [UIImage imageNamed:@"SplashScreenLogin2.png"];
     
+        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:nil theme:@"dark"];
+    
 }
 
 - (void)didReceiveMemoryWarning
