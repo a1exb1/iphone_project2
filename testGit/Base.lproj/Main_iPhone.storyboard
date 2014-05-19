@@ -853,7 +853,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pTi-JA-ckX">
-                                <rect key="frame" x="20" y="378" width="280" height="29"/>
+                                <rect key="frame" x="20" y="336" width="280" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Not set"/>
@@ -863,24 +863,12 @@
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mark attendence" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUT-aY-bKh">
-                                <rect key="frame" x="20" y="349" width="130" height="21"/>
+                                <rect key="frame" x="20" y="307" width="130" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E77-Zq-TnX">
-                                <rect key="frame" x="90" y="304" width="140" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Lesson notes" image="Note Sticky.png">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="lessonNotes:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="BAS-TN-Q81"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.89894153229999996" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -892,7 +880,6 @@
                         <outlet property="courseNameLbl" destination="yF6-8P-7uR" id="VFp-tY-vyp"/>
                         <outlet property="courseView" destination="qBM-Zj-kNL" id="kKU-1l-ziu"/>
                         <outlet property="dayDescLbl" destination="0HC-Gm-nZM" id="sTS-62-gnu"/>
-                        <outlet property="lessonNotesBtn" destination="E77-Zq-TnX" id="dFA-2E-o1o"/>
                         <outlet property="lessonTimeLbl" destination="0iA-BL-Rsm" id="apB-ey-dwl"/>
                         <outlet property="studentNameLbl" destination="v7Z-zZ-xXG" id="hwp-z0-Vwb"/>
                         <outlet property="studentView" destination="1wc-M9-J69" id="lhv-SG-cpD"/>
@@ -1408,7 +1395,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     <resources>
         <image name="Button Play.png" width="32" height="32"/>
         <image name="Button Record.png" width="32" height="32"/>
-        <image name="Note Sticky.png" width="32" height="32"/>
         <image name="glyphicons_029_notes_2.png" width="20" height="27"/>
         <image name="glyphicons_043_group.png" width="35" height="22"/>
         <image name="glyphicons_045_calendar.png" width="23" height="24"/>

@@ -31,5 +31,6 @@
 //+ (NSDate *)getLastDayOfTheWeekFromDate:(NSDate *)givenDate;
 
 +(NSString *) convertSecondsToTimeStringWithSeconds: (int) seconds;
++(NSString *) convertSecondsToTimeStringWithSecondsWithAlternativeStyle: (int) seconds;
 
 @end

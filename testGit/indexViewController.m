@@ -108,8 +108,11 @@
     _courseNameLbl.text = [[_lesson course] name];
     _studentNameLbl.text = [[_lesson student] name];
     
-    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithTitle:@"Re-schedule" style:UIBarButtonItemStyleBordered target:self action:@selector(editLesson)];
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:editBtn, nil]];
+    self.navigationController.navigationBar.barTintColor = [UIColor greenColor];
+    self.navigationController.navigationBar.tintColor = [UIColor greenColor];
+    
+    UIBarButtonItem *noteBtn = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"Note Sticky.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] style:UIBarButtonItemStylePlain  target:self action:@selector(goToNotes)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:noteBtn, nil]];
     
     //timer
     [self updateLabels];
@@ -117,7 +120,12 @@
     
 }
 
-
+-(void)goToNotes
+{
+    NotesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allNotesView"];
+    view.lesson = _lesson;
+    [self.navigationController pushViewController:view animated:YES];
+}
 
 - (NSDate *)beginningOfDay:(NSDate *)date {
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -130,8 +138,6 @@
 
 -(void)onTick:(NSTimer *)timer {
     [self updateLabels];
-    
-
 }
 
 -(void)updateLabels{
@@ -151,7 +157,8 @@
             ([nowDate.date timeIntervalSinceReferenceDate] > [lessonDate.date timeIntervalSinceReferenceDate]) &&
             ([nowDate.date timeIntervalSinceReferenceDate] < [lessonEnd timeIntervalSinceReferenceDate])
             ) {
-            dayDesc = @"Now";
+            NSTimeInterval secondsBetween = [lessonEnd timeIntervalSinceDate:nowDate.date];
+            dayDesc = [NSString stringWithFormat:@"Now (%@ left)", [Tools convertSecondsToTimeStringWithSecondsWithAlternativeStyle:secondsBetween]];
             _dayDescLbl.text = dayDesc;
         }
         
@@ -162,7 +169,7 @@
         
         else if ([nowDate.date timeIntervalSinceReferenceDate] < [lessonEnd timeIntervalSinceReferenceDate]) {
             NSTimeInterval secondsBetween = [lessonDate.date timeIntervalSinceDate:nowDate.date];
-            dayDesc = [NSString stringWithFormat:@"Lesson in: %@", [Tools convertSecondsToTimeStringWithSeconds:secondsBetween]];
+            dayDesc = [NSString stringWithFormat:@"Lesson in: %@", [Tools convertSecondsToTimeStringWithSecondsWithAlternativeStyle:secondsBetween]];
             _dayDescLbl.text = dayDesc;
         }
         
@@ -193,14 +200,6 @@
     
 }
 
-
--(IBAction)lessonNotes:(id)sender
-{
-        NotesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allNotesView"];
-        view.lesson = _lesson;
-    
-        [self.navigationController pushViewController:view animated:YES];
-}
 
 -(IBAction)call:(id)sender
 {
