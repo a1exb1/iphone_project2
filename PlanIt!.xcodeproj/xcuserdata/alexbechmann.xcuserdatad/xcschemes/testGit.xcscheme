@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E40DF279190017E100E1332A"
                BuildableName = "testGit.app"
-               BlueprintName = "testGit"
-               ReferencedContainer = "container:testGit.xcodeproj">
+               BlueprintName = "PlanIt!"
+               ReferencedContainer = "container:PlanIt!.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E40DF29D190017E200E1332A"
                BuildableName = "testGitTests.xctest"
-               BlueprintName = "testGitTests"
-               ReferencedContainer = "container:testGit.xcodeproj">
+               BlueprintName = "PlanIt!Tests"
+               ReferencedContainer = "container:PlanIt!.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E40DF279190017E100E1332A"
             BuildableName = "testGit.app"
-            BlueprintName = "testGit"
-            ReferencedContainer = "container:testGit.xcodeproj">
+            BlueprintName = "PlanIt!"
+            ReferencedContainer = "container:PlanIt!.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E40DF279190017E100E1332A"
             BuildableName = "testGit.app"
-            BlueprintName = "testGit"
-            ReferencedContainer = "container:testGit.xcodeproj">
+            BlueprintName = "PlanIt!"
+            ReferencedContainer = "container:PlanIt!.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E40DF279190017E100E1332A"
             BuildableName = "testGit.app"
-            BlueprintName = "testGit"
-            ReferencedContainer = "container:testGit.xcodeproj">
+            BlueprintName = "PlanIt!"
+            ReferencedContainer = "container:PlanIt!.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
