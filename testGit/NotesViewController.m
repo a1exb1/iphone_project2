@@ -87,6 +87,9 @@ NSMutableArray *audioNotes;
 {
     audioNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"audioNoteView"];
     view.lesson = _lesson;
+    AudioNote *note = [[AudioNote alloc] init];
+    [note setLessonID:[_lesson LessonID]];
+    view.note = note;
     [self.navigationController pushViewController:view animated:YES];
 }
 
@@ -94,6 +97,9 @@ NSMutableArray *audioNotes;
 {
     textNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"textNoteView"];
     view.lesson = _lesson;
+    TextNote *note = [[TextNote alloc] init];
+    [note setLessonID:[_lesson LessonID]];
+    view.note = note;
     [self.navigationController pushViewController:view animated:YES];
 }
 
@@ -170,6 +176,7 @@ NSMutableArray *audioNotes;
         TextNote *note = [[TextNote alloc] init];
         [note setStudentNoteID: [[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"] intValue]];
         [note setNote: [[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"Note"]];
+        [note setLessonID: [[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"LessonID"] intValue]];
         
         textNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"textNoteView"];
         view.note = note;
@@ -179,10 +186,12 @@ NSMutableArray *audioNotes;
     else if([[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"NoteType"] isEqualToString:@"audio"]){
 
         AudioNote *note = [[AudioNote alloc] init];
-        [note setFilename: [[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"FileName"]];
+        [note setFilename: [[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"Filename"]];
         
         [note setStudentNoteID: [[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"StudentNoteID"] intValue]];
 
+        [note setLessonID: [[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"LessonID"] intValue]];
+        
         audioNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"audioNoteView"];
         view.note = note;
         view.lesson = _lesson;
@@ -225,6 +234,8 @@ NSMutableArray *audioNotes;
     [_notes addObject:_thisLessonNotes];
     [_notes addObject:_otherLessonNotes];
     [_lesson setNotes:_notes];
+    
+    NSLog(@"%@", _notes);
     
     [self.mainTableView reloadData];
     

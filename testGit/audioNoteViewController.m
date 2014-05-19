@@ -162,7 +162,7 @@ extern Session *session;
     
     NSURL *pathURL = _tempRecFile; //File Url of the recorded audio
     NSData *voiceData = [[NSData alloc]initWithContentsOfURL:pathURL];
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/upload_file.aspx?datatype=audio&id=0&studentid=%li&lessonid=%li&clientid=%li", [[_lesson student] studentID], [_lesson LessonID], [[session client] clientID]]; // You can give your url here for uploading
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/upload_file.aspx?datatype=audio&id=0&studentid=%li&lessonid=%li&clientid=%li", [[_lesson student] studentID], [_note lessonID], [[session client] clientID]]; // You can give your url here for uploading
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
     
     @try

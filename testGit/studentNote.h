@@ -12,6 +12,7 @@
 
 @property long studentNoteID;
 @property long studentID;
+@property long lessonID;
 
 @property NSDate *enteredDate;
 
