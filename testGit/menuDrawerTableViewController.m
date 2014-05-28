@@ -44,7 +44,7 @@ extern Session *session;
     NSArray *cell = [[NSArray alloc]initWithObjects:@"clock_80.png", @"Agenda", @"", nil];
     [section addObject:cell];
     
-    cell = [[NSArray alloc]initWithObjects:@"Calendar-Date-03-80.png", @"Calender", @"Change lessons", nil];
+    cell = [[NSArray alloc]initWithObjects:@"Calendar-Date-03-80.png", @"Calender", @"", nil];
     [section addObject:cell];
 
     [_cellsArray addObject:section];
@@ -56,12 +56,20 @@ extern Session *session;
     
     cell = [[NSArray alloc]initWithObjects:@"User-Time80(2).png", @"Lesson slots", @"", nil];
     [section addObject:cell];
+    
+    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add multiple lessons", @"between selected dates", nil];
+    [section addObject:cell];
+    
+    cell = [[NSArray alloc]initWithObjects:@"minus_80_black.png", @"Clear lessons", @"between selected dates", nil];
+    [section addObject:cell];
+    [_cellsArray addObject:section];
+    
+    section =[[NSMutableArray alloc ]init];
 
     cell = [[NSArray alloc]initWithObjects:@"logout_80.png", @"Logout", @"", nil];
     [section addObject:cell];
     [_cellsArray addObject:section];
 
-    
     UIImage *image = [UIImage imageNamed:@"menu-background.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     
@@ -70,7 +78,7 @@ extern Session *session;
     tableView.separatorColor = [UIColor clearColor];
     
     [self.tableView setContentInset:UIEdgeInsetsMake(15,0,0,0)];
-
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -181,7 +189,7 @@ extern Session *session;
     if(section == 0){
         sectionName = @"View";
     }
-    else{
+    else if(section == 1){
         sectionName = @"Manage";
     }
     return sectionName;

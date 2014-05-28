@@ -42,9 +42,17 @@ NSTimer *timer;
     
     if([self.slidingViewController.topViewController.accessibilityValue isEqualToString:@"calenderView"]){
         self.title = @"Calender";
+        
+        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
+        
+        self.navigationController.navigationBar.barTintColor = [Tools colorFromHexString:@"#b44444"];
+        self.navigationController.navigationBar.tintColor = [UIColor whiteColor] ;
+        [self.navigationController.navigationBar setTranslucent:YES];
     }
     else{
         self.title = @"Lesson slots";
+        
+        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground:[Tools colorFromHexString:@"#57AD2C"] andTint:[UIColor whiteColor] theme:@"dark"];
     }
     
 }

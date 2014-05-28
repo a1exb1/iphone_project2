@@ -51,6 +51,9 @@
 		79A86870191B950900AA4058 /* SelectDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A8686F191B950900AA4058 /* SelectDateViewController.xib */; };
 		79F7196319124FA100C644A1 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F7196219124FA100C644A1 /* Course.m */; };
 		E4001B3819191DD40063B066 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4001B3719191DD40063B066 /* AgendaViewController.m */; };
+		E4005D08193639CA006C6ABB /* minus_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D07193639CA006C6ABB /* minus_80.png */; };
+		E4005D0A193639D5006C6ABB /* add_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D09193639D5006C6ABB /* add_80.png */; };
+		E4005D0C19363CEA006C6ABB /* minus_80_black.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D0B19363CEA006C6ABB /* minus_80_black.png */; };
 		E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DACC19195D1A00A05318 /* glyphicons_045_calendar.png */; };
 		E401DAD019195D4100A05318 /* glyphicons_136_cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DACE19195D4100A05318 /* glyphicons_136_cogwheel.png */; };
 		E401DAD119195D4100A05318 /* glyphicons_137_cogwheels.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DACF19195D4100A05318 /* glyphicons_137_cogwheels.png */; };
@@ -77,9 +80,7 @@
 		E40DF2A2190017E200E1332A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF281190017E100E1332A /* UIKit.framework */; };
 		E40DF2AA190017E200E1332A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E40DF2A8190017E200E1332A /* InfoPlist.strings */; };
 		E40DF2AC190017E200E1332A /* testGitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E40DF2AB190017E200E1332A /* testGitTests.m */; };
-		E421C9711934DD3800FA039A /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E421C9701934DD3800FA039A /* testViewController.m */; };
 		E421C97519350D9500FA039A /* menuDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E421C97419350D9500FA039A /* menuDrawerTableViewController.m */; };
-		E421C9781935173500FA039A /* lessonSlotsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E421C9771935173500FA039A /* lessonSlotsViewController.m */; };
 		E421C97A1935199000FA039A /* menu-background.png in Resources */ = {isa = PBXBuildFile; fileRef = E421C9791935199000FA039A /* menu-background.png */; };
 		E42B6112190C0582001B977F /* studentNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E42B6111190C0582001B977F /* studentNote.m */; };
 		E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430DCB4190A582B00DEFD7C /* coursesViewController.m */; };
@@ -207,6 +208,9 @@
 		79F7196219124FA100C644A1 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
 		E4001B3619191DD40063B066 /* AgendaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaViewController.h; sourceTree = "<group>"; };
 		E4001B3719191DD40063B066 /* AgendaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaViewController.m; sourceTree = "<group>"; };
+		E4005D07193639CA006C6ABB /* minus_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus_80.png; sourceTree = "<group>"; };
+		E4005D09193639D5006C6ABB /* add_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_80.png; sourceTree = "<group>"; };
+		E4005D0B19363CEA006C6ABB /* minus_80_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus_80_black.png; sourceTree = "<group>"; };
 		E401DACC19195D1A00A05318 /* glyphicons_045_calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_045_calendar.png; sourceTree = "<group>"; };
 		E401DACE19195D4100A05318 /* glyphicons_136_cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_136_cogwheel.png; sourceTree = "<group>"; };
 		E401DACF19195D4100A05318 /* glyphicons_137_cogwheels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_137_cogwheels.png; sourceTree = "<group>"; };
@@ -244,12 +248,8 @@
 		E40DF2A7190017E200E1332A /* PlanIt!Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlanIt!Tests-Info.plist"; sourceTree = "<group>"; };
 		E40DF2A9190017E200E1332A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E40DF2AB190017E200E1332A /* testGitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testGitTests.m; sourceTree = "<group>"; };
-		E421C96F1934DD3800FA039A /* testViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
-		E421C9701934DD3800FA039A /* testViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
 		E421C97319350D9500FA039A /* menuDrawerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuDrawerTableViewController.h; sourceTree = "<group>"; };
 		E421C97419350D9500FA039A /* menuDrawerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menuDrawerTableViewController.m; sourceTree = "<group>"; };
-		E421C9761935173500FA039A /* lessonSlotsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lessonSlotsViewController.h; sourceTree = "<group>"; };
-		E421C9771935173500FA039A /* lessonSlotsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lessonSlotsViewController.m; sourceTree = "<group>"; };
 		E421C9791935199000FA039A /* menu-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-background.png"; sourceTree = "<group>"; };
 		E42B6110190C0582001B977F /* studentNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = studentNote.h; sourceTree = "<group>"; };
 		E42B6111190C0582001B977F /* studentNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = studentNote.m; sourceTree = "<group>"; };
@@ -627,10 +627,6 @@
 			isa = PBXGroup;
 			children = (
 				E421C97219350D6500FA039A /* menu */,
-				E421C96F1934DD3800FA039A /* testViewController.h */,
-				E421C9701934DD3800FA039A /* testViewController.m */,
-				E421C9761935173500FA039A /* lessonSlotsViewController.h */,
-				E421C9771935173500FA039A /* lessonSlotsViewController.m */,
 				E4F676FF1935F9D900208991 /* calenderViewController.h */,
 				E4F677001935F9D900208991 /* calenderViewController.m */,
 			);
@@ -729,6 +725,9 @@
 		E4AF260A193563F4006366D9 /* flaticons.net */ = {
 			isa = PBXGroup;
 			children = (
+				E4005D0B19363CEA006C6ABB /* minus_80_black.png */,
+				E4005D09193639D5006C6ABB /* add_80.png */,
+				E4005D07193639CA006C6ABB /* minus_80.png */,
 				E4F676FD19356CB100208991 /* people_80.png */,
 				E4F676FB19356CA900208991 /* clock_80.png */,
 				E4AF2619193568D4006366D9 /* logout_80.png */,
@@ -885,6 +884,7 @@
 				79A86856191B93EC00AA4058 /* DSLCalendarDayCalloutView.xib in Resources */,
 				79A86869191B93EC00AA4058 /* DSLCalendarDaySelection.png in Resources */,
 				E4AAC5F5192A2DA3008E0BD7 /* SplashScreen.png in Resources */,
+				E4005D0C19363CEA006C6ABB /* minus_80_black.png in Resources */,
 				E401DAD119195D4100A05318 /* glyphicons_137_cogwheels.png in Resources */,
 				79A86867191B93EC00AA4058 /* DSLCalendarDaySelection-right.png in Resources */,
 				79A86870191B950900AA4058 /* SelectDateViewController.xib in Resources */,
@@ -895,6 +895,7 @@
 				792B23D71921098500CAE285 /* Button White Remove.png in Resources */,
 				E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */,
 				79A8686A191B93EC00AA4058 /* DSLCalendarDaySelection@2x.png in Resources */,
+				E4005D0A193639D5006C6ABB /* add_80.png in Resources */,
 				E4AF260719353AA6006366D9 /* Calendar_80x80_A.png in Resources */,
 				E4AAC5F9192A2E86008E0BD7 /* SplashScreenLogin2.png in Resources */,
 				E401DAD5191AA0AF00A05318 /* glyphicons_029_notes_2.png in Resources */,
@@ -909,6 +910,7 @@
 				792B23C01920D04C00CAE285 /* Button White Stop.png in Resources */,
 				79A86861191B93EC00AA4058 /* DSLCalendarDayCallout.png in Resources */,
 				E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */,
+				E4005D08193639CA006C6ABB /* minus_80.png in Resources */,
 				E421C97A1935199000FA039A /* menu-background.png in Resources */,
 				E40DF299190017E100E1332A /* Images.xcassets in Resources */,
 				E4D231EA1921367900E5797B /* login_landscape.jpg in Resources */,
@@ -987,7 +989,6 @@
 				E4F96CCC19097D49008D75D6 /* tutors2ViewController.m in Sources */,
 				E4C1C98319167BA90068A10D /* UIScrollView+SVPullToRefresh.m in Sources */,
 				E40DF28A190017E100E1332A /* main.m in Sources */,
-				E421C9711934DD3800FA039A /* testViewController.m in Sources */,
 				E407AD6C191D620200F22977 /* DIDatepicker.m in Sources */,
 				E4C1C9781915A4450068A10D /* NavigationBarTitleWithSubtitleView.m in Sources */,
 				E407AD74191E963E00F22977 /* audioNoteViewController.m in Sources */,
@@ -1028,7 +1029,6 @@
 				E4C1C969191459F70068A10D /* editTutorsListViewController.m in Sources */,
 				E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */,
 				E4494DD7190D851E00585CB8 /* Tutor.m in Sources */,
-				E421C9781935173500FA039A /* lessonSlotsViewController.m in Sources */,
 				79481D64192364EC00674ACF /* AddLessonsViewController.m in Sources */,
 				E421C97519350D9500FA039A /* menuDrawerTableViewController.m in Sources */,
 				E4AB8873191D4199001A70D9 /* MZDayPickerCell.m in Sources */,
