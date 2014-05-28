@@ -99,13 +99,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="5ld-g2-sgm"/>
+                    <navigationItem key="navigationItem" id="5ld-g2-sgm">
+                        <barButtonItem key="leftBarButtonItem" image="42-photos.png" id="jeU-dC-D6y">
+                            <connections>
+                                <segue destination="Lo5-Lz-MSG" kind="unwind" unwindAction="unwindToMenuViewController:" id="Tqd-Nm-oor"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="statusLbl" destination="J6X-ja-s4n" id="8i8-iY-dPA"/>
                         <outlet property="webView" destination="B0G-9u-W2d" id="kRm-dP-n5h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="czF-gY-gNo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Lo5-Lz-MSG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1913" y="751"/>
         </scene>
@@ -136,7 +143,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="gtJ-R7-xnR"/>
+                    <navigationItem key="navigationItem" id="gtJ-R7-xnR">
+                        <barButtonItem key="leftBarButtonItem" image="42-photos.png" id="FNx-ha-cQV">
+                            <connections>
+                                <segue destination="Lo5-Lz-MSG" kind="unwind" unwindAction="unwindToMenuViewController:" id="0OH-Ag-BpH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="statusLbl" destination="3pX-CT-Tin" id="mXa-jr-2Er"/>
                         <outlet property="webView" destination="rkQ-hS-dFF" id="cGJ-j8-8Rs"/>
@@ -196,7 +209,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Agenda" id="c3F-1A-gtM">
-                        <barButtonItem key="leftBarButtonItem" image="glyphicons_045_calendar.png" id="PiG-5W-NLg">
+                        <barButtonItem key="leftBarButtonItem" image="83-calendar.png" id="PiG-5W-NLg">
                             <connections>
                                 <action selector="selectDate" destination="PVH-rQ-QqE" id="VIs-NU-sbh"/>
                             </connections>
@@ -550,10 +563,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="42-photos.png" width="22" height="24"/>
+        <image name="83-calendar.png" width="23" height="25"/>
         <image name="Button Play.png" width="32" height="32"/>
         <image name="Button Record.png" width="32" height="32"/>
         <image name="glyphicons_029_notes_2.png" width="20" height="27"/>
-        <image name="glyphicons_045_calendar.png" width="23" height="24"/>
         <image name="glyphicons_054_clock.png" width="24" height="24"/>
         <image name="glyphicons_239_albums.png" width="28" height="18"/>
         <image name="glyphicons_442_earphone.png" width="24" height="24"/>

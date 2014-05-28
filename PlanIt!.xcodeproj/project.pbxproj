@@ -54,6 +54,13 @@
 		E4005D08193639CA006C6ABB /* minus_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D07193639CA006C6ABB /* minus_80.png */; };
 		E4005D0A193639D5006C6ABB /* add_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D09193639D5006C6ABB /* add_80.png */; };
 		E4005D0C19363CEA006C6ABB /* minus_80_black.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D0B19363CEA006C6ABB /* minus_80_black.png */; };
+		E4005D0F19369AE6006C6ABB /* menu-75.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D0E19369AE6006C6ABB /* menu-75.png */; };
+		E4005D1119369B2D006C6ABB /* menu-50.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D1019369B2D006C6ABB /* menu-50.png */; };
+		E4005D1319369B53006C6ABB /* menu-32.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D1219369B53006C6ABB /* menu-32.png */; };
+		E4005D1619369D9F006C6ABB /* 54-lock.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D1519369D9F006C6ABB /* 54-lock.png */; };
+		E4005D181936A0A7006C6ABB /* 54-unlock.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D171936A0A7006C6ABB /* 54-unlock.png */; };
+		E4005D1C1936A1C2006C6ABB /* 83-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D1B1936A1C2006C6ABB /* 83-calendar.png */; };
+		E4005D1E1936A2F0006C6ABB /* 42-photos.png in Resources */ = {isa = PBXBuildFile; fileRef = E4005D1D1936A2F0006C6ABB /* 42-photos.png */; };
 		E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DACC19195D1A00A05318 /* glyphicons_045_calendar.png */; };
 		E401DAD019195D4100A05318 /* glyphicons_136_cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DACE19195D4100A05318 /* glyphicons_136_cogwheel.png */; };
 		E401DAD119195D4100A05318 /* glyphicons_137_cogwheels.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DACF19195D4100A05318 /* glyphicons_137_cogwheels.png */; };
@@ -211,6 +218,13 @@
 		E4005D07193639CA006C6ABB /* minus_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus_80.png; sourceTree = "<group>"; };
 		E4005D09193639D5006C6ABB /* add_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_80.png; sourceTree = "<group>"; };
 		E4005D0B19363CEA006C6ABB /* minus_80_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus_80_black.png; sourceTree = "<group>"; };
+		E4005D0E19369AE6006C6ABB /* menu-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-75.png"; sourceTree = "<group>"; };
+		E4005D1019369B2D006C6ABB /* menu-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-50.png"; sourceTree = "<group>"; };
+		E4005D1219369B53006C6ABB /* menu-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-32.png"; sourceTree = "<group>"; };
+		E4005D1519369D9F006C6ABB /* 54-lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "54-lock.png"; sourceTree = "<group>"; };
+		E4005D171936A0A7006C6ABB /* 54-unlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "54-unlock.png"; sourceTree = "<group>"; };
+		E4005D1B1936A1C2006C6ABB /* 83-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "83-calendar.png"; sourceTree = "<group>"; };
+		E4005D1D1936A2F0006C6ABB /* 42-photos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-photos.png"; sourceTree = "<group>"; };
 		E401DACC19195D1A00A05318 /* glyphicons_045_calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_045_calendar.png; sourceTree = "<group>"; };
 		E401DACE19195D4100A05318 /* glyphicons_136_cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_136_cogwheel.png; sourceTree = "<group>"; };
 		E401DACF19195D4100A05318 /* glyphicons_137_cogwheels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_137_cogwheels.png; sourceTree = "<group>"; };
@@ -485,6 +499,27 @@
 			name = login;
 			sourceTree = "<group>";
 		};
+		E4005D0D19369AD8006C6ABB /* IOS icons */ = {
+			isa = PBXGroup;
+			children = (
+				E4005D1219369B53006C6ABB /* menu-32.png */,
+				E4005D1019369B2D006C6ABB /* menu-50.png */,
+				E4005D0E19369AE6006C6ABB /* menu-75.png */,
+			);
+			name = "IOS icons";
+			sourceTree = "<group>";
+		};
+		E4005D1419369D91006C6ABB /* Glyphish */ = {
+			isa = PBXGroup;
+			children = (
+				E4005D1D1936A2F0006C6ABB /* 42-photos.png */,
+				E4005D1B1936A1C2006C6ABB /* 83-calendar.png */,
+				E4005D171936A0A7006C6ABB /* 54-unlock.png */,
+				E4005D1519369D9F006C6ABB /* 54-lock.png */,
+			);
+			name = Glyphish;
+			sourceTree = "<group>";
+		};
 		E407AD67191D620200F22977 /* DIDatepicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -564,6 +599,8 @@
 		E40DF284190017E100E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4005D1419369D91006C6ABB /* Glyphish */,
+				E4005D0D19369AD8006C6ABB /* IOS icons */,
 				E4AF260A193563F4006366D9 /* flaticons.net */,
 				E4AF2601193538BE006366D9 /* must_have_icon_set */,
 				E421C9791935199000FA039A /* menu-background.png */,
@@ -871,12 +908,15 @@
 				79A8685E191B93EC00AA4058 /* DSLCalendar-nextMonth@2x.png in Resources */,
 				792B23D51921090F00CAE285 /* logout.png in Resources */,
 				79A86859191B93EC00AA4058 /* DSLCalendarMonthSelectorView.xib in Resources */,
+				E4005D1119369B2D006C6ABB /* menu-50.png in Resources */,
 				79A86864191B93EC00AA4058 /* DSLCalendarDaySelection-left@2x.png in Resources */,
 				E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */,
+				E4005D1C1936A1C2006C6ABB /* 83-calendar.png in Resources */,
 				E40DF294190017E100E1332A /* Main_iPad.storyboard in Resources */,
 				E4F676FC19356CA900208991 /* clock_80.png in Resources */,
 				792B23C41920D04C00CAE285 /* Button Record.png in Resources */,
 				792B23C11920D04C00CAE285 /* Button Pause.png in Resources */,
+				E4005D1319369B53006C6ABB /* menu-32.png in Resources */,
 				E4D231EC1921368000E5797B /* login_portrait.jpg in Resources */,
 				79A86860191B93EC00AA4058 /* DSLCalendar-previousMonth@2x.png in Resources */,
 				792B23C21920D04C00CAE285 /* Button Play.png in Resources */,
@@ -894,9 +934,11 @@
 				E4AAC5F11929FF03008E0BD7 /* glyphicons_054_clock.png in Resources */,
 				792B23D71921098500CAE285 /* Button White Remove.png in Resources */,
 				E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */,
+				E4005D181936A0A7006C6ABB /* 54-unlock.png in Resources */,
 				79A8686A191B93EC00AA4058 /* DSLCalendarDaySelection@2x.png in Resources */,
 				E4005D0A193639D5006C6ABB /* add_80.png in Resources */,
 				E4AF260719353AA6006366D9 /* Calendar_80x80_A.png in Resources */,
+				E4005D1619369D9F006C6ABB /* 54-lock.png in Resources */,
 				E4AAC5F9192A2E86008E0BD7 /* SplashScreenLogin2.png in Resources */,
 				E401DAD5191AA0AF00A05318 /* glyphicons_029_notes_2.png in Resources */,
 				E4ADAB58191CC94F00C1AC5A /* glyphicons_043_group.png in Resources */,
@@ -907,6 +949,7 @@
 				E401DAD019195D4100A05318 /* glyphicons_136_cogwheel.png in Resources */,
 				792B23BA1920CAE200CAE285 /* glyphicons_169_record.png in Resources */,
 				E401DAD319195D8600A05318 /* glyphicons_239_albums.png in Resources */,
+				E4005D0F19369AE6006C6ABB /* menu-75.png in Resources */,
 				792B23C01920D04C00CAE285 /* Button White Stop.png in Resources */,
 				79A86861191B93EC00AA4058 /* DSLCalendarDayCallout.png in Resources */,
 				E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */,
@@ -916,6 +959,7 @@
 				E4D231EA1921367900E5797B /* login_landscape.jpg in Resources */,
 				79A86866191B93EC00AA4058 /* DSLCalendarDaySelection-middle@2x.png in Resources */,
 				79A8685D191B93EC00AA4058 /* DSLCalendar-nextMonth.png in Resources */,
+				E4005D1E1936A2F0006C6ABB /* 42-photos.png in Resources */,
 				79A8685F191B93EC00AA4058 /* DSLCalendar-previousMonth.png in Resources */,
 				E4D231E6192133FB00E5797B /* Document Checklist.png in Resources */,
 				792B23B91920CAE200CAE285 /* glyphicons_173_play.png in Resources */,

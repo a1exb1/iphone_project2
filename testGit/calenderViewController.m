@@ -71,7 +71,7 @@ NSTimer *timer;
 -(void)lock
 {
     [_webView stringByEvaluatingJavaScriptFromString:@"lockScreen();"];
-    _lockBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(unlock)];
+    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"54-lock.png" ] style:UIBarButtonItemStylePlain target:self action:@selector(unlock)];
     [self showNavigationBar];
 }
 
@@ -79,6 +79,7 @@ NSTimer *timer;
 {
     [_webView stringByEvaluatingJavaScriptFromString:@"unlockScreen();"];
     _lockBtn = [[UIBarButtonItem alloc] initWithTitle:@"Lock" style:UIBarButtonItemStylePlain target:self action:@selector(lock)];
+    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"54-unlock.png" ] style:UIBarButtonItemStylePlain target:self action:@selector(lock)];
      [self showNavigationBar];
 }
 
