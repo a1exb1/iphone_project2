@@ -10,4 +10,17 @@
 
 @implementation User
 
+- (id)init {
+    
+    self = [super init];
+    
+    if (self) {
+        
+        self.phone = @"";
+    }
+    
+    return self;
+    
+}
+
 @end

@@ -13,6 +13,7 @@
 @implementation Tools
 
 UIActivityIndicatorView *indicator;
+UIView *blockView;
 
 +(void)showLoader{
     if(indicator != NULL){
@@ -41,10 +42,64 @@ UIActivityIndicatorView *indicator;
     [indicator startAnimating];
 }
 
++(void)showLightLoader{
+    if(indicator != NULL){
+        [self hideLoader];
+    }
+    
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    UIView *view = window.rootViewController.view;
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+
+    
+    //indicator.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
+    //[indicator setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.25]];
+    indicator.center = view.center;
+    [window addSubview:indicator];
+    //[view.window addSubview:indicator];
+    [indicator bringSubviewToFront:view];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
+    [indicator startAnimating];
+}
+
 +(void)hideLoader{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     //_statusLbl.hidden = YES;
     [indicator stopAnimating];
+}
+
++(void)unlockInputWithView
+{
+    blockView.hidden = YES;
+}
+
++(void)lockInputWithFrame: (CGRect)frame
+{
+    if(blockView != NULL){
+        [self unlockInputWithView];
+    }
+    blockView.hidden = NO;
+    
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    UIView *view = window.rootViewController.view;
+    
+    
+    blockView = [[UIView alloc] init];
+        
+    blockView.frame = frame;
+    [blockView setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.25]];
+    blockView.center = view.center;
+    [view addSubview:blockView];
+    //[view.window addSubview:indicator];
+    [view bringSubviewToFront:blockView];
+
+
 }
 
 // Assumes input like "#00FF00" (#RRGGBB).
@@ -58,6 +113,7 @@ UIActivityIndicatorView *indicator;
 
 +(void)setNavigationHeaderColorWithNavigationController: (UINavigationController *)view andTabBar: (UITabBar*)tabBar andBackground: (UIColor *)bgCol andTint: (UIColor *)tint theme: (NSString *)theme
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     if([theme isEqualToString:@"dark"])
     {
@@ -190,6 +246,31 @@ UIActivityIndicatorView *indicator;
     NSInteger minute = [components minute];
     
     return [NSString stringWithFormat:@"%02ld:%02ld", (long)hour, (long)minute];
+}
+
++(UIImage*)colorAnImage:(UIColor*)color :(UIImage*)image{
+    
+    CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);
+    CGContextRef c = UIGraphicsGetCurrentContext();
+    [image drawInRect:rect];
+    CGContextSetFillColorWithColor(c, [color CGColor]);
+    CGContextSetBlendMode(c, kCGBlendModeSourceAtop);
+    CGContextFillRect(c, rect);
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return result;
+}
+
++(void)addECSlidingDefaultSetupWithViewController:(UIViewController *)vc
+{
+    [vc.slidingViewController.topViewController.view addGestureRecognizer:vc.slidingViewController.panGesture];
+    
+    vc.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
+    
+    vc.view.layer.shadowOpacity = 0.75f;
+    vc.view.layer.shadowRadius = 10.0f;
+    vc.view.layer.shadowColor = [UIColor blackColor].CGColor;
 }
 
 @end

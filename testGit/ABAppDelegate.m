@@ -9,9 +9,12 @@
 #import "ABAppDelegate.h"
 
 
+
 @implementation ABAppDelegate
 
 Session *session;
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -25,7 +28,20 @@ Session *session;
     [session setClient:client];
     [session setTutor:tutor];
     
-    sleep(2);
+//    ManageTableViewController * leftDrawer = [[ManageTableViewController alloc] init];
+//    testViewController * center = [[testViewController alloc] init];
+//    //UIViewController * rightDrawer = [[UIViewController alloc] init];
+//    
+//    MMDrawerController * drawerController = [[MMDrawerController alloc]
+//                                             initWithCenterViewController:center
+//                                             leftDrawerViewController:leftDrawer];
+//    
+//    self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
+//    self.drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
+    
+    
+    
+    
     
     return YES;
 }

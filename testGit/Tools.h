@@ -8,11 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "SVPullToRefresh.h"
+#import "ECSlidingViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
+#import "Session.h"
 
 @interface Tools : NSObject
 
 +(void)showLoader;
++(void)showLightLoader;
 +(void)hideLoader;
+
++(void)lockInputWithFrame: (CGRect)frame;
++(void)unlockInputWithView;
 
 // Assumes input like "#00FF00" (#RRGGBB).
 + (UIColor *)colorFromHexString:(NSString *)hexString;
@@ -33,5 +40,9 @@
 +(NSString *) convertSecondsToTimeStringWithSeconds: (int) seconds;
 +(NSString *) convertSecondsToTimeStringWithSecondsWithAlternativeStyle: (int) seconds;
 +(NSString *) convertDateToTimeStringWithDate: (NSDate *) date;
+
++(UIImage*)colorAnImage:(UIColor*)color :(UIImage*)image;
+
++(void)addECSlidingDefaultSetupWithViewController:(UIViewController *)ViewController;
 
 @end

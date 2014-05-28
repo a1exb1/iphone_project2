@@ -86,6 +86,22 @@ NSArray *daysOfWeekArray;
     
     //[self.dayPicker setStartDate:[NSDate dateFromDay:28 month:9 year:2013] endDate:[NSDate dateFromDay:5 month:10 year:2013]];
     [Tools showLoader];
+    
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        [Tools addECSlidingDefaultSetupWithViewController:self];
+        [[session client] setClientID:1];
+        [[session client] setPremium:0];
+        [[session client] setClientUserName:@"Test"];
+        [[session tutor] setTutorID:3];
+        [[session tutor] setAccountType:0];
+    }
+    
+}
+
+- (void)viewDidLayoutSubviews {
+    _mainTableView.frame = CGRectMake(0,60, self.view.frame.size.width, self.view.frame.size.height - 60);
+    _datePicker.frame = CGRectMake(0, 64, self.view.frame.size.width, _datePicker.frame.size.height);
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -134,7 +150,20 @@ NSArray *daysOfWeekArray;
     [comps setWeekday:2]; // 2: monday
     NSDate *firstDayOfTheWeek = [calendar dateFromComponents:comps];
 
-    [self.datePicker fillDatesFromDate:firstDayOfTheWeek numberOfDays:7];
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        //NSDate *today = [NSDate date]; //Get a date object for today's date
+        NSCalendar *c = [NSCalendar currentCalendar];
+        NSRange days = [c rangeOfUnit:NSDayCalendarUnit
+                               inUnit:NSMonthCalendarUnit
+                              forDate:_dayDate];
+        [self.datePicker fillDatesFromDate:firstDateOfMonth.date numberOfDays:days.length];
+    }
+    else{
+        [self.datePicker fillDatesFromDate:firstDayOfTheWeek numberOfDays:7];
+    }
+    
+    
     
     NSDateComponents *currentDayOfWeek = [calendar components:NSYearForWeekOfYearCalendarUnit |NSYearCalendarUnit|NSMonthCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit fromDate:_dayDate];
     

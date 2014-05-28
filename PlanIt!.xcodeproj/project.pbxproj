@@ -77,6 +77,10 @@
 		E40DF2A2190017E200E1332A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF281190017E100E1332A /* UIKit.framework */; };
 		E40DF2AA190017E200E1332A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E40DF2A8190017E200E1332A /* InfoPlist.strings */; };
 		E40DF2AC190017E200E1332A /* testGitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E40DF2AB190017E200E1332A /* testGitTests.m */; };
+		E421C9711934DD3800FA039A /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E421C9701934DD3800FA039A /* testViewController.m */; };
+		E421C97519350D9500FA039A /* menuDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E421C97419350D9500FA039A /* menuDrawerTableViewController.m */; };
+		E421C9781935173500FA039A /* lessonSlotsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E421C9771935173500FA039A /* lessonSlotsViewController.m */; };
+		E421C97A1935199000FA039A /* menu-background.png in Resources */ = {isa = PBXBuildFile; fileRef = E421C9791935199000FA039A /* menu-background.png */; };
 		E42B6112190C0582001B977F /* studentNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E42B6111190C0582001B977F /* studentNote.m */; };
 		E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430DCB4190A582B00DEFD7C /* coursesViewController.m */; };
 		E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430DCB7190A5BB200DEFD7C /* studentsViewController.m */; };
@@ -104,6 +108,11 @@
 		E4AB8872191D4199001A70D9 /* MZDayPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB886E191D4199001A70D9 /* MZDayPicker.m */; };
 		E4AB8873191D4199001A70D9 /* MZDayPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB8870191D4199001A70D9 /* MZDayPickerCell.m */; };
 		E4ADAB58191CC94F00C1AC5A /* glyphicons_043_group.png in Resources */ = {isa = PBXBuildFile; fileRef = E4ADAB57191CC94F00C1AC5A /* glyphicons_043_group.png */; };
+		E4AF260719353AA6006366D9 /* Calendar_80x80_A.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF260619353AA6006366D9 /* Calendar_80x80_A.png */; };
+		E4AF260919353B3C006366D9 /* Properties_80x80_A.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF260819353B3C006366D9 /* Properties_80x80_A.png */; };
+		E4AF261419356720006366D9 /* User-Time80(2).png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF261319356720006366D9 /* User-Time80(2).png */; };
+		E4AF26161935672A006366D9 /* Calendar-Date-03-80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF26151935672A006366D9 /* Calendar-Date-03-80.png */; };
+		E4AF261A193568D4006366D9 /* logout_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF2619193568D4006366D9 /* logout_80.png */; };
 		E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */; };
 		E4C1C969191459F70068A10D /* editTutorsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C968191459F70068A10D /* editTutorsListViewController.m */; };
 		E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C1C96A1914F75B0068A10D /* glyphicons_030_pencil.png */; };
@@ -118,8 +127,12 @@
 		E4D231E8192134C400E5797B /* Note Sticky.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E7192134C400E5797B /* Note Sticky.png */; };
 		E4D231EA1921367900E5797B /* login_landscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E91921367900E5797B /* login_landscape.jpg */; };
 		E4D231EC1921368000E5797B /* login_portrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4D231EB1921368000E5797B /* login_portrait.jpg */; };
+		E4F676FC19356CA900208991 /* clock_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F676FB19356CA900208991 /* clock_80.png */; };
+		E4F676FE19356CB100208991 /* people_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F676FD19356CB100208991 /* people_80.png */; };
+		E4F677011935F9D900208991 /* calenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F677001935F9D900208991 /* calenderViewController.m */; };
 		E4F96CCC19097D49008D75D6 /* tutors2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F96CCB19097D49008D75D6 /* tutors2ViewController.m */; };
 		E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F96D12190AA12B008D75D6 /* editStudentViewController.m */; };
+		FB946B1ED4E64BA28B964FBE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68104856122B4FC68061FB82 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +146,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		29D9A3031352476A8233539E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		68104856122B4FC68061FB82 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		792B23B31920BC3E00CAE285 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		792B23B51920CAE200CAE285 /* glyphicons_175_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_175_stop.png; sourceTree = "<group>"; };
 		792B23B61920CAE200CAE285 /* glyphicons_173_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_173_play.png; sourceTree = "<group>"; };
@@ -229,6 +244,13 @@
 		E40DF2A7190017E200E1332A /* PlanIt!Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlanIt!Tests-Info.plist"; sourceTree = "<group>"; };
 		E40DF2A9190017E200E1332A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E40DF2AB190017E200E1332A /* testGitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testGitTests.m; sourceTree = "<group>"; };
+		E421C96F1934DD3800FA039A /* testViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
+		E421C9701934DD3800FA039A /* testViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
+		E421C97319350D9500FA039A /* menuDrawerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuDrawerTableViewController.h; sourceTree = "<group>"; };
+		E421C97419350D9500FA039A /* menuDrawerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menuDrawerTableViewController.m; sourceTree = "<group>"; };
+		E421C9761935173500FA039A /* lessonSlotsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lessonSlotsViewController.h; sourceTree = "<group>"; };
+		E421C9771935173500FA039A /* lessonSlotsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lessonSlotsViewController.m; sourceTree = "<group>"; };
+		E421C9791935199000FA039A /* menu-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-background.png"; sourceTree = "<group>"; };
 		E42B6110190C0582001B977F /* studentNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = studentNote.h; sourceTree = "<group>"; };
 		E42B6111190C0582001B977F /* studentNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = studentNote.m; sourceTree = "<group>"; };
 		E430DCB3190A582B00DEFD7C /* coursesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coursesViewController.h; sourceTree = "<group>"; };
@@ -272,6 +294,11 @@
 		E4AB886F191D4199001A70D9 /* MZDayPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDayPickerCell.h; sourceTree = "<group>"; };
 		E4AB8870191D4199001A70D9 /* MZDayPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDayPickerCell.m; sourceTree = "<group>"; };
 		E4ADAB57191CC94F00C1AC5A /* glyphicons_043_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_043_group.png; sourceTree = "<group>"; };
+		E4AF260619353AA6006366D9 /* Calendar_80x80_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Calendar_80x80_A.png; sourceTree = "<group>"; };
+		E4AF260819353B3C006366D9 /* Properties_80x80_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Properties_80x80_A.png; sourceTree = "<group>"; };
+		E4AF261319356720006366D9 /* User-Time80(2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "User-Time80(2).png"; sourceTree = "<group>"; };
+		E4AF26151935672A006366D9 /* Calendar-Date-03-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-Date-03-80.png"; sourceTree = "<group>"; };
+		E4AF2619193568D4006366D9 /* logout_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout_80.png; sourceTree = "<group>"; };
 		E4B1DF7C190BCB3C0069DB6A /* StudentCourseLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentCourseLink.h; sourceTree = "<group>"; };
 		E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentCourseLink.m; sourceTree = "<group>"; };
 		E4C1C967191459F70068A10D /* editTutorsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editTutorsListViewController.h; sourceTree = "<group>"; };
@@ -296,6 +323,10 @@
 		E4D231E7192134C400E5797B /* Note Sticky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Note Sticky.png"; sourceTree = "<group>"; };
 		E4D231E91921367900E5797B /* login_landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_landscape.jpg; sourceTree = "<group>"; };
 		E4D231EB1921368000E5797B /* login_portrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_portrait.jpg; sourceTree = "<group>"; };
+		E4F676FB19356CA900208991 /* clock_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock_80.png; sourceTree = "<group>"; };
+		E4F676FD19356CB100208991 /* people_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people_80.png; sourceTree = "<group>"; };
+		E4F676FF1935F9D900208991 /* calenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calenderViewController.h; sourceTree = "<group>"; };
+		E4F677001935F9D900208991 /* calenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = calenderViewController.m; sourceTree = "<group>"; };
 		E4F96CCA19097D49008D75D6 /* tutors2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tutors2ViewController.h; sourceTree = "<group>"; };
 		E4F96CCB19097D49008D75D6 /* tutors2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tutors2ViewController.m; sourceTree = "<group>"; };
 		E4F96D11190AA12B008D75D6 /* editStudentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editStudentViewController.h; sourceTree = "<group>"; };
@@ -313,6 +344,7 @@
 				E40DF280190017E100E1332A /* CoreGraphics.framework in Frameworks */,
 				E40DF282190017E100E1332A /* UIKit.framework in Frameworks */,
 				E40DF27E190017E100E1332A /* Foundation.framework in Frameworks */,
+				FB946B1ED4E64BA28B964FBE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,29 +418,8 @@
 		79AA222E1909439D005AC8A3 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				E421C97B19351B9800FA039A /* other */,
 				E4C1C9751915A4200068A10D /* tools */,
-				E4B1DF7C190BCB3C0069DB6A /* StudentCourseLink.h */,
-				E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */,
-				E42B6110190C0582001B977F /* studentNote.h */,
-				E42B6111190C0582001B977F /* studentNote.m */,
-				E4494DD2190D84B700585CB8 /* User.h */,
-				E4494DD3190D84B700585CB8 /* User.m */,
-				E4494DD5190D851E00585CB8 /* Tutor.h */,
-				E4494DD6190D851E00585CB8 /* Tutor.m */,
-				795B6420190E5BC400A2C879 /* Student.h */,
-				795B6421190E5BC400A2C879 /* Student.m */,
-				79F7196119124FA100C644A1 /* Course.h */,
-				79F7196219124FA100C644A1 /* Course.m */,
-				E401DAD9191ABA3000A05318 /* Lesson.h */,
-				E401DADA191ABA3000A05318 /* Lesson.m */,
-				E4A36087191F87C900F5221B /* AudioNote.h */,
-				E4A36088191F87C900F5221B /* AudioNote.m */,
-				E4A3608A191F87E900F5221B /* TextNote.h */,
-				E4A3608B191F87E900F5221B /* TextNote.m */,
-				792B23C81920FB1700CAE285 /* Client.h */,
-				792B23C91920FB1700CAE285 /* Client.m */,
-				E4D231E219212A6A00E5797B /* Session.h */,
-				E4D231E319212A6A00E5797B /* Session.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -504,6 +515,7 @@
 				E40DF2A5190017E200E1332A /* testGitTests */,
 				E40DF27C190017E100E1332A /* Frameworks */,
 				E40DF27B190017E100E1332A /* Products */,
+				29D9A3031352476A8233539E /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -526,6 +538,7 @@
 				E40DF27F190017E100E1332A /* CoreGraphics.framework */,
 				E40DF281190017E100E1332A /* UIKit.framework */,
 				E40DF29F190017E200E1332A /* XCTest.framework */,
+				68104856122B4FC68061FB82 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -551,6 +564,9 @@
 		E40DF284190017E100E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4AF260A193563F4006366D9 /* flaticons.net */,
+				E4AF2601193538BE006366D9 /* must_have_icon_set */,
+				E421C9791935199000FA039A /* menu-background.png */,
 				E4AAC5F8192A2E86008E0BD7 /* SplashScreenLogin2.png */,
 				E4AAC5F6192A2E35008E0BD7 /* SplashScreenLogin.png */,
 				E4AAC5F4192A2DA2008E0BD7 /* SplashScreen.png */,
@@ -607,6 +623,58 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E421C96E1934DD0900FA039A /* ipad_only */ = {
+			isa = PBXGroup;
+			children = (
+				E421C97219350D6500FA039A /* menu */,
+				E421C96F1934DD3800FA039A /* testViewController.h */,
+				E421C9701934DD3800FA039A /* testViewController.m */,
+				E421C9761935173500FA039A /* lessonSlotsViewController.h */,
+				E421C9771935173500FA039A /* lessonSlotsViewController.m */,
+				E4F676FF1935F9D900208991 /* calenderViewController.h */,
+				E4F677001935F9D900208991 /* calenderViewController.m */,
+			);
+			name = ipad_only;
+			sourceTree = "<group>";
+		};
+		E421C97219350D6500FA039A /* menu */ = {
+			isa = PBXGroup;
+			children = (
+				E421C97319350D9500FA039A /* menuDrawerTableViewController.h */,
+				E421C97419350D9500FA039A /* menuDrawerTableViewController.m */,
+			);
+			name = menu;
+			sourceTree = "<group>";
+		};
+		E421C97B19351B9800FA039A /* other */ = {
+			isa = PBXGroup;
+			children = (
+				E4B1DF7C190BCB3C0069DB6A /* StudentCourseLink.h */,
+				E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */,
+				E42B6110190C0582001B977F /* studentNote.h */,
+				E42B6111190C0582001B977F /* studentNote.m */,
+				E4494DD2190D84B700585CB8 /* User.h */,
+				E4494DD3190D84B700585CB8 /* User.m */,
+				E4494DD5190D851E00585CB8 /* Tutor.h */,
+				E4494DD6190D851E00585CB8 /* Tutor.m */,
+				795B6420190E5BC400A2C879 /* Student.h */,
+				795B6421190E5BC400A2C879 /* Student.m */,
+				79F7196119124FA100C644A1 /* Course.h */,
+				79F7196219124FA100C644A1 /* Course.m */,
+				E401DAD9191ABA3000A05318 /* Lesson.h */,
+				E401DADA191ABA3000A05318 /* Lesson.m */,
+				E4A36087191F87C900F5221B /* AudioNote.h */,
+				E4A36088191F87C900F5221B /* AudioNote.m */,
+				E4A3608A191F87E900F5221B /* TextNote.h */,
+				E4A3608B191F87E900F5221B /* TextNote.m */,
+				792B23C81920FB1700CAE285 /* Client.h */,
+				792B23C91920FB1700CAE285 /* Client.m */,
+				E4D231E219212A6A00E5797B /* Session.h */,
+				E4D231E319212A6A00E5797B /* Session.m */,
+			);
+			name = other;
+			sourceTree = "<group>";
+		};
 		E441CEFC1913E18000088FEE /* save */ = {
 			isa = PBXGroup;
 			children = (
@@ -621,6 +689,7 @@
 		E473527D19002785008006EE /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E421C96E1934DD0900FA039A /* ipad_only */,
 				792B23CE1921050200CAE285 /* Manage */,
 				79AA223519094410005AC8A3 /* login */,
 				79AA2233190943CE005AC8A3 /* multipleLessons */,
@@ -646,6 +715,27 @@
 				E4AB8870191D4199001A70D9 /* MZDayPickerCell.m */,
 			);
 			path = MZDayPicker;
+			sourceTree = "<group>";
+		};
+		E4AF2601193538BE006366D9 /* must_have_icon_set */ = {
+			isa = PBXGroup;
+			children = (
+				E4AF260819353B3C006366D9 /* Properties_80x80_A.png */,
+				E4AF260619353AA6006366D9 /* Calendar_80x80_A.png */,
+			);
+			name = must_have_icon_set;
+			sourceTree = "<group>";
+		};
+		E4AF260A193563F4006366D9 /* flaticons.net */ = {
+			isa = PBXGroup;
+			children = (
+				E4F676FD19356CB100208991 /* people_80.png */,
+				E4F676FB19356CA900208991 /* clock_80.png */,
+				E4AF2619193568D4006366D9 /* logout_80.png */,
+				E4AF26151935672A006366D9 /* Calendar-Date-03-80.png */,
+				E4AF261319356720006366D9 /* User-Time80(2).png */,
+			);
+			name = flaticons.net;
 			sourceTree = "<group>";
 		};
 		E4C1C966191459D60068A10D /* edit */ = {
@@ -702,9 +792,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E40DF2AF190017E200E1332A /* Build configuration list for PBXNativeTarget "PlanIt!" */;
 			buildPhases = (
+				C6D2917B555046958B820AFC /* Check Pods Manifest.lock */,
 				E40DF276190017E100E1332A /* Sources */,
 				E40DF277190017E100E1332A /* Frameworks */,
 				E40DF278190017E100E1332A /* Resources */,
+				9DCD760D3D51471093C03F3F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -775,6 +867,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4AF261419356720006366D9 /* User-Time80(2).png in Resources */,
 				E4AAC5F7192A2E35008E0BD7 /* SplashScreenLogin.png in Resources */,
 				79A8685E191B93EC00AA4058 /* DSLCalendar-nextMonth@2x.png in Resources */,
 				792B23D51921090F00CAE285 /* logout.png in Resources */,
@@ -782,6 +875,7 @@
 				79A86864191B93EC00AA4058 /* DSLCalendarDaySelection-left@2x.png in Resources */,
 				E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */,
 				E40DF294190017E100E1332A /* Main_iPad.storyboard in Resources */,
+				E4F676FC19356CA900208991 /* clock_80.png in Resources */,
 				792B23C41920D04C00CAE285 /* Button Record.png in Resources */,
 				792B23C11920D04C00CAE285 /* Button Pause.png in Resources */,
 				E4D231EC1921368000E5797B /* login_portrait.jpg in Resources */,
@@ -794,15 +888,19 @@
 				E401DAD119195D4100A05318 /* glyphicons_137_cogwheels.png in Resources */,
 				79A86867191B93EC00AA4058 /* DSLCalendarDaySelection-right.png in Resources */,
 				79A86870191B950900AA4058 /* SelectDateViewController.xib in Resources */,
+				E4AF26161935672A006366D9 /* Calendar-Date-03-80.png in Resources */,
 				792B23B81920CAE200CAE285 /* glyphicons_175_stop.png in Resources */,
+				E4F676FE19356CB100208991 /* people_80.png in Resources */,
 				E4AAC5F11929FF03008E0BD7 /* glyphicons_054_clock.png in Resources */,
 				792B23D71921098500CAE285 /* Button White Remove.png in Resources */,
 				E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */,
 				79A8686A191B93EC00AA4058 /* DSLCalendarDaySelection@2x.png in Resources */,
+				E4AF260719353AA6006366D9 /* Calendar_80x80_A.png in Resources */,
 				E4AAC5F9192A2E86008E0BD7 /* SplashScreenLogin2.png in Resources */,
 				E401DAD5191AA0AF00A05318 /* glyphicons_029_notes_2.png in Resources */,
 				E4ADAB58191CC94F00C1AC5A /* glyphicons_043_group.png in Resources */,
 				79A86865191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png in Resources */,
+				E4AF260919353B3C006366D9 /* Properties_80x80_A.png in Resources */,
 				792B23D31921076A00CAE285 /* Button White Add.png in Resources */,
 				79A86868191B93EC00AA4058 /* DSLCalendarDaySelection-right@2x.png in Resources */,
 				E401DAD019195D4100A05318 /* glyphicons_136_cogwheel.png in Resources */,
@@ -811,6 +909,7 @@
 				792B23C01920D04C00CAE285 /* Button White Stop.png in Resources */,
 				79A86861191B93EC00AA4058 /* DSLCalendarDayCallout.png in Resources */,
 				E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */,
+				E421C97A1935199000FA039A /* menu-background.png in Resources */,
 				E40DF299190017E100E1332A /* Images.xcassets in Resources */,
 				E4D231EA1921367900E5797B /* login_landscape.jpg in Resources */,
 				79A86866191B93EC00AA4058 /* DSLCalendarDaySelection-middle@2x.png in Resources */,
@@ -820,6 +919,7 @@
 				792B23B91920CAE200CAE285 /* glyphicons_173_play.png in Resources */,
 				E4AAC5F31929FFA1008E0BD7 /* glyphicons_442_earphone.png in Resources */,
 				E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */,
+				E4AF261A193568D4006366D9 /* logout_80.png in Resources */,
 				E40DF291190017E100E1332A /* Main_iPhone.storyboard in Resources */,
 				E4D231E8192134C400E5797B /* Note Sticky.png in Resources */,
 				E4AB8869191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png in Resources */,
@@ -839,6 +939,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9DCD760D3D51471093C03F3F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6D2917B555046958B820AFC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E40DF276190017E100E1332A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -854,6 +987,7 @@
 				E4F96CCC19097D49008D75D6 /* tutors2ViewController.m in Sources */,
 				E4C1C98319167BA90068A10D /* UIScrollView+SVPullToRefresh.m in Sources */,
 				E40DF28A190017E100E1332A /* main.m in Sources */,
+				E421C9711934DD3800FA039A /* testViewController.m in Sources */,
 				E407AD6C191D620200F22977 /* DIDatepicker.m in Sources */,
 				E4C1C9781915A4450068A10D /* NavigationBarTitleWithSubtitleView.m in Sources */,
 				E407AD74191E963E00F22977 /* audioNoteViewController.m in Sources */,
@@ -886,6 +1020,7 @@
 				E401DADB191ABA3000A05318 /* Lesson.m in Sources */,
 				E441CEF819101C7D00088FEE /* editLessonSlotViewController.m in Sources */,
 				E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */,
+				E4F677011935F9D900208991 /* calenderViewController.m in Sources */,
 				792B23C71920EF9100CAE285 /* loginViewController.m in Sources */,
 				E407AD6D191D620200F22977 /* DIDatepickerDateView.m in Sources */,
 				E4AB8871191D4199001A70D9 /* MZDay.m in Sources */,
@@ -893,7 +1028,9 @@
 				E4C1C969191459F70068A10D /* editTutorsListViewController.m in Sources */,
 				E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */,
 				E4494DD7190D851E00585CB8 /* Tutor.m in Sources */,
+				E421C9781935173500FA039A /* lessonSlotsViewController.m in Sources */,
 				79481D64192364EC00674ACF /* AddLessonsViewController.m in Sources */,
+				E421C97519350D9500FA039A /* menuDrawerTableViewController.m in Sources */,
 				E4AB8873191D4199001A70D9 /* MZDayPickerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1026,6 +1163,7 @@
 		};
 		E40DF2B0190017E200E1332A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29D9A3031352476A8233539E /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1042,6 +1180,7 @@
 		};
 		E40DF2B1190017E200E1332A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29D9A3031352476A8233539E /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1058,6 +1197,7 @@
 		};
 		E40DF2B3190017E200E1332A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29D9A3031352476A8233539E /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/testGit.app/testGit";
 				FRAMEWORK_SEARCH_PATHS = (
