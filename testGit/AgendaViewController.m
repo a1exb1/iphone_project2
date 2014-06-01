@@ -87,15 +87,15 @@ NSArray *daysOfWeekArray;
     //[self.dayPicker setStartDate:[NSDate dateFromDay:28 month:9 year:2013] endDate:[NSDate dateFromDay:5 month:10 year:2013]];
     [Tools showLoader];
     
-    if ( [Tools isIpad] )
-    {
-        [Tools addECSlidingDefaultSetupWithViewController:self];
-        [[session client] setClientID:1];
-        [[session client] setPremium:0];
-        [[session client] setClientUserName:@"Test"];
-        [[session tutor] setTutorID:3];
-        [[session tutor] setAccountType:0];
-    }
+//    if ( [Tools isIpad] )
+//    {
+//        [Tools addECSlidingDefaultSetupWithViewController:self];
+//        [[session client] setClientID:1];
+//        [[session client] setPremium:0];
+//        [[session client] setClientUserName:@"Test"];
+//        [[session tutor] setTutorID:3];
+//        [[session tutor] setAccountType:0];
+//    }
     
 }
 
@@ -420,16 +420,41 @@ NSArray *daysOfWeekArray;
     [student setPhone:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Telephone"]];
     [_lessonSender setStudent:student];
     
-    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
-    view.lesson = _lessonSender;
-    
-    if(!_editing){
-        [self.navigationController pushViewController:view animated:YES];
+    if([Tools isIpad])
+    {
+        if(!_editing){
+            //[self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+            //
+            [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+            
+            self.detailViewController = (indexViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+            self.detailViewController.lesson = _lessonSender;
+            
+            indexViewController *controller = self.detailViewController;
+            [controller changed];
+            
+            
+        }
+        else{
+            NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
+            [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
+        }
+        
     }
     else{
-        NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
-        [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
+        indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+        view.lesson = _lessonSender;
+        
+        if(!_editing){
+            [self.navigationController pushViewController:view animated:YES];
+        }
+        else{
+            NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
+            [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
+        }
     }
+    
+    
     
 }
 

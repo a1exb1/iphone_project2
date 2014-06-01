@@ -21,6 +21,7 @@
 @property NSArray *resultArray;
 @property NSMutableData *data;
 
-
+-(void)updateLabels;
+-(void)changed;
 
 @end

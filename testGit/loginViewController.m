@@ -141,9 +141,20 @@ extern Session *session;
 -(void) loginSuccess{
     [Tools hideLoader];
     
-    UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
-
-    [self presentViewController:view animated:YES completion:nil];
+    
+    
+    if ( [Tools isIpad] )
+    {
+        UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"slidingViewController"];
+        
+        [self presentViewController:view animated:YES completion:nil];
+    }
+    else
+    {
+        UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+        
+        [self presentViewController:view animated:YES completion:nil];
+    }
 }
 
 @end

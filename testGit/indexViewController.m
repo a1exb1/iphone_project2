@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *lessonNotesBtn;
 @property (weak, nonatomic) IBOutlet UILabel *dayDescLbl;
 
+
+
 @end
 
 @implementation indexViewController
@@ -40,6 +42,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
+    
+    if([Tools isIpad]){
+        [Tools addECSlidingDefaultSetupWithViewController:self];
+    }
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -79,14 +86,9 @@
     [_courseView.layer addSublayer:TopBorder];
     [Tools addShadowToViewWithView:_courseView];
     
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[_lesson dateTime]];
-    NSInteger lessonDateHour = [components hour];
-    NSInteger lessonDateMinute = [components minute];
-    [_lesson setHour:(int)lessonDateHour];
-    [_lesson setMins:(int)lessonDateMinute];
     
-    _attendenceControl.selectedSegmentIndex = [_lesson status];
+    
+    
     
 //    NSString *dayDesc = @"";
 //    NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
@@ -165,6 +167,10 @@
 
 }
 
+-(void)changed
+{
+    [self updateLabels];
+}
 
 -(void)goToNotes
 {
@@ -187,6 +193,17 @@
 }
 
 -(void)updateLabels{
+    
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[_lesson dateTime]];
+    NSInteger lessonDateHour = [components hour];
+    NSInteger lessonDateMinute = [components minute];
+    [_lesson setHour:(int)lessonDateHour];
+    [_lesson setMins:(int)lessonDateMinute];
+    
+    _attendenceControl.selectedSegmentIndex = [_lesson status];
+    
     NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
     NSDate *lessonEnd = lessonDate.date;
     lessonEnd = [lessonDate.date dateByAddingTimeInterval:[_lesson Duration]*60];
@@ -257,6 +274,8 @@
     }
     NSLog(@"Students phone number: %@", [[_lesson student] phone]);
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {

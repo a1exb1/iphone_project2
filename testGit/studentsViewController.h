@@ -14,7 +14,7 @@
 #import "editStudentAndSlotViewController.h"
 #import "viewAllStudentsViewController.h"
 
-@interface studentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface studentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISplitViewControllerDelegate>
 
 //@property NSString *courseID;
 //@property NSString *courseName;

@@ -158,7 +158,7 @@ extern Session *session;
 
     }
     
-    if(indexPath.row == 3 && indexPath.section == 1){
+    if(indexPath.row == 0 && indexPath.section == 1){
         self.slidingViewController.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"peopleView"];
     }
     

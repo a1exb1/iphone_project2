@@ -11,7 +11,7 @@
 #import "SelectDateViewController.h"
 #import "MZDayPicker.h"
 #import "DIDatepicker.h"
-
+#import "indexViewController.h"
 
 @interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SelectDateDelegate, MZDayPickerDataSource, MZDayPickerDelegate>
 
@@ -32,5 +32,7 @@
 @property int NSURLType;
 
 @property bool keepEditing;
+
+@property (strong, nonatomic) indexViewController *detailViewController;
 
 @end
