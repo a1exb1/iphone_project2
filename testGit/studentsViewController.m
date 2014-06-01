@@ -121,24 +121,32 @@ NSMutableArray *viewStudentsArray;
     
     [_mainTableView addPullToRefreshWithActionHandler:^{
         //[Tools showLoader];
-        viewStudentsArray = [[NSMutableArray alloc] init];        
-        _data = [[NSMutableData alloc]init];
-        _uniqueWeekdays = [[NSArray alloc]init];
-        _students = [[NSArray alloc] init];
-        [_mainTableView reloadData];
-        _statusLbl.hidden = YES;
-
-        
-        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbycourse&id=%li&ts=%f", [_course courseID], [[NSDate date] timeIntervalSince1970]];
-        NSURL *url = [NSURL URLWithString: urlString];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [NSURLConnection connectionWithRequest:request delegate:self];
+        [self loadData];
     }];
         
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
     UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, deleteBtn, nil]];
 }
+
+-(void)loadData
+
+{
+    viewStudentsArray = [[NSMutableArray alloc] init];
+    _data = [[NSMutableData alloc]init];
+    _uniqueWeekdays = [[NSArray alloc]init];
+    _students = [[NSArray alloc] init];
+    [_mainTableView reloadData];
+    _statusLbl.hidden = YES;
+    
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbycourse&id=%li&ts=%f", [_course courseID], [[NSDate date] timeIntervalSince1970]];
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+
+}
+
 
 -(void)plus
 {
@@ -289,9 +297,27 @@ NSMutableArray *viewStudentsArray;
     [student setName: [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
     [student setPhone: [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Telephone"]];
     
-    [_studentCourseLinkSender setStudent:student];
-    _sender = 0;
-    [self performSegueWithIdentifier:@"StudentsToEditStudentAndLink" sender:self];
+    
+    
+//    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+//    {
+////    
+//        
+//    
+//        editStudentAndSlotViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"editStudentAndSlotView"];
+//        
+//        [controller setStudentCourseLink:_studentCourseLinkSender];
+//        
+//        self.detailViewController = (editStudentAndSlotViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+//        [self.detailViewController.navigationController popToViewController:controller animated:NO];
+//        
+////    //        
+//    }
+    //else{
+        [_studentCourseLinkSender setStudent:student];
+        _sender = 0;
+        [self performSegueWithIdentifier:@"StudentsToEditStudentAndLink" sender:self];
+    //}
     
 }
 

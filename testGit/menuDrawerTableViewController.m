@@ -8,6 +8,7 @@
 
 #import "menuDrawerTableViewController.h"
 
+
 @interface menuDrawerTableViewController ()
 
 @end
@@ -138,10 +139,7 @@ extern Session *session;
         
         self.slidingViewController.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"agendaView"];
         
-        __weak ECSlidingViewController *slidingController = [self slidingViewController];
-        [slidingController resetTopViewAnimated:YES onComplete:^{
-            [slidingController performSelector:@selector(anchorTopViewToLeftAnimated:) withObject:nil afterDelay:0.1];
-        }];
+
     }
     
     // CALENDER
@@ -150,30 +148,28 @@ extern Session *session;
         self.slidingViewController.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderView"];
         self.slidingViewController.topViewController.accessibilityValue = @"calenderView";
         
-        __weak ECSlidingViewController *slidingController = [self slidingViewController];
-        [slidingController resetTopViewAnimated:YES onComplete:^{
-            [slidingController performSelector:@selector(anchorTopViewToLeftAnimated:) withObject:nil afterDelay:0.1];
-            
-        }];
+
     }
     
     if(indexPath.row == 1 && indexPath.section == 1){
         self.slidingViewController.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LessonSlots"];
         
         self.slidingViewController.topViewController.accessibilityValue = @"lessonSlots";
-        __weak ECSlidingViewController *slidingController = [self slidingViewController];
-        [slidingController resetTopViewAnimated:YES onComplete:^{
-            [slidingController performSelector:@selector(anchorTopViewToLeftAnimated:) withObject:nil afterDelay:0.1];
-        }];
+
     }
     
-    if(indexPath.row == 1){
-
+    if(indexPath.row == 3 && indexPath.section == 1){
+        self.slidingViewController.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"peopleView"];
     }
     
     if(indexPath.row == 2){
 
     }
+    
+    __weak ECSlidingViewController *slidingController = [self slidingViewController];
+    [slidingController resetTopViewAnimated:YES onComplete:^{
+        [slidingController performSelector:@selector(anchorTopViewToLeftAnimated:) withObject:nil afterDelay:0.1];
+    }];
     
 }
 

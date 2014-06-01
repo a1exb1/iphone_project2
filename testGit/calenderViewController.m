@@ -36,7 +36,6 @@ NSTimer *timer;
     // Do any additional setup after loading the view.
     
     
-    
     [Tools addECSlidingDefaultSetupWithViewController:self];
     self.webView.delegate = self;
     

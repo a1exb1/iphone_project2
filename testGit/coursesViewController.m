@@ -47,6 +47,11 @@ extern Session *session;
 {
     [super viewWillAppear:animated];
     
+    if ([Tools isIpad])
+    {
+        //_tutor = [session tutor];
+    }
+    
     if ([[session tutor] accountType] > 1) {
         [self.navigationItem setHidesBackButton:YES animated:NO];
         _tutor = [session tutor];
@@ -74,6 +79,10 @@ extern Session *session;
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
+    
+    
+    //
 }
 
 
@@ -98,12 +107,17 @@ extern Session *session;
     [_mainTableView addPullToRefreshWithActionHandler:^{
         //[Tools showLoader];
         //
-        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
-        NSURL *url = [NSURL URLWithString: urlString];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [NSURLConnection connectionWithRequest:request delegate:self];
+        [self loadData];
     }];
     
+}
+
+-(void)loadData
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
 -(void)plus{
@@ -159,8 +173,29 @@ extern Session *session;
     [_courseSender setTutorID:[_tutor tutorID]];
     [_courseSender setCourseID:[cell.accessibilityValue intValue]];
     [_courseSender setName:cell.textLabel.text];
+
     
-    [self performSegueWithIdentifier:@"CoursesToStudents" sender:self];
+    if ([Tools isIpad])
+    {
+//
+        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+//        
+        self.detailViewController = (studentsViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+        self.detailViewController.course = _courseSender;
+
+        studentsViewController *controller = self.detailViewController;
+        [controller loadData];
+        
+    }
+    else{
+        studentsViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"students"];
+        view.course = _courseSender;
+        [self.navigationController pushViewController:view animated:YES];
+    }
+    //studentsDetailView
+    
+    
+    
     
 }
 

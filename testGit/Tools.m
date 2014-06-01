@@ -273,4 +273,16 @@ UIView *blockView;
     vc.view.layer.shadowColor = [UIColor blackColor].CGColor;
 }
 
++(BOOL)isIpad
+{
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        return YES;
+        
+    }
+    else{
+        return NO;
+    }
+}
+
 @end

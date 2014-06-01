@@ -45,4 +45,7 @@
 
 +(void)addECSlidingDefaultSetupWithViewController:(UIViewController *)ViewController;
 
++(BOOL)isIpad;
+
+
 @end

@@ -87,7 +87,7 @@ NSArray *daysOfWeekArray;
     //[self.dayPicker setStartDate:[NSDate dateFromDay:28 month:9 year:2013] endDate:[NSDate dateFromDay:5 month:10 year:2013]];
     [Tools showLoader];
     
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    if ( [Tools isIpad] )
     {
         [Tools addECSlidingDefaultSetupWithViewController:self];
         [[session client] setClientID:1];
@@ -150,7 +150,7 @@ NSArray *daysOfWeekArray;
     [comps setWeekday:2]; // 2: monday
     NSDate *firstDayOfTheWeek = [calendar dateFromComponents:comps];
 
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    if ( [Tools isIpad]  )
     {
         //NSDate *today = [NSDate date]; //Get a date object for today's date
         NSCalendar *c = [NSCalendar currentCalendar];
@@ -170,12 +170,22 @@ NSArray *daysOfWeekArray;
     //NSLog(@"we're here curreent weekday = %ld", (long)[currentDayOfWeek weekday]);
     //[self.datepicker fillCurrentYear];
     
-    if((long)[currentDayOfWeek weekday] == 1){
-        [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] +5)];
+    if ( [Tools isIpad]  )
+    {
+        NVDate *dayDate = [[NVDate alloc] initUsingDate:_dayDate];
+        [self.datePicker selectDateAtIndex:(dayDate.day -1)];
     }
     else{
-        [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] -2)];
+        if((long)[currentDayOfWeek weekday] == 1){
+            [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] +5)];
+        }
+        else{
+            [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] -2)];
+        }
     }
+        
+    
+    
 
     [Tools showLoader];
 }

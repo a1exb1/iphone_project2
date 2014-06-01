@@ -10,6 +10,10 @@
 #import "StudentCourseLink.h"
 #import "Course.h"
 #import "Tutor.h"
+
+#import "editStudentAndSlotViewController.h"
+#import "viewAllStudentsViewController.h"
+
 @interface studentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 //@property NSString *courseID;
@@ -26,5 +30,9 @@
 @property int sender;
 
 @property bool editing;
+
+-(void)loadData;
+
+@property (strong, nonatomic) editStudentAndSlotViewController *detailViewController;
 
 @end

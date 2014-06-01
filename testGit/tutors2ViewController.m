@@ -86,7 +86,6 @@ extern Session *session;
 
 - (void)viewDidLoad
 {
-    NSLog(@"%i", [[session tutor] accountType]);
     
     [super viewDidLoad];
     if ([[session tutor] accountType] > 1) {
@@ -190,8 +189,8 @@ extern Session *session;
     [_tutorSender setName:cell.textLabel.text];
     
     coursesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"courses"];
-    view.tutorID = self.tutorIDSender;
-    view.tutorName = self.tutorNameSender;
+    //view.tutorID = self.tutorIDSender;
+    //view.tutorName = self.tutorNameSender;
     view.tutor = _tutorSender;
     [self.navigationController pushViewController:view animated:YES];
 }
