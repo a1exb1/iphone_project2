@@ -275,7 +275,7 @@ UIView *blockView;
 
 +(BOOL)isIpad
 {
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {
         return YES;
         

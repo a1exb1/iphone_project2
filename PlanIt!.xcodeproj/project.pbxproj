@@ -92,6 +92,15 @@
 		E42B6112190C0582001B977F /* studentNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E42B6111190C0582001B977F /* studentNote.m */; };
 		E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430DCB4190A582B00DEFD7C /* coursesViewController.m */; };
 		E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430DCB7190A5BB200DEFD7C /* studentsViewController.m */; };
+		E433C03A193B85CD003543AE /* 1099-list-1-toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C039193B85CD003543AE /* 1099-list-1-toolbar@2x.png */; };
+		E433C03C193B8612003543AE /* 1099-list-1-toolbar-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C03B193B8612003543AE /* 1099-list-1-toolbar-selected@2x.png */; };
+		E433C03E193B86B5003543AE /* 1012-sticky-note-toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C03D193B86B5003543AE /* 1012-sticky-note-toolbar@2x.png */; };
+		E433C040193B8735003543AE /* 1012-sticky-note-toolbar-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C03F193B8735003543AE /* 1012-sticky-note-toolbar-selected@2x.png */; };
+		E433C042193B8813003543AE /* 887-notepad-toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C041193B8813003543AE /* 887-notepad-toolbar@2x.png */; };
+		E433C045193B8AC3003543AE /* 809-clipboard-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C043193B8AC3003543AE /* 809-clipboard-selected@2x.png */; };
+		E433C046193B8AC3003543AE /* 851-calendar-toolbar-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C044193B8AC3003543AE /* 851-calendar-toolbar-selected@2x.png */; };
+		E433C049193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C047193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png */; };
+		E433C04A193B8DAD003543AE /* 744-locked-toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C048193B8DAD003543AE /* 744-locked-toolbar@2x.png */; };
 		E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E441CEF419100F8600088FEE /* editStudentAndSlotViewController.m */; };
 		E441CEF819101C7D00088FEE /* editLessonSlotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E441CEF719101C7D00088FEE /* editLessonSlotViewController.m */; };
 		E441CEFB19115BF900088FEE /* viewAllStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E441CEFA19115BF900088FEE /* viewAllStudentsViewController.m */; };
@@ -130,6 +139,8 @@
 		E4C1C97B1916700F0068A10D /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C97A1916700F0068A10D /* Tools.m */; };
 		E4C1C98219167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C97F19167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m */; };
 		E4C1C98319167BA90068A10D /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C98119167BA90068A10D /* UIScrollView+SVPullToRefresh.m */; };
+		E4C6CCDA193B6CC800F1997C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C6CCD9193B6CC800F1997C /* DetailViewController.m */; };
+		E4C6CCDD193B6CCE00F1997C /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C6CCDC193B6CCE00F1997C /* MasterViewController.m */; };
 		E4D231E419212A6A00E5797B /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D231E319212A6A00E5797B /* Session.m */; };
 		E4D231E6192133FB00E5797B /* Document Checklist.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E5192133FB00E5797B /* Document Checklist.png */; };
 		E4D231E8192134C400E5797B /* Note Sticky.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E7192134C400E5797B /* Note Sticky.png */; };
@@ -271,6 +282,15 @@
 		E430DCB4190A582B00DEFD7C /* coursesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = coursesViewController.m; sourceTree = "<group>"; };
 		E430DCB6190A5BB200DEFD7C /* studentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = studentsViewController.h; sourceTree = "<group>"; };
 		E430DCB7190A5BB200DEFD7C /* studentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = studentsViewController.m; sourceTree = "<group>"; };
+		E433C039193B85CD003543AE /* 1099-list-1-toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1099-list-1-toolbar@2x.png"; sourceTree = "<group>"; };
+		E433C03B193B8612003543AE /* 1099-list-1-toolbar-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1099-list-1-toolbar-selected@2x.png"; sourceTree = "<group>"; };
+		E433C03D193B86B5003543AE /* 1012-sticky-note-toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1012-sticky-note-toolbar@2x.png"; sourceTree = "<group>"; };
+		E433C03F193B8735003543AE /* 1012-sticky-note-toolbar-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1012-sticky-note-toolbar-selected@2x.png"; sourceTree = "<group>"; };
+		E433C041193B8813003543AE /* 887-notepad-toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "887-notepad-toolbar@2x.png"; sourceTree = "<group>"; };
+		E433C043193B8AC3003543AE /* 809-clipboard-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "809-clipboard-selected@2x.png"; sourceTree = "<group>"; };
+		E433C044193B8AC3003543AE /* 851-calendar-toolbar-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "851-calendar-toolbar-selected@2x.png"; sourceTree = "<group>"; };
+		E433C047193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "744-locked-toolbar-selected@2x.png"; sourceTree = "<group>"; };
+		E433C048193B8DAD003543AE /* 744-locked-toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "744-locked-toolbar@2x.png"; sourceTree = "<group>"; };
 		E441CEF319100F8600088FEE /* editStudentAndSlotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editStudentAndSlotViewController.h; sourceTree = "<group>"; };
 		E441CEF419100F8600088FEE /* editStudentAndSlotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editStudentAndSlotViewController.m; sourceTree = "<group>"; };
 		E441CEF619101C7D00088FEE /* editLessonSlotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editLessonSlotViewController.h; sourceTree = "<group>"; };
@@ -331,6 +351,10 @@
 		E4C1C97F19167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
 		E4C1C98019167BA90068A10D /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		E4C1C98119167BA90068A10D /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		E4C6CCD8193B6CC800F1997C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		E4C6CCD9193B6CC800F1997C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		E4C6CCDB193B6CCE00F1997C /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		E4C6CCDC193B6CCE00F1997C /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		E4D231E219212A6A00E5797B /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		E4D231E319212A6A00E5797B /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
 		E4D231E5192133FB00E5797B /* Document Checklist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Document Checklist.png"; sourceTree = "<group>"; };
@@ -512,6 +536,7 @@
 		E4005D1419369D91006C6ABB /* Glyphish */ = {
 			isa = PBXGroup;
 			children = (
+				E433C038193B85C4003543AE /* retina */,
 				E4005D1D1936A2F0006C6ABB /* 42-photos.png */,
 				E4005D1B1936A1C2006C6ABB /* 83-calendar.png */,
 				E4005D171936A0A7006C6ABB /* 54-unlock.png */,
@@ -708,6 +733,22 @@
 			name = other;
 			sourceTree = "<group>";
 		};
+		E433C038193B85C4003543AE /* retina */ = {
+			isa = PBXGroup;
+			children = (
+				E433C047193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png */,
+				E433C048193B8DAD003543AE /* 744-locked-toolbar@2x.png */,
+				E433C043193B8AC3003543AE /* 809-clipboard-selected@2x.png */,
+				E433C044193B8AC3003543AE /* 851-calendar-toolbar-selected@2x.png */,
+				E433C041193B8813003543AE /* 887-notepad-toolbar@2x.png */,
+				E433C03F193B8735003543AE /* 1012-sticky-note-toolbar-selected@2x.png */,
+				E433C03D193B86B5003543AE /* 1012-sticky-note-toolbar@2x.png */,
+				E433C03B193B8612003543AE /* 1099-list-1-toolbar-selected@2x.png */,
+				E433C039193B85CD003543AE /* 1099-list-1-toolbar@2x.png */,
+			);
+			name = retina;
+			sourceTree = "<group>";
+		};
 		E441CEFC1913E18000088FEE /* save */ = {
 			isa = PBXGroup;
 			children = (
@@ -722,6 +763,7 @@
 		E473527D19002785008006EE /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E4C6CCD7193B6CC000F1997C /* testMasterDetail */,
 				E421C96E1934DD0900FA039A /* ipad_only */,
 				792B23CE1921050200CAE285 /* Manage */,
 				79AA223519094410005AC8A3 /* login */,
@@ -806,6 +848,17 @@
 				E4C1C98119167BA90068A10D /* UIScrollView+SVPullToRefresh.m */,
 			);
 			path = SVPullToRefresh;
+			sourceTree = "<group>";
+		};
+		E4C6CCD7193B6CC000F1997C /* testMasterDetail */ = {
+			isa = PBXGroup;
+			children = (
+				E4C6CCDB193B6CCE00F1997C /* MasterViewController.h */,
+				E4C6CCDC193B6CCE00F1997C /* MasterViewController.m */,
+				E4C6CCD8193B6CC800F1997C /* DetailViewController.h */,
+				E4C6CCD9193B6CC800F1997C /* DetailViewController.m */,
+			);
+			name = testMasterDetail;
 			sourceTree = "<group>";
 		};
 		E4FED276192174FF00E31223 /* plugins */ = {
@@ -906,6 +959,7 @@
 				E4AF261419356720006366D9 /* User-Time80(2).png in Resources */,
 				E4AAC5F7192A2E35008E0BD7 /* SplashScreenLogin.png in Resources */,
 				79A8685E191B93EC00AA4058 /* DSLCalendar-nextMonth@2x.png in Resources */,
+				E433C03C193B8612003543AE /* 1099-list-1-toolbar-selected@2x.png in Resources */,
 				792B23D51921090F00CAE285 /* logout.png in Resources */,
 				79A86859191B93EC00AA4058 /* DSLCalendarMonthSelectorView.xib in Resources */,
 				E4005D1119369B2D006C6ABB /* menu-50.png in Resources */,
@@ -926,25 +980,31 @@
 				E4AAC5F5192A2DA3008E0BD7 /* SplashScreen.png in Resources */,
 				E4005D0C19363CEA006C6ABB /* minus_80_black.png in Resources */,
 				E401DAD119195D4100A05318 /* glyphicons_137_cogwheels.png in Resources */,
+				E433C046193B8AC3003543AE /* 851-calendar-toolbar-selected@2x.png in Resources */,
 				79A86867191B93EC00AA4058 /* DSLCalendarDaySelection-right.png in Resources */,
 				79A86870191B950900AA4058 /* SelectDateViewController.xib in Resources */,
 				E4AF26161935672A006366D9 /* Calendar-Date-03-80.png in Resources */,
+				E433C040193B8735003543AE /* 1012-sticky-note-toolbar-selected@2x.png in Resources */,
 				792B23B81920CAE200CAE285 /* glyphicons_175_stop.png in Resources */,
 				E4F676FE19356CB100208991 /* people_80.png in Resources */,
 				E4AAC5F11929FF03008E0BD7 /* glyphicons_054_clock.png in Resources */,
 				792B23D71921098500CAE285 /* Button White Remove.png in Resources */,
+				E433C03E193B86B5003543AE /* 1012-sticky-note-toolbar@2x.png in Resources */,
 				E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */,
 				E4005D181936A0A7006C6ABB /* 54-unlock.png in Resources */,
 				79A8686A191B93EC00AA4058 /* DSLCalendarDaySelection@2x.png in Resources */,
 				E4005D0A193639D5006C6ABB /* add_80.png in Resources */,
 				E4AF260719353AA6006366D9 /* Calendar_80x80_A.png in Resources */,
+				E433C042193B8813003543AE /* 887-notepad-toolbar@2x.png in Resources */,
 				E4005D1619369D9F006C6ABB /* 54-lock.png in Resources */,
 				E4AAC5F9192A2E86008E0BD7 /* SplashScreenLogin2.png in Resources */,
 				E401DAD5191AA0AF00A05318 /* glyphicons_029_notes_2.png in Resources */,
 				E4ADAB58191CC94F00C1AC5A /* glyphicons_043_group.png in Resources */,
+				E433C045193B8AC3003543AE /* 809-clipboard-selected@2x.png in Resources */,
 				79A86865191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png in Resources */,
 				E4AF260919353B3C006366D9 /* Properties_80x80_A.png in Resources */,
 				792B23D31921076A00CAE285 /* Button White Add.png in Resources */,
+				E433C049193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png in Resources */,
 				79A86868191B93EC00AA4058 /* DSLCalendarDaySelection-right@2x.png in Resources */,
 				E401DAD019195D4100A05318 /* glyphicons_136_cogwheel.png in Resources */,
 				792B23BA1920CAE200CAE285 /* glyphicons_169_record.png in Resources */,
@@ -966,12 +1026,14 @@
 				E4AAC5F31929FFA1008E0BD7 /* glyphicons_442_earphone.png in Resources */,
 				E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */,
 				E4AF261A193568D4006366D9 /* logout_80.png in Resources */,
+				E433C04A193B8DAD003543AE /* 744-locked-toolbar@2x.png in Resources */,
 				E40DF291190017E100E1332A /* Main_iPhone.storyboard in Resources */,
 				E4D231E8192134C400E5797B /* Note Sticky.png in Resources */,
 				E4AB8869191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png in Resources */,
 				E40DF288190017E100E1332A /* InfoPlist.strings in Resources */,
 				79A86862191B93EC00AA4058 /* DSLCalendarDayCallout@2x.png in Resources */,
 				E4AB8863191AC725001A70D9 /* audio_icon_large.png in Resources */,
+				E433C03A193B85CD003543AE /* 1099-list-1-toolbar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1040,6 +1102,7 @@
 				E40DF297190017E100E1332A /* ABViewController.m in Sources */,
 				E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */,
 				E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */,
+				E4C6CCDD193B6CCE00F1997C /* MasterViewController.m in Sources */,
 				E4C1C98219167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				E4001B3819191DD40063B066 /* AgendaViewController.m in Sources */,
 				E4D231E419212A6A00E5797B /* Session.m in Sources */,
@@ -1052,6 +1115,7 @@
 				E40DF28E190017E100E1332A /* ABAppDelegate.m in Sources */,
 				79A86857191B93EC00AA4058 /* DSLCalendarDayView.m in Sources */,
 				E47352801900279E008006EE /* indexViewController.m in Sources */,
+				E4C6CCDA193B6CC800F1997C /* DetailViewController.m in Sources */,
 				E407AD71191E962C00F22977 /* textNoteViewController.m in Sources */,
 				E401DAD8191AB82400A05318 /* NotesViewController.m in Sources */,
 				79A86855191B93EC00AA4058 /* DSLCalendarDayCalloutView.m in Sources */,

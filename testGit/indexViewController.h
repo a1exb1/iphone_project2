@@ -10,7 +10,7 @@
 #import "Lesson.h"
 #import "NVDate.h"
 
-@interface indexViewController : UIViewController
+@interface indexViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property Lesson *lesson;
 @property bool loaded;
@@ -21,7 +21,11 @@
 @property NSArray *resultArray;
 @property NSMutableData *data;
 
+@property UIBarButtonItem *menuBtn;
+
 -(void)updateLabels;
 -(void)changed;
+
+
 
 @end

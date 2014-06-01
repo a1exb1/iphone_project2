@@ -40,9 +40,6 @@ Session *session;
 //    self.drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
     
     
-    
-    
-    
     return YES;
 }
 							

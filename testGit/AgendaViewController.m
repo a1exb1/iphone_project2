@@ -85,7 +85,7 @@ NSArray *daysOfWeekArray;
     self.dayPicker.dataSource = self;
     
     //[self.dayPicker setStartDate:[NSDate dateFromDay:28 month:9 year:2013] endDate:[NSDate dateFromDay:5 month:10 year:2013]];
-    [Tools showLoader];
+    [Tools showLightLoader];
     
 //    if ( [Tools isIpad] )
 //    {
@@ -96,6 +96,8 @@ NSArray *daysOfWeekArray;
 //        [[session tutor] setTutorID:3];
 //        [[session tutor] setAccountType:0];
 //    }
+    
+    _clipboardItem = self.navigationItem.rightBarButtonItem;
     
 }
 
@@ -187,7 +189,7 @@ NSArray *daysOfWeekArray;
     
     
 
-    [Tools showLoader];
+    [Tools showLightLoader];
 }
 
 - (void)updateSelectedDate
@@ -201,7 +203,7 @@ NSArray *daysOfWeekArray;
     
     if(_counter > 0){
         _dayDate = self.datePicker.selectedDate;
-        [Tools showLoader];
+        [Tools showLightLoader];
         [self jsonRequestGetAgenda];
         
         
@@ -280,7 +282,7 @@ NSArray *daysOfWeekArray;
     if(_keepEditing == NO)
     {
         _editing = false;
-        UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"glyphicons_029_notes_2.png"] style:UIBarButtonItemStylePlain target:self action:@selector(prepareForAttendance)];
+        UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithImage:[_clipboardItem image] style:[_clipboardItem style] target:self action:@selector(prepareForAttendance)];
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:editBtn, nil]];
     }
     
@@ -383,7 +385,7 @@ NSArray *daysOfWeekArray;
         status = 3;
     }
     
-    [Tools showLoader];
+    [Tools showLightLoader];
     _NSURLType = 1;
     _keepEditing = YES;
     

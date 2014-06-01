@@ -35,4 +35,6 @@
 
 @property (strong, nonatomic) indexViewController *detailViewController;
 
+@property UIBarButtonItem *clipboardItem;
+
 @end

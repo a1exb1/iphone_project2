@@ -151,8 +151,8 @@ extern Session *session;
 
     }
     
-    if(indexPath.row == 1 && indexPath.section == 1){
-        self.slidingViewController.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LessonSlots"];
+    if(indexPath.row == 2 && indexPath.section == 1){
+        self.slidingViewController.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonSlots"];
         
         self.slidingViewController.topViewController.accessibilityValue = @"lessonSlots";
 

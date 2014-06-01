@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *lessonNotesBtn;
 @property (weak, nonatomic) IBOutlet UILabel *dayDescLbl;
 
-
+@property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
 @end
 
@@ -74,21 +74,23 @@
     
     //student box border
     TopBorder = [CALayer layer];
-    TopBorder.frame = CGRectMake(0.0f, 0.0f, _box1View.frame.size.width, 3.0f);
+    TopBorder.frame = CGRectMake(0.0f, 0.0f, _studentView.frame.size.width, 3.0f);
     TopBorder.backgroundColor = [Tools colorFromHexString:@"#4473b4"].CGColor;
     [_studentView.layer addSublayer:TopBorder];
     [Tools addShadowToViewWithView:_studentView];
     
     //course box border
     TopBorder = [CALayer layer];
-    TopBorder.frame = CGRectMake(0.0f, 0.0f, _box1View.frame.size.width, 3.0f);
+    TopBorder.frame = CGRectMake(0.0f, 0.0f, _courseView.frame.size.width, 3.0f);
     TopBorder.backgroundColor = [Tools colorFromHexString:@"#57AD2C"].CGColor;
     [_courseView.layer addSublayer:TopBorder];
     [Tools addShadowToViewWithView:_courseView];
     
+    _menuBtn = self.navigationItem.leftBarButtonItem;
     
-    
-    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.splitViewController.delegate = self;
+    }
     
 //    NSString *dayDesc = @"";
 //    NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
@@ -104,13 +106,12 @@
     
     //_dayDescLbl.text = dayDesc;
     
-    _courseNameLbl.text = [[_lesson course] name];
-    _studentNameLbl.text = [[_lesson student] name];
+
     
     self.navigationController.navigationBar.barTintColor = [UIColor greenColor];
     self.navigationController.navigationBar.tintColor = [UIColor greenColor];
     
-    UIBarButtonItem *noteBtn = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"Note Sticky.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] style:UIBarButtonItemStylePlain  target:self action:@selector(goToNotes)];
+    UIBarButtonItem *noteBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"1012-sticky-note-toolbar@2x-selected.png"]  style:UIBarButtonItemStylePlain  target:self action:@selector(goToNotes)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:noteBtn, nil]];
     
     //timer
@@ -169,7 +170,14 @@
 
 -(void)changed
 {
+    _courseNameLbl.text = [[_lesson course] name];
+    _studentNameLbl.text = [[_lesson student] name];
+    _attendenceControl.selectedSegmentIndex = [_lesson status];
     [self updateLabels];
+    
+    if (self.masterPopoverController != nil) {
+        [self.masterPopoverController dismissPopoverAnimated:YES];
+    }
 }
 
 -(void)goToNotes
@@ -202,7 +210,6 @@
     [_lesson setHour:(int)lessonDateHour];
     [_lesson setMins:(int)lessonDateMinute];
     
-    _attendenceControl.selectedSegmentIndex = [_lesson status];
     
     NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
     NSDate *lessonEnd = lessonDate.date;
@@ -276,6 +283,28 @@
 }
 
 
+- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
+{
+    barButtonItem.title = NSLocalizedString(@"Agenda", @"Agenda");
+    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+    self.masterPopoverController = popoverController;
+    
+    UIBarButtonItem *menuBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(showMainMenu)];
+    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:_menuBtn, barButtonItem, nil]];
+}
+
+- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    // Called when the view is shown again in the split view, invalidating the button and popover controller.
+    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+    self.masterPopoverController = nil;
+    
+}
+
+-(void)showMainMenu
+{
+    [self performSegueWithIdentifier:@"unwindToMenuViewController" sender:self];
+}
 
 - (void)didReceiveMemoryWarning
 {

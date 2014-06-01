@@ -11,6 +11,7 @@
 
 #import "ECSlidingViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
+#import "AddLessonsViewController.h"
 
 @interface calenderViewController : UIViewController <UIWebViewDelegate>
 

@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *lockedUIButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *unlockedUIButton;
 @end
 
 @implementation calenderViewController
@@ -58,8 +60,21 @@ NSTimer *timer;
 
 -(void)showNavigationBar
 {
+    UIBarButtonItem *addLessonsBtn = nil;
+    if ([self.slidingViewController.topViewController.accessibilityValue isEqualToString:@"lessonSlots"]) {
+        addLessonsBtn = [[UIBarButtonItem alloc] initWithTitle:@"Add to calender" style:UIBarButtonItemStylePlain target:self action:@selector(addLessons)];
+    }
+    
     UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:refreshBtn, _lockBtn, nil]];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:addLessonsBtn, refreshBtn, _lockBtn, nil]];
+}
+
+-(void)addLessons
+{
+    AddLessonsViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addLessonsView"];
+    
+    view.shouldClear = NO;
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 -(void)hideNavigationBar
@@ -70,7 +85,7 @@ NSTimer *timer;
 -(void)lock
 {
     [_webView stringByEvaluatingJavaScriptFromString:@"lockScreen();"];
-    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"54-lock.png" ] style:UIBarButtonItemStylePlain target:self action:@selector(unlock)];
+    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[self.lockedUIButton image] style:UIBarButtonItemStylePlain target:self action:@selector(unlock)];
     [self showNavigationBar];
 }
 
@@ -78,7 +93,7 @@ NSTimer *timer;
 {
     [_webView stringByEvaluatingJavaScriptFromString:@"unlockScreen();"];
     _lockBtn = [[UIBarButtonItem alloc] initWithTitle:@"Lock" style:UIBarButtonItemStylePlain target:self action:@selector(lock)];
-    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"54-unlock.png" ] style:UIBarButtonItemStylePlain target:self action:@selector(lock)];
+    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[self.unlockedUIButton image] style:UIBarButtonItemStylePlain target:self action:@selector(lock)];
      [self showNavigationBar];
 }
 
