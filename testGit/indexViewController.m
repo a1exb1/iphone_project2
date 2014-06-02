@@ -56,6 +56,7 @@
 //    }
 //    
 //    _loaded = true;
+    
 }
 
 - (void)viewDidLoad
@@ -63,6 +64,51 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    //[self boxes];
+    
+    _menuBtn = self.navigationItem.leftBarButtonItem;
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.splitViewController.delegate = self;
+    }
+    
+//    NSString *dayDesc = @"";
+//    NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
+//    NVDate *nowDate = [[NVDate alloc] initUsingToday];
+//    
+//    if ([[self beginningOfDay:lessonDate.date] isEqualToDate:[self beginningOfDay:nowDate.date]])
+//    {
+//        dayDesc = @"Today";
+//    }
+//    else{
+//        dayDesc = [NSString stringWithFormat:@"%li.%li.%li", (long)lessonDate.day, (long)lessonDate.month, (long)lessonDate.year];
+//    }
+    
+    //_dayDescLbl.text = dayDesc;
+    
+    _courseNameLbl.text = [[_lesson course] name];
+    _studentNameLbl.text = [[_lesson student] name];
+    _attendenceControl.selectedSegmentIndex = [_lesson status];
+
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor greenColor];
+    self.navigationController.navigationBar.tintColor = [UIColor greenColor];
+    
+    UIBarButtonItem *noteBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"1012-sticky-note-toolbar@2x-selected.png"]  style:UIBarButtonItemStylePlain  target:self action:@selector(goToNotes)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:noteBtn, nil]];
+    
+    //timer
+    [self updateLabels];
+    _timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTick:) userInfo:nil repeats:YES];
+    
+    [_attendenceControl addTarget:self
+                           action:@selector(changeAttendence:)
+                 forControlEvents:UIControlEventValueChanged];
+    
+}
+
+-(void)boxes
+{
     // now box border
     CALayer *TopBorder = [CALayer layer];
     TopBorder.frame = CGRectMake(0.0f, 0.0f, _box1View.frame.size.width, 3.0f);
@@ -85,43 +131,6 @@
     TopBorder.backgroundColor = [Tools colorFromHexString:@"#57AD2C"].CGColor;
     [_courseView.layer addSublayer:TopBorder];
     [Tools addShadowToViewWithView:_courseView];
-    
-    _menuBtn = self.navigationItem.leftBarButtonItem;
-    
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        self.splitViewController.delegate = self;
-    }
-    
-//    NSString *dayDesc = @"";
-//    NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
-//    NVDate *nowDate = [[NVDate alloc] initUsingToday];
-//    
-//    if ([[self beginningOfDay:lessonDate.date] isEqualToDate:[self beginningOfDay:nowDate.date]])
-//    {
-//        dayDesc = @"Today";
-//    }
-//    else{
-//        dayDesc = [NSString stringWithFormat:@"%li.%li.%li", (long)lessonDate.day, (long)lessonDate.month, (long)lessonDate.year];
-//    }
-    
-    //_dayDescLbl.text = dayDesc;
-    
-
-    
-    self.navigationController.navigationBar.barTintColor = [UIColor greenColor];
-    self.navigationController.navigationBar.tintColor = [UIColor greenColor];
-    
-    UIBarButtonItem *noteBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"1012-sticky-note-toolbar@2x-selected.png"]  style:UIBarButtonItemStylePlain  target:self action:@selector(goToNotes)];
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:noteBtn, nil]];
-    
-    //timer
-    [self updateLabels];
-    _timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTick:) userInfo:nil repeats:YES];
-    
-    [_attendenceControl addTarget:self
-                           action:@selector(changeAttendence:)
-                 forControlEvents:UIControlEventValueChanged];
-    
 }
 
 -(void)changeAttendence:(UISegmentedControl *)segment
@@ -170,9 +179,7 @@
 
 -(void)changed
 {
-    _courseNameLbl.text = [[_lesson course] name];
-    _studentNameLbl.text = [[_lesson student] name];
-    _attendenceControl.selectedSegmentIndex = [_lesson status];
+
     [self updateLabels];
     
     if (self.masterPopoverController != nil) {
@@ -285,12 +292,12 @@
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
+    barButtonItem.image = [_menuBtn image];
     barButtonItem.title = NSLocalizedString(@"Agenda", @"Agenda");
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
-    
-    UIBarButtonItem *menuBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(showMainMenu)];
-    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:_menuBtn, barButtonItem, nil]];
+
+    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects: barButtonItem, nil]];
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem

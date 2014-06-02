@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SVPullToRefresh.h"
-#import "ECSlidingViewController.h"
-#import "UIViewController+ECSlidingViewController.h"
+
 #import "Session.h"
 
 @interface Tools : NSObject

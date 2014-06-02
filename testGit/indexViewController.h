@@ -22,6 +22,7 @@
 @property NSMutableData *data;
 
 @property UIBarButtonItem *menuBtn;
+@property UIBarButtonItem *detailShowMasterButton;
 
 -(void)updateLabels;
 -(void)changed;

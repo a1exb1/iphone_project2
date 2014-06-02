@@ -264,13 +264,13 @@ UIView *blockView;
 
 +(void)addECSlidingDefaultSetupWithViewController:(UIViewController *)vc
 {
-    [vc.slidingViewController.topViewController.view addGestureRecognizer:vc.slidingViewController.panGesture];
-    
-    vc.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
-    
-    vc.view.layer.shadowOpacity = 0.75f;
-    vc.view.layer.shadowRadius = 10.0f;
-    vc.view.layer.shadowColor = [UIColor blackColor].CGColor;
+//    [vc.slidingViewController.topViewController.view addGestureRecognizer:vc.slidingViewController.panGesture];
+//    
+//    vc.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
+//    
+//    vc.view.layer.shadowOpacity = 0.75f;
+//    vc.view.layer.shadowRadius = 10.0f;
+//    vc.view.layer.shadowColor = [UIColor blackColor].CGColor;
 }
 
 +(BOOL)isIpad

@@ -85,7 +85,7 @@ NSArray *daysOfWeekArray;
     self.dayPicker.dataSource = self;
     
     //[self.dayPicker setStartDate:[NSDate dateFromDay:28 month:9 year:2013] endDate:[NSDate dateFromDay:5 month:10 year:2013]];
-    [Tools showLightLoader];
+    //[Tools showLightLoader];
     
 //    if ( [Tools isIpad] )
 //    {
@@ -425,15 +425,36 @@ NSArray *daysOfWeekArray;
     if([Tools isIpad])
     {
         if(!_editing){
+            
+            
+            
+            [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+            //
+            self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+            //
+            //
+            DetailViewController *controller = self.detailViewController;
+            [controller changed];
+            
+            indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+            
+            
+            
+            
+            [controller.navigationController pushViewController:view animated:NO];
+            
+            self.splitViewController.delegate = view;
+            view.lesson = _lessonSender;
+            view.detailShowMasterButton = controller.detailShowMasterButton;
+            [view changed];
+        
+            //DetailViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"detailView"];
+            //view.lesson = _lessonSender;
+            
+            
             //[self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
             //
-            [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
-            
-            self.detailViewController = (indexViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-            self.detailViewController.lesson = _lessonSender;
-            
-            indexViewController *controller = self.detailViewController;
-            [controller changed];
+ 
             
             
         }
@@ -498,6 +519,7 @@ NSArray *daysOfWeekArray;
     
     //SAVE ATTENDANCE
     else if (_NSURLType == 1) {
+        [Tools showLightLoader];
         [self jsonRequestGetAgenda];
     }
 }

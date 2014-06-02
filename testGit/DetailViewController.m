@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "Tools.h"
+#import "Session.h"
 
 @interface DetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -15,6 +16,8 @@
 @end
 
 @implementation DetailViewController
+
+extern Session *session;
 
 #pragma mark - Managing the detail item
 
@@ -41,6 +44,22 @@
     }
 }
 
+-(void)changed
+{
+    if (self.masterPopoverController != nil) {
+        [self.masterPopoverController dismissPopoverAnimated:YES];
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    if ([[session client]clientID] == 0) {
+        UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"loginView"];
+        
+        [self presentViewController:view animated:NO completion:nil];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -49,7 +68,6 @@
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = self.splitViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = self;
     }
     
@@ -69,7 +87,11 @@
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
+    
     barButtonItem.title = NSLocalizedString(@"Master", @"Master");
+    
+    _detailShowMasterButton = barButtonItem;
+    
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
 }

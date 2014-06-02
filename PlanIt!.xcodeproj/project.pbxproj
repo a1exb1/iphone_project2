@@ -87,7 +87,6 @@
 		E40DF2A2190017E200E1332A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF281190017E100E1332A /* UIKit.framework */; };
 		E40DF2AA190017E200E1332A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E40DF2A8190017E200E1332A /* InfoPlist.strings */; };
 		E40DF2AC190017E200E1332A /* testGitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E40DF2AB190017E200E1332A /* testGitTests.m */; };
-		E421C97519350D9500FA039A /* menuDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E421C97419350D9500FA039A /* menuDrawerTableViewController.m */; };
 		E421C97A1935199000FA039A /* menu-background.png in Resources */ = {isa = PBXBuildFile; fileRef = E421C9791935199000FA039A /* menu-background.png */; };
 		E42B6112190C0582001B977F /* studentNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E42B6111190C0582001B977F /* studentNote.m */; };
 		E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430DCB4190A582B00DEFD7C /* coursesViewController.m */; };
@@ -151,7 +150,6 @@
 		E4F677011935F9D900208991 /* calenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F677001935F9D900208991 /* calenderViewController.m */; };
 		E4F96CCC19097D49008D75D6 /* tutors2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F96CCB19097D49008D75D6 /* tutors2ViewController.m */; };
 		E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F96D12190AA12B008D75D6 /* editStudentViewController.m */; };
-		FB946B1ED4E64BA28B964FBE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68104856122B4FC68061FB82 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,8 +163,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		29D9A3031352476A8233539E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		68104856122B4FC68061FB82 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		792B23B31920BC3E00CAE285 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		792B23B51920CAE200CAE285 /* glyphicons_175_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_175_stop.png; sourceTree = "<group>"; };
 		792B23B61920CAE200CAE285 /* glyphicons_173_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_173_play.png; sourceTree = "<group>"; };
@@ -273,8 +269,6 @@
 		E40DF2A7190017E200E1332A /* PlanIt!Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlanIt!Tests-Info.plist"; sourceTree = "<group>"; };
 		E40DF2A9190017E200E1332A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E40DF2AB190017E200E1332A /* testGitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testGitTests.m; sourceTree = "<group>"; };
-		E421C97319350D9500FA039A /* menuDrawerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuDrawerTableViewController.h; sourceTree = "<group>"; };
-		E421C97419350D9500FA039A /* menuDrawerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menuDrawerTableViewController.m; sourceTree = "<group>"; };
 		E421C9791935199000FA039A /* menu-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-background.png"; sourceTree = "<group>"; };
 		E42B6110190C0582001B977F /* studentNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = studentNote.h; sourceTree = "<group>"; };
 		E42B6111190C0582001B977F /* studentNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = studentNote.m; sourceTree = "<group>"; };
@@ -382,7 +376,6 @@
 				E40DF280190017E100E1332A /* CoreGraphics.framework in Frameworks */,
 				E40DF282190017E100E1332A /* UIKit.framework in Frameworks */,
 				E40DF27E190017E100E1332A /* Foundation.framework in Frameworks */,
-				FB946B1ED4E64BA28B964FBE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,7 +568,6 @@
 				E40DF2A5190017E200E1332A /* testGitTests */,
 				E40DF27C190017E100E1332A /* Frameworks */,
 				E40DF27B190017E100E1332A /* Products */,
-				29D9A3031352476A8233539E /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -598,7 +590,6 @@
 				E40DF27F190017E100E1332A /* CoreGraphics.framework */,
 				E40DF281190017E100E1332A /* UIKit.framework */,
 				E40DF29F190017E200E1332A /* XCTest.framework */,
-				68104856122B4FC68061FB82 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -698,8 +689,6 @@
 		E421C97219350D6500FA039A /* menu */ = {
 			isa = PBXGroup;
 			children = (
-				E421C97319350D9500FA039A /* menuDrawerTableViewController.h */,
-				E421C97419350D9500FA039A /* menuDrawerTableViewController.m */,
 			);
 			name = menu;
 			sourceTree = "<group>";
@@ -881,11 +870,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E40DF2AF190017E200E1332A /* Build configuration list for PBXNativeTarget "PlanIt!" */;
 			buildPhases = (
-				C6D2917B555046958B820AFC /* Check Pods Manifest.lock */,
 				E40DF276190017E100E1332A /* Sources */,
 				E40DF277190017E100E1332A /* Frameworks */,
 				E40DF278190017E100E1332A /* Resources */,
-				9DCD760D3D51471093C03F3F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1047,39 +1034,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		9DCD760D3D51471093C03F3F /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C6D2917B555046958B820AFC /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		E40DF276190017E100E1332A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1138,7 +1092,6 @@
 				E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */,
 				E4494DD7190D851E00585CB8 /* Tutor.m in Sources */,
 				79481D64192364EC00674ACF /* AddLessonsViewController.m in Sources */,
-				E421C97519350D9500FA039A /* menuDrawerTableViewController.m in Sources */,
 				E4AB8873191D4199001A70D9 /* MZDayPickerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1271,7 +1224,6 @@
 		};
 		E40DF2B0190017E200E1332A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29D9A3031352476A8233539E /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1288,7 +1240,6 @@
 		};
 		E40DF2B1190017E200E1332A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29D9A3031352476A8233539E /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1305,7 +1256,6 @@
 		};
 		E40DF2B3190017E200E1332A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29D9A3031352476A8233539E /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/testGit.app/testGit";
 				FRAMEWORK_SEARCH_PATHS = (

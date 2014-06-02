@@ -13,4 +13,9 @@
 @property (strong, nonatomic) id detailItem;
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+@property UIBarButtonItem *detailShowMasterButton;
+
+-(void)changed;
+
 @end

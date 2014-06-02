@@ -34,11 +34,11 @@ extern Session *session;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-   
+    
     //_bgImg.image = [UIImage imageNamed:@"login_portrait.jpg"];
     _bgImg.image = [UIImage imageNamed:@"SplashScreenLogin2.png"];
     
-        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:nil theme:@"dark"];
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:nil theme:@"dark"];
     
 }
 
@@ -55,8 +55,8 @@ extern Session *session;
         [self jsonRequestGetData];
     }
     else{
-//        self.statusLbl.hidden = NO;
-//        _statusLbl.text = @"Please enter your login details!";
+        //        self.statusLbl.hidden = NO;
+        //        _statusLbl.text = @"Please enter your login details!";
         UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please enter your username and password!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [errorView show];
     }
@@ -68,11 +68,11 @@ extern Session *session;
     [Tools showLoader];
     self.loginBtn.hidden = YES;
     
-     _clientArray = [[NSArray alloc] init];
+    _clientArray = [[NSArray alloc] init];
     
     NSString *username = self.usernameTextField.text;
     NSString *password = self.passwordTextField.text;
-  
+    
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=login&id=0&username=%@&password=%@&ts=%f", username, password, [[NSDate date] timeIntervalSince1970]];
     
     NSLog(@"%@", urlString);
@@ -96,7 +96,7 @@ extern Session *session;
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [Tools hideLoader];
-
+    
     _clientArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
     NSLog(@"%@", _clientArray);
@@ -117,12 +117,12 @@ extern Session *session;
             [[session client] setClientUserName:[[_clientArray objectAtIndex:0] objectForKey:@"clientusername"]];
             [[session tutor] setTutorID:[[[_clientArray objectAtIndex:0] objectForKey:@"tutorid"] intValue]];
             [[session tutor] setAccountType:[[[_clientArray objectAtIndex:0] objectForKey:@"tutoraccounttype"] intValue]];
-                        
+            
             [self loginSuccess];
         }
         else{
-//            self.statusLbl.hidden = NO;
-//            NSLog(@"Incorrect login details!");
+            //            self.statusLbl.hidden = NO;
+            //            NSLog(@"Incorrect login details!");
             UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Incorrect username or password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [errorView show];
             self.loginBtn.hidden = NO;
@@ -141,13 +141,9 @@ extern Session *session;
 -(void) loginSuccess{
     [Tools hideLoader];
     
-    
-    
     if ( [Tools isIpad] )
     {
-        UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"slidingViewController"];
-        
-        [self presentViewController:view animated:YES completion:nil];
+        [self dismissViewControllerAnimated:NO completion:nil];
     }
     else
     {

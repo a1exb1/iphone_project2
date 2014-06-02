@@ -28,6 +28,12 @@ Session *session;
     [session setClient:client];
     [session setTutor:tutor];
     
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+        splitViewController.delegate = (id)navigationController.topViewController;
+    }
+    
 //    ManageTableViewController * leftDrawer = [[ManageTableViewController alloc] init];
 //    testViewController * center = [[testViewController alloc] init];
 //    //UIViewController * rightDrawer = [[UIViewController alloc] init];

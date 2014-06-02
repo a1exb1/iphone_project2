@@ -41,7 +41,7 @@ NSTimer *timer;
     [Tools addECSlidingDefaultSetupWithViewController:self];
     self.webView.delegate = self;
     
-    if([self.slidingViewController.topViewController.accessibilityValue isEqualToString:@"calenderView"]){
+    if([self.accessibilityValue isEqualToString:@"calenderView"]){
         self.title = @"Calender";
         
         [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
@@ -61,7 +61,7 @@ NSTimer *timer;
 -(void)showNavigationBar
 {
     UIBarButtonItem *addLessonsBtn = nil;
-    if ([self.slidingViewController.topViewController.accessibilityValue isEqualToString:@"lessonSlots"]) {
+    if ([self.accessibilityValue isEqualToString:@"lessonSlots"]) {
         addLessonsBtn = [[UIBarButtonItem alloc] initWithTitle:@"Add to calender" style:UIBarButtonItemStylePlain target:self action:@selector(addLessons)];
     }
     
@@ -107,7 +107,7 @@ NSTimer *timer;
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:nil theme:@"light"];
     
     NSString *urlString = [[NSString alloc] init];
-    if([self.slidingViewController.topViewController.accessibilityValue isEqualToString:@"calenderView"]){
+    if([self.accessibilityValue isEqualToString:@"calenderView"]){
         urlString = [NSString stringWithFormat: @"http://lm.bechmann.co.uk/sections/frames/calender_items_week.aspx?&tutorid=%li&from=26/05/2014&to=01/06/2014&clientid=%li&auth=0CCAAC112", [[session tutor] tutorID], [[session client] clientID]];
         
     }

@@ -12,6 +12,7 @@
 #import "MZDayPicker.h"
 #import "DIDatepicker.h"
 #import "indexViewController.h"
+#import "DetailViewController.h"
 
 @interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SelectDateDelegate, MZDayPickerDataSource, MZDayPickerDelegate>
 
@@ -33,7 +34,7 @@
 
 @property bool keepEditing;
 
-@property (strong, nonatomic) indexViewController *detailViewController;
+@property (strong, nonatomic) DetailViewController *detailViewController;
 
 @property UIBarButtonItem *clipboardItem;
 
