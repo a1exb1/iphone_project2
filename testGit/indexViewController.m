@@ -43,10 +43,6 @@
 {
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
     
-    if([Tools isIpad]){
-        [Tools addECSlidingDefaultSetupWithViewController:self];
-    }
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -66,11 +62,14 @@
     
     //[self boxes];
     
-    _menuBtn = self.navigationItem.leftBarButtonItem;
+    //_menuBtn = self.navigationItem.leftBarButtonItem;
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.splitViewController.delegate = self;
     }
+    
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = nil;
     
 //    NSString *dayDesc = @"";
 //    NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
@@ -95,7 +94,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor greenColor];
     
     UIBarButtonItem *noteBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"1012-sticky-note-toolbar@2x-selected.png"]  style:UIBarButtonItemStylePlain  target:self action:@selector(goToNotes)];
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:noteBtn, nil]];
+    [self.navigationItem setRightBarButtonItem:noteBtn];
     
     //timer
     [self updateLabels];
@@ -208,7 +207,7 @@
 }
 
 -(void)updateLabels{
-    
+    NSLog(@"%@", [self.navigationItem rightBarButtonItem]);
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[_lesson dateTime]];
@@ -289,23 +288,30 @@
     NSLog(@"Students phone number: %@", [[_lesson student] phone]);
 }
 
+//
+//- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
+//{
+//    //barButtonItem.image = [_menuBtn image];
+//    //barButtonItem.title = NSLocalizedString(@"Agenda", @"Agenda");
+//    //[self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+//    self.masterPopoverController = popoverController;
+//
+//    //[self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects: barButtonItem, nil]];
+//}
+//
+//- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+//{
+//    // Called when the view is shown again in the split view, invalidating the button and popover controller.
+//    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+//    self.masterPopoverController = nil;
+//    
+//}
 
-- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
+- (BOOL)splitViewController: (UISplitViewController*)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
 {
-    barButtonItem.image = [_menuBtn image];
-    barButtonItem.title = NSLocalizedString(@"Agenda", @"Agenda");
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    self.masterPopoverController = popoverController;
-
-    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects: barButtonItem, nil]];
-}
-
-- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-    self.masterPopoverController = nil;
+    //This method is only available in iOS5
     
+    return NO;
 }
 
 -(void)showMainMenu

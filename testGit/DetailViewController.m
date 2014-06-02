@@ -49,7 +49,10 @@ extern Session *session;
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
     }
+    
+    
 }
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -77,6 +80,7 @@ extern Session *session;
     
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -89,18 +93,25 @@ extern Session *session;
 {
     
     barButtonItem.title = NSLocalizedString(@"Master", @"Master");
-    
     _detailShowMasterButton = barButtonItem;
     
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+    //[self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
+    _detailShowMasterButton = barButtonItem;
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
+}
+
+- (BOOL)splitViewController: (UISplitViewController*)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    //This method is only available in iOS5
+    
+    return NO;
 }
 
 @end

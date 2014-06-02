@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Lesson.h"
+#import "indexViewController.h"
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
 
@@ -17,5 +19,9 @@
 @property UIBarButtonItem *detailShowMasterButton;
 
 -(void)changed;
+
+-(void)goToAgendaWithLesson:(Lesson *)lesson;
+
+@property Lesson *lessonSender;
 
 @end

@@ -426,37 +426,29 @@ NSArray *daysOfWeekArray;
     {
         if(!_editing){
             
-            
-            
             [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
-            //
             self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-            //
-            //
+
             DetailViewController *controller = self.detailViewController;
             [controller changed];
             
             indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
             
+            //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
             
-            
+            view.lesson = _lessonSender;
             
             [controller.navigationController pushViewController:view animated:NO];
-            
-            self.splitViewController.delegate = view;
-            view.lesson = _lessonSender;
-            view.detailShowMasterButton = controller.detailShowMasterButton;
-            [view changed];
-        
-            //DetailViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"detailView"];
-            //view.lesson = _lessonSender;
-            
-            
-            //[self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
-            //
- 
-            
-            
+//            
+//            self.splitViewController.delegate = view;
+//            
+////            UISplitViewController *splitViewController = (UISplitViewController *)self.splitViewController;
+////            UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+////            splitViewController.delegate = (id)navigationController.topViewController;
+//            
+//            view.lesson = _lessonSender;
+//            view.detailShowMasterButton = controller.detailShowMasterButton;
+//            [view changed];
         }
         else{
             NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
