@@ -33,11 +33,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem image="7F6377C7-51E8-4A2A-9BCF-7276D4721BC4" id="pCL-T0-Uuo"/>
-                        <barButtonItem image="CA4EFD20-A2E2-4CB0-A561-DF8C52A84A54" id="qGG-m2-kPW"/>
+                        <barButtonItem image="5185EDE6-0937-4464-86A6-207B83D9F723" id="pCL-T0-Uuo"/>
+                        <barButtonItem image="CA147432-BA0E-4D68-9299-4FF4D8F68B2E" id="qGG-m2-kPW"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="5ld-g2-sgm">
-                        <barButtonItem key="leftBarButtonItem" image="E3E58997-57EF-40B7-A3DA-F418FC454020" id="jeU-dC-D6y">
+                        <barButtonItem key="leftBarButtonItem" image="E22E3BD0-576C-41E6-BC45-73849EECACDF" id="jeU-dC-D6y">
                             <connections>
                                 <segue destination="Lo5-Lz-MSG" kind="unwind" unwindAction="unwindToMenuViewController:" id="Tqd-Nm-oor"/>
                             </connections>
@@ -178,7 +178,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="gtJ-R7-xnR">
-                        <barButtonItem key="leftBarButtonItem" image="E3E58997-57EF-40B7-A3DA-F418FC454020" id="FNx-ha-cQV">
+                        <barButtonItem key="leftBarButtonItem" image="E22E3BD0-576C-41E6-BC45-73849EECACDF" id="FNx-ha-cQV">
                             <connections>
                                 <segue destination="Lo5-Lz-MSG" kind="unwind" unwindAction="unwindToMenuViewController:" id="0OH-Ag-BpH"/>
                             </connections>
@@ -1227,8 +1227,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="728-clock-selected.png" width="17" height="22"/>
-        <image name="7F6377C7-51E8-4A2A-9BCF-7276D4721BC4" width="17" height="22">
+        <image name="5185EDE6-0937-4464-86A6-207B83D9F723" width="17" height="22">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1304,12 +1303,13 @@ kw+iD6YPrQ+1D8IPxw/JD8sP0A/YD9sP4A/oD+sP/RAAEAUAAAAAAAACAQAAAAAAAABCAAAAAAAAAAAA
 AAAAAAAQBw
 </mutableData>
         </image>
+        <image name="728-clock-selected.png" width="17" height="22"/>
         <image name="809-clipboard-selected.png" width="20" height="28"/>
         <image name="851-calendar-toolbar-selected.png" width="22" height="22"/>
         <image name="974-users-selected.png" width="17" height="22"/>
         <image name="Button Play.png" width="32" height="32"/>
         <image name="Button Record.png" width="32" height="32"/>
-        <image name="CA4EFD20-A2E2-4CB0-A561-DF8C52A84A54" width="17" height="22">
+        <image name="CA147432-BA0E-4D68-9299-4FF4D8F68B2E" width="17" height="22">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1385,7 +1385,7 @@ kw+iD6YPrQ+1D8IPxw/JD8sP0A/YD9sP4A/oD+sP/RAAEAUAAAAAAAACAQAAAAAAAABCAAAAAAAAAAAA
 AAAAAAAQBw
 </mutableData>
         </image>
-        <image name="E3E58997-57EF-40B7-A3DA-F418FC454020" width="22" height="18">
+        <image name="E22E3BD0-576C-41E6-BC45-73849EECACDF" width="22" height="18">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

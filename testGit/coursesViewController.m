@@ -175,23 +175,23 @@ extern Session *session;
     [_courseSender setName:cell.textLabel.text];
 
     
-    if ([Tools isIpad])
-    {
+//    if ([Tools isIpad])
+//    {
+////
+//        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+////        
+//        self.detailViewController = (studentsViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+//        self.detailViewController.course = _courseSender;
 //
-        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+//        studentsViewController *controller = self.detailViewController;
+//        [controller loadData];
 //        
-        self.detailViewController = (studentsViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-        self.detailViewController.course = _courseSender;
-
-        studentsViewController *controller = self.detailViewController;
-        [controller loadData];
-        
-    }
-    else{
+//    }
+    //else{
         studentsViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"students"];
         view.course = _courseSender;
         [self.navigationController pushViewController:view animated:YES];
-    }
+    //}
     //studentsDetailView
     
     
