@@ -61,9 +61,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    //[self boxes];
-    
-    //_menuBtn = self.navigationItem.leftBarButtonItem;
+
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.splitViewController.delegate = self;
@@ -72,21 +70,7 @@
     self.navigationItem.leftBarButtonItem = nil;
     [self.navigationItem setHidesBackButton:YES animated:NO];
     self.navigationItem.rightBarButtonItem = nil;
-    
-//    NSString *dayDesc = @"";
-//    NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
-//    NVDate *nowDate = [[NVDate alloc] initUsingToday];
-//    
-//    if ([[self beginningOfDay:lessonDate.date] isEqualToDate:[self beginningOfDay:nowDate.date]])
-//    {
-//        dayDesc = @"Today";
-//    }
-//    else{
-//        dayDesc = [NSString stringWithFormat:@"%li.%li.%li", (long)lessonDate.day, (long)lessonDate.month, (long)lessonDate.year];
-//    }
-    
-    //_dayDescLbl.text = dayDesc;
-    
+
     _courseNameLbl.text = [[_lesson course] name];
     _studentNameLbl.text = [[_lesson student] name];
     _attendenceControl.selectedSegmentIndex = [_lesson status];
@@ -94,14 +78,8 @@
     
     self.navigationController.navigationBar.barTintColor = [UIColor greenColor];
     self.navigationController.navigationBar.tintColor = [UIColor greenColor];
-    
-    //UIBarButtonItem *noteBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"1012-sticky-note-toolbar@2x-selected.png"]  style:UIBarButtonItemStylePlain  target:self action:@selector(goToNotes)];
-    
-    
-    
+
     [self.navigationItem setRightBarButtonItem:_notesBtn];
-    //[[self.navigationItem rightBarButtonItem] setAction:@selector(goToNotes)];
-    
     
     //timer
     [self updateLabels];
@@ -111,18 +89,49 @@
                            action:@selector(changeAttendence:)
                  forControlEvents:UIControlEventValueChanged];
     
+    
 }
 
-
+-(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self boxes];
+}
 
 -(void)boxes
 {
+    for (CALayer *ca in _box1View.layer.sublayers) {
+        if ([ca.accessibilityValue isEqualToString: @"border"]) {
+            [ca removeFromSuperlayer];
+        }
+    }
+    for (CALayer *ca in _courseView.layer.sublayers) {
+        if ([ca.accessibilityValue isEqualToString: @"border"]) {
+            [ca removeFromSuperlayer];
+        };
+    }
+    for (CALayer *ca in _studentView.layer.sublayers) {
+        if ([ca.accessibilityValue isEqualToString: @"border"]) {
+            [ca removeFromSuperlayer];
+        }
+    }
+    
+    
+    if((int)self.navigationController.view.frame.size.width == 447)
+    {
+        _box1View.frame = CGRectMake(20.0f, 87.0f, ((int)self.navigationController.view.frame.size.width  - 40), 90);
+        _courseView.frame = CGRectMake(20.0f, 190.0f, ((int)self.navigationController.view.frame.size.width  - 40), _courseView.frame.size.height);
+        _studentView.frame = CGRectMake(20.0f, 265.0f, ((int)self.navigationController.view.frame.size.width  - 40), _studentView.frame.size.height);
+    }
+    
+    
     // now box border
     CALayer *TopBorder = [CALayer layer];
     TopBorder.frame = CGRectMake(0.0f, 0.0f, _box1View.frame.size.width, 3.0f);
     TopBorder.backgroundColor = [Tools colorFromHexString:@"#990f60"].CGColor;
     //orange : e84721
     //#
+    //[_box1View.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+    TopBorder.accessibilityValue = @"border";
     [_box1View.layer addSublayer:TopBorder];
     [Tools addShadowToViewWithView:_box1View];
     
@@ -130,6 +139,7 @@
     TopBorder = [CALayer layer];
     TopBorder.frame = CGRectMake(0.0f, 0.0f, _studentView.frame.size.width, 3.0f);
     TopBorder.backgroundColor = [Tools colorFromHexString:@"#4473b4"].CGColor;
+    TopBorder.accessibilityValue = @"border";
     [_studentView.layer addSublayer:TopBorder];
     [Tools addShadowToViewWithView:_studentView];
     
@@ -137,6 +147,7 @@
     TopBorder = [CALayer layer];
     TopBorder.frame = CGRectMake(0.0f, 0.0f, _courseView.frame.size.width, 3.0f);
     TopBorder.backgroundColor = [Tools colorFromHexString:@"#57AD2C"].CGColor;
+    TopBorder.accessibilityValue = @"border";
     [_courseView.layer addSublayer:TopBorder];
     [Tools addShadowToViewWithView:_courseView];
 }
@@ -276,7 +287,8 @@
         dayDesc = [NSString stringWithFormat:@"%02ld.%02ld.%li", (long)lessonDate.day, (long)lessonDate.month, (long)lessonDate.year];
         _dayDescLbl.text = dayDesc;
     }
-
+    
+    [self boxes];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -348,7 +360,7 @@
         UINavigationController *navVC = segue.destinationViewController;
         
         // Get reference to the destination view controller
-        NotesViewController *view = navVC.topViewController;
+        NotesViewController *view = (NotesViewController *)navVC.topViewController;
         
         // Pass any objects to the view controller here, like...
         [view setLesson:_lesson];

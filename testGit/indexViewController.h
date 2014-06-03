@@ -27,6 +27,4 @@
 -(void)updateLabels;
 -(void)changed;
 
-
-
 @end
