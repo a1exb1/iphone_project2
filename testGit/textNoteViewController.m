@@ -25,7 +25,12 @@
     return self;
 }
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    CGSize size = CGSizeMake(320, 480); // size of view in popover
+    self.preferredContentSize = size;
+    [super viewWillAppear:animated];
+}
 
 - (void)viewDidLoad
 {

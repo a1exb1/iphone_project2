@@ -152,10 +152,10 @@
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
--(IBAction)Notes:(id)sender
-{
-    [self goToNotes];
-}
+//-(IBAction)Notes:(id)sender
+//{
+//    [self goToNotes];
+//}
 
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -337,6 +337,22 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"popoverNotes"])
+    {
+        
+        UINavigationController *navVC = segue.destinationViewController;
+        
+        // Get reference to the destination view controller
+        NotesViewController *view = navVC.topViewController;
+        
+        // Pass any objects to the view controller here, like...
+        [view setLesson:_lesson];
+    }
 }
 
 @end

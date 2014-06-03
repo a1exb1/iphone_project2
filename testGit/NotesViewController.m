@@ -55,10 +55,15 @@ NSMutableArray *audioNotes;
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    CGSize size = CGSizeMake(320, 480); // size of view in popover
+    self.preferredContentSize = size;
+    
     [Tools showLoader];
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
     [self jsonRequestGetData];
+    
+    [super viewWillAppear:animated];
     
 }
 
@@ -77,9 +82,18 @@ NSMutableArray *audioNotes;
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:textNoteBtn,audioNoteBtn, nil]];
     
     
-    [_mainTableView addPullToRefreshWithActionHandler:^{
-        [self jsonRequestGetData];
-    }];
+    if(![Tools isIpad])
+    {
+        [_mainTableView addPullToRefreshWithActionHandler:^{
+            [self jsonRequestGetData];
+        }];
+    }
+    else{
+        [self.navigationController.navigationBar setTranslucent:NO];
+        UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(jsonRequestGetData)];
+        self.navigationItem.leftBarButtonItem = refreshBtn;
+    }
+    
     
 }
 
@@ -139,6 +153,8 @@ NSMutableArray *audioNotes;
         image =  [UIImage imageNamed:@"audio_icon.png"];
     }
 
+    cell.backgroundColor = [UIColor whiteColor];
+    
     UIImage *buttonBk = [Tools scaleImage:image toSize:CGSizeMake(60,88.0)];
     cell.imageView.image = buttonBk;
 
