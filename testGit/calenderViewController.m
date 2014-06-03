@@ -102,7 +102,7 @@ NSTimer *timer;
     self.webView.hidden = YES;
     
     [self hideNavigationBar];
-    [Tools showLightLoader];
+    [Tools showLoaderWithView:self.navigationController.view];
     //[Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:nil theme:@"light"];
     
     NSString *urlString = [[NSString alloc] init];

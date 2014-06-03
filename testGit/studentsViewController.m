@@ -64,7 +64,7 @@ NSMutableArray *viewStudentsArray;
         [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
     
-    [Tools showLoader];
+    [Tools showLoaderWithView:self.navigationController.view];
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
     
@@ -92,7 +92,7 @@ NSMutableArray *viewStudentsArray;
         [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
     }
     
-    _mainTableView.frame = CGRectMake(0.0f, 0.0f, self.navigationController.view.frame.size.width, self.view.frame.size.height);
+    //_mainTableView.frame = CGRectMake(0.0f, 0.0f, self.navigationController.view.frame.size.width, self.view.frame.size.height);
     
 }
 
@@ -102,7 +102,7 @@ NSMutableArray *viewStudentsArray;
 	// Do any additional setup after loading the view.
     
     
-    [Tools showLoader];
+     [Tools showLoaderWithView:self.navigationController.view];
     //
     
     daysOfWeekArray = [[NSArray alloc] initWithObjects:

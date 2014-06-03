@@ -430,13 +430,12 @@ NSArray *daysOfWeekArray;
             self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
             DetailViewController *controller = self.detailViewController;
-            [controller changed];
-            
             indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
             
             //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
             
             view.lesson = _lessonSender;
+            [view changed];
             
             [controller.navigationController pushViewController:view animated:NO];
 //            
@@ -506,6 +505,49 @@ NSArray *daysOfWeekArray;
             //{
                 [self finishedAttendance];
             //}
+            
+            if([Tools isIpad])
+            {
+                if(!_editing && [_lessons count] > 0){ // NEEDS to check for current lesson and only run at start of application - if has run once, needs to know which row to go to. + select table row
+                    
+                    _lessonSender = [[Lesson alloc] init];
+                    [_lessonSender setLessonID: [[[_lessons objectAtIndex:0] objectForKey:@"LessonID"] intValue]];
+                    [_lessonSender setTutor:_tutor];
+                    
+                    NSString* str = [[_lessons objectAtIndex:0] objectForKey:@"LessonDateTime"];
+                    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+                    [formatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
+                    [_lessonSender setDateTime:[formatter dateFromString:str]];
+                    [_lessonSender setDuration:[[[_lessons objectAtIndex:0] objectForKey:@"Duration"] intValue]];
+                    [_lessonSender setStatus:[[[_lessons objectAtIndex:0] objectForKey:@"Status"] intValue]];
+                    
+                    Course *course = [[Course alloc]init];
+                    [course setCourseID:[[[_lessons objectAtIndex:0] objectForKey:@"CourseID"] intValue]];
+                    [course setName:[[_lessons objectAtIndex:0] objectForKey:@"CourseName"]];
+                    [_lessonSender setCourse:course];
+                    
+                    Student *student = [[Student alloc]init];
+                    [student setStudentID:[[[_lessons objectAtIndex:0] objectForKey:@"StudentID"] intValue]];
+                    [student setName:[[_lessons objectAtIndex:0] objectForKey:@"StudentName"]];
+                    [student setPhone:[[_lessons objectAtIndex:0] objectForKey:@"Telephone"]];
+                    [_lessonSender setStudent:student];
+                    
+                    [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+                    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+                    
+                    DetailViewController *controller = self.detailViewController;
+                    
+                    
+                    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+                    
+                    //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
+                    
+                    view.lesson = _lessonSender;
+                    [view changed];
+                    
+                    [controller.navigationController pushViewController:view animated:NO];
+                }
+            }
         }
     }
     
