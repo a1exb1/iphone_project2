@@ -16,4 +16,6 @@
 
 @property UIBarButtonItem *lockBtn;
 
+-(void)changed;
+
 @end

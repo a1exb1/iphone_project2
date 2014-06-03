@@ -58,6 +58,11 @@ NSTimer *timer;
     
 }
 
+-(void)changed
+{
+    
+}
+
 -(void)showNavigationBar
 {
     UIBarButtonItem *addLessonsBtn = nil;
