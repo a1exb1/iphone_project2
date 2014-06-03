@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *lessonNotesBtn;
 @property (weak, nonatomic) IBOutlet UILabel *dayDescLbl;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *notesBtn;
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
 @end
@@ -69,6 +70,7 @@
     }
     
     self.navigationItem.leftBarButtonItem = nil;
+    [self.navigationItem setHidesBackButton:YES animated:NO];
     self.navigationItem.rightBarButtonItem = nil;
     
 //    NSString *dayDesc = @"";
@@ -93,8 +95,13 @@
     self.navigationController.navigationBar.barTintColor = [UIColor greenColor];
     self.navigationController.navigationBar.tintColor = [UIColor greenColor];
     
-    UIBarButtonItem *noteBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"1012-sticky-note-toolbar@2x-selected.png"]  style:UIBarButtonItemStylePlain  target:self action:@selector(goToNotes)];
-    [self.navigationItem setRightBarButtonItem:noteBtn];
+    //UIBarButtonItem *noteBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"1012-sticky-note-toolbar@2x-selected.png"]  style:UIBarButtonItemStylePlain  target:self action:@selector(goToNotes)];
+    
+    
+    
+    [self.navigationItem setRightBarButtonItem:_notesBtn];
+    //[[self.navigationItem rightBarButtonItem] setAction:@selector(goToNotes)];
+    
     
     //timer
     [self updateLabels];
@@ -105,6 +112,8 @@
                  forControlEvents:UIControlEventValueChanged];
     
 }
+
+
 
 -(void)boxes
 {
@@ -141,6 +150,11 @@
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+-(IBAction)Notes:(id)sender
+{
+    [self goToNotes];
 }
 
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
@@ -188,6 +202,8 @@
 
 -(void)goToNotes
 {
+    NSLog(@"hifromnotes");
+    
     NotesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allNotesView"];
     view.lesson = _lesson;
     [self.navigationController pushViewController:view animated:YES];
@@ -206,9 +222,7 @@
     [self updateLabels];
 }
 
--(void)updateLabels{
-    NSLog(@"%@", [self.navigationItem rightBarButtonItem]);
-    
+-(void)updateLabels{    
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[_lesson dateTime]];
     NSInteger lessonDateHour = [components hour];
