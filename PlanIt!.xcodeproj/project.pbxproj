@@ -92,6 +92,7 @@
 		E41B75D1193DFD0500255354 /* 728-clock-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E41B75D0193DFD0500255354 /* 728-clock-selected@2x.png */; };
 		E421C97A1935199000FA039A /* menu-background.png in Resources */ = {isa = PBXBuildFile; fileRef = E421C9791935199000FA039A /* menu-background.png */; };
 		E427362F193E074600F98749 /* 746-plus-circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E427362E193E074600F98749 /* 746-plus-circle@2x.png */; };
+		E4273634193E7A9100F98749 /* 744-locked-toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4273633193E7A9100F98749 /* 744-locked-toolbar@2x.png */; };
 		E42B6112190C0582001B977F /* studentNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E42B6111190C0582001B977F /* studentNote.m */; };
 		E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430DCB4190A582B00DEFD7C /* coursesViewController.m */; };
 		E430DCB8190A5BB200DEFD7C /* studentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430DCB7190A5BB200DEFD7C /* studentsViewController.m */; };
@@ -103,7 +104,6 @@
 		E433C045193B8AC3003543AE /* 809-clipboard-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C043193B8AC3003543AE /* 809-clipboard-selected@2x.png */; };
 		E433C046193B8AC3003543AE /* 851-calendar-toolbar-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C044193B8AC3003543AE /* 851-calendar-toolbar-selected@2x.png */; };
 		E433C049193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C047193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png */; };
-		E433C04A193B8DAD003543AE /* 744-locked-toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E433C048193B8DAD003543AE /* 744-locked-toolbar@2x.png */; };
 		E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E441CEF419100F8600088FEE /* editStudentAndSlotViewController.m */; };
 		E441CEF819101C7D00088FEE /* editLessonSlotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E441CEF719101C7D00088FEE /* editLessonSlotViewController.m */; };
 		E441CEFB19115BF900088FEE /* viewAllStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E441CEFA19115BF900088FEE /* viewAllStudentsViewController.m */; };
@@ -279,6 +279,7 @@
 		E41B75D0193DFD0500255354 /* 728-clock-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "728-clock-selected@2x.png"; sourceTree = "<group>"; };
 		E421C9791935199000FA039A /* menu-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-background.png"; sourceTree = "<group>"; };
 		E427362E193E074600F98749 /* 746-plus-circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "746-plus-circle@2x.png"; sourceTree = "<group>"; };
+		E4273633193E7A9100F98749 /* 744-locked-toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "744-locked-toolbar@2x.png"; sourceTree = "<group>"; };
 		E42B6110190C0582001B977F /* studentNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = studentNote.h; sourceTree = "<group>"; };
 		E42B6111190C0582001B977F /* studentNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = studentNote.m; sourceTree = "<group>"; };
 		E430DCB3190A582B00DEFD7C /* coursesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coursesViewController.h; sourceTree = "<group>"; };
@@ -293,7 +294,6 @@
 		E433C043193B8AC3003543AE /* 809-clipboard-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "809-clipboard-selected@2x.png"; sourceTree = "<group>"; };
 		E433C044193B8AC3003543AE /* 851-calendar-toolbar-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "851-calendar-toolbar-selected@2x.png"; sourceTree = "<group>"; };
 		E433C047193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "744-locked-toolbar-selected@2x.png"; sourceTree = "<group>"; };
-		E433C048193B8DAD003543AE /* 744-locked-toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "744-locked-toolbar@2x.png"; sourceTree = "<group>"; };
 		E441CEF319100F8600088FEE /* editStudentAndSlotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editStudentAndSlotViewController.h; sourceTree = "<group>"; };
 		E441CEF419100F8600088FEE /* editStudentAndSlotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editStudentAndSlotViewController.m; sourceTree = "<group>"; };
 		E441CEF619101C7D00088FEE /* editLessonSlotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editLessonSlotViewController.h; sourceTree = "<group>"; };
@@ -538,6 +538,7 @@
 		E4005D1419369D91006C6ABB /* Glyphish */ = {
 			isa = PBXGroup;
 			children = (
+				E4273633193E7A9100F98749 /* 744-locked-toolbar@2x.png */,
 				E433C038193B85C4003543AE /* retina */,
 				E4005D1D1936A2F0006C6ABB /* 42-photos.png */,
 				E4005D1B1936A1C2006C6ABB /* 83-calendar.png */,
@@ -748,7 +749,6 @@
 				E427362E193E074600F98749 /* 746-plus-circle@2x.png */,
 				E41B75CD193DFD0500255354 /* tab bar */,
 				E433C047193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png */,
-				E433C048193B8DAD003543AE /* 744-locked-toolbar@2x.png */,
 				E433C043193B8AC3003543AE /* 809-clipboard-selected@2x.png */,
 				E433C044193B8AC3003543AE /* 851-calendar-toolbar-selected@2x.png */,
 				E433C041193B8813003543AE /* 887-notepad-toolbar@2x.png */,
@@ -983,6 +983,7 @@
 				E4005D1319369B53006C6ABB /* menu-32.png in Resources */,
 				E4D231EC1921368000E5797B /* login_portrait.jpg in Resources */,
 				79A86860191B93EC00AA4058 /* DSLCalendar-previousMonth@2x.png in Resources */,
+				E4273634193E7A9100F98749 /* 744-locked-toolbar@2x.png in Resources */,
 				792B23C21920D04C00CAE285 /* Button Play.png in Resources */,
 				792B23C31920D04C00CAE285 /* Button Record Active.png in Resources */,
 				79A86856191B93EC00AA4058 /* DSLCalendarDayCalloutView.xib in Resources */,
@@ -1038,7 +1039,6 @@
 				E4AAC5F31929FFA1008E0BD7 /* glyphicons_442_earphone.png in Resources */,
 				E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */,
 				E4AF261A193568D4006366D9 /* logout_80.png in Resources */,
-				E433C04A193B8DAD003543AE /* 744-locked-toolbar@2x.png in Resources */,
 				E40DF291190017E100E1332A /* Main_iPhone.storyboard in Resources */,
 				E4D231E8192134C400E5797B /* Note Sticky.png in Resources */,
 				E4AB8869191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png in Resources */,

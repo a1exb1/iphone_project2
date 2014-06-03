@@ -23,40 +23,34 @@ extern Session *session;
 
 NSTimer *timer;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-    [Tools addECSlidingDefaultSetupWithViewController:self];
     self.webView.delegate = self;
     
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
         self.title = @"Calender";
         
-        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
-        
-        self.navigationController.navigationBar.barTintColor = [Tools colorFromHexString:@"#b44444"];
-        self.navigationController.navigationBar.tintColor = [UIColor whiteColor] ;
-        [self.navigationController.navigationBar setTranslucent:YES];
+        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground: nil andTint:[Tools colorFromHexString:@"#b44444"] theme:@"light"];
     }
     else{
         self.title = @"Lesson slots";
         
-        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground:[Tools colorFromHexString:@"#57AD2C"] andTint:[UIColor whiteColor] theme:@"dark"];
+        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground:[Tools defaultNavigationBarColour] andTint:[Tools colorFromHexString:@"#57AD2C"] theme:@"light"];
     }
+
+    
+    [self showNavigationBar];
     
 }
+
+//-(void)showNavigationBar
+//{
+//    UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+//    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:refreshBtn, nil]];
+//}
 
 -(void)changed
 {
@@ -71,7 +65,7 @@ NSTimer *timer;
     }
     
     UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:addLessonsBtn, refreshBtn, _lockBtn, nil]];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:refreshBtn, _lockBtn, addLessonsBtn, nil]];
 }
 
 -(void)addLessons
@@ -99,7 +93,7 @@ NSTimer *timer;
     [_webView stringByEvaluatingJavaScriptFromString:@"unlockScreen();"];
     _lockBtn = [[UIBarButtonItem alloc] initWithTitle:@"Lock" style:UIBarButtonItemStylePlain target:self action:@selector(lock)];
     _lockBtn = [[UIBarButtonItem alloc] initWithImage:[self.unlockedUIButton image] style:UIBarButtonItemStylePlain target:self action:@selector(lock)];
-     [self showNavigationBar];
+    [self showNavigationBar];
 }
 
 -(void)loadUrl
@@ -109,7 +103,7 @@ NSTimer *timer;
     
     [self hideNavigationBar];
     [Tools showLightLoader];
-    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:nil theme:@"light"];
+    //[Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:nil theme:@"light"];
     
     NSString *urlString = [[NSString alloc] init];
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
@@ -173,7 +167,6 @@ NSTimer *timer;
     
     _statusLbl.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
-
 
 - (void)didReceiveMemoryWarning
 {

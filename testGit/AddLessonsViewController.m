@@ -46,9 +46,11 @@ extern Session *session;
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:clearBtn, nil]];
     }
     else {
-        UIBarButtonItem *clearBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(jsonRequestGetData)];
+        UIBarButtonItem *clearBtn = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStyleBordered target:self action:@selector(jsonRequestGetData)];
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:clearBtn, nil]];
     }
+    
+    self.title = @"Add lessons";
     
 }
 

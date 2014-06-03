@@ -84,7 +84,7 @@ extern Session *session;
     //[self.tableView setContentInset:UIEdgeInsetsMake(15,0,0,0)];
     
     [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-    [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
+    //[self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -134,6 +134,10 @@ extern Session *session;
         cell.detailTextLabel.text = [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 2];
     }
     
+    if(indexPath.row == 0 && indexPath.section == 0){
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
     cell.imageView.image = [UIImage imageNamed:[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 0]];
     
     cell.textLabel.text = [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 1];
@@ -149,25 +153,35 @@ extern Session *session;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
+    
+    DetailViewController *controller = self.detailViewController;
+    [controller changed];
+    
     // AGENDA
     if(indexPath.row == 0 && indexPath.section == 0){
-        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
-        self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-        
-        DetailViewController *controller = self.detailViewController;
-        [controller changed];
-        
         calenderViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonSlots"];
-        
-        //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
-        
         [controller.navigationController pushViewController:view animated:NO];
+        
+        studentsViewController *masterView = [self.storyboard instantiateViewControllerWithIdentifier:@"students"];
+        
+        _courseSender = [[Course alloc] init];
+        [_courseSender setTutorID:3];
+        [_courseSender setCourseID:3];
+        [_courseSender setName:@"Fiona"];
+        
+        masterView.course = _courseSender;
+        
+        [self.navigationController pushViewController:masterView animated:YES];
     }
     
     // CALENDER
     if(indexPath.row == 1 && indexPath.section == 0){
-        
-
+        calenderViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderView"];
+        view.accessibilityValue = @"calenderView";
+        [controller.navigationController pushViewController:view animated:NO];
 
     }
     

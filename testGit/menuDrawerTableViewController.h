@@ -10,9 +10,9 @@
 #import "DetailViewController.h"
 #import "calenderViewController.h"
 #import "tutors2ViewController.h"
-
-
 #import "Tools.h"
+#import "studentsViewController.h"
+#import "Course.h"
 
 @interface menuDrawerTableViewController : UITableViewController
 
@@ -20,6 +20,8 @@
 
 @property NSMutableArray *cellsArray;
 @property NSArray *sectionsArray;
+@property Course *courseSender;
+
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 

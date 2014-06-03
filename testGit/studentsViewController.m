@@ -87,7 +87,13 @@ NSMutableArray *viewStudentsArray;
     _statusLbl.hidden = YES;
     //_statusLbl.text = @"Loading...";
     
-    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
+    if(![Tools isIpad])
+    {
+        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
+    }
+    
+    _mainTableView.frame = CGRectMake(0.0f, 0.0f, self.navigationController.view.frame.size.width, self.view.frame.size.height);
+    
 }
 
 - (void)viewDidLoad
