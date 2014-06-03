@@ -14,6 +14,7 @@
 
 UIActivityIndicatorView *indicator;
 UIView *blockView;
+NSMutableArray *loaderViews;
 
 +(void)showLoader{
     if(indicator != NULL){
@@ -43,6 +44,7 @@ UIView *blockView;
 }
 
 +(void)showLightLoader{
+   
     if(indicator != NULL){
         [self hideLoader];
     }
@@ -68,28 +70,41 @@ UIView *blockView;
     [indicator startAnimating];
 }
 
+
 +(void)showLoaderWithView:(UIView *)view{
-    if(indicator != NULL){
-        [self hideLoader];
-    }
+    
+    UIActivityIndicatorView *UILoaderView;
     
     //UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     //UIView *view = window.rootViewController.view;
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    UILoaderView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
     
-    indicator.frame = CGRectMake(0.0, 0.0, view.frame.size.width, view.frame.size.height);
-    [indicator setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.25]];
-    indicator.center = view.center;
-    [view addSubview:indicator];
+    UILoaderView.frame = view.frame;
+    [UILoaderView setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.25]];
+    UILoaderView.center = view.center;
+    UILoaderView.accessibilityValue = @"loader";
+    [view addSubview:UILoaderView];
     //[view.window addSubview:indicator];
     [view bringSubviewToFront:indicator];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
-    [indicator startAnimating];
+    [UILoaderView startAnimating];
 }
+
++(void)hideLoaderFromView:(UIView *)view
+{
+    for (UIActivityIndicatorView *ca in view.subviews) {
+        if ([ca.accessibilityValue isEqualToString: @"loader"]) {
+            [ca removeFromSuperview];
+        }
+    }
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
 
 +(void)hideLoader{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

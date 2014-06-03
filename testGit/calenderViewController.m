@@ -103,6 +103,8 @@ NSTimer *timer;
     
     [self hideNavigationBar];
     [Tools showLoaderWithView:self.navigationController.view];
+    NSLog(@"%f", self.navigationController.view.frame.size.width);
+    //[Tools showLightLoader];
     //[Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:nil theme:@"light"];
     
     NSString *urlString = [[NSString alloc] init];
@@ -141,7 +143,7 @@ NSTimer *timer;
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     NSLog(@"Error : %@",error);
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.navigationController.view];
     //_lockBtn = nil;
     [self showNavigationBar];
     self.statusLbl.hidden = NO;
@@ -155,7 +157,7 @@ NSTimer *timer;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.navigationController.view];
     self.webView.hidden = NO;
     [timer invalidate];
     [self lock];

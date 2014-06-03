@@ -186,10 +186,7 @@ NSArray *daysOfWeekArray;
         }
     }
         
-    
-    
-
-    [Tools showLightLoader];
+    [Tools showLoaderWithView:self.navigationController.view];
 }
 
 - (void)updateSelectedDate
@@ -203,7 +200,7 @@ NSArray *daysOfWeekArray;
     
     if(_counter > 0){
         _dayDate = self.datePicker.selectedDate;
-        [Tools showLightLoader];
+        [Tools showLoaderWithView:self.navigationController.view];
         [self jsonRequestGetAgenda];
         
         
@@ -385,7 +382,7 @@ NSArray *daysOfWeekArray;
         status = 3;
     }
     
-    [Tools showLightLoader];
+    [Tools showLoaderWithView:self.navigationController.view];
     _NSURLType = 1;
     _keepEditing = YES;
     
@@ -485,7 +482,7 @@ NSArray *daysOfWeekArray;
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [_mainTableView.pullToRefreshView stopAnimating];
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.navigationController.view];
     
     //GET DATA
     if (_NSURLType == 0) {
@@ -553,7 +550,7 @@ NSArray *daysOfWeekArray;
     
     //SAVE ATTENDANCE
     else if (_NSURLType == 1) {
-        [Tools showLightLoader];
+        [Tools showLoaderWithView:self.navigationController.view];
         [self jsonRequestGetAgenda];
     }
 }
@@ -562,7 +559,7 @@ NSArray *daysOfWeekArray;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.navigationController.view];
     [_mainTableView.pullToRefreshView stopAnimating];
 }
 

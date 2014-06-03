@@ -344,7 +344,16 @@ NSMutableArray *viewStudentsArray;
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [Tools hideLoader];
+    
+    if([Tools isIpad])
+    {
+        [Tools hideLoaderFromView:self.navigationController.view];
+    }
+    else{
+        [Tools hideLoader];
+    }
+    
+    
     [_mainTableView.pullToRefreshView stopAnimating];
     
     _students = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
@@ -381,7 +390,13 @@ NSMutableArray *viewStudentsArray;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [Tools hideLoader];
+    if([Tools isIpad])
+    {
+        [Tools hideLoaderFromView:self.navigationController.view];
+    }
+    else{
+        [Tools hideLoader];
+    }
     [_mainTableView.pullToRefreshView stopAnimating];
 }
 

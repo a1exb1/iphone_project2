@@ -18,7 +18,7 @@
 +(void)showLoaderWithView:(UIView *) view;
 
 +(void)hideLoader;
-//+(void)hideLoaderFromView:(UIView *) view;
++(void)hideLoaderFromView:(UIView *) view;
 
 +(void)lockInputWithFrame: (CGRect)frame;
 +(void)unlockInputWithView;
@@ -48,8 +48,6 @@
 +(void)addECSlidingDefaultSetupWithViewController:(UIViewController *)ViewController;
 
 +(BOOL)isIpad;
-
-@property NSMutableArray *loaderViews;
 
 
 @end

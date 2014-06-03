@@ -208,8 +208,6 @@
 
 -(void)goToNotes
 {
-    NSLog(@"hifromnotes");
-    
     NotesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allNotesView"];
     view.lesson = _lesson;
     [self.navigationController pushViewController:view animated:YES];
