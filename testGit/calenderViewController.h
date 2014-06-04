@@ -12,9 +12,10 @@
 
 #import "AddLessonsViewController.h"
 
-@interface calenderViewController : UIViewController <UIWebViewDelegate>
+@interface calenderViewController : UIViewController <UIWebViewDelegate, calenderViewDelegate>
 
 @property UIBarButtonItem *lockBtn;
+@property UIPopoverController *popover;
 
 -(void)changed;
 

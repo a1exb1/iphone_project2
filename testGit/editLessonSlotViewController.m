@@ -39,6 +39,14 @@ extern Session *session;
     {
         [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
     }
+    if(![self.accessibilityValue isEqualToString:@"coursePopover"])
+    {
+        self.preferredContentSize = CGSizeMake(320, 568);
+        self.navigationController.navigationBar.translucent = NO;
+    }
+    
+    self.calenderViewDelegate = (id)[session calController];
+    //self.calenderViewDelegate = (id)self;
 }
 
 - (void)viewDidLoad
@@ -226,6 +234,7 @@ extern Session *session;
     {
         [self.editLessonSlotDelegate updatedSlot: _studentCourseLink];
         [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:_popViews] animated:YES];
+        [self.calenderViewDelegate reloadWebView];
     }
     else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"0"]){
         
@@ -238,6 +247,8 @@ extern Session *session;
     {
         //[self.editLessonSlotDelegate updatedSlot: _studentCourseLink];
         [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
+        [self.calenderViewDelegate reloadWebView];
+
     }
     
 }

@@ -45,6 +45,20 @@ int goToSlots = 0;
     {
         [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
     }
+    
+    if(![self.accessibilityValue isEqualToString:@"coursePopover"])
+    {
+        self.preferredContentSize = CGSizeMake(320, 568);
+        self.navigationController.navigationBar.translucent = NO;
+    }
+    else{
+        [_mainTableView addPullToRefreshWithActionHandler:^{
+            NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbytutor&id=%li&ts=%f", [[_studentCourseLink tutor] tutorID], [[NSDate date] timeIntervalSince1970]];
+            NSURL *url = [NSURL URLWithString: urlString];
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            [NSURLConnection connectionWithRequest:request delegate:self];
+        }];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -70,12 +84,7 @@ int goToSlots = 0;
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     [Tools showLoader];
     
-    [_mainTableView addPullToRefreshWithActionHandler:^{
-        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbytutor&id=%li&ts=%f", [[_studentCourseLink tutor] tutorID], [[NSDate date] timeIntervalSince1970]];
-        NSURL *url = [NSURL URLWithString: urlString];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [NSURLConnection connectionWithRequest:request delegate:self];
-    }];
+    
     
     //[self.mainTableView setEditing:YES animated:YES];
 }
@@ -118,7 +127,7 @@ int goToSlots = 0;
     cell.textLabel.text = [[_students objectAtIndex:indexPath.row] objectForKey:@"StudentName"];
     cell.accessibilityValue = [[_students objectAtIndex:indexPath.row] objectForKey:@"StudentID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 
@@ -184,6 +193,7 @@ int goToSlots = 0;
     }
     //
     item.studentCourseLink = _studentCourseLinkSender;
+    item.accessibilityValue = @"coursesPopover";
 }
 
 

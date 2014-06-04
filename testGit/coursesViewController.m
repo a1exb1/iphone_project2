@@ -68,7 +68,20 @@ extern Session *session;
     _statusLbl.hidden = YES;
     //_statusLbl.text = @"Loading...";
     
-    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#57AD2C"] andTint:[UIColor whiteColor] theme:@"dark"];
+    if(![self.accessibilityValue isEqualToString:@"coursesPopover"])
+    {
+        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#57AD2C"] andTint:[UIColor whiteColor] theme:@"dark"];
+        
+        [_mainTableView addPullToRefreshWithActionHandler:^{
+            //[Tools showLoader];
+            //
+            [self loadData];
+        }];
+    }
+    else{
+        self.navigationController.navigationBar.translucent = NO;
+    }
+    
     
     [Tools showLoader];
     //
@@ -104,11 +117,7 @@ extern Session *session;
     
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
-    [_mainTableView addPullToRefreshWithActionHandler:^{
-        //[Tools showLoader];
-        //
-        [self loadData];
-    }];
+    
     
 }
 
@@ -155,6 +164,7 @@ extern Session *session;
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault
                                                   reuseIdentifier:@"cell"];
     
+    cell.backgroundColor = [UIColor whiteColor];
     cell.textLabel.text = [[_courses objectAtIndex:indexPath.row] objectForKey:@"CourseName"];
     cell.accessibilityValue = [[_courses objectAtIndex:indexPath.row] objectForKey:@"CourseID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -188,9 +198,23 @@ extern Session *session;
 //        
 //    }
     //else{
+    if([self.accessibilityValue isEqualToString:@"coursesPopover"])
+    {
+        viewAllStudentsViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addStudentsList"];
+        view.accessibilityValue = @"coursesPopover";
+        
+        StudentCourseLink *link = [[StudentCourseLink alloc] init];
+        [link setTutor:[session tutor]];
+        [link setCourse:_courseSender];
+        view.studentCourseLink = link;
+        [self.navigationController pushViewController:view animated:YES];
+    }
+    else{
         studentsViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"students"];
         view.course = _courseSender;
         [self.navigationController pushViewController:view animated:YES];
+    }
+    
     //}
     //studentsDetailView
     

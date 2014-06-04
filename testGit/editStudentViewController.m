@@ -39,6 +39,11 @@ extern Session *session;
     {
         [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
     }
+    if(![self.accessibilityValue isEqualToString:@"coursePopover"])
+    {
+        self.preferredContentSize = CGSizeMake(320, 568);
+        self.navigationController.navigationBar.translucent = NO;
+    }
 }
 
 - (void)viewDidLoad

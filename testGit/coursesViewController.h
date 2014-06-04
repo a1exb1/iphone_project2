@@ -10,6 +10,7 @@
 #import "Course.h"
 #import "Tutor.h"
 #import "studentsViewController.h"
+#import "viewAllStudentsViewController.h"
 
 @interface coursesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

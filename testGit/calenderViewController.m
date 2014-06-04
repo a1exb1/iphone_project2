@@ -23,6 +23,12 @@ extern Session *session;
 
 NSTimer *timer;
 
+-(void)reloadWebView
+{
+    [_popover dismissPopoverAnimated:YES];
+    [self loadUrl];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,9 +47,9 @@ NSTimer *timer;
         [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground:[Tools defaultNavigationBarColour] andTint:[Tools colorFromHexString:@"#57AD2C"] theme:@"light"];
     }
 
-    
+    [session setCalController:self];
     [self showNavigationBar];
-    
+    [self.navigationItem setHidesBackButton:YES];
 }
 
 //-(void)showNavigationBar
@@ -59,13 +65,14 @@ NSTimer *timer;
 
 -(void)showNavigationBar
 {
+    [self.navigationItem setHidesBackButton:NO];
     UIBarButtonItem *addLessonsBtn = nil;
     if ([self.accessibilityValue isEqualToString:@"lessonSlots"]) {
         addLessonsBtn = [[UIBarButtonItem alloc] initWithTitle:@"Add to calender" style:UIBarButtonItemStylePlain target:self action:@selector(addLessons)];
     }
     
     UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:refreshBtn, _lockBtn, addLessonsBtn, nil]];
+    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:refreshBtn, _lockBtn, addLessonsBtn, nil]];
 }
 
 -(void)addLessons
@@ -78,7 +85,8 @@ NSTimer *timer;
 
 -(void)hideNavigationBar
 {
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:nil, nil]];
+    [self.navigationItem setHidesBackButton:YES];
+    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:nil, nil]];
 }
 
 -(void)lock
@@ -183,7 +191,9 @@ NSTimer *timer;
     {
         UINavigationController *navVC = segue.destinationViewController;
         coursesViewController *view = (coursesViewController *)navVC.topViewController;
+        view.accessibilityValue = @"coursesPopover";
         view.tutor = [session tutor];
+        _popover = [(UIStoryboardPopoverSegue *) segue popoverController];
     }
 }
 

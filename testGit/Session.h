@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "Client.h"
 #import "Tutor.h"
+#import "calenderViewController.h"
 
 @interface Session : NSObject
 
 @property Client *client;
 @property Tutor *tutor;
 @property bool hasSetAgendaToDetail;
+@property UIViewController *calController;
 
 @end

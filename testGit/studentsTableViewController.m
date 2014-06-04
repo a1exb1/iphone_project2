@@ -282,7 +282,7 @@ NSMutableArray *viewStudentsArray;
     cell.textLabel.text = [NSString stringWithFormat:@"%@",[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
     cell.accessibilityValue = [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 

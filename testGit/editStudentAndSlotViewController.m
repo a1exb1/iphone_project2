@@ -108,7 +108,7 @@ int cellClicked = -1;
         cell.textLabel.text = [NSString stringWithFormat:@"%@ on %@", cellCourse, cellWeekday];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@:%@ (%i mins) • Tap to change", cellHour, cellMins, [_studentCourseLink Duration]];
     }
-    
+    cell.backgroundColor = [UIColor whiteColor];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }

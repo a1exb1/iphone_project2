@@ -15,6 +15,12 @@
 
 @end
 
+@protocol calenderViewDelegate <NSObject>
+
+-(void)reloadWebView;
+
+@end
+
 @interface editLessonSlotViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property StudentCourseLink *studentCourseLink;
@@ -31,4 +37,5 @@
 
 
 @property (weak, nonatomic) id<editLessonSlotDelegate> editLessonSlotDelegate;
+@property (weak, nonatomic) id<calenderViewDelegate> calenderViewDelegate;
 @end
