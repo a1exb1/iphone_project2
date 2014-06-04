@@ -40,4 +40,6 @@
 
 @property UIBarButtonItem *clipboardItem;
 
+@property NSIndexPath *indexPath;
+
 @end

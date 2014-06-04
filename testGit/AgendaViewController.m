@@ -44,7 +44,13 @@ NSArray *daysOfWeekArray;
 
 -(void)reloadData
 {
+    _indexPath= [self.mainTableView indexPathForSelectedRow];
+    NSLog(@"%@", _indexPath);
     [self jsonRequestGetAgenda];
+   
+    //if (selection) {
+       // [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
+    //}
 }
 
 -(void)jsonRequestGetAgenda
@@ -278,7 +284,6 @@ NSArray *daysOfWeekArray;
 
 -(void)finishedAttendance{
     
-    
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishedAttendanceBtn)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:doneBtn, nil]];
     if(_keepEditing == NO)
@@ -289,6 +294,11 @@ NSArray *daysOfWeekArray;
     }
     
     [_mainTableView reloadData];
+    if(_indexPath >= 0)
+    {
+        NSLog(@"%@", _indexPath);
+        [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    }
     
     //[_mainTableView setEditing:NO animated:YES];
 }
@@ -402,6 +412,8 @@ NSArray *daysOfWeekArray;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    _indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
+    
     _lessonSender = [[Lesson alloc] init];
     [_lessonSender setLessonID: [[[_lessons objectAtIndex:indexPath.row] objectForKey:@"LessonID"] intValue]];
     [_lessonSender setTutor:_tutor];
@@ -511,15 +523,24 @@ NSArray *daysOfWeekArray;
                 [self finishedAttendance];
             //}
             
+            if(_indexPath >= 0)
+            {
+                [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+                [_mainTableView.delegate tableView:_mainTableView didSelectRowAtIndexPath:_indexPath];
+                NSLog(@"trigger click");
+            }
+            
             if([Tools isIpad])
             {
                 if(!_editing &&
                    [_lessons count] > 0 &&
                    ![session hasSetAgendaToDetail]){ // NEEDS to check for current lesson and only run at start of application - if has run once, needs to know which row to go to. + select table row
                     
+                    int lNo = 0;
+                    
                     NSLog(@"here");
                     
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lNo inSection:0];
                     [_mainTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
                     
                     //[self tableView: _mainTableView didDeselectRowAtIndexPath:indexPath];
@@ -563,7 +584,11 @@ NSArray *daysOfWeekArray;
                     [controller.navigationController pushViewController:view animated:NO];
                     
                     [session setHasSetAgendaToDetail: YES];
+                    _indexPath = [NSIndexPath indexPathForRow:lNo inSection:0];
                 }
+                
+                
+                
             }
         }
     }
