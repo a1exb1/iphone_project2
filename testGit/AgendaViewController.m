@@ -298,6 +298,7 @@ NSArray *daysOfWeekArray;
     {
         NSLog(@"%@", _indexPath);
         [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        //[self selectRowAtRow:(int)_indexPath.row];
     }
     
     //[_mainTableView setEditing:NO animated:YES];
@@ -414,46 +415,13 @@ NSArray *daysOfWeekArray;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
     
-    _lessonSender = [[Lesson alloc] init];
-    [_lessonSender setLessonID: [[[_lessons objectAtIndex:indexPath.row] objectForKey:@"LessonID"] intValue]];
-    [_lessonSender setTutor:_tutor];
     
-    NSString* str = [[_lessons objectAtIndex:indexPath.row] objectForKey:@"LessonDateTime"];
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
-    [_lessonSender setDateTime:[formatter dateFromString:str]];
-    [_lessonSender setDuration:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]];
-    [_lessonSender setStatus:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Status"] intValue]];
-    
-    Course *course = [[Course alloc]init];
-    [course setCourseID:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"CourseID"] intValue]];
-    [course setName:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"CourseName"]];
-    [_lessonSender setCourse:course];
-    
-    Student *student = [[Student alloc]init];
-    [student setStudentID:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"StudentID"] intValue]];
-    [student setName:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
-    [student setPhone:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Telephone"]];
-    [_lessonSender setStudent:student];
     
     if([Tools isIpad])
     {
         if(!_editing){
             
-            [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
-            self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-
-            DetailViewController *controller = self.detailViewController;
-            indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
-            
-            //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
-            
-            view.lesson = _lessonSender;
-            
-            
-            [controller.navigationController pushViewController:view animated:NO];
-            [view changed];
-            view.agendaDelegate = self;
+            [self selectRowAtRow:(int)indexPath.row];
             
             
 //            self.splitViewController.delegate = view;
@@ -545,43 +513,7 @@ NSArray *daysOfWeekArray;
                     
                     //[self tableView: _mainTableView didDeselectRowAtIndexPath:indexPath];
                     
-                    _lessonSender = [[Lesson alloc] init];
-                    [_lessonSender setLessonID: [[[_lessons objectAtIndex:0] objectForKey:@"LessonID"] intValue]];
-                    [_lessonSender setTutor:_tutor];
-                    
-                    NSString* str = [[_lessons objectAtIndex:0] objectForKey:@"LessonDateTime"];
-                    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-                    [formatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
-                    [_lessonSender setDateTime:[formatter dateFromString:str]];
-                    [_lessonSender setDuration:[[[_lessons objectAtIndex:0] objectForKey:@"Duration"] intValue]];
-                    [_lessonSender setStatus:[[[_lessons objectAtIndex:0] objectForKey:@"Status"] intValue]];
-                    
-                    Course *course = [[Course alloc]init];
-                    [course setCourseID:[[[_lessons objectAtIndex:0] objectForKey:@"CourseID"] intValue]];
-                    [course setName:[[_lessons objectAtIndex:0] objectForKey:@"CourseName"]];
-                    [_lessonSender setCourse:course];
-                    
-                    Student *student = [[Student alloc]init];
-                    [student setStudentID:[[[_lessons objectAtIndex:0] objectForKey:@"StudentID"] intValue]];
-                    [student setName:[[_lessons objectAtIndex:0] objectForKey:@"StudentName"]];
-                    [student setPhone:[[_lessons objectAtIndex:0] objectForKey:@"Telephone"]];
-                    [_lessonSender setStudent:student];
-                    
-                    [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
-                    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-                    
-                    DetailViewController *controller = self.detailViewController;
-                    
-                    
-                    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
-                    
-                    //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
-                    
-                    view.lesson = _lessonSender;
-                    [view changed];
-                    view.agendaDelegate = self;
-                    
-                    [controller.navigationController pushViewController:view animated:NO];
+                    [self selectRowAtRow:lNo];
                     
                     [session setHasSetAgendaToDetail: YES];
                     _indexPath = [NSIndexPath indexPathForRow:lNo inSection:0];
@@ -608,6 +540,47 @@ NSArray *daysOfWeekArray;
     [_mainTableView.pullToRefreshView stopAnimating];
 }
 
+-(void)selectRowAtRow:(int)row
+{
+    _lessonSender = [[Lesson alloc] init];
+    [_lessonSender setLessonID: [[[_lessons objectAtIndex:row] objectForKey:@"LessonID"] intValue]];
+    [_lessonSender setTutor:_tutor];
+    
+    NSString* str = [[_lessons objectAtIndex:row] objectForKey:@"LessonDateTime"];
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
+    [_lessonSender setDateTime:[formatter dateFromString:str]];
+    [_lessonSender setDuration:[[[_lessons objectAtIndex:row] objectForKey:@"Duration"] intValue]];
+    [_lessonSender setStatus:[[[_lessons objectAtIndex:row] objectForKey:@"Status"] intValue]];
+    
+    Course *course = [[Course alloc]init];
+    [course setCourseID:[[[_lessons objectAtIndex:row] objectForKey:@"CourseID"] intValue]];
+    [course setName:[[_lessons objectAtIndex:row] objectForKey:@"CourseName"]];
+    [_lessonSender setCourse:course];
+    
+    Student *student = [[Student alloc]init];
+    [student setStudentID:[[[_lessons objectAtIndex:row] objectForKey:@"StudentID"] intValue]];
+    [student setName:[[_lessons objectAtIndex:row] objectForKey:@"StudentName"]];
+    [student setPhone:[[_lessons objectAtIndex:row] objectForKey:@"Telephone"]];
+    [_lessonSender setStudent:student];
+    
+    [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    DetailViewController *controller = self.detailViewController;
+    
+    
+    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+    
+    //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
+    
+    view.lesson = _lessonSender;
+    [view changed];
+    view.agendaDelegate = self;
+    
+    [controller.navigationController pushViewController:view animated:NO];
+
+}
 
 - (void)didReceiveMemoryWarning
 {
