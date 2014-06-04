@@ -70,6 +70,28 @@ NSMutableArray *loaderViews;
     [indicator startAnimating];
 }
 
++(void)showLightLoaderWithView:(UIView *)view{
+    
+    UIActivityIndicatorView *UILoaderView;
+    
+    //UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    //UIView *view = window.rootViewController.view;
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    UILoaderView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    
+    //UILoaderView.frame = view.frame;
+    [UILoaderView setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.25]];
+    UILoaderView.center = view.center;
+    UILoaderView.accessibilityValue = @"loader";
+    [view addSubview:UILoaderView];
+    //[view.window addSubview:indicator];
+    [view bringSubviewToFront:UILoaderView];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
+    [UILoaderView startAnimating];
+}
 
 +(void)showLoaderWithView:(UIView *)view{
     
@@ -84,12 +106,12 @@ NSMutableArray *loaderViews;
     
     
     UILoaderView.frame = view.frame;
-    [UILoaderView setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.25]];
+    //[UILoaderView setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.25]];
     UILoaderView.center = view.center;
     UILoaderView.accessibilityValue = @"loader";
     [view addSubview:UILoaderView];
     //[view.window addSubview:indicator];
-    [view bringSubviewToFront:indicator];
+    [view bringSubviewToFront:UILoaderView];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
     [UILoaderView startAnimating];
 }

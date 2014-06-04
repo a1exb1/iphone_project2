@@ -16,6 +16,7 @@
 +(void)showLoader;
 +(void)showLightLoader;
 +(void)showLoaderWithView:(UIView *) view;
++(void)showLightLoaderWithView:(UIView *) view;
 
 +(void)hideLoader;
 +(void)hideLoaderFromView:(UIView *) view;

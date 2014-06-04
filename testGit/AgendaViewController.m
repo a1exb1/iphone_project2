@@ -47,9 +47,9 @@ NSArray *daysOfWeekArray;
     _indexPath= [self.mainTableView indexPathForSelectedRow];
     NSLog(@"%@", _indexPath);
     [self jsonRequestGetAgenda];
-   
+    
     //if (selection) {
-       // [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
+    // [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     //}
 }
 
@@ -70,8 +70,8 @@ NSArray *daysOfWeekArray;
     
     _data = [[NSMutableData alloc]init];
     _lessons = [[NSArray alloc] init];
-    [_mainTableView reloadData];
-
+    //[_mainTableView reloadData];
+    
     NSString *dateString = [[NSString alloc] initWithFormat:@"%02d/%02d/%i", dd, mm, yy ];
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%li&date=%@&ts=%f", [[session tutor] tutorID], dateString, [[NSDate date] timeIntervalSince1970]];
     
@@ -98,15 +98,15 @@ NSArray *daysOfWeekArray;
     //[self.dayPicker setStartDate:[NSDate dateFromDay:28 month:9 year:2013] endDate:[NSDate dateFromDay:5 month:10 year:2013]];
     //[Tools showLightLoader];
     
-//    if ( [Tools isIpad] )
-//    {
-//        [Tools addECSlidingDefaultSetupWithViewController:self];
-//        [[session client] setClientID:1];
-//        [[session client] setPremium:0];
-//        [[session client] setClientUserName:@"Test"];
-//        [[session tutor] setTutorID:3];
-//        [[session tutor] setAccountType:0];
-//    }
+    //    if ( [Tools isIpad] )
+    //    {
+    //        [Tools addECSlidingDefaultSetupWithViewController:self];
+    //        [[session client] setClientID:1];
+    //        [[session client] setPremium:0];
+    //        [[session client] setClientUserName:@"Test"];
+    //        [[session tutor] setTutorID:3];
+    //        [[session tutor] setAccountType:0];
+    //    }
     
     _clipboardItem = self.navigationItem.rightBarButtonItem;
     
@@ -126,7 +126,7 @@ NSArray *daysOfWeekArray;
     
     //[self.dayPicker setCurrentDate:_dayDate animated:NO];
     //[NSDate dateFromDay:3 month:10 year:2013]
-
+    
     //NVDate *agendaDate = [[NVDate alloc] initUsingDate:_dayDate];
     
     NVDate *firstDateOfMonth = [[NVDate alloc] initUsingDate:_dayDate];
@@ -144,7 +144,7 @@ NSArray *daysOfWeekArray;
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-   
+    
     
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
     
@@ -153,16 +153,16 @@ NSArray *daysOfWeekArray;
     //    [self.datepicker fillDatesFromCurrentDate:14];
     //[self.datePicker fillCurrentWeek];
     //    [self.datepicker fillCurrentMonth];
-
+    
     //NSCalendar *calendar = [NSCalendar currentCalendar];
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     [calendar setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"GB"]];
-
+    
     NSDateComponents* comps = [calendar components:NSYearForWeekOfYearCalendarUnit |NSYearCalendarUnit|NSMonthCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit fromDate:_dayDate];
     
     [comps setWeekday:2]; // 2: monday
     NSDate *firstDayOfTheWeek = [calendar dateFromComponents:comps];
-
+    
     if ( [Tools isIpad]  )
     {
         //NSDate *today = [NSDate date]; //Get a date object for today's date
@@ -196,12 +196,14 @@ NSArray *daysOfWeekArray;
             [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] -2)];
         }
     }
-        
-    [Tools showLoaderWithView:self.navigationController.view];
+    
+    [Tools showLightLoaderWithView:self.navigationController.view];
 }
 
 - (void)updateSelectedDate
 {
+    _indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEEEddMMMM" options:0 locale:nil];
     
@@ -211,7 +213,7 @@ NSArray *daysOfWeekArray;
     
     if(_counter > 0){
         _dayDate = self.datePicker.selectedDate;
-        [Tools showLoaderWithView:self.navigationController.view];
+        [Tools showLightLoaderWithView:self.navigationController.view];
         [self jsonRequestGetAgenda];
         
         
@@ -260,6 +262,10 @@ NSArray *daysOfWeekArray;
     _editing = true;
     [_mainTableView reloadData];
     //[_mainTableView setEditing:YES animated:YES];
+    if(_indexPath >= 0)
+    {
+        [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    }
 }
 
 -(IBAction)selectDate{
@@ -296,12 +302,8 @@ NSArray *daysOfWeekArray;
     [_mainTableView reloadData];
     if(_indexPath >= 0)
     {
-        NSLog(@"%@", _indexPath);
         [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-        //[self selectRowAtRow:(int)_indexPath.row];
     }
-    
-    //[_mainTableView setEditing:NO animated:YES];
 }
 
 -(void)finishedAttendanceBtn{
@@ -347,7 +349,7 @@ NSArray *daysOfWeekArray;
     NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
     NSDate* lessonDate = [formatter dateFromString:str];
-
+    
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:lessonDate];
     NSInteger lessonDateHour = [components hour];
@@ -398,7 +400,7 @@ NSArray *daysOfWeekArray;
         status = 3;
     }
     
-    [Tools showLoaderWithView:self.navigationController.view];
+    [Tools showLightLoaderWithView:self.navigationController.view];
     _NSURLType = 1;
     _keepEditing = YES;
     
@@ -424,15 +426,15 @@ NSArray *daysOfWeekArray;
             [self selectRowAtRow:(int)indexPath.row];
             
             
-//            self.splitViewController.delegate = view;
-//            
-////            UISplitViewController *splitViewController = (UISplitViewController *)self.splitViewController;
-////            UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-////            splitViewController.delegate = (id)navigationController.topViewController;
-//            
-//            view.lesson = _lessonSender;
-//            view.detailShowMasterButton = controller.detailShowMasterButton;
-//            [view changed];
+            //            self.splitViewController.delegate = view;
+            //
+            ////            UISplitViewController *splitViewController = (UISplitViewController *)self.splitViewController;
+            ////            UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+            ////            splitViewController.delegate = (id)navigationController.topViewController;
+            //
+            //            view.lesson = _lessonSender;
+            //            view.detailShowMasterButton = controller.detailShowMasterButton;
+            //            [view changed];
         }
         else{
             NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
@@ -476,26 +478,26 @@ NSArray *daysOfWeekArray;
     if (_NSURLType == 0) {
         _lessons = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
         [self.mainTableView reloadData];
-
+        
         if ([_lessons count] == 0) {
             _statusLbl.hidden = NO;
             _statusLbl.text = @"No lessons";
             [_mainTableView setBackgroundColor:[UIColor whiteColor]];
-        
+            
         }
         else{
             [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
             _statusLbl.hidden = YES;
             //if(_keepEditing == NO)
             //{
-                [self finishedAttendance];
+            [self finishedAttendance];
             //}
             
             if(_indexPath >= 0)
             {
                 [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-                [_mainTableView.delegate tableView:_mainTableView didSelectRowAtIndexPath:_indexPath];
-                NSLog(@"trigger click");
+                [self selectRowAtRow:(int)_indexPath.row];
+                //NSLog(@"%@", _indexPath.row);
             }
             
             if([Tools isIpad])
@@ -579,7 +581,7 @@ NSArray *daysOfWeekArray;
     view.agendaDelegate = self;
     
     [controller.navigationController pushViewController:view animated:NO];
-
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -589,15 +591,15 @@ NSArray *daysOfWeekArray;
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
 -(void)sendDateToAgendaWithDate:(NSDate *) Date{
