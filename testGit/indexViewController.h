@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Lesson.h"
 #import "NVDate.h"
+//#import "AgendaViewController.h"
 
 @interface indexViewController : UIViewController <UISplitViewControllerDelegate>
 

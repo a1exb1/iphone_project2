@@ -53,6 +53,7 @@
 //    }
 //    
 //    _loaded = true;
+     [self updateLabels];
     
 }
 
@@ -183,6 +184,13 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     _resultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+    
+    //UINavigationController *navigationController = [self.splitViewController.viewControllers lastObject];
+    //splitViewController.delegate = (id)navigationController.topViewController
+    
+    //gendaViewController *master = (AgendaViewController *)navigationController.topViewController;
+    
+    //[master jsonRequestGetAgenda];
     
     if ([_resultArray count] == 0) {
 

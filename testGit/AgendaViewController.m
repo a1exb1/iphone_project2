@@ -432,10 +432,13 @@ NSArray *daysOfWeekArray;
             //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
             
             view.lesson = _lessonSender;
-            [view changed];
+            
             
             [controller.navigationController pushViewController:view animated:NO];
-//            
+            [view changed];
+            
+            
+            
 //            self.splitViewController.delegate = view;
 //            
 ////            UISplitViewController *splitViewController = (UISplitViewController *)self.splitViewController;
@@ -506,6 +509,11 @@ NSArray *daysOfWeekArray;
             if([Tools isIpad])
             {
                 if(!_editing && [_lessons count] > 0){ // NEEDS to check for current lesson and only run at start of application - if has run once, needs to know which row to go to. + select table row
+                    
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                    [_mainTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+                    
+                    //[self tableView: _mainTableView didDeselectRowAtIndexPath:indexPath];
                     
                     _lessonSender = [[Lesson alloc] init];
                     [_lessonSender setLessonID: [[[_lessons objectAtIndex:0] objectForKey:@"LessonID"] intValue]];

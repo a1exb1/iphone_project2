@@ -36,10 +36,21 @@ extern Session *session;
     
     
     //_bgImg.image = [UIImage imageNamed:@"login_portrait.jpg"];
-    _bgImg.image = [UIImage imageNamed:@"SplashScreenLogin2.png"];
+    
+    //_bgImg.image = [UIImage imageNamed:@"SplashScreenLogin2.png"];
     
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:nil theme:@"dark"];
     
+    [self.view setBackgroundColor:[UIColor blackColor]];
+    
+    _bgImg.clipsToBounds = YES;
+    _bgImg.contentMode = UIViewContentModeScaleAspectFit;
+    
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    _bgImg.frame= CGRectMake(0.0f, 0.0f, self.view.frame.size.width, _bgImg.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning

@@ -176,6 +176,18 @@ NSTimer *timer;
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"coursesPopover"])
+    {
+        UINavigationController *navVC = segue.destinationViewController;
+        coursesViewController *view = (coursesViewController *)navVC.topViewController;
+        view.tutor = [session tutor];
+    }
+}
+
+
 /*
 #pragma mark - Navigation
 

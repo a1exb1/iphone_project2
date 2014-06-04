@@ -1,34 +1,32 @@
 //
-//  studentsViewController.m
-//  testGit
+//  studentsTableViewController.m
+//  PlanIt!
 //
-//  Created by Alex Bechmann on 25/04/14.
+//  Created by Alex Bechmann on 04/06/14.
 //  Copyright (c) 2014 Alex Bechmann. All rights reserved.
 //
 
-#import "studentsViewController.h"
-#import "editStudentAndSlotViewController.h"
-#import "editStudentViewController.h"
+#import "studentsTableViewController.h"
 #import "viewAllStudentsViewController.h"
-#import "NavigationBarTitleWithSubtitleView.h"
-#import "Tools.h"
+#import "editStudentAndSlotViewController.h"
 
+@interface studentsTableViewController ()
 
-
-@interface studentsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *plusBtn;
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+
 @end
 
-@implementation studentsViewController
+@implementation studentsTableViewController
+
 NSArray *daysOfWeekArray;
 NSMutableArray *viewStudentsArray;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
@@ -58,6 +56,7 @@ NSMutableArray *viewStudentsArray;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     // Unselect the selected row if any
     NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
     if (selection) {
@@ -106,14 +105,14 @@ NSMutableArray *viewStudentsArray;
     //
     
     daysOfWeekArray = [[NSArray alloc] initWithObjects:
-                                @"Sunday",
-                                @"Monday",
-                                @"Tuesday",
-                                @"Wednesday",
-                                @"Thursday",
-                                @"Friday",
-                                @"Saturday",
-                                nil];
+                       @"Sunday",
+                       @"Monday",
+                       @"Tuesday",
+                       @"Wednesday",
+                       @"Thursday",
+                       @"Friday",
+                       @"Saturday",
+                       nil];
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -131,7 +130,7 @@ NSMutableArray *viewStudentsArray;
         //[Tools showLoader];
         [self loadData];
     }];
-        
+    
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
     UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, deleteBtn, nil]];
@@ -152,7 +151,7 @@ NSMutableArray *viewStudentsArray;
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
-
+    
 }
 
 
@@ -181,7 +180,7 @@ NSMutableArray *viewStudentsArray;
 {
     if (_editing == true) {
         [self endEditingTable];
-            }
+    }
     else{
         [self startEditingTable];
     }
@@ -216,15 +215,15 @@ NSMutableArray *viewStudentsArray;
         [link setStudent:student];
         
         NSLog(@"delete %li", [link StudentCourseLinkID]);
-
-//        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&delete=1&clientid=%i&ts=%f", [link StudentCourseLinkID], 1, [[NSDate date] timeIntervalSince1970]];
-//        
-//        urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
-//                     NSASCIIStringEncoding];
-//        
-//        NSURL *url = [NSURL URLWithString: urlString];
-//        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//        [NSURLConnection connectionWithRequest:request delegate:self];
+        
+        //        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&delete=1&clientid=%i&ts=%f", [link StudentCourseLinkID], 1, [[NSDate date] timeIntervalSince1970]];
+        //
+        //        urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
+        //                     NSASCIIStringEncoding];
+        //
+        //        NSURL *url = [NSURL URLWithString: urlString];
+        //        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        //        [NSURLConnection connectionWithRequest:request delegate:self];
         
         [self endEditingTable];
     }
@@ -278,7 +277,7 @@ NSMutableArray *viewStudentsArray;
     int hour = [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Hour"] intValue];
     int minute = [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Minute"] intValue];
     int duration = [[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue];
-
+    
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d:%02d (%02d minutes)", hour, minute, duration];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",[[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentName"]];
     cell.accessibilityValue = [[sectionArray objectAtIndex:indexPath.row] objectForKey:@"StudentID"];
@@ -307,24 +306,24 @@ NSMutableArray *viewStudentsArray;
     
     
     
-//    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-//    {
-////    
-//        
-//    
-//        editStudentAndSlotViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"editStudentAndSlotView"];
-//        
-//        [controller setStudentCourseLink:_studentCourseLinkSender];
-//        
-//        self.detailViewController = (editStudentAndSlotViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-//        [self.detailViewController.navigationController popToViewController:controller animated:NO];
-//        
-////    //        
-//    }
+    //    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    //    {
+    ////
+    //
+    //
+    //        editStudentAndSlotViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"editStudentAndSlotView"];
+    //
+    //        [controller setStudentCourseLink:_studentCourseLinkSender];
+    //
+    //        self.detailViewController = (editStudentAndSlotViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    //        [self.detailViewController.navigationController popToViewController:controller animated:NO];
+    //
+    ////    //
+    //    }
     //else{
-        [_studentCourseLinkSender setStudent:student];
-        _sender = 0;
-        [self performSegueWithIdentifier:@"StudentsToEditStudentAndLink" sender:self];
+    [_studentCourseLinkSender setStudent:student];
+    _sender = 0;
+    [self performSegueWithIdentifier:@"StudentsToEditStudentAndLink" sender:self];
     //}
     
 }
@@ -345,9 +344,13 @@ NSMutableArray *viewStudentsArray;
 {
     //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    
-    [Tools hideLoaderFromView:self.navigationController.view];
-    
+    if([Tools isIpad])
+    {
+        [Tools hideLoaderFromView:self.navigationController.view];
+    }
+    else{
+        [Tools hideLoader];
+    }
     
     
     [_mainTableView.pullToRefreshView stopAnimating];
@@ -369,7 +372,7 @@ NSMutableArray *viewStudentsArray;
         [viewStudentsArray addObject:listOfStudentsForArray];
     }
     [self.mainTableView reloadData];
-        
+    
     if ([_students count] == 0) {
         _statusLbl.hidden = NO;
         _statusLbl.text = @"No students, click the plus to add one";
@@ -386,15 +389,19 @@ NSMutableArray *viewStudentsArray;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-
-    [Tools hideLoaderFromView:self.navigationController.view];
-
+    if([Tools isIpad])
+    {
+        [Tools hideLoaderFromView:self.navigationController.view];
+    }
+    else{
+        [Tools hideLoader];
+    }
     [_mainTableView.pullToRefreshView stopAnimating];
 }
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{    
+{
     if (_sender == 1){
         viewAllStudentsViewController *item = segue.destinationViewController;
         item.studentCourseLink = self.studentCourseLinkSender;
@@ -407,25 +414,5 @@ NSMutableArray *viewStudentsArray;
     
 }
 
-- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
-{
-    barButtonItem.title = NSLocalizedString(@"Master", @"Master");
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    self.masterPopoverController = popoverController;
-}
-
-- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-    self.masterPopoverController = nil;
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

@@ -142,6 +142,9 @@
 		E4C1C97B1916700F0068A10D /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C97A1916700F0068A10D /* Tools.m */; };
 		E4C1C98219167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C97F19167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m */; };
 		E4C1C98319167BA90068A10D /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C98119167BA90068A10D /* UIScrollView+SVPullToRefresh.m */; };
+		E4C28932193F3FEC00538763 /* guitar_lesson2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4C28931193F3FEC00538763 /* guitar_lesson2.jpg */; };
+		E4C28935193F4B1D00538763 /* addLessonsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C28934193F4B1D00538763 /* addLessonsTableViewController.m */; };
+		E4C28938193F50BB00538763 /* studentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C28937193F50BB00538763 /* studentsTableViewController.m */; };
 		E4C6CCDA193B6CC800F1997C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C6CCD9193B6CC800F1997C /* DetailViewController.m */; };
 		E4C6CCDD193B6CCE00F1997C /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C6CCDC193B6CCE00F1997C /* MasterViewController.m */; };
 		E4D231E419212A6A00E5797B /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D231E319212A6A00E5797B /* Session.m */; };
@@ -354,6 +357,11 @@
 		E4C1C97F19167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
 		E4C1C98019167BA90068A10D /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		E4C1C98119167BA90068A10D /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		E4C28931193F3FEC00538763 /* guitar_lesson2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guitar_lesson2.jpg; sourceTree = "<group>"; };
+		E4C28933193F4B1D00538763 /* addLessonsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addLessonsTableViewController.h; sourceTree = "<group>"; };
+		E4C28934193F4B1D00538763 /* addLessonsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addLessonsTableViewController.m; sourceTree = "<group>"; };
+		E4C28936193F50BB00538763 /* studentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = studentsTableViewController.h; sourceTree = "<group>"; };
+		E4C28937193F50BB00538763 /* studentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = studentsTableViewController.m; sourceTree = "<group>"; };
 		E4C6CCD8193B6CC800F1997C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		E4C6CCD9193B6CC800F1997C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		E4C6CCDB193B6CCE00F1997C /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
@@ -406,6 +414,8 @@
 			children = (
 				792B23CF1921057A00CAE285 /* ManageTableViewController.h */,
 				792B23D01921057A00CAE285 /* ManageTableViewController.m */,
+				E4C28933193F4B1D00538763 /* addLessonsTableViewController.h */,
+				E4C28934193F4B1D00538763 /* addLessonsTableViewController.m */,
 			);
 			name = Manage;
 			sourceTree = "<group>";
@@ -483,6 +493,8 @@
 				E441CEF719101C7D00088FEE /* editLessonSlotViewController.m */,
 				E441CEF919115BF900088FEE /* viewAllStudentsViewController.h */,
 				E441CEFA19115BF900088FEE /* viewAllStudentsViewController.m */,
+				E4C28936193F50BB00538763 /* studentsTableViewController.h */,
+				E4C28937193F50BB00538763 /* studentsTableViewController.m */,
 			);
 			name = People;
 			sourceTree = "<group>";
@@ -625,6 +637,7 @@
 		E40DF284190017E100E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4C28931193F3FEC00538763 /* guitar_lesson2.jpg */,
 				E4005D1419369D91006C6ABB /* Glyphish */,
 				E4005D0D19369AD8006C6ABB /* IOS icons */,
 				E4AF260A193563F4006366D9 /* flaticons.net */,
@@ -1007,6 +1020,7 @@
 				E41B75D1193DFD0500255354 /* 728-clock-selected@2x.png in Resources */,
 				E4005D0A193639D5006C6ABB /* add_80.png in Resources */,
 				E4AF260719353AA6006366D9 /* Calendar_80x80_A.png in Resources */,
+				E4C28932193F3FEC00538763 /* guitar_lesson2.jpg in Resources */,
 				E433C042193B8813003543AE /* 887-notepad-toolbar@2x.png in Resources */,
 				E4005D1619369D9F006C6ABB /* 54-lock.png in Resources */,
 				E4AAC5F9192A2E86008E0BD7 /* SplashScreenLogin2.png in Resources */,
@@ -1065,6 +1079,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79F7196319124FA100C644A1 /* Course.m in Sources */,
+				E4C28935193F4B1D00538763 /* addLessonsTableViewController.m in Sources */,
 				79A8686B191B93EC00AA4058 /* NSDate+DSLCalendarView.m in Sources */,
 				E42B6112190C0582001B977F /* studentNote.m in Sources */,
 				E4AB8872191D4199001A70D9 /* MZDayPicker.m in Sources */,
@@ -1111,6 +1126,7 @@
 				E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */,
 				E4F677011935F9D900208991 /* calenderViewController.m in Sources */,
 				792B23C71920EF9100CAE285 /* loginViewController.m in Sources */,
+				E4C28938193F50BB00538763 /* studentsTableViewController.m in Sources */,
 				E407AD6D191D620200F22977 /* DIDatepickerDateView.m in Sources */,
 				E4AB8871191D4199001A70D9 /* MZDay.m in Sources */,
 				79A8685C191B93EC00AA4058 /* DSLCalendarView.m in Sources */,

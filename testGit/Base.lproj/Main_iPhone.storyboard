@@ -631,7 +631,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_portrait.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="CYH-2n-hRs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SplashScreenLogin2.png" translatesAutoresizingMaskIntoConstraints="NO" id="CYH-2n-hRs">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1400,6 +1400,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     <resources>
         <image name="Button Play.png" width="32" height="32"/>
         <image name="Button Record.png" width="32" height="32"/>
+        <image name="SplashScreenLogin2.png" width="640" height="1136"/>
         <image name="glyphicons_029_notes_2.png" width="20" height="27"/>
         <image name="glyphicons_043_group.png" width="35" height="22"/>
         <image name="glyphicons_045_calendar.png" width="23" height="24"/>
@@ -1407,7 +1408,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="glyphicons_137_cogwheels.png" width="34" height="27"/>
         <image name="glyphicons_239_albums.png" width="28" height="18"/>
         <image name="glyphicons_442_earphone.png" width="24" height="24"/>
-        <image name="login_portrait.jpg" width="320" height="570"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

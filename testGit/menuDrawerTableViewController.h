@@ -13,6 +13,8 @@
 #import "Tools.h"
 #import "studentsViewController.h"
 #import "Course.h"
+#import "coursesViewController.h"
+#import "addLessonsTableViewController.h"
 
 @interface menuDrawerTableViewController : UITableViewController
 
