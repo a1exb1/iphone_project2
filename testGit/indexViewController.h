@@ -11,6 +11,12 @@
 #import "NVDate.h"
 //#import "AgendaViewController.h"
 
+@protocol agendaDelegate <NSObject>
+
+-(void)reloadData;
+
+@end
+
 @interface indexViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property Lesson *lesson;
@@ -27,5 +33,7 @@
 
 -(void)updateLabels;
 -(void)changed;
+
+@property (weak, nonatomic) id<agendaDelegate> agendaDelegate;
 
 @end

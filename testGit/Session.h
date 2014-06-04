@@ -14,5 +14,6 @@
 
 @property Client *client;
 @property Tutor *tutor;
+@property bool hasSetAgendaToDetail;
 
 @end

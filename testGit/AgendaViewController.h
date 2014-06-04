@@ -14,7 +14,9 @@
 #import "indexViewController.h"
 #import "DetailViewController.h"
 
-@interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SelectDateDelegate, MZDayPickerDataSource, MZDayPickerDelegate>
+
+
+@interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SelectDateDelegate, MZDayPickerDataSource, MZDayPickerDelegate, agendaDelegate>
 
 @property NSArray *lessons;
 @property NSMutableData *data;

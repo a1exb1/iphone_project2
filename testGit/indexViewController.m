@@ -185,6 +185,8 @@
     
     _resultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
+    
+    [self.agendaDelegate reloadData];
     //UINavigationController *navigationController = [self.splitViewController.viewControllers lastObject];
     //splitViewController.delegate = (id)navigationController.topViewController
     
