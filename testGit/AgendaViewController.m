@@ -415,10 +415,8 @@ NSArray *daysOfWeekArray;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    _indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
     
-    
-    
+
     if([Tools isIpad])
     {
         if(!_editing){
@@ -439,6 +437,7 @@ NSArray *daysOfWeekArray;
         else{
             NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
             [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
+            [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         }
         
     }
@@ -452,6 +451,7 @@ NSArray *daysOfWeekArray;
         else{
             NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
             [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
+            [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         }
     }
     
@@ -544,6 +544,8 @@ NSArray *daysOfWeekArray;
 
 -(void)selectRowAtRow:(int)row
 {
+    _indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    
     _lessonSender = [[Lesson alloc] init];
     [_lessonSender setLessonID: [[[_lessons objectAtIndex:row] objectForKey:@"LessonID"] intValue]];
     [_lessonSender setTutor:_tutor];
