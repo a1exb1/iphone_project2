@@ -137,11 +137,6 @@ extern Session *session;
         cell.detailTextLabel.text = [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 2];
     }
     
-    if((indexPath.row == 99 && indexPath.section == 0) ||
-       (indexPath.row == 3 && indexPath.section == 0)
-       ){
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
     
     cell.imageView.image = [UIImage imageNamed:[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 0]];
     
@@ -152,7 +147,7 @@ extern Session *session;
     //cell.selectedBackgroundView = selectionColor;
     
     cell.backgroundColor = [UIColor whiteColor];
-    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 

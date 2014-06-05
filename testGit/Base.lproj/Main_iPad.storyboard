@@ -1147,7 +1147,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="416" y="-3207"/>
         </scene>
-        <!--Add Lessons Table View Controller-->
+        <!--Add Lessons Table View Controller - Add lessons-->
         <scene sceneID="zmq-YM-wTo">
             <objects>
                 <tableViewController storyboardIdentifier="addLessonsTableView" id="bcZ-Si-cNV" customClass="addLessonsTableViewController" sceneMemberID="viewController">
@@ -1172,7 +1172,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="bcZ-Si-cNV" id="DFY-1C-om1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="JfV-dV-8cp"/>
+                    <navigationItem key="navigationItem" title="Add lessons" id="JfV-dV-8cp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BLC-iX-aA0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1216,7 +1216,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lesson Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhD-4g-4ns">
-                                        <rect key="frame" x="44" y="48" width="145" height="21"/>
+                                        <rect key="frame" x="44" y="47" width="145" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
@@ -1288,6 +1288,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="courseNameLbl" destination="bPZ-6s-ZBY" id="PZ6-AJ-34e"/>
                         <outlet property="courseView" destination="JIy-e4-ezo" id="SDK-j4-tBL"/>
                         <outlet property="dayDescLbl" destination="Nwr-g6-ToG" id="wZB-nN-2wc"/>
+                        <outlet property="lessonTimeLbl" destination="dhD-4g-4ns" id="KCO-yp-T3Z"/>
                         <outlet property="notesBtn" destination="wfW-lu-HEf" id="IPR-mi-2Pm"/>
                         <outlet property="studentNameLbl" destination="WrI-78-2lM" id="BLw-YQ-mU7"/>
                         <outlet property="studentView" destination="O6x-wx-jbD" id="ix8-9n-ndE"/>

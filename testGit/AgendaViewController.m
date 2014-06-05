@@ -44,13 +44,46 @@ NSArray *daysOfWeekArray;
 
 -(void)reloadData
 {
+    if(_editing)
+    {
+        _keepEditing = YES;
+    }
     _indexPath= [self.mainTableView indexPathForSelectedRow];
-    NSLog(@"%@", _indexPath);
     [self jsonRequestGetAgenda];
     
     //if (selection) {
     // [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     //}
+}
+
+-(void)jsonRequestGetAgendaFromSwitch
+{
+    self.navigationItem.rightBarButtonItem = nil;
+    _NSURLType = 0;
+    
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    _statusLbl.hidden = YES;
+    
+    calendar = [NSCalendar currentCalendar];
+    components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:_dayDate]; // Get necessary date components
+    
+    dd = (int)[components day]; //gives you day
+    mm = (int)[components month]; //gives you month
+    yy = (int)[components year]; // gives you year
+    
+    _data = [[NSMutableData alloc]init];
+    _lessons = [[NSArray alloc] init];
+    //[_mainTableView reloadData];
+    
+    NSString *dateString = [[NSString alloc] initWithFormat:@"%02d/%02d/%i", dd, mm, yy ];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%li&date=%@&ts=%f", [[session tutor] tutorID], dateString, [[NSDate date] timeIntervalSince1970]];
+    
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    //NSURLConnection *connection = [NSURLConnection sendAsynchronousRequest:request queue:nil completionHandler:[self connectionDidFinishLoading:connection]];
+
 }
 
 -(void)jsonRequestGetAgenda
@@ -109,6 +142,7 @@ NSArray *daysOfWeekArray;
     //    }
     
     _clipboardItem = self.navigationItem.rightBarButtonItem;
+    
     
 }
 
@@ -420,19 +454,7 @@ NSArray *daysOfWeekArray;
     if([Tools isIpad])
     {
         if(!_editing){
-            
             [self selectRowAtRow:(int)indexPath.row];
-            
-            
-            //            self.splitViewController.delegate = view;
-            //
-            ////            UISplitViewController *splitViewController = (UISplitViewController *)self.splitViewController;
-            ////            UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-            ////            splitViewController.delegate = (id)navigationController.topViewController;
-            //
-            //            view.lesson = _lessonSender;
-            //            view.detailShowMasterButton = controller.detailShowMasterButton;
-            //            [view changed];
         }
         else{
             NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
@@ -497,7 +519,6 @@ NSArray *daysOfWeekArray;
             {
                 [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
                 [self selectRowAtRow:(int)_indexPath.row];
-                //NSLog(@"%@", _indexPath.row);
             }
             
             if([Tools isIpad])
@@ -507,8 +528,6 @@ NSArray *daysOfWeekArray;
                    ![session hasSetAgendaToDetail]){ // NEEDS to check for current lesson and only run at start of application - if has run once, needs to know which row to go to. + select table row
                     
                     int lNo = 0;
-                    
-                    NSLog(@"here");
                     
                     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lNo inSection:0];
                     [_mainTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
@@ -529,8 +548,8 @@ NSArray *daysOfWeekArray;
     
     //SAVE ATTENDANCE
     else if (_NSURLType == 1) {
-        [Tools showLoaderWithView:self.navigationController.view];
-        [self jsonRequestGetAgenda];
+        [Tools showLightLoaderWithView:self.navigationController.view];
+        [self jsonRequestGetAgendaFromSwitch];
     }
 }
 

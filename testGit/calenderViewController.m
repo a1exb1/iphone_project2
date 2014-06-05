@@ -58,6 +58,12 @@ NSTimer *timer;
 //    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:refreshBtn, nil]];
 //}
 
+//-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+//{
+//    [_webView stringByEvaluatingJavaScriptFromString:@"adjustContainer();"];
+//
+//}
+
 -(void)changed
 {
     

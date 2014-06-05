@@ -37,13 +37,13 @@
     NSMutableArray *section =[[NSMutableArray alloc ]init];
     
     //SECTION
-    NSArray *cell = [[NSArray alloc]initWithObjects:@"clock_80.png", @"Add multiple lessons", @"", nil];
+    NSArray *cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add multiple lessons", @"Between two dates", nil];
     [section addObject:cell];
     
-    cell = [[NSArray alloc]initWithObjects:@"Calendar-Date-03-80.png", @"Add lessons a selected day", @"", nil];
+    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add multiple lessons", @"For one day", nil];
     [section addObject:cell];
     
-    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Add one lesson", @"", nil];
+    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add a single lesson", @"", nil];
     [section addObject:cell];
     
     
@@ -98,10 +98,7 @@
         //UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
         cell.detailTextLabel.text = [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 2];
     }
-    
-    if(indexPath.row == 0 && indexPath.section == 0){
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
+
     
     cell.imageView.image = [UIImage imageNamed:[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 0]];
     
@@ -112,7 +109,7 @@
     //cell.selectedBackgroundView = selectionColor;
     
     cell.backgroundColor = [UIColor whiteColor];
-    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }

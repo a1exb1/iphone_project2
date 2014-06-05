@@ -42,4 +42,7 @@
 
 @property NSIndexPath *indexPath;
 
+@property int requestNumber;
+@property int dataRequestNumber;
+
 @end
