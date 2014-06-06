@@ -182,10 +182,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="gtJ-R7-xnR">
+                        <barButtonItem key="leftBarButtonItem" image="851-calendar-toolbar-selected.png" id="aCp-n4-fil"/>
                         <barButtonItem key="rightBarButtonItem" image="746-plus-circle.png" id="ArJ-Fw-OPM"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="calenderUIButton" destination="aCp-n4-fil" id="2W2-Pk-Cpg"/>
                         <outlet property="lockedUIButton" destination="b0a-gG-0Gm" id="dlq-BS-GUs"/>
+                        <outlet property="plusUIButton" destination="ArJ-Fw-OPM" id="YVw-BQ-V8C"/>
                         <outlet property="statusLbl" destination="3pX-CT-Tin" id="mXa-jr-2Er"/>
                         <outlet property="unlockedUIButton" destination="z1Z-0T-fHE" id="Iv3-vK-tnh"/>
                         <outlet property="webView" destination="rkQ-hS-dFF" id="cGJ-j8-8Rs"/>

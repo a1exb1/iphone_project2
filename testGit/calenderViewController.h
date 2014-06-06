@@ -9,13 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "Tools.h"
 #import "coursesViewController.h"
-
+#import "SelectDateViewController.h"
 #import "AddLessonsViewController.h"
+#import "NVDate.h"
 
 @interface calenderViewController : UIViewController <UIWebViewDelegate, calenderViewDelegate>
 
 @property UIBarButtonItem *lockBtn;
 @property UIPopoverController *popover;
+@property UIPopoverController *calPopover;
+
+@property NSDate *date;
+@property NSDate *firstDateOfWeek;
 
 -(void)changed;
 

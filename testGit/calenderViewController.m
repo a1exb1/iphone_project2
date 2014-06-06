@@ -15,6 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *lockedUIButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *unlockedUIButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *calenderUIButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *plusUIButton;
 @end
 
 @implementation calenderViewController
@@ -50,6 +52,55 @@ NSTimer *timer;
     [session setCalController:self];
     [self showNavigationBar];
     [self.navigationItem setHidesBackButton:YES];
+    
+    if([self.accessibilityValue isEqualToString:@"calenderView"]){
+        _calenderUIButton.action = @selector(selectDate:);
+        _calenderUIButton.target = self;
+        
+        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:_plusUIButton, _calenderUIButton, nil];
+        
+        _date = [[NSDate alloc] init];
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        [calendar setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"GB"]];
+        
+        NSDateComponents* comps = [calendar components:NSYearForWeekOfYearCalendarUnit |NSYearCalendarUnit|NSMonthCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit fromDate:_date];
+        
+        [comps setWeekday:2]; // 2: monday
+        _firstDateOfWeek = [calendar dateFromComponents:comps];
+        
+        [self loadUrl];
+    }
+    
+    
+    
+}
+
+-(void)selectDate:(UIBarButtonItem *)btn;
+{
+    SelectDateViewController* viewController2 = [[SelectDateViewController alloc] initWithNibName:@"SelectDateViewController" bundle:nil];
+    viewController2.previousDate = _date;
+    viewController2.selectDateDelegate = (id)self;
+    self.calPopover = [[UIPopoverController alloc] initWithContentViewController:viewController2];
+    
+    _calPopover.popoverContentSize = CGSizeMake(320,568);
+    [_calPopover presentPopoverFromBarButtonItem:btn permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+-(void)sendDateToAgendaWithDate:(NSDate *) Date
+{
+    _date = Date;
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [calendar setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"GB"]];
+    
+    NSDateComponents* comps = [calendar components:NSYearForWeekOfYearCalendarUnit |NSYearCalendarUnit|NSMonthCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit fromDate:Date];
+    
+    [comps setWeekday:2]; // 2: monday
+    _firstDateOfWeek = [calendar dateFromComponents:comps];
+    
+    [_calPopover dismissPopoverAnimated:YES];
+    [self loadUrl];
+    
 }
 
 //-(void)showNavigationBar
@@ -115,6 +166,13 @@ NSTimer *timer;
     self.statusLbl.hidden = YES;
     self.webView.hidden = YES;
     
+    NVDate *fromDate = [[NVDate alloc] initUsingDate:_firstDateOfWeek];
+    NSString *fromDateString = [[NSString alloc] initWithFormat:@"%ld/%ld/%ld", (long)fromDate.day, (long)fromDate.month, (long)fromDate.year];
+    
+    NVDate *toDate = [[NVDate alloc] initUsingDate:fromDate.date];
+    [toDate nextDays:7];
+    NSString *toDateString = [[NSString alloc] initWithFormat:@"%ld/%ld/%ld", (long)toDate.day, (long)toDate.month, (long)toDate.year];
+    
     [self hideNavigationBar];
     [Tools showLoaderWithView:self.navigationController.view];
     NSLog(@"%f", self.navigationController.view.frame.size.width);
@@ -123,7 +181,7 @@ NSTimer *timer;
     
     NSString *urlString = [[NSString alloc] init];
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
-        urlString = [NSString stringWithFormat: @"http://lm.bechmann.co.uk/sections/frames/calender_items_week.aspx?&tutorid=%li&from=26/05/2014&to=01/06/2014&clientid=%li&auth=0CCAAC112", [[session tutor] tutorID], [[session client] clientID]];
+        urlString = [NSString stringWithFormat: @"http://lm.bechmann.co.uk/sections/frames/calender_items_week.aspx?&tutorid=%li&from=%@&to=%@&clientid=%li&auth=0CCAAC112", [[session tutor] tutorID], fromDateString, toDateString, [[session client] clientID]];
         
     }
     else{
@@ -138,7 +196,7 @@ NSTimer *timer;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self loadUrl];
+    
 }
 
 -(void)refresh
