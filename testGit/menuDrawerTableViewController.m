@@ -42,52 +42,37 @@ extern Session *session;
     NSMutableArray *section =[[NSMutableArray alloc ]init];
     
     //SECTION
-    NSArray *cell = [[NSArray alloc]initWithObjects:@"clock_80.png", @"Slots", @"", nil];
+    NSArray *cell = [[NSArray alloc]initWithObjects:@"clock_80.png", @"Slots", @"", @"slots", nil];
     [section addObject:cell];
     
-    cell = [[NSArray alloc]initWithObjects:@"Calendar-Date-03-80.png", @"Calender", @"", nil];
+    cell = [[NSArray alloc]initWithObjects:@"Calendar-Date-03-80.png", @"Calender", @"", @"calender", nil];
     [section addObject:cell];
     
-    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"People", @"", nil];
-    [section addObject:cell];
+
     
-    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add lessons", @"", nil];
+    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add lessons", @"", @"addlessons", nil];
     [section addObject:cell];
 
     [_cellsArray addObject:section];
     
-//    //SECTION
-//    section =[[NSMutableArray alloc ]init];
-//    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"People", @"", nil];
-//    [section addObject:cell];
-//    
-//    cell = [[NSArray alloc]initWithObjects:@"User-Time80(2).png", @"Lesson slots", @"", nil];
-//    [section addObject:cell];
-//    
-//    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add multiple lessons", @"between selected dates", nil];
-//    [section addObject:cell];
-//    
-//    cell = [[NSArray alloc]initWithObjects:@"minus_80_black.png", @"Clear lessons", @"between selected dates", nil];
-//    [section addObject:cell];
-//    [_cellsArray addObject:section];
-//    
-//    section =[[NSMutableArray alloc ]init];
-//
-//    cell = [[NSArray alloc]initWithObjects:@"logout_80.png", @"Logout", @"", nil];
-//    [section addObject:cell];
-//    [_cellsArray addObject:section];
-
-    //UIImage *image = [UIImage imageNamed:@"menu-background.png"];
-    //UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    //SECTION
+    section =[[NSMutableArray alloc ]init];
+    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Tutors", @"", @"tutors", nil];
+    [section addObject:cell];
     
-    //UITableView *tableView = self.tableView;
-    //tableView.backgroundView = imageView;
-    //tableView.separatorColor = [UIColor clearColor];
+    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Courses", @"", @"courses", nil];
+    [section addObject:cell];
+    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Students", @"", @"students", nil];
+    [section addObject:cell];
+    [_cellsArray addObject:section];
     
-    //[self.tableView setContentInset:UIEdgeInsetsMake(15,0,0,0)];
+    //SECTION
+    section =[[NSMutableArray alloc ]init];
+    cell = [[NSArray alloc]initWithObjects:@"602-exit.png", @"Logout", @"", @"logout", nil];
+    [section addObject:cell];
+    [_cellsArray addObject:section];
     
     [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-    //[self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -132,6 +117,8 @@ extern Session *session;
     //cell.textLabel.textColor = [UIColor whiteColor];
     //cell.detailTextLabel.textColor = [UIColor whiteColor];
     
+    cell.accessibilityValue = [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 3];
+    
     if(![[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 2] isEqualToString:@""]){
         //UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
         cell.detailTextLabel.text = [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 2];
@@ -147,16 +134,19 @@ extern Session *session;
     //cell.selectedBackgroundView = selectionColor;
     
     cell.backgroundColor = [UIColor whiteColor];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if((indexPath.row == 4 && indexPath.section == 0) ||
+       (indexPath.row == 2 && indexPath.section == 0)){
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    
     // AGENDA
-    if(indexPath.row == 0 && indexPath.section == 0){
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    if([cell.accessibilityValue isEqualToString:@"slots"] ){
         [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
         self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
         //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
@@ -180,7 +170,7 @@ extern Session *session;
     }
     
     // CALENDER
-    if(indexPath.row == 1 && indexPath.section == 0){
+    if([cell.accessibilityValue isEqualToString:@"calender"]){
         [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
         self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
         //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
@@ -195,15 +185,22 @@ extern Session *session;
     }
     
     if(indexPath.row == 3 && indexPath.section == 0){
+
+    }
+    
+    if([cell.accessibilityValue isEqualToString:@"addlessons"]){
         addLessonsTableViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addLessonsTableView"];
         [self.navigationController pushViewController:view animated:YES];
     }
     
+    //logout
     if(indexPath.row == 0 && indexPath.section == 1){
 
     }
     
-    if(indexPath.row == 2){
+    if([cell.accessibilityValue isEqualToString:@"people"]){
+        addLessonsTableViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"PeopleTableView"];
+        [self.navigationController pushViewController:view animated:YES];
 
     }
     
@@ -219,10 +216,10 @@ extern Session *session;
 {
     NSString *sectionName;
     if(section == 0){
-        sectionName = @"View";
+        sectionName = @"";
     }
     else if(section == 1){
-        sectionName = @"Manage";
+        sectionName = @"";
     }
     return sectionName;
 }

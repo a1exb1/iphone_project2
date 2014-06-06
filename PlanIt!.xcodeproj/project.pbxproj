@@ -110,6 +110,11 @@
 		E441CF021913EC6B00088FEE /* saveTutorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E441CF011913EC6B00088FEE /* saveTutorViewController.m */; };
 		E4494DD4190D84B700585CB8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E4494DD3190D84B700585CB8 /* User.m */; };
 		E4494DD7190D851E00585CB8 /* Tutor.m in Sources */ = {isa = PBXBuildFile; fileRef = E4494DD6190D851E00585CB8 /* Tutor.m */; };
+		E44A17B81941C7AE00606179 /* 905-chat-2-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E44A17B71941C7AE00606179 /* 905-chat-2-selected@2x.png */; };
+		E44A17BA1941C89D00606179 /* 602-exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E44A17B91941C89D00606179 /* 602-exit@2x.png */; };
+		E44A17BC1941C8F000606179 /* 602-exit.png in Resources */ = {isa = PBXBuildFile; fileRef = E44A17BB1941C8F000606179 /* 602-exit.png */; };
+		E44A17BF1941CC5600606179 /* peopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44A17BE1941CC5600606179 /* peopleTableViewController.m */; };
+		E44A17C31941DA8F00606179 /* tutorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44A17C21941DA8F00606179 /* tutorsTableViewController.m */; };
 		E47352801900279E008006EE /* indexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E473527F1900279E008006EE /* indexViewController.m */; };
 		E4A36089191F87C900F5221B /* AudioNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A36088191F87C900F5221B /* AudioNote.m */; };
 		E4A3608C191F87E900F5221B /* TextNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3608B191F87E900F5221B /* TextNote.m */; };
@@ -309,6 +314,13 @@
 		E4494DD3190D84B700585CB8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		E4494DD5190D851E00585CB8 /* Tutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutor.h; sourceTree = "<group>"; };
 		E4494DD6190D851E00585CB8 /* Tutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutor.m; sourceTree = "<group>"; };
+		E44A17B71941C7AE00606179 /* 905-chat-2-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "905-chat-2-selected@2x.png"; sourceTree = "<group>"; };
+		E44A17B91941C89D00606179 /* 602-exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "602-exit@2x.png"; sourceTree = "<group>"; };
+		E44A17BB1941C8F000606179 /* 602-exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "602-exit.png"; sourceTree = "<group>"; };
+		E44A17BD1941CC5600606179 /* peopleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = peopleTableViewController.h; sourceTree = "<group>"; };
+		E44A17BE1941CC5600606179 /* peopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = peopleTableViewController.m; sourceTree = "<group>"; };
+		E44A17C11941DA8F00606179 /* tutorsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tutorsTableViewController.h; sourceTree = "<group>"; };
+		E44A17C21941DA8F00606179 /* tutorsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tutorsTableViewController.m; sourceTree = "<group>"; };
 		E473527E1900279E008006EE /* indexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indexViewController.h; sourceTree = "<group>"; };
 		E473527F1900279E008006EE /* indexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = indexViewController.m; sourceTree = "<group>"; };
 		E4A36087191F87C900F5221B /* AudioNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioNote.h; sourceTree = "<group>"; };
@@ -495,6 +507,8 @@
 				E441CEFA19115BF900088FEE /* viewAllStudentsViewController.m */,
 				E4C28936193F50BB00538763 /* studentsTableViewController.h */,
 				E4C28937193F50BB00538763 /* studentsTableViewController.m */,
+				E44A17BD1941CC5600606179 /* peopleTableViewController.h */,
+				E44A17BE1941CC5600606179 /* peopleTableViewController.m */,
 			);
 			name = People;
 			sourceTree = "<group>";
@@ -550,6 +564,7 @@
 		E4005D1419369D91006C6ABB /* Glyphish */ = {
 			isa = PBXGroup;
 			children = (
+				E44A17BB1941C8F000606179 /* 602-exit.png */,
 				E4273633193E7A9100F98749 /* 744-locked-toolbar@2x.png */,
 				E433C038193B85C4003543AE /* retina */,
 				E4005D1D1936A2F0006C6ABB /* 42-photos.png */,
@@ -702,6 +717,7 @@
 		E41B75CD193DFD0500255354 /* tab bar */ = {
 			isa = PBXGroup;
 			children = (
+				E44A17B71941C7AE00606179 /* 905-chat-2-selected@2x.png */,
 				E41B75D0193DFD0500255354 /* 728-clock-selected@2x.png */,
 				E41B75CE193DFD0500255354 /* 742-wrench-selected@2x.png */,
 			);
@@ -759,6 +775,7 @@
 		E433C038193B85C4003543AE /* retina */ = {
 			isa = PBXGroup;
 			children = (
+				E44A17B91941C89D00606179 /* 602-exit@2x.png */,
 				E427362E193E074600F98749 /* 746-plus-circle@2x.png */,
 				E41B75CD193DFD0500255354 /* tab bar */,
 				E433C047193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png */,
@@ -784,9 +801,19 @@
 			name = save;
 			sourceTree = "<group>";
 		};
+		E44A17C01941DA6600606179 /* tableViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E44A17C11941DA8F00606179 /* tutorsTableViewController.h */,
+				E44A17C21941DA8F00606179 /* tutorsTableViewController.m */,
+			);
+			name = tableViewControllers;
+			sourceTree = "<group>";
+		};
 		E473527D19002785008006EE /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E44A17C01941DA6600606179 /* tableViewControllers */,
 				E4C6CCD7193B6CC000F1997C /* testMasterDetail */,
 				E421C96E1934DD0900FA039A /* ipad_only */,
 				792B23CE1921050200CAE285 /* Manage */,
@@ -984,6 +1011,7 @@
 				E433C03C193B8612003543AE /* 1099-list-1-toolbar-selected@2x.png in Resources */,
 				792B23D51921090F00CAE285 /* logout.png in Resources */,
 				79A86859191B93EC00AA4058 /* DSLCalendarMonthSelectorView.xib in Resources */,
+				E44A17BC1941C8F000606179 /* 602-exit.png in Resources */,
 				E4005D1119369B2D006C6ABB /* menu-50.png in Resources */,
 				79A86864191B93EC00AA4058 /* DSLCalendarDaySelection-left@2x.png in Resources */,
 				E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */,
@@ -1004,6 +1032,7 @@
 				E4AAC5F5192A2DA3008E0BD7 /* SplashScreen.png in Resources */,
 				E4005D0C19363CEA006C6ABB /* minus_80_black.png in Resources */,
 				E401DAD119195D4100A05318 /* glyphicons_137_cogwheels.png in Resources */,
+				E44A17B81941C7AE00606179 /* 905-chat-2-selected@2x.png in Resources */,
 				E433C046193B8AC3003543AE /* 851-calendar-toolbar-selected@2x.png in Resources */,
 				79A86867191B93EC00AA4058 /* DSLCalendarDaySelection-right.png in Resources */,
 				79A86870191B950900AA4058 /* SelectDateViewController.xib in Resources */,
@@ -1048,6 +1077,7 @@
 				79A8685D191B93EC00AA4058 /* DSLCalendar-nextMonth.png in Resources */,
 				E4005D1E1936A2F0006C6ABB /* 42-photos.png in Resources */,
 				79A8685F191B93EC00AA4058 /* DSLCalendar-previousMonth.png in Resources */,
+				E44A17BA1941C89D00606179 /* 602-exit@2x.png in Resources */,
 				E4D231E6192133FB00E5797B /* Document Checklist.png in Resources */,
 				792B23B91920CAE200CAE285 /* glyphicons_173_play.png in Resources */,
 				E4AAC5F31929FFA1008E0BD7 /* glyphicons_442_earphone.png in Resources */,
@@ -1092,6 +1122,7 @@
 				E407AD6C191D620200F22977 /* DIDatepicker.m in Sources */,
 				E4C1C9781915A4450068A10D /* NavigationBarTitleWithSubtitleView.m in Sources */,
 				E407AD74191E963E00F22977 /* audioNoteViewController.m in Sources */,
+				E44A17C31941DA8F00606179 /* tutorsTableViewController.m in Sources */,
 				E4494DD4190D84B700585CB8 /* User.m in Sources */,
 				E40DF297190017E100E1332A /* ABViewController.m in Sources */,
 				E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */,
@@ -1114,6 +1145,7 @@
 				E407AD71191E962C00F22977 /* textNoteViewController.m in Sources */,
 				E401DAD8191AB82400A05318 /* NotesViewController.m in Sources */,
 				79A86855191B93EC00AA4058 /* DSLCalendarDayCalloutView.m in Sources */,
+				E44A17BF1941CC5600606179 /* peopleTableViewController.m in Sources */,
 				79A8685A191B93EC00AA4058 /* DSLCalendarMonthView.m in Sources */,
 				79A8685B191B93EC00AA4058 /* DSLCalendarRange.m in Sources */,
 				E441CF021913EC6B00088FEE /* saveTutorViewController.m in Sources */,

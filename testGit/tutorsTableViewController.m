@@ -1,18 +1,20 @@
 //
-//  addLessonsTableViewController.m
+//  tutorsTableViewController.m
 //  PlanIt!
 //
-//  Created by Alex Bechmann on 04/06/14.
+//  Created by Alex Bechmann on 06/06/14.
 //  Copyright (c) 2014 Alex Bechmann. All rights reserved.
 //
 
-#import "addLessonsTableViewController.h"
+#import "tutorsTableViewController.h"
 
-@interface addLessonsTableViewController ()
+@interface tutorsTableViewController ()
 
 @end
 
-@implementation addLessonsTableViewController
+@implementation tutorsTableViewController
+
+extern Session *session;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,24 +34,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[session client] loadTutors];
     
-    _cellsArray = [[NSMutableArray alloc] init];
-    NSMutableArray *section =[[NSMutableArray alloc ]init];
-    
-    //SECTION
-    NSArray *cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add multiple lessons", @"Between two dates", nil];
-    [section addObject:cell];
-    
-    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add multiple lessons", @"For one day", nil];
-    [section addObject:cell];
-    
-    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add a single lesson", @"", nil];
-    [section addObject:cell];
-    
-    
-    [_cellsArray addObject:section];
-    
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,63 +48,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return [_cellsArray count];
+    return 0;
 }
-
-
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    UIView *view = [[UIView alloc] init];
-//    [view setBackgroundColor:[UIColor clearColor]];
-//    return view;
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [[_cellsArray objectAtIndex:section ] count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    // Configure the cell...
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-    
-    //[[cell contentView] setBackgroundColor:[UIColor clearColor]];
-    //[[cell backgroundView] setBackgroundColor:[UIColor clearColor]];
-    //[cell setBackgroundColor:[UIColor clearColor]];
-    
-    //cell.textLabel.textColor = [UIColor whiteColor];
-    //cell.detailTextLabel.textColor = [UIColor whiteColor];
-    
-    if(![[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 2] isEqualToString:@""]){
-        //UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-        cell.detailTextLabel.text = [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 2];
-    }
-
-    
-    cell.imageView.image = [UIImage imageNamed:[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 0]];
-    
-    cell.textLabel.text = [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 1];
-    
-    //UIView *selectionColor = [[UIView alloc] init];
-    //selectionColor.backgroundColor = [Tools colorFromHexString:@"#004c6d"];
-    //cell.selectedBackgroundView = selectionColor;
-    
-    cell.backgroundColor = [UIColor whiteColor];
-    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    return cell;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] init];
-    [view setBackgroundColor:[UIColor clearColor]];
-    return view;
+    return 0;
 }
 
 /*
@@ -180,7 +119,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-
 
 @end

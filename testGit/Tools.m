@@ -82,7 +82,7 @@ NSMutableArray *loaderViews;
     UILoaderView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
     
-    //UILoaderView.frame = view.frame;
+    UILoaderView.frame = CGRectMake(0.0, 0.0, view.frame.size.width, view.frame.size.height);
     [UILoaderView setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.25]];
     UILoaderView.center = view.center;
     UILoaderView.accessibilityValue = @"loader";
@@ -105,7 +105,7 @@ NSMutableArray *loaderViews;
     UILoaderView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
     
-    UILoaderView.frame = view.frame;
+    UILoaderView.frame = CGRectMake(0.0, 0.0, view.frame.size.width, view.frame.size.height);
     //[UILoaderView setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.25]];
     UILoaderView.center = view.center;
     UILoaderView.accessibilityValue = @"loader";

@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol courseDelegate <NSObject>
+- (void) finishLoading;
+@end
+
 @interface Course : NSObject
 
 @property NSString *name;

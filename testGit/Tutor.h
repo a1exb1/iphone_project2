@@ -8,10 +8,21 @@
 
 #import "User.h"
 
+@protocol tutorDelegate <NSObject>
+- (void) finishLoading;
+@end
+
 @interface Tutor : User
 
 @property long tutorID;
 @property int accountType;
 @property NSString *username;
+
+@property (nonatomic, assign) id<tutorDelegate> delegate;
+@property NSArray *array;
+@property NSMutableData *data;
+
+-(void)load;
+
 
 @end

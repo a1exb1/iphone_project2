@@ -154,7 +154,7 @@ extern Session *session;
     
     if ( [Tools isIpad] )
     {
-        [self dismissViewControllerAnimated:NO completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     else
     {

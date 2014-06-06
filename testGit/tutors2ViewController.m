@@ -44,6 +44,8 @@ extern Session *session;
     self.view.layer.shadowRadius = 10.0f;
     self.view.layer.shadowColor = [[UIColor blackColor] CGColor];
     
+    [self.navigationItem setHidesBackButton:YES];
+    
 //    // Tell it which view should be created under left
 //    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
 //        self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuView"];
