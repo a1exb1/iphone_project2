@@ -60,14 +60,9 @@ NSTimer *timer;
         self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:_plusUIButton, _calenderUIButton, nil];
         
         _date = [[NSDate alloc] init];
-        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        [calendar setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"GB"]];
-        
-        NSDateComponents* comps = [calendar components:NSYearForWeekOfYearCalendarUnit |NSYearCalendarUnit|NSMonthCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit fromDate:_date];
-        
-        [comps setWeekday:2]; // 2: monday
-        _firstDateOfWeek = [calendar dateFromComponents:comps];
-        
+        [self sendDateToAgendaWithDate:_date];
+    }
+    else{
         [self loadUrl];
     }
     

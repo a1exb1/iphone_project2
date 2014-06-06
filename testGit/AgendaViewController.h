@@ -45,4 +45,6 @@
 @property int requestNumber;
 @property int dataRequestNumber;
 
+@property NSMutableArray *attendenceStrings;
+
 @end
