@@ -72,12 +72,19 @@ NSTimer *timer;
 
 -(void)selectDate:(UIBarButtonItem *)btn;
 {
+    UINavigationController *controller = [[UINavigationController alloc] init];
+    
     SelectDateViewController* viewController2 = [[SelectDateViewController alloc] initWithNibName:@"SelectDateViewController" bundle:nil];
     viewController2.previousDate = _date;
     viewController2.selectDateDelegate = (id)self;
-    self.calPopover = [[UIPopoverController alloc] initWithContentViewController:viewController2];
+    self.calPopover = [[UIPopoverController alloc] initWithContentViewController:controller];
     
-    _calPopover.popoverContentSize = CGSizeMake(320,568);
+    [controller pushViewController:viewController2 animated:NO];
+    [controller.navigationItem setHidesBackButton:YES];
+    //self.calPopover = [[UIPopoverController alloc] initWithContentViewController:viewController2];
+    
+    _calPopover.popoverContentSize = CGSizeMake(320,460);
+    
     [_calPopover presentPopoverFromBarButtonItem:btn permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
