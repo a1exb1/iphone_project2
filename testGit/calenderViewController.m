@@ -232,9 +232,10 @@ NSTimer *timer;
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [Tools hideLoaderFromView:self.navigationController.view];
-    self.webView.hidden = NO;
+    
     [timer invalidate];
     [self lock];
+    self.webView.hidden = NO;
     
 }
 
