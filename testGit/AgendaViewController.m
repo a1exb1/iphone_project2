@@ -58,6 +58,9 @@ NSArray *daysOfWeekArray;
 
 -(void)jsonRequestGetAgendaFromSwitch
 {
+    //_lessons = [[NSArray alloc] init];
+    //[_mainTableView reloadData];
+    
     self.navigationItem.rightBarButtonItem = nil;
     _NSURLType = 0;
     
@@ -72,8 +75,8 @@ NSArray *daysOfWeekArray;
     yy = (int)[components year]; // gives you year
     
     _data = [[NSMutableData alloc]init];
-    _lessons = [[NSArray alloc] init];
-    //[_mainTableView reloadData];
+    
+    
     
     NSString *dateString = [[NSString alloc] initWithFormat:@"%02d/%02d/%i", dd, mm, yy ];
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%li&date=%@&ts=%f", [[session tutor] tutorID], dateString, [[NSDate date] timeIntervalSince1970]];
@@ -83,11 +86,16 @@ NSArray *daysOfWeekArray;
     [NSURLConnection connectionWithRequest:request delegate:self];
     
     //NSURLConnection *connection = [NSURLConnection sendAsynchronousRequest:request queue:nil completionHandler:[self connectionDidFinishLoading:connection]];
-
+    
 }
 
 -(void)jsonRequestGetAgenda
 {
+    NSLog(@"hi");
+    
+    //_lessons = [[NSArray alloc] init];
+    //[_mainTableView reloadData];
+    
     self.navigationItem.rightBarButtonItem = nil;
     _NSURLType = 0;
     
@@ -119,7 +127,13 @@ NSArray *daysOfWeekArray;
     // Do any additional setup after loading the view.
     
     [_mainTableView addPullToRefreshWithActionHandler:^{
-        [self jsonRequestGetAgenda];
+        if(!_editing){
+            [self jsonRequestGetAgenda];
+        }
+        else{
+            [_mainTableView.pullToRefreshView stopAnimating];
+        }
+        
     }];
     
     _dayDate = [[NSDate alloc] init];
@@ -157,6 +171,7 @@ NSArray *daysOfWeekArray;
     self.mainTableView.delegate = self;
     
     _counter = 0;
+    _attendenceStrings = [[NSMutableArray alloc] init];
     
     //[self.dayPicker setCurrentDate:_dayDate animated:NO];
     //[NSDate dateFromDay:3 month:10 year:2013]
@@ -291,6 +306,8 @@ NSArray *daysOfWeekArray;
 }
 
 -(void)prepareForAttendance{
+    _attendenceStrings = [[NSMutableArray alloc] init];
+    
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishedAttendanceBtn)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:doneBtn, nil]];
     _editing = true;
@@ -300,6 +317,8 @@ NSArray *daysOfWeekArray;
     {
         [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
     }
+    
+    //_keepEditing = YES;
 }
 
 -(IBAction)selectDate{
@@ -323,7 +342,10 @@ NSArray *daysOfWeekArray;
 
 
 -(void)finishedAttendance{
-    
+    if(_editing){
+        [self saveAllSwitches];
+        [_mainTableView reloadData];
+    }
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishedAttendanceBtn)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:doneBtn, nil]];
     if(_keepEditing == NO)
@@ -333,11 +355,20 @@ NSArray *daysOfWeekArray;
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:editBtn, nil]];
     }
     
-    [_mainTableView reloadData];
+    //[_mainTableView reloadData];
     if(_indexPath >= 0)
     {
         [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
     }
+    
+    //[_mainTableView reloadData];
+    if(_indexPath >= 0)
+    {
+        [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        //[self selectRowAtRow:(int)_indexPath.row];
+    }
+    
+    //_editing = NO;
 }
 
 -(void)finishedAttendanceBtn{
@@ -434,23 +465,52 @@ NSArray *daysOfWeekArray;
         status = 3;
     }
     
-    [Tools showLightLoaderWithView:self.navigationController.view];
-    _NSURLType = 1;
+    //[Tools showLightLoaderWithView:self.navigationController.view];
+    //_NSURLType = 1;
     _keepEditing = YES;
     
     long lessonid = [[[_lessons objectAtIndex:attendenceSwitch.tag] objectForKey:@"LessonID"] intValue] ;
     
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=lessonstatus&id=%li&status=%i&ts=%f", lessonid, status, [[NSDate date] timeIntervalSince1970]];
     
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
+    [_attendenceStrings addObject:urlString];
     
+    
+    
+}
+
+-(void)saveAllSwitches
+{
+    _c = 0;
+    NSLog(@"%@", _attendenceStrings);
+    for (NSString *str in _attendenceStrings){
+        _NSURLType = 1;
+        NSLog(@"from save all switches %d", _c);
+        NSURL *url = [NSURL URLWithString: str];
+        //NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        //[NSURLConnection connectionWithRequest:request delegate:self];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        _c++;
+        
+        if([_attendenceStrings count] > 0){
+            if(_c == [_attendenceStrings count]){
+                [NSURLConnection connectionWithRequest:request delegate:self];
+
+            }
+            else{
+                [NSURLConnection connectionWithRequest:request delegate:nil];
+            }
+        }
+        
+        
+        
+    }
+    //[self jsonRequestGetAgenda];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-
+    
     if([Tools isIpad])
     {
         if(!_editing){
@@ -499,7 +559,15 @@ NSArray *daysOfWeekArray;
     //GET DATA
     if (_NSURLType == 0) {
         _lessons = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+        
+        
+        
+        //if(_c == [_attendenceStrings count])
+        //{
         [self.mainTableView reloadData];
+        //_counter = 0;
+        //_attendenceStrings = [[NSMutableArray alloc] init];
+        //}
         
         if ([_lessons count] == 0) {
             _statusLbl.hidden = NO;
@@ -550,6 +618,7 @@ NSArray *daysOfWeekArray;
     else if (_NSURLType == 1) {
         [Tools showLightLoaderWithView:self.navigationController.view];
         [self jsonRequestGetAgendaFromSwitch];
+        
     }
 }
 

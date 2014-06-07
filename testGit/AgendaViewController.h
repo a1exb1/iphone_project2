@@ -47,4 +47,6 @@
 
 @property NSMutableArray *attendenceStrings;
 
+@property int c;
+
 @end
