@@ -18,4 +18,5 @@
 @property bool hasSetAgendaToDetail;
 @property UIViewController *calController;
 
+
 @end

@@ -139,6 +139,7 @@
 		E4AF26161935672A006366D9 /* Calendar-Date-03-80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF26151935672A006366D9 /* Calendar-Date-03-80.png */; };
 		E4AF261A193568D4006366D9 /* logout_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF2619193568D4006366D9 /* logout_80.png */; };
 		E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */; };
+		E4BE4D751943567200972576 /* loginPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4BE4D741943567200972576 /* loginPlist.plist */; };
 		E4C1C969191459F70068A10D /* editTutorsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C968191459F70068A10D /* editTutorsListViewController.m */; };
 		E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C1C96A1914F75B0068A10D /* glyphicons_030_pencil.png */; };
 		E4C1C9711914F9240068A10D /* editCoursesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C9701914F9240068A10D /* editCoursesListViewController.m */; };
@@ -353,6 +354,7 @@
 		E4AF2619193568D4006366D9 /* logout_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout_80.png; sourceTree = "<group>"; };
 		E4B1DF7C190BCB3C0069DB6A /* StudentCourseLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentCourseLink.h; sourceTree = "<group>"; };
 		E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentCourseLink.m; sourceTree = "<group>"; };
+		E4BE4D741943567200972576 /* loginPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = loginPlist.plist; sourceTree = "<group>"; };
 		E4C1C967191459F70068A10D /* editTutorsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editTutorsListViewController.h; sourceTree = "<group>"; };
 		E4C1C968191459F70068A10D /* editTutorsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editTutorsListViewController.m; sourceTree = "<group>"; };
 		E4C1C96A1914F75B0068A10D /* glyphicons_030_pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_030_pencil.png; sourceTree = "<group>"; };
@@ -645,6 +647,7 @@
 				E40DF296190017E100E1332A /* ABViewController.m */,
 				E40DF298190017E100E1332A /* Images.xcassets */,
 				E40DF284190017E100E1332A /* Supporting Files */,
+				E4BE4D741943567200972576 /* loginPlist.plist */,
 			);
 			path = testGit;
 			sourceTree = "<group>";
@@ -1074,6 +1077,7 @@
 				E40DF299190017E100E1332A /* Images.xcassets in Resources */,
 				E4D231EA1921367900E5797B /* login_landscape.jpg in Resources */,
 				79A86866191B93EC00AA4058 /* DSLCalendarDaySelection-middle@2x.png in Resources */,
+				E4BE4D751943567200972576 /* loginPlist.plist in Resources */,
 				79A8685D191B93EC00AA4058 /* DSLCalendar-nextMonth.png in Resources */,
 				E4005D1E1936A2F0006C6ABB /* 42-photos.png in Resources */,
 				79A8685F191B93EC00AA4058 /* DSLCalendar-previousMonth.png in Resources */,

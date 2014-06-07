@@ -560,8 +560,6 @@ NSArray *daysOfWeekArray;
     if (_NSURLType == 0) {
         _lessons = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
         
-        
-        
         //if(_c == [_attendenceStrings count])
         //{
         [self.mainTableView reloadData];

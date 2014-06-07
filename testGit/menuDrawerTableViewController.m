@@ -184,9 +184,6 @@ extern Session *session;
 
     }
     
-    if(indexPath.row == 3 && indexPath.section == 0){
-
-    }
     
     if([cell.accessibilityValue isEqualToString:@"addlessons"]){
         addLessonsTableViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addLessonsTableView"];
@@ -194,8 +191,18 @@ extern Session *session;
     }
     
     //logout
-    if(indexPath.row == 0 && indexPath.section == 1){
-
+    if([cell.accessibilityValue isEqualToString:@"logout"]){
+        session = [[Session alloc] init];
+        
+        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+        self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+        
+        DetailViewController *controller = self.detailViewController;
+        [controller changed];
+        
+        UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"loginView"];
+        
+        [controller.navigationController presentViewController:view animated:NO completion:nil];
     }
     
     if([cell.accessibilityValue isEqualToString:@"people"]){
@@ -216,10 +223,10 @@ extern Session *session;
 {
     NSString *sectionName;
     if(section == 0){
-        sectionName = @"";
+        sectionName = [NSString stringWithFormat:@"Your controls (%@)", [[session tutor] name]];
     }
     else if(section == 1){
-        sectionName = @"";
+        sectionName = [NSString stringWithFormat:@"Client controls (%@)", [[session client] name]];
     }
     return sectionName;
 }

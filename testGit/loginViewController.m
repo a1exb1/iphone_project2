@@ -46,6 +46,39 @@ extern Session *session;
     _bgImg.clipsToBounds = YES;
     _bgImg.contentMode = UIViewContentModeScaleAspectFit;
     
+    //PLIST GET
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to the data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"mydata.plist"];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath])
+    {
+        // if not in documents, get property list from main bundle
+        plistPath = [[ NSBundle mainBundle] pathForResource:@"loginPlist" ofType:@"plist"];
+    }
+    
+    
+    
+    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+    NSString *errorDesc = nil;
+    NSPropertyListFormat format;
+    
+    // convert plist into dictionary object
+    NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML
+                                                                          mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+    
+    if (!temp)
+    {
+        NSLog(@"error reading plist: %@, format: %lu", errorDesc, format);
+    }
+    else{
+        self.usernameTextField.text = [temp objectForKey:@"username"];
+        self.passwordTextField.text = [temp objectForKey:@"password"];
+    }
+    
+    
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -129,6 +162,7 @@ extern Session *session;
             [[session tutor] setTutorID:[[[_clientArray objectAtIndex:0] objectForKey:@"tutorid"] intValue]];
             [[session tutor] setAccountType:[[[_clientArray objectAtIndex:0] objectForKey:@"tutoraccounttype"] intValue]];
             
+            
             [self loginSuccess];
         }
         else{
@@ -151,6 +185,37 @@ extern Session *session;
 
 -(void) loginSuccess{
     [Tools hideLoader];
+    
+    //SAVE TO PLIST
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to the data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"mydata.plist"];
+    
+    
+    NSDictionary *plistDict = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: self.usernameTextField.text,
+                          self.passwordTextField.text, nil]
+                          forKeys:[NSArray arrayWithObjects: @"username", @"password", nil]];
+    NSString *error = nil;
+    
+    // create NSData from dictionary object
+    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict
+                                                                   format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
+    
+    // check if plistData exists 
+    if(plistData) 
+    { 
+        // write plistData to myData.plist file 
+        [plistData writeToFile:plistPath atomically:YES]; 
+    } 
+    else 
+    { 
+        NSLog(@"saving data imploded - error: %@", error); 
+        
+    }
+    
+    // END SAVE PLIST
     
     if ( [Tools isIpad] )
     {
