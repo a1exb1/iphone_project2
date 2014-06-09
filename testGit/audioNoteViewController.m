@@ -49,6 +49,7 @@ extern Session *session;
     _recStateLabel.text = @"Not Recording";
     _playbackTimerLabel.hidden = YES;
     
+    //CREATE NEW AUDIO SESSION
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     [audioSession setActive:YES error:nil];
@@ -168,8 +169,10 @@ extern Session *session;
 {
     [Tools showLoader];
     
+    //GET FILE FROM TEMPOARY LOCATION AND CONVERT TO NSDATA FOR DATA TRANSMISSION
     NSURL *pathURL = _tempRecFile; //File Url of the recorded audio
     NSData *voiceData = [[NSData alloc]initWithContentsOfURL:pathURL];
+    
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/upload_file.aspx?datatype=audio&id=0&studentid=%li&lessonid=%li&clientid=%li", [[_lesson student] studentID], [_note lessonID], [[session client] clientID]]; // You can give your url here for uploading
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
     
@@ -244,8 +247,11 @@ extern Session *session;
     [_recButton setImage:[UIImage imageNamed:@"Button Record Active.png"]  forState:UIControlStateNormal];
     _playButton.hidden = YES;
     _recStateLabel.text = @"Recording";
+    
+    //SET TEMPORARY RECORDING FILE
     _tempRecFile = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"VoiceFile"]];
     
+    //SETTINGS
     NSDictionary *recordSettings = [[NSDictionary alloc] initWithObjectsAndKeys:
                               [NSNumber numberWithFloat: 44100.0],AVSampleRateKey,
                               [NSNumber numberWithInt: kAudioFormatLinearPCM],AVFormatIDKey,// kAudioFormatLinearPCM
@@ -255,11 +261,16 @@ extern Session *session;
                               [NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,
                               [NSNumber numberWithInt: AVAudioQualityMedium],AVEncoderAudioQualityKey,nil];
     
+    //ALLOCATE RECORDER WITH TEMPORARY FILE AND SETTINGS DICTIONARY
     _recorder = [[AVAudioRecorder alloc]initWithURL:_tempRecFile settings: recordSettings error:nil];
     
+    //SET DELEGATE AND PREPARE FOR RECORDING
     [_recorder setDelegate:self];
     [_recorder prepareToRecord];
+    
+    //RECORD
     [_recorder record];
+
     _timerLabel.text = @"00:00";
     secondsSinceStart = (NSInteger)[[NSDate date] timeIntervalSinceDate:[[NSDate alloc]init]];
     _timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTick:) userInfo:nil repeats:YES];

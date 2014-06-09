@@ -91,7 +91,6 @@ NSArray *daysOfWeekArray;
 
 -(void)jsonRequestGetAgenda
 {
-    NSLog(@"hi");
     
     //_lessons = [[NSArray alloc] init];
     //[_mainTableView reloadData];
@@ -115,7 +114,7 @@ NSArray *daysOfWeekArray;
     
     NSString *dateString = [[NSString alloc] initWithFormat:@"%02d/%02d/%i", dd, mm, yy ];
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%li&date=%@&ts=%f", [[session tutor] tutorID], dateString, [[NSDate date] timeIntervalSince1970]];
-    
+        
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];

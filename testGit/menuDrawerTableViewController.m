@@ -192,7 +192,7 @@ extern Session *session;
     
     //logout
     if([cell.accessibilityValue isEqualToString:@"logout"]){
-        session = [[Session alloc] init];
+        //session = [[Session alloc] init];
         
         [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
         self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];

@@ -119,7 +119,7 @@ extern Session *session;
     
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=login&id=0&username=%@&password=%@&ts=%f", username, password, [[NSDate date] timeIntervalSince1970]];
     
-    NSLog(@"%@", urlString);
+    //NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -156,18 +156,19 @@ extern Session *session;
         if([[[_clientArray objectAtIndex:0] objectForKey:@"success"] isEqualToString:@"1" ]){
             //NSLog(@"login success");
             
+            session = [[Session alloc] init];
+            [session setTutor: [[Tutor alloc] init]];
+            [session setClient: [[Client alloc] init]];
+            
             [[session client] setClientID:[[[_clientArray objectAtIndex:0] objectForKey:@"clientid"] intValue]];
             [[session client] setPremium:[[[_clientArray objectAtIndex:0] objectForKey:@"clientaccounttype"] intValue]];
             [[session client] setClientUserName:[[_clientArray objectAtIndex:0] objectForKey:@"clientusername"]];
             [[session tutor] setTutorID:[[[_clientArray objectAtIndex:0] objectForKey:@"tutorid"] intValue]];
             [[session tutor] setAccountType:[[[_clientArray objectAtIndex:0] objectForKey:@"tutoraccounttype"] intValue]];
             
-            
             [self loginSuccess];
         }
         else{
-            //            self.statusLbl.hidden = NO;
-            //            NSLog(@"Incorrect login details!");
             UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Incorrect username or password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [errorView show];
             self.loginBtn.hidden = NO;
@@ -216,6 +217,7 @@ extern Session *session;
     }
     
     // END SAVE PLIST
+    
     
     if ( [Tools isIpad] )
     {

@@ -69,7 +69,10 @@
     }
     
     self.navigationItem.leftBarButtonItem = nil;
-    [self.navigationItem setHidesBackButton:YES animated:NO];
+    if([Tools isIpad]){
+        [self.navigationItem setHidesBackButton:YES animated:NO];
+    }
+    
     self.navigationItem.rightBarButtonItem = nil;
 
     _courseNameLbl.text = [[_lesson course] name];

@@ -37,7 +37,7 @@
                         <barButtonItem image="744-locked-toolbar@2x.png" id="qGG-m2-kPW"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="5ld-g2-sgm">
-                        <barButtonItem key="rightBarButtonItem" image="746-plus-circle.png" id="ldN-dw-yP6">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ldN-dw-yP6">
                             <connections>
                                 <segue destination="A1C-uE-f9Q" kind="popover" identifier="coursesPopover" popoverAnchorBarButtonItem="ldN-dw-yP6" id="4MF-Le-eky">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -183,7 +183,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </view>
                     <navigationItem key="navigationItem" id="gtJ-R7-xnR">
                         <barButtonItem key="leftBarButtonItem" image="851-calendar-toolbar-selected.png" id="aCp-n4-fil"/>
-                        <barButtonItem key="rightBarButtonItem" image="746-plus-circle.png" id="ArJ-Fw-OPM"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ArJ-Fw-OPM"/>
                     </navigationItem>
                     <connections>
                         <outlet property="calenderUIButton" destination="aCp-n4-fil" id="2W2-Pk-Cpg"/>
@@ -1519,7 +1519,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="742-wrench-selected.png" width="28" height="28"/>
         <image name="744-locked-toolbar-selected.png" width="17" height="22"/>
         <image name="744-locked-toolbar@2x.png" width="17" height="22"/>
-        <image name="746-plus-circle.png" width="28" height="28"/>
         <image name="809-clipboard-selected.png" width="20" height="28"/>
         <image name="851-calendar-toolbar-selected.png" width="22" height="22"/>
         <image name="905-chat-2-selected.png" width="28" height="26"/>
