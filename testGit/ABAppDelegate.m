@@ -29,10 +29,24 @@ Session *session;
     [session setTutor:tutor];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+//        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+//        splitViewController.delegate = (id)navigationController.topViewController;
+//        
+//        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+        
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        splitViewController.delegate = (id)navigationController.topViewController;
-    }
+        
+        self.detailViewManager = [[DetailViewManager alloc] init];
+        self.detailViewManager.splitViewController = splitViewController;
+        self.detailViewManager.detailViewController = splitViewController.viewControllers.lastObject;
+        splitViewController.delegate = self.detailViewManager;
+        
+        if ([splitViewController respondsToSelector:@selector(setPresentsWithGesture:)])
+            [splitViewController setPresentsWithGesture:YES];
+        
+        return YES;
+}
     
 //    ManageTableViewController * leftDrawer = [[ManageTableViewController alloc] init];
 //    testViewController * center = [[testViewController alloc] init];

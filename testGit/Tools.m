@@ -347,4 +347,13 @@ NSMutableArray *loaderViews;
     }
 }
 
++ (BOOL) isOrientationLandscape
+{
+    if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])){
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 @end

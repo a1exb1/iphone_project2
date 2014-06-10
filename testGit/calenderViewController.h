@@ -12,8 +12,9 @@
 #import "SelectDateViewController.h"
 #import "AddLessonsViewController.h"
 #import "NVDate.h"
+#import "DetailViewManager.h"
 
-@interface calenderViewController : UIViewController <UIWebViewDelegate, calenderViewDelegate, UISplitViewControllerDelegate>
+@interface calenderViewController : UIViewController <UIWebViewDelegate, calenderViewDelegate, UISplitViewControllerDelegate, SubstitutableDetailViewController>
 
 @property UIBarButtonItem *lockBtn;
 @property UIPopoverController *popover;
@@ -21,6 +22,8 @@
 
 @property NSDate *date;
 @property NSDate *firstDateOfWeek;
+
+@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
 -(void)changed;
 

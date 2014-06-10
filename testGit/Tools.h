@@ -50,5 +50,6 @@
 
 +(BOOL)isIpad;
 
++ (BOOL) isOrientationLandscape;
 
 @end

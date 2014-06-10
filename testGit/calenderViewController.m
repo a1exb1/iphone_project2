@@ -31,6 +31,40 @@ NSTimer *timer;
     [self loadUrl];
 }
 
+
+-(void)viewDidAppear:(BOOL)animated
+{    
+    if (_navigationPaneBarButtonItem)
+        [self.navigationItem setLeftBarButtonItem:self.navigationPaneBarButtonItem animated:NO];
+    
+    //UISplitViewController* spv = self.splitViewController;
+    //spv.delegate=self;
+    //self.hiddenMaster= hide;
+    //[self.splitViewController willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
+    //[spv.view setNeedsLayout];
+}
+
+
+- (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem
+{
+    NSLog(@"set navigation pane in calender view");
+    if (navigationPaneBarButtonItem != _navigationPaneBarButtonItem) {
+        if (navigationPaneBarButtonItem)
+            //[self.toolbar setItems:[NSArray arrayWithObject:navigationPaneBarButtonItem] animated:NO];
+            [self.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
+        else
+            //[self.toolbar setItems:nil animated:NO];
+            [self.navigationItem setLeftBarButtonItem:nil animated:NO];
+        
+        //[self.navigationController.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
+        _navigationPaneBarButtonItem = navigationPaneBarButtonItem;
+        
+        [self showNavigationBar];
+        
+        NSLog(@"title: %@", _navigationPaneBarButtonItem.title);
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -85,7 +119,7 @@ NSTimer *timer;
     [controller.navigationItem setHidesBackButton:YES];
     //self.calPopover = [[UIPopoverController alloc] initWithContentViewController:viewController2];
     
-    _calPopover.popoverContentSize = CGSizeMake(320,460);
+    _calPopover.popoverContentSize = CGSizeMake(320,568);
     
     [_calPopover presentPopoverFromBarButtonItem:btn permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
@@ -133,7 +167,7 @@ NSTimer *timer;
     }
     
     UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:refreshBtn, _lockBtn, addLessonsBtn, nil]];
+    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:_navigationPaneBarButtonItem, refreshBtn, _lockBtn, addLessonsBtn, nil]];
 }
 
 -(void)addLessons
@@ -234,7 +268,8 @@ NSTimer *timer;
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [Tools hideLoaderFromView:self.navigationController.view];
-    
+    //[self.splitViewController willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
+    //[self.view setNeedsLayout];
     [timer invalidate];
     [self lock];
     self.webView.hidden = NO;

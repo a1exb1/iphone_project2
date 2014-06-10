@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Session.h"
 
+#import "DetailViewManager.h"
 
 #import "loginViewController.h"
 #import "ManageTableViewController.h"
@@ -23,6 +24,6 @@
 
 @property (strong, nonatomic) ViewController *viewController;
 
-
+@property (strong, nonatomic) DetailViewManager *detailViewManager;
 
 @end

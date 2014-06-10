@@ -14,6 +14,7 @@
 #import "indexViewController.h"
 #import "DetailViewController.h"
 
+#import "DetailViewManager.h"
 
 
 @interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SelectDateDelegate, MZDayPickerDataSource, MZDayPickerDelegate, agendaDelegate>

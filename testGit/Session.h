@@ -17,6 +17,9 @@
 @property Tutor *tutor;
 @property bool hasSetAgendaToDetail;
 @property UIViewController *calController;
+@property bool shouldHideMasterInLandscape;
+@property bool shouldHideMasterInPortrait;
 
+@property UIBarButtonItem *menuButtonStyle;
 
 @end

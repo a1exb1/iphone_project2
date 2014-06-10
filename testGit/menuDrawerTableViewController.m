@@ -152,7 +152,7 @@ extern Session *session;
         //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
         
         DetailViewController *controller = self.detailViewController;
-        [controller changed];
+        //[controller changed];
         
         calenderViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonSlots"];
         [controller.navigationController pushViewController:view animated:NO];
@@ -172,16 +172,36 @@ extern Session *session;
     // CALENDER
     if([cell.accessibilityValue isEqualToString:@"calender"]){
         [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
-        self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-        //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
+//        self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+//        //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
+//        
+//        DetailViewController *controller = self.detailViewController;
+//        [controller changed];
+//        
+//        calenderViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderView"];
+//        view.splitViewController.delegate = view;
+//        view.accessibilityValue = @"calenderView";
+//        [controller.navigationController pushViewController:view animated:NO];
+        [session setShouldHideMasterInLandscape:YES];
         
-        DetailViewController *controller = self.detailViewController;
-        [controller changed];
+        DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
         
-        calenderViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderView"];
-        view.splitViewController.delegate = view;
-        view.accessibilityValue = @"calenderView";
-        [controller.navigationController pushViewController:view animated:NO];
+        UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
+        
+        detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
+        
+        indexViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderView"];
+        //Object *obj = [[Object alloc] init];
+        //[obj setStr:@"hello123"];
+        top.accessibilityValue = @"calenderView";
+        
+        //NSArray *viewControllers = [[NSArray alloc] initWithObjects:detailViewController, top, nil];
+        //detailViewManager.viewControllers = viewControllers;
+        [detailViewController pushViewController:top animated:YES];
+        
+        
+        
+        detailViewManager.detailViewController = detailViewController;
 
     }
     
@@ -199,7 +219,7 @@ extern Session *session;
         self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
         
         DetailViewController *controller = self.detailViewController;
-        [controller changed];
+        //[controller changed];
         
         UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"loginView"];
         
@@ -211,6 +231,23 @@ extern Session *session;
         [self.navigationController pushViewController:view animated:YES];
 
     }
+    
+    //TUTORS
+    if([cell.accessibilityValue isEqualToString:@"tutors"]){
+        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+        
+        DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
+        
+        UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
+        
+        detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
+        
+        editTutorsTableViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"editTutorsTableView"];
+        [detailViewController pushViewController:top animated:YES];
+        detailViewManager.detailViewController = detailViewController;
+        
+    }
+
     
 }
 

@@ -653,21 +653,41 @@ NSArray *daysOfWeekArray;
     [student setPhone:[[_lessons objectAtIndex:row] objectForKey:@"Telephone"]];
     [_lessonSender setStudent:student];
     
-    [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
-    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+//    [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+//    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+//    
+//    DetailViewController *controller = self.detailViewController;
+//    
+//    
+//    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+//    
+//    //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
+//    
+//    view.lesson = _lessonSender;
+//    [view changed];
+//    view.agendaDelegate = self;
+//    
+//    [controller.navigationController pushViewController:view animated:NO];
     
-    DetailViewController *controller = self.detailViewController;
+    DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
     
+    UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
     
-    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+    detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
     
-    //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
+    indexViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+    //Object *obj = [[Object alloc] init];
+    //[obj setStr:@"hello123"];
+    top.lesson = _lessonSender;
+    top.agendaDelegate = self;
     
-    view.lesson = _lessonSender;
-    [view changed];
-    view.agendaDelegate = self;
+    //NSArray *viewControllers = [[NSArray alloc] initWithObjects:detailViewController, top, nil];
+    //detailViewManager.viewControllers = viewControllers;
+    [detailViewController pushViewController:top animated:YES];
     
-    [controller.navigationController pushViewController:view animated:NO];
+    [session setShouldHideMasterInLandscape:NO];
+    
+    detailViewManager.detailViewController = detailViewController;
     
 }
 

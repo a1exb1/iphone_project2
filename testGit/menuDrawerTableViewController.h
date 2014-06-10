@@ -15,6 +15,8 @@
 #import "Course.h"
 #import "coursesViewController.h"
 #import "addLessonsTableViewController.h"
+#import "DetailViewManager.h"
+#import "editTutorsTableViewController.h"
 
 @interface menuDrawerTableViewController : UITableViewController
 

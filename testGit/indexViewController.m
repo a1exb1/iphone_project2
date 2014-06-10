@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Tools.h"
 #import "NotesViewController.h"
+#import "Session.h"
 
 @interface indexViewController ()
 @property (strong, nonatomic) IBOutlet UIView *box1View;
@@ -31,6 +32,8 @@
 
 @implementation indexViewController
 
+extern Session *session;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -42,31 +45,53 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+    //[session setShouldHideMasterInLandscape:NO];
+    
+    if ([[session client]clientID] == 0) {
+        UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"loginView"];
+        
+        [self presentViewController:view animated:NO completion:nil];
+    }
+    
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
     
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-//    if(_loaded == true){
-//        [self.navigationController popViewControllerAnimated:NO];
-//    }
-//    
-//    _loaded = true;
      [self updateLabels];
+    if (_navigationPaneBarButtonItem)
+        [self.navigationItem setLeftBarButtonItem:self.navigationPaneBarButtonItem animated:NO];
     
+}
+
+- (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem
+{
+    if (navigationPaneBarButtonItem != _navigationPaneBarButtonItem) {
+        if (navigationPaneBarButtonItem)
+            //[self.toolbar setItems:[NSArray arrayWithObject:navigationPaneBarButtonItem] animated:NO];
+            [self.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
+        else
+            //[self.toolbar setItems:nil animated:NO];
+            [self.navigationItem setLeftBarButtonItem:nil animated:NO];
+        
+        //[self.navigationController.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
+        _navigationPaneBarButtonItem = navigationPaneBarButtonItem;
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
 
-    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        self.splitViewController.delegate = self;
+        //self.splitViewController.delegate = self;
     }
+    
+    //[session setMenuButtonStyle:self.menuBarButtonStyle];
+    //_navigationPaneBarButtonItem.image = [self.menuBarButtonStyle image];
     
     self.navigationItem.leftBarButtonItem = nil;
     if([Tools isIpad]){
