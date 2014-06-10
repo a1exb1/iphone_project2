@@ -13,7 +13,7 @@
 #import "AddLessonsViewController.h"
 #import "NVDate.h"
 
-@interface calenderViewController : UIViewController <UIWebViewDelegate, calenderViewDelegate>
+@interface calenderViewController : UIViewController <UIWebViewDelegate, calenderViewDelegate, UISplitViewControllerDelegate>
 
 @property UIBarButtonItem *lockBtn;
 @property UIPopoverController *popover;

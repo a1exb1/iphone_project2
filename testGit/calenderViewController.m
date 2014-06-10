@@ -66,6 +66,8 @@ NSTimer *timer;
         [self loadUrl];
     }
     
+    //[self.pc dismissPopoverAnimated:YES];
+    
     
     
 }
@@ -264,6 +266,12 @@ NSTimer *timer;
     }
 }
 
+- (BOOL)splitViewController: (UISplitViewController*)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    //This method is only available in iOS5
+    
+    return YES;
+}
 
 /*
 #pragma mark - Navigation

@@ -179,6 +179,7 @@ extern Session *session;
         [controller changed];
         
         calenderViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderView"];
+        view.splitViewController.delegate = view;
         view.accessibilityValue = @"calenderView";
         [controller.navigationController pushViewController:view animated:NO];
 
