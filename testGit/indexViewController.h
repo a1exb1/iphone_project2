@@ -40,4 +40,6 @@
 
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
+@property UIPopoverController *notesPopover;
+
 @end

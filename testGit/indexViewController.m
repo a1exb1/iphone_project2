@@ -46,7 +46,7 @@ extern Session *session;
 -(void)viewWillAppear:(BOOL)animated
 {
     
-    //[session setShouldHideMasterInLandscape:NO];
+    [session setShouldHideMasterInLandscape:NO];
     
     if ([[session client]clientID] == 0) {
         UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"loginView"];
@@ -56,13 +56,20 @@ extern Session *session;
     
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
     
+    //UIBarButtonItem *notesBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"1012-sticky-note-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToNotes)];
+    
+    self.navigationItem.rightBarButtonItem = _notesBtn;
 }
+
+
 
 -(void)viewDidAppear:(BOOL)animated
 {
      [self updateLabels];
     if (_navigationPaneBarButtonItem)
         [self.navigationItem setLeftBarButtonItem:self.navigationPaneBarButtonItem animated:NO];
+    
+    
     
 }
 
@@ -124,6 +131,7 @@ extern Session *session;
 -(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [self boxes];
+    [_notesPopover dismissPopoverAnimated:YES];
 }
 
 -(void)boxes
@@ -392,7 +400,7 @@ extern Session *session;
         
         // Get reference to the destination view controller
         NotesViewController *view = (NotesViewController *)navVC.topViewController;
-        
+        _notesPopover = [(UIStoryboardPopoverSegue *) segue popoverController];
         // Pass any objects to the view controller here, like...
         [view setLesson:_lesson];
     }

@@ -22,4 +22,6 @@
 
 @property UIBarButtonItem *menuButtonStyle;
 
+@property UISplitViewController *mainSplitViewController;
+
 @end

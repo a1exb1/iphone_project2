@@ -44,8 +44,8 @@ extern Session *session;
         [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
     }
     
-    self.tableView.bounds = CGRectInset(self.tableView.bounds, 5, 5);
-    
+    //self.tableView.bounds = CGRectInset(self.tableView.bounds, 5, 5);
+    self.tableView = [[UITableView alloc] initWithFrame:self.tableView.frame style:UITableViewStyleGrouped];
     
 }
 
@@ -204,13 +204,12 @@ extern Session *session;
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([cell respondsToSelector:@selector(tintColor)]) {
-        if (tableView == self.tableView) {    // self.tableview
-             self.tableView.separatorColor = [UIColor clearColor];
+        if (tableView == self.tableView) {
             CGFloat cornerRadius = 5.f;
             cell.backgroundColor = UIColor.clearColor;
             CAShapeLayer *layer = [[CAShapeLayer alloc] init];
             CGMutablePathRef pathRef = CGPathCreateMutable();
-            CGRect bounds = CGRectInset(cell.bounds, 5, 0);
+            CGRect bounds = CGRectInset(cell.bounds, 10, 0);
             BOOL addLine = NO;
             if (indexPath.row == 0 && indexPath.row == [tableView numberOfRowsInSection:indexPath.section]-1) {
                 CGPathAddRoundedRect(pathRef, nil, bounds, cornerRadius, cornerRadius);
@@ -236,7 +235,7 @@ extern Session *session;
             if (addLine == YES) {
                 CALayer *lineLayer = [[CALayer alloc] init];
                 CGFloat lineHeight = (1.f / [UIScreen mainScreen].scale);
-                lineLayer.frame = CGRectMake(CGRectGetMinX(bounds)+5, bounds.size.height-lineHeight, bounds.size.width-5, lineHeight);
+                lineLayer.frame = CGRectMake(CGRectGetMinX(bounds)+10, bounds.size.height-lineHeight, bounds.size.width-10, lineHeight);
                 lineLayer.backgroundColor = tableView.separatorColor.CGColor;
                 [layer addSublayer:lineLayer];
             }

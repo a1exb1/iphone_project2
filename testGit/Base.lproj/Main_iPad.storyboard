@@ -37,6 +37,7 @@
                         <barButtonItem image="744-locked-toolbar@2x.png" id="qGG-m2-kPW"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="5ld-g2-sgm">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="c7g-Ns-u6R"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ldN-dw-yP6">
                             <connections>
                                 <segue destination="A1C-uE-f9Q" kind="popover" identifier="coursesPopover" popoverAnchorBarButtonItem="ldN-dw-yP6" id="4MF-Le-eky">
@@ -235,6 +236,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="Gx3-qZ-56L"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -780,7 +782,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <scene sceneID="ZJK-Q7-Crt">
             <objects>
                 <tableViewController storyboardIdentifier="editTutorsTableView" id="vS0-gM-dnH" customClass="editTutorsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ACV-Kg-ReZ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ACV-Kg-ReZ">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -789,7 +791,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <rect key="frame" x="0.0" y="22" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="19x-ZE-uIk" id="VN4-tH-bWe">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1305,6 +1307,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <barButtonItem key="rightBarButtonItem" image="1012-sticky-note-toolbar-selected.png" id="Yh4-Il-ngf">
                             <connections>
                                 <action selector="Notes:" destination="Vx5-kb-hSn" id="Dhf-1I-6f5"/>
+                                <segue destination="LLi-qW-sqM" kind="popover" identifier="popoverNotes" popoverAnchorBarButtonItem="Yh4-Il-ngf" id="ZLA-fQ-Fv2">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1315,6 +1320,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="courseView" destination="JIy-e4-ezo" id="SDK-j4-tBL"/>
                         <outlet property="dayDescLbl" destination="Nwr-g6-ToG" id="wZB-nN-2wc"/>
                         <outlet property="lessonTimeLbl" destination="dhD-4g-4ns" id="KCO-yp-T3Z"/>
+                        <outlet property="notesBtn" destination="Yh4-Il-ngf" id="Vzo-88-GrB"/>
                         <outlet property="studentNameLbl" destination="WrI-78-2lM" id="BLw-YQ-mU7"/>
                         <outlet property="studentView" destination="O6x-wx-jbD" id="ix8-9n-ndE"/>
                     </connections>
@@ -1339,7 +1345,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WgJ-9S-2FA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3341" y="-2893"/>
+            <point key="canvasLocation" x="2365" y="-2053"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cW3-z1-P9k">

@@ -37,11 +37,10 @@ NSTimer *timer;
     if (_navigationPaneBarButtonItem)
         [self.navigationItem setLeftBarButtonItem:self.navigationPaneBarButtonItem animated:NO];
     
-    //UISplitViewController* spv = self.splitViewController;
-    //spv.delegate=self;
-    //self.hiddenMaster= hide;
-    //[self.splitViewController willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
-    //[spv.view setNeedsLayout];
+//    UISplitViewController* spv = self.splitViewController;
+//    //spv.delegate=self;
+//    [spv willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
+//    [spv.view setNeedsLayout];
 }
 
 
@@ -167,7 +166,15 @@ NSTimer *timer;
     }
     
     UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:_navigationPaneBarButtonItem, refreshBtn, _lockBtn, addLessonsBtn, nil]];
+    
+    if (_navigationPaneBarButtonItem == NULL) {
+        [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects: refreshBtn, _lockBtn, addLessonsBtn, nil]];
+    }
+    else{
+        [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:_navigationPaneBarButtonItem, refreshBtn, _lockBtn, addLessonsBtn, nil]];
+    }
+    
+    
 }
 
 -(void)addLessons

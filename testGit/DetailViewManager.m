@@ -84,6 +84,7 @@ extern Session *session;
     
     // Update the split view controller's view controllers array.
     // This causes the new detail view controller to be displayed.
+    
     UINavigationController *navigationViewController = [self.splitViewController.viewControllers objectAtIndex:0];
     NSArray *viewControllers = [[NSArray alloc] initWithObjects:navigationViewController, detailViewController, nil];
     self.splitViewController.viewControllers = viewControllers;
@@ -93,8 +94,11 @@ extern Session *session;
     if (self.navigationPopoverController)
         [self.navigationPopoverController dismissPopoverAnimated:YES];
     
-    [detailViewController willRotateToInterfaceOrientation:detailViewController.interfaceOrientation duration:0];
-    [detailViewController.view setNeedsLayout];
+    //[detailViewController willRotateToInterfaceOrientation:detailViewController.interfaceOrientation duration:100];
+    //[detailViewController.view setNeedsLayout];
+    
+    //[self.splitViewController willRotateToInterfaceOrientation:detailViewController.interfaceOrientation duration:0];
+    //[detailViewController.view setNeedsLayout];
     
 }
 
@@ -109,9 +113,10 @@ extern Session *session;
    shouldHideViewController:(UIViewController *)vc 
               inOrientation:(UIInterfaceOrientation)orientation
 {
-    return UIInterfaceOrientationIsPortrait(orientation);
-    //return YES;
+    //return UIInterfaceOrientationIsPortrait(orientation);
+    return NO;
     //NSLog(@"runs should hide master in landscape");
+    //[session setMainSplitViewController:svc];
     //return [session shouldHideMasterInLandscape];
 }
 
@@ -125,7 +130,7 @@ extern Session *session;
 {
     // If the barButtonItem does not have a title (or image) adding it to a toolbar
     // will do nothing.
-    barButtonItem.title = @"Navigation";
+    barButtonItem.title = @"";
     barButtonItem.image = [UIImage imageNamed:@"1099-list-1-toolbar-selected.png"];
     barButtonItem.style = UIBarButtonItemStyleBordered;
     
