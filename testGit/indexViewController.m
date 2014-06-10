@@ -59,6 +59,11 @@ extern Session *session;
     //UIBarButtonItem *notesBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"1012-sticky-note-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToNotes)];
     
     self.navigationItem.rightBarButtonItem = _notesBtn;
+    
+    //[self updateLabels];
+    _box1View.hidden = YES;
+    _courseView.hidden = YES;
+    _studentView.hidden = YES;
 }
 
 
@@ -66,11 +71,13 @@ extern Session *session;
 -(void)viewDidAppear:(BOOL)animated
 {
      [self updateLabels];
+    _box1View.hidden = NO;
+    _courseView.hidden = NO;
+    _studentView.hidden = NO;
     if (_navigationPaneBarButtonItem)
         [self.navigationItem setLeftBarButtonItem:self.navigationPaneBarButtonItem animated:NO];
     
-    
-    
+
 }
 
 - (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem
@@ -118,8 +125,8 @@ extern Session *session;
     [self.navigationItem setRightBarButtonItem:_notesBtn];
     
     //timer
-    [self updateLabels];
-    _timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTick:) userInfo:nil repeats:YES];
+    //[self updateLabels];
+    //_timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTick:) userInfo:nil repeats:YES];
     
     [_attendenceControl addTarget:self
                            action:@selector(changeAttendence:)
@@ -131,7 +138,7 @@ extern Session *session;
 -(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [self boxes];
-    [_notesPopover dismissPopoverAnimated:YES];
+    //[_notesPopover dismissPopoverAnimated:YES];
 }
 
 -(void)boxes
@@ -187,6 +194,7 @@ extern Session *session;
     TopBorder.accessibilityValue = @"border";
     [_courseView.layer addSublayer:TopBorder];
     [Tools addShadowToViewWithView:_courseView];
+
 }
 
 -(void)changeAttendence:(UISegmentedControl *)segment

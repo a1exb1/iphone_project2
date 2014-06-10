@@ -17,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *unlockedUIButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *calenderUIButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *plusUIButton;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addLessonSlotBtn;
+
 @end
 
 @implementation calenderViewController
@@ -86,16 +89,22 @@ NSTimer *timer;
     [self showNavigationBar];
     [self.navigationItem setHidesBackButton:YES];
     
+    UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
+    
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
         _calenderUIButton.action = @selector(selectDate:);
         _calenderUIButton.target = self;
         
-        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:_plusUIButton, _calenderUIButton, nil];
+        
+        
+        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _plusUIButton, _calenderUIButton, nil];
         
         _date = [[NSDate alloc] init];
         [self sendDateToAgendaWithDate:_date];
     }
     else{
+        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _addLessonSlotBtn, nil];
+        
         [self loadUrl];
     }
     
@@ -103,6 +112,11 @@ NSTimer *timer;
     
     
     
+}
+
+-(void)done
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)selectDate:(UIBarButtonItem *)btn;

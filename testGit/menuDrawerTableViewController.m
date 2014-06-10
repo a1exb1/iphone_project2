@@ -143,35 +143,19 @@ extern Session *session;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    // AGENDA
+    // slots
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
     if([cell.accessibilityValue isEqualToString:@"slots"] ){
-        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
-        self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-        //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
-        
-        DetailViewController *controller = self.detailViewController;
-        //[controller changed];
-        
-        calenderViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonSlots"];
-        [controller.navigationController pushViewController:view animated:NO];
-        
-        //studentsViewController *masterView = [self.storyboard instantiateViewControllerWithIdentifier:@"students"];
-        
-//        _courseSender = [[Course alloc] init];
-//        [_courseSender setTutorID:3];
-//        [_courseSender setCourseID:3];
-//        [_courseSender setName:@"Fiona"];
-//        
-//        masterView.course = _courseSender;
-//        
-//        [self.navigationController pushViewController:masterView animated:YES];
+        UINavigationController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonSlots"];
+        [self presentViewController:controller animated:YES completion:nil];
     }
     
     // CALENDER
     if([cell.accessibilityValue isEqualToString:@"calender"]){
-        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+        //[self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+        
+        // VERSION 1
 //        self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 //        //[controller performSegueWithIdentifier: @"toAgendaFromSplit" sender: controller];
 //        
@@ -182,26 +166,31 @@ extern Session *session;
 //        view.splitViewController.delegate = view;
 //        view.accessibilityValue = @"calenderView";
 //        [controller.navigationController pushViewController:view animated:NO];
-        [session setShouldHideMasterInLandscape:YES];
         
-        DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
         
-        UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
         
-        detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
         
-        indexViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderView"];
+        /// VERSION 2
+//        [session setShouldHideMasterInLandscape:YES];
+//        
+//        DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
+//        
+//        UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
+//        
+        UINavigationController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderView"];
+        
+        //indexViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderView"];
         //Object *obj = [[Object alloc] init];
         //[obj setStr:@"hello123"];
-        top.accessibilityValue = @"calenderView";
+        controller.topViewController.accessibilityValue = @"calenderView";
         
         //NSArray *viewControllers = [[NSArray alloc] initWithObjects:detailViewController, top, nil];
         //detailViewManager.viewControllers = viewControllers;
-        [detailViewController pushViewController:top animated:YES];
-        
-        
-        
-        detailViewManager.detailViewController = detailViewController;
+        //[self presentViewController:top animated:YES];
+        [self presentViewController:controller animated:YES completion:nil];
+        //[controller]
+
+        //detailViewManager.detailViewController = detailViewController;
 
     }
     
@@ -215,7 +204,7 @@ extern Session *session;
     if([cell.accessibilityValue isEqualToString:@"logout"]){
         //session = [[Session alloc] init];
         
-        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+        //[self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
         self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
         
         DetailViewController *controller = self.detailViewController;
@@ -234,7 +223,7 @@ extern Session *session;
     
     //TUTORS
     if([cell.accessibilityValue isEqualToString:@"tutors"]){
-        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+        //[self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
         
         DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
         
@@ -243,7 +232,7 @@ extern Session *session;
         detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
         
         editTutorsTableViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"editTutorsTableView"];
-        [detailViewController pushViewController:top animated:YES];
+        //[detailViewController pushViewController:top animated:YES];
         detailViewManager.detailViewController = detailViewController;
         
     }

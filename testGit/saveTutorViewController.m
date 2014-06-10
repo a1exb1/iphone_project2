@@ -36,7 +36,9 @@ extern Session *session;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
+    if (![Tools isIpad]) {
+        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
+    }
 }
 
 - (void)viewDidLoad
@@ -188,8 +190,12 @@ extern Session *session;
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
-        //[self.navigationController popViewControllerAnimated:YES];
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+        if ([Tools isIpad]) {
+            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+        }
+        else{
+            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+        }
 
     }
     else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"2"])
@@ -201,7 +207,13 @@ extern Session *session;
     
     else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"3"])
     {
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+        if ([Tools isIpad]) {
+            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+        }
+        else{
+            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+        }
+        
     }
     else{
         self.statusLbl.text = @"Error with saving";
