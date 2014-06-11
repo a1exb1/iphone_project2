@@ -181,7 +181,7 @@ NSMutableArray *audioNotes;
         sectionName = @"Notes for this lesson";
     }
     else{
-        sectionName = @"Notes not for this lesson";
+        sectionName = @"";
     }
     return sectionName;
 }

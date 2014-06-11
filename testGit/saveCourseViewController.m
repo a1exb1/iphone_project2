@@ -31,7 +31,10 @@ extern Session *session;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#57AD2C"] andTint:[UIColor whiteColor] theme:@"dark"];
+    if(![Tools isIpad]){
+        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#57AD2C"] andTint:[UIColor whiteColor] theme:@"dark"];
+    }
+    
 }
 
 - (void)viewDidLoad

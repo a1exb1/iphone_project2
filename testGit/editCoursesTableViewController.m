@@ -1,20 +1,18 @@
 //
-//  editTutorsTableViewController.m
+//  editCoursesTableViewController.m
 //  PlanIt!
 //
-//  Created by Alex Bechmann on 10/06/14.
+//  Created by Alex Bechmann on 11/06/14.
 //  Copyright (c) 2014 Alex Bechmann. All rights reserved.
 //
 
-#import "editTutorsTableViewController.h"
+#import "editCoursesTableViewController.h"
 
-@interface editTutorsTableViewController ()
+@interface editCoursesTableViewController ()
 
 @end
 
-@implementation editTutorsTableViewController
-
-extern Session *session;
+@implementation editCoursesTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,35 +25,32 @@ extern Session *session;
 
 -(void)viewWillAppear:(BOOL)animated{
     _data = [[NSMutableData alloc]init];
-    _tutors = [[NSArray alloc] init];
+    _courses = [[NSArray alloc] init];
     [self.tableView reloadData];
     
     [Tools showLoader];
     //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%ld&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
     
-    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
-    [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
-    if (![Tools isIpad]) {
-        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#b44444"] andTint:[UIColor whiteColor] theme:@"dark"];
-    }
-    else{
+    
+    if([Tools isIpad])
+    {
         [self.navigationItem setHidesBackButton:YES];
     }
-    
-    //self.tableView.bounds = CGRectInset(self.tableView.bounds, 5, 5);
-    self.tableView = [[UITableView alloc] initWithFrame:self.tableView.frame style:UITableViewStyleGrouped];
-    
-
-    
+    else{
+        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#57AD2C"] andTint:[UIColor whiteColor] theme:@"dark"];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     
+    
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
+    [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
     
@@ -64,9 +59,10 @@ extern Session *session;
 }
 
 -(void)plus{
-    _tutorSender = [[Tutor alloc] init];
-    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveTutor"];
-    view.tutor = _tutorSender;
+    _courseSender = [[Course alloc] init];
+    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourse"];
+    view.course = _courseSender;
+    view.tutor = _tutor;
     [self.navigationController pushViewController:view animated:YES];
     
 }
@@ -75,42 +71,19 @@ extern Session *session;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    [Tools showLoader];
-    
 
-    self.title = @"Edit a tutor";
+    self.title = @"Edit a course";
     
-    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     [self.tableView addPullToRefreshWithActionHandler:^{
-        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%ld&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
+        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
         NSURL *url = [NSURL URLWithString: urlString];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [NSURLConnection connectionWithRequest:request delegate:self];
         
     }];
     
-    if (_navigationPaneBarButtonItem)
-        [self.navigationItem setLeftBarButtonItem:self.navigationPaneBarButtonItem animated:NO];
-}
-
-
-
-- (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem
-{
-    if (navigationPaneBarButtonItem != _navigationPaneBarButtonItem) {
-        if (navigationPaneBarButtonItem)
-            //[self.toolbar setItems:[NSArray arrayWithObject:navigationPaneBarButtonItem] animated:NO];
-            [self.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
-        else
-            //[self.toolbar setItems:nil animated:NO];
-            [self.navigationItem setLeftBarButtonItem:nil animated:NO];
-        
-        //[self.navigationController.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
-        _navigationPaneBarButtonItem = navigationPaneBarButtonItem;
-    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -129,7 +102,7 @@ extern Session *session;
 //}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_tutors count];
+    return [_courses count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -141,10 +114,10 @@ extern Session *session;
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
                                                   reuseIdentifier:@"cell"];
     
-    cell.textLabel.text = [[_tutors objectAtIndex:indexPath.row] objectForKey:@"TutorName"];
-    cell.accessibilityValue = [[_tutors objectAtIndex:indexPath.row] objectForKey:@"TutorID"];
+    cell.textLabel.text = [[_courses objectAtIndex:indexPath.row] objectForKey:@"CourseName"];
+    cell.accessibilityValue = [[_courses objectAtIndex:indexPath.row] objectForKey:@"CourseID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.detailTextLabel.text = @"Edit the tutor's details";
+    cell.detailTextLabel.text = @"Edit the course's details";
     return cell;
 }
 
@@ -155,15 +128,13 @@ extern Session *session;
     //self.tutorNameSender = cell.textLabel.text;
     //[self performSegueWithIdentifier:@"TutorsToCourses" sender:self];
     
-    _tutorSender = [[Tutor alloc] init];
-    [_tutorSender setTutorID:[cell.accessibilityValue intValue]];
-    [_tutorSender setName:cell.textLabel.text];
-    [_tutorSender setAccountType:[[[_tutors objectAtIndex:indexPath.row] objectForKey:@"AccountType"] intValue]];
-    [_tutorSender setUsername:[[_tutors objectAtIndex:indexPath.row] objectForKey:@"UserName"]];
-    [_tutorSender setPassword:[[_tutors objectAtIndex:indexPath.row] objectForKey:@"Password"]];
+    _courseSender = [[Course alloc] init];
+    [_courseSender setCourseID:[cell.accessibilityValue intValue]];
+    [_courseSender setName:cell.textLabel.text];
     
-    saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveTutor"];
-    view.tutor = self.tutorSender;
+    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourse"];
+    view.course = self.courseSender;
+    view.tutor = _tutor;
     [self.navigationController pushViewController:view animated:YES];
 }
 
@@ -182,13 +153,11 @@ extern Session *session;
     [Tools hideLoader];
     [self.tableView.pullToRefreshView stopAnimating];
     
-    _tutors = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+    _courses = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.tableView reloadData];
     
-    NSLog(@"%@", _tutors);
-    
-    if ([_tutors count] == 0) {
-        //_statusLbl.text = @"No tutors, click the plus to add one";
+    if ([_courses count] == 0) {
+        //_statusLbl.text = @"No courses, click the plus to add one";
         //_statusLbl.hidden = NO;
         [self.tableView setBackgroundColor:[UIColor whiteColor]];
     }
@@ -212,6 +181,5 @@ extern Session *session;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

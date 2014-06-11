@@ -223,12 +223,12 @@ extern Session *session;
     
     //TUTORS
     if([cell.accessibilityValue isEqualToString:@"tutors"]){
-        //[self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
         
         DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
         
         UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
-        
+                
         detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
         
         editTutorsTableViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"editTutorsTableView"];
@@ -237,6 +237,23 @@ extern Session *session;
         
     }
 
+    //COURSES
+    if([cell.accessibilityValue isEqualToString:@"courses"]){
+        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+        
+        DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
+        
+        UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
+        
+        detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
+        
+        editCoursesTableViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"editCourses"];
+        top.tutor = [session tutor];
+    
+        [detailViewController pushViewController:top animated:YES];
+        detailViewManager.detailViewController = detailViewController;
+        
+    }
     
 }
 

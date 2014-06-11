@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *plusUIButton;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addLessonSlotBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editSlotsButton;
 
 @end
 
@@ -103,8 +104,7 @@ NSTimer *timer;
         [self sendDateToAgendaWithDate:_date];
     }
     else{
-        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _addLessonSlotBtn, nil];
-        
+        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _addLessonSlotBtn, _editSlotsButton, nil];
         [self loadUrl];
     }
     
@@ -116,11 +116,17 @@ NSTimer *timer;
 
 -(void)done
 {
+    [_popover dismissPopoverAnimated:YES];
+    [_calPopover dismissPopoverAnimated:YES];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)selectDate:(UIBarButtonItem *)btn;
 {
+    [_popover dismissPopoverAnimated:YES];
+    [_calPopover dismissPopoverAnimated:YES];
+    
     UINavigationController *controller = [[UINavigationController alloc] init];
     
     SelectDateViewController* viewController2 = [[SelectDateViewController alloc] initWithNibName:@"SelectDateViewController" bundle:nil];
@@ -312,14 +318,28 @@ NSTimer *timer;
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    [_popover dismissPopoverAnimated:YES];
+    [_calPopover dismissPopoverAnimated:YES];
+    
     if([segue.identifier isEqualToString:@"coursesPopover"])
     {
+        
+        
         UINavigationController *navVC = segue.destinationViewController;
         coursesViewController *view = (coursesViewController *)navVC.topViewController;
         view.accessibilityValue = @"coursesPopover";
         view.tutor = [session tutor];
         _popover = [(UIStoryboardPopoverSegue *) segue popoverController];
     }
+    
+    if([segue.identifier isEqualToString:@"editLessonSlotsPopover"])
+    {
+        
+    }
+    
+    
+    
+    
 }
 
 - (BOOL)splitViewController: (UISplitViewController*)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation

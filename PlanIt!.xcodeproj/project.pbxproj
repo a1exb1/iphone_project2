@@ -117,6 +117,7 @@
 		E44A17BC1941C8F000606179 /* 602-exit.png in Resources */ = {isa = PBXBuildFile; fileRef = E44A17BB1941C8F000606179 /* 602-exit.png */; };
 		E44A17BF1941CC5600606179 /* peopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44A17BE1941CC5600606179 /* peopleTableViewController.m */; };
 		E44A17C31941DA8F00606179 /* tutorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44A17C21941DA8F00606179 /* tutorsTableViewController.m */; };
+		E45469261948ADB60098DE69 /* editCoursesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E45469251948ADB50098DE69 /* editCoursesTableViewController.m */; };
 		E47352801900279E008006EE /* indexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E473527F1900279E008006EE /* indexViewController.m */; };
 		E4A36089191F87C900F5221B /* AudioNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A36088191F87C900F5221B /* AudioNote.m */; };
 		E4A3608C191F87E900F5221B /* TextNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3608B191F87E900F5221B /* TextNote.m */; };
@@ -328,6 +329,8 @@
 		E44A17BE1941CC5600606179 /* peopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = peopleTableViewController.m; sourceTree = "<group>"; };
 		E44A17C11941DA8F00606179 /* tutorsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tutorsTableViewController.h; sourceTree = "<group>"; };
 		E44A17C21941DA8F00606179 /* tutorsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tutorsTableViewController.m; sourceTree = "<group>"; };
+		E45469241948ADB50098DE69 /* editCoursesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editCoursesTableViewController.h; sourceTree = "<group>"; };
+		E45469251948ADB50098DE69 /* editCoursesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editCoursesTableViewController.m; sourceTree = "<group>"; };
 		E473527E1900279E008006EE /* indexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indexViewController.h; sourceTree = "<group>"; };
 		E473527F1900279E008006EE /* indexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = indexViewController.m; sourceTree = "<group>"; };
 		E4A36087191F87C900F5221B /* AudioNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioNote.h; sourceTree = "<group>"; };
@@ -817,6 +820,8 @@
 				E44A17C21941DA8F00606179 /* tutorsTableViewController.m */,
 				E446CE5819479300000C6121 /* editTutorsTableViewController.h */,
 				E446CE5919479300000C6121 /* editTutorsTableViewController.m */,
+				E45469241948ADB50098DE69 /* editCoursesTableViewController.h */,
+				E45469251948ADB50098DE69 /* editCoursesTableViewController.m */,
 			);
 			name = tableViewControllers;
 			sourceTree = "<group>";
@@ -1140,6 +1145,7 @@
 				E4494DD4190D84B700585CB8 /* User.m in Sources */,
 				E40DF297190017E100E1332A /* ABViewController.m in Sources */,
 				E4F96D13190AA12B008D75D6 /* editStudentViewController.m in Sources */,
+				E45469261948ADB60098DE69 /* editCoursesTableViewController.m in Sources */,
 				E441CEF519100F8600088FEE /* editStudentAndSlotViewController.m in Sources */,
 				E4C6CCDD193B6CCE00F1997C /* MasterViewController.m in Sources */,
 				E4C1C98219167BA90068A10D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
