@@ -232,7 +232,7 @@ extern Session *session;
         detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
         
         editTutorsTableViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"editTutorsTableView"];
-        //[detailViewController pushViewController:top animated:YES];
+        [detailViewController pushViewController:top animated:YES];
         detailViewManager.detailViewController = detailViewController;
         
     }
