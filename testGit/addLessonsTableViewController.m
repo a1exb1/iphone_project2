@@ -121,7 +121,28 @@
     return view;
 }
 
-/*
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 0) {
+        //Mulitple
+            [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+            
+            DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
+            
+            UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
+            
+            detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
+            
+            UIViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"addMultipleLessons"];
+            [detailViewController pushViewController:top animated:YES];
+            detailViewManager.detailViewController = detailViewController;
+            
+        
+    }
+    
+}
+
+/* addMultipleLessons
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];

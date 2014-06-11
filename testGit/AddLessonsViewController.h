@@ -10,13 +10,16 @@
 #import "Session.h"
 #import "Tools.h"
 #import "NVDate.h"
+#import "DetailViewController.h"
 
-@interface AddLessonsViewController : UIViewController 
+@interface AddLessonsViewController : UIViewController <SubstitutableDetailViewController>
 
 @property bool shouldClear;
 @property NSArray *lessons;
 @property NSMutableData *data;
 
 @property NSArray *resultArray;
+
+@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
 @end

@@ -9,6 +9,7 @@
 #import "editTutorsTableViewController.h"
 
 @interface editTutorsTableViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 
 @end
 
@@ -55,7 +56,7 @@ extern Session *session;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
+    [self getJson];
     
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
     
@@ -97,6 +98,17 @@ extern Session *session;
 }
 
 
+-(void)getJson
+{
+    _data = [[NSMutableData alloc]init];
+    _tutors = [[NSArray alloc] init];
+    [self.tableView reloadData];
+    [Tools showLoader];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%ld&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
 
 - (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem
 {
@@ -144,9 +156,23 @@ extern Session *session;
     cell.textLabel.text = [[_tutors objectAtIndex:indexPath.row] objectForKey:@"TutorName"];
     cell.accessibilityValue = [[_tutors objectAtIndex:indexPath.row] objectForKey:@"TutorID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.detailTextLabel.text = @"Edit the tutor's details";
+    if(![Tools isIpad]){
+        cell.detailTextLabel.text = @"Edit the tutor's details";
+    }
+    
     return cell;
 }
+//
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    if ([_tutors count] == 0) {
+//        return @"No tutors, click the plus to add one";
+//    }
+//    else{
+//        return @"";
+//    }
+//    
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //onclick for each object, put to label for example
@@ -188,12 +214,12 @@ extern Session *session;
     NSLog(@"%@", _tutors);
     
     if ([_tutors count] == 0) {
-        //_statusLbl.text = @"No tutors, click the plus to add one";
-        //_statusLbl.hidden = NO;
+        _statusLbl.text = @"No tutors, click the plus to add one";
+        _statusLbl.hidden = NO;
         [self.tableView setBackgroundColor:[UIColor whiteColor]];
     }
     else{
-        //_statusLbl.hidden = YES;
+        _statusLbl.hidden = YES;
         [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     }
 }

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailViewController.h"
+#import "AddLessonsViewController.h"
 
 @interface addLessonsTableViewController : UITableViewController
 
 @property NSMutableArray *cellsArray;
 @property NSArray *sectionsArray;
+@property (strong, nonatomic) DetailViewController *detailViewController;
 
 @end

@@ -67,13 +67,13 @@
         <!--Add Lessons View Controller-->
         <scene sceneID="V6d-Xa-SJa">
             <objects>
-                <viewController storyboardIdentifier="addLessonsView" id="aue-eY-YZZ" customClass="AddLessonsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addMultipleLessons" id="aue-eY-YZZ" customClass="AddLessonsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="czC-cb-fES"/>
                         <viewControllerLayoutGuide type="bottom" id="VZ0-dK-xim"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l95-fM-jfL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="dnk-lh-rOG">
@@ -150,7 +150,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ulE-Uf-Qad"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="640"/>
                     <connections>
                         <outlet property="fromDatePicker" destination="dnk-lh-rOG" id="r5H-71-JVJ"/>
@@ -159,7 +158,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y74-qo-haX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3198" y="-3499"/>
+            <point key="canvasLocation" x="3062" y="-3675"/>
         </scene>
         <!--Calender View Controller-->
         <scene sceneID="10S-3W-F7r">
@@ -457,6 +456,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3gx-xn-L0c">
+                            <rect key="frame" x="0.0" y="109" width="768" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="GpL-wY-SKK">
                                 <rect key="frame" x="0.0" y="55" width="768" height="44"/>
@@ -472,6 +477,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="pMB-fK-IVd" id="BdN-Xn-CL0"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="statusLbl" destination="3gx-xn-L0c" id="S2D-Vh-Isz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQu-9q-7sK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -815,6 +823,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mfV-4k-ba3">
+                            <rect key="frame" x="0.0" y="66" width="768" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="19x-ZE-uIk">
                                 <rect key="frame" x="0.0" y="22" width="768" height="44"/>
@@ -830,6 +845,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="vS0-gM-dnH" id="Ttc-i9-Ml8"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="statusLbl" destination="mfV-4k-ba3" id="PCK-KT-p7H"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Jn-T4-qq8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1368,25 +1386,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WgJ-9S-2FA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2365" y="-2053"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="cW3-z1-P9k">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LOV-Rs-qAZ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <value key="contentSizeForViewInPopover" type="size" width="320" height="640"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="izG-EZ-hfK">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="aue-eY-YZZ" kind="relationship" relationship="rootViewController" id="lvx-77-Klx"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oVl-Nl-9Rx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2004" y="-3491"/>
         </scene>
         <!--Navigation Controller - Manage-->
         <scene sceneID="Z6u-qi-rBr">

@@ -9,6 +9,7 @@
 #import "editCoursesTableViewController.h"
 
 @interface editCoursesTableViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 
 @end
 
@@ -48,6 +49,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
+    [self getJson];
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -67,6 +69,7 @@
     
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -85,6 +88,30 @@
     }];
     
 }
+
+-(void)getJson
+{
+    _data = [[NSMutableData alloc]init];
+    _courses = [[NSArray alloc] init];
+    [self.tableView reloadData];
+    [Tools showLoader];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+//
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    if ([_courses count] == 0) {
+//        return @"No courses, click the plus to add one";
+//    }
+//    else{
+//        return @"";
+//    }
+//    
+//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
@@ -117,7 +144,9 @@
     cell.textLabel.text = [[_courses objectAtIndex:indexPath.row] objectForKey:@"CourseName"];
     cell.accessibilityValue = [[_courses objectAtIndex:indexPath.row] objectForKey:@"CourseID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.detailTextLabel.text = @"Edit the course's details";
+    if(![Tools isIpad]){
+        cell.detailTextLabel.text = @"Edit the course's details";
+    }
     return cell;
 }
 
@@ -157,12 +186,12 @@
     [self.tableView reloadData];
     
     if ([_courses count] == 0) {
-        //_statusLbl.text = @"No courses, click the plus to add one";
-        //_statusLbl.hidden = NO;
+        _statusLbl.text = @"No courses, click the plus to add one";
+        _statusLbl.hidden = NO;
         [self.tableView setBackgroundColor:[UIColor whiteColor]];
     }
     else{
-        //_statusLbl.hidden = YES;
+        _statusLbl.hidden = YES;
         [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     }
 }

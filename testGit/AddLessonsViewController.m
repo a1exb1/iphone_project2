@@ -52,6 +52,10 @@ extern Session *session;
     
     self.title = @"Add lessons";
     
+    if ([Tools isIpad]) {
+        [self.navigationItem setHidesBackButton:YES];
+    }
+    
 }
 
 
@@ -109,7 +113,15 @@ extern Session *session;
     else{
         if([[[_resultArray objectAtIndex:0] objectForKey:@"success"] isEqualToString:@"1" ]){
             
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            if([Tools isIpad])
+            {
+                UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Lessons added!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [errorView show];
+            }
+            else{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+            
             
         }
         else{
