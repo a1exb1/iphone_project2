@@ -196,7 +196,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <rect key="frame" x="0.0" y="980" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Item" id="HQK-DW-fSF"/>
+                                    <barButtonItem image="744-locked-toolbar.png" id="HQK-DW-fSF"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -1704,6 +1704,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="728-clock-selected.png" width="28" height="28"/>
         <image name="742-wrench-selected.png" width="28" height="28"/>
         <image name="744-locked-toolbar-selected.png" width="17" height="22"/>
+        <image name="744-locked-toolbar.png" width="17" height="22"/>
         <image name="744-locked-toolbar@2x.png" width="17" height="22"/>
         <image name="809-clipboard-selected.png" width="20" height="28"/>
         <image name="851-calendar-toolbar-selected.png" width="22" height="22"/>

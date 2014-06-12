@@ -165,6 +165,9 @@ NSTimer *timer;
 
 -(void)showNavigationBar
 {
+    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    fixedSpace.width = 20;
+    
     UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
     UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
     
@@ -176,13 +179,15 @@ NSTimer *timer;
         UIBarButtonItem *addLessonsBtn = nil;
         addLessonsBtn = [[UIBarButtonItem alloc] initWithTitle:@"Add to calender" style:UIBarButtonItemStylePlain target:self action:@selector(addLessons)];
         
-        self.toolbarItems = [NSArray arrayWithObjects:_calenderUIButton, refreshBtn, _lockBtn, addLessonsBtn, nil];
+        UIBarButtonItem *calButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"851-calendar-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(selectDate:)];
+        
+        self.toolbarItems = [NSArray arrayWithObjects: refreshBtn, fixedSpace, _lockBtn, fixedSpace, calButton, nil];
         
         
     }
     else{
         [self.navigationItem setRightBarButtonItem:_addLessonSlotBtn];
-        self.toolbarItems = [NSArray arrayWithObjects:refreshBtn, _lockBtn, nil];
+        self.toolbarItems = [NSArray arrayWithObjects:refreshBtn,fixedSpace,  _lockBtn, nil];
     }
     
     
@@ -213,7 +218,7 @@ NSTimer *timer;
 -(void)unlock
 {
     [_webView stringByEvaluatingJavaScriptFromString:@"unlockScreen();"];
-    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"744-locked-toolbar@2x.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(lock)];
+    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"744-locked-toolbar.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(lock)];
     [self showNavigationBar];
 }
 
