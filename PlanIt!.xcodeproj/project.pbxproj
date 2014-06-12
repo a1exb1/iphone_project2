@@ -118,6 +118,10 @@
 		E44A17BF1941CC5600606179 /* peopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44A17BE1941CC5600606179 /* peopleTableViewController.m */; };
 		E44A17C31941DA8F00606179 /* tutorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44A17C21941DA8F00606179 /* tutorsTableViewController.m */; };
 		E45469261948ADB60098DE69 /* editCoursesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E45469251948ADB50098DE69 /* editCoursesTableViewController.m */; };
+		E4546928194A13E40098DE69 /* 765-arrow-left-toolbar-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546927194A13E40098DE69 /* 765-arrow-left-toolbar-selected@2x.png */; };
+		E454692A194A13F80098DE69 /* 766-arrow-right-toolbar-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546929194A13F80098DE69 /* 766-arrow-right-toolbar-selected@2x.png */; };
+		E454692C194A14EC0098DE69 /* 766-arrow-right-toolbar-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = E454692B194A14EC0098DE69 /* 766-arrow-right-toolbar-selected.png */; };
+		E454692E194A14F80098DE69 /* 765-arrow-left-toolbar-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = E454692D194A14F80098DE69 /* 765-arrow-left-toolbar-selected.png */; };
 		E47352801900279E008006EE /* indexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E473527F1900279E008006EE /* indexViewController.m */; };
 		E4A36089191F87C900F5221B /* AudioNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A36088191F87C900F5221B /* AudioNote.m */; };
 		E4A3608C191F87E900F5221B /* TextNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3608B191F87E900F5221B /* TextNote.m */; };
@@ -331,6 +335,10 @@
 		E44A17C21941DA8F00606179 /* tutorsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tutorsTableViewController.m; sourceTree = "<group>"; };
 		E45469241948ADB50098DE69 /* editCoursesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editCoursesTableViewController.h; sourceTree = "<group>"; };
 		E45469251948ADB50098DE69 /* editCoursesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editCoursesTableViewController.m; sourceTree = "<group>"; };
+		E4546927194A13E40098DE69 /* 765-arrow-left-toolbar-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "765-arrow-left-toolbar-selected@2x.png"; sourceTree = "<group>"; };
+		E4546929194A13F80098DE69 /* 766-arrow-right-toolbar-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "766-arrow-right-toolbar-selected@2x.png"; sourceTree = "<group>"; };
+		E454692B194A14EC0098DE69 /* 766-arrow-right-toolbar-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "766-arrow-right-toolbar-selected.png"; sourceTree = "<group>"; };
+		E454692D194A14F80098DE69 /* 765-arrow-left-toolbar-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "765-arrow-left-toolbar-selected.png"; sourceTree = "<group>"; };
 		E473527E1900279E008006EE /* indexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indexViewController.h; sourceTree = "<group>"; };
 		E473527F1900279E008006EE /* indexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = indexViewController.m; sourceTree = "<group>"; };
 		E4A36087191F87C900F5221B /* AudioNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioNote.h; sourceTree = "<group>"; };
@@ -787,6 +795,10 @@
 		E433C038193B85C4003543AE /* retina */ = {
 			isa = PBXGroup;
 			children = (
+				E454692D194A14F80098DE69 /* 765-arrow-left-toolbar-selected.png */,
+				E454692B194A14EC0098DE69 /* 766-arrow-right-toolbar-selected.png */,
+				E4546929194A13F80098DE69 /* 766-arrow-right-toolbar-selected@2x.png */,
+				E4546927194A13E40098DE69 /* 765-arrow-left-toolbar-selected@2x.png */,
 				E44A17B91941C89D00606179 /* 602-exit@2x.png */,
 				E427362E193E074600F98749 /* 746-plus-circle@2x.png */,
 				E41B75CD193DFD0500255354 /* tab bar */,
@@ -1036,16 +1048,20 @@
 				E4005D1C1936A1C2006C6ABB /* 83-calendar.png in Resources */,
 				E40DF294190017E100E1332A /* Main_iPad.storyboard in Resources */,
 				E4F676FC19356CA900208991 /* clock_80.png in Resources */,
+				E4546928194A13E40098DE69 /* 765-arrow-left-toolbar-selected@2x.png in Resources */,
 				792B23C41920D04C00CAE285 /* Button Record.png in Resources */,
 				E41B75CF193DFD0500255354 /* 742-wrench-selected@2x.png in Resources */,
+				E454692A194A13F80098DE69 /* 766-arrow-right-toolbar-selected@2x.png in Resources */,
 				792B23C11920D04C00CAE285 /* Button Pause.png in Resources */,
 				E4005D1319369B53006C6ABB /* menu-32.png in Resources */,
 				E4D231EC1921368000E5797B /* login_portrait.jpg in Resources */,
+				E454692C194A14EC0098DE69 /* 766-arrow-right-toolbar-selected.png in Resources */,
 				79A86860191B93EC00AA4058 /* DSLCalendar-previousMonth@2x.png in Resources */,
 				E4273634193E7A9100F98749 /* 744-locked-toolbar@2x.png in Resources */,
 				792B23C21920D04C00CAE285 /* Button Play.png in Resources */,
 				792B23C31920D04C00CAE285 /* Button Record Active.png in Resources */,
 				79A86856191B93EC00AA4058 /* DSLCalendarDayCalloutView.xib in Resources */,
+				E454692E194A14F80098DE69 /* 765-arrow-left-toolbar-selected.png in Resources */,
 				79A86869191B93EC00AA4058 /* DSLCalendarDaySelection.png in Resources */,
 				E4AAC5F5192A2DA3008E0BD7 /* SplashScreen.png in Resources */,
 				E4005D0C19363CEA006C6ABB /* minus_80_black.png in Resources */,

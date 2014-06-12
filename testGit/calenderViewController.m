@@ -161,6 +161,16 @@ NSTimer *timer;
     
 }
 
+-(void)previousWeek
+{
+    
+}
+
+-(void)nextWeek
+{
+    
+}
+
 -(void)showNavigationBar
 {
     UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
@@ -179,7 +189,11 @@ NSTimer *timer;
         
         UIBarButtonItem *calButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"851-calendar-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(selectDate:)];
         
-        self.toolbarItems = [NSArray arrayWithObjects: refreshBtn, fixedSpace, _lockBtn, fixedSpace, calButton, nil];
+        UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"765-arrow-left-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(previousWeek)];
+        
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"766-arrow-right-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(nextWeek)];
+        
+        self.toolbarItems = [NSArray arrayWithObjects: refreshBtn, fixedSpace, _lockBtn, fixedSpace, fixedSpace, leftButton, fixedSpace,  rightButton, fixedSpace, fixedSpace, calButton, nil];
         
         
     }
