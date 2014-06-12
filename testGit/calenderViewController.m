@@ -169,7 +169,7 @@ NSTimer *timer;
     fixedSpace.width = 20;
     
     UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-    UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
+    UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(done)];
     
     [self.navigationItem setHidesBackButton:NO];
     [self.navigationItem setLeftBarButtonItem:closeBtn];
