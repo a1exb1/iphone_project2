@@ -14,6 +14,12 @@
 #import "NVDate.h"
 #import "DetailViewManager.h"
 
+@protocol menuDrawDelegate <NSObject>
+
+-(void)deselectTableRow;
+
+@end
+
 @interface calenderViewController : UIViewController <UIWebViewDelegate, calenderViewDelegate, UISplitViewControllerDelegate, SubstitutableDetailViewController>
 
 @property UIBarButtonItem *lockBtn;
@@ -26,5 +32,8 @@
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
 -(void)changed;
+
+@property (weak, nonatomic) id<menuDrawDelegate> menuDrawerDelegate;
+
 
 @end

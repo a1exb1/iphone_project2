@@ -104,12 +104,7 @@ NSTimer *timer;
     else{
         //self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _addLessonSlotBtn, _editSlotsButton, nil];
         [self loadUrl];
-    }
-    
-    //[self.pc dismissPopoverAnimated:YES];
-    
-    
-    
+    }    
 }
 
 -(void)done
@@ -117,7 +112,11 @@ NSTimer *timer;
     [_popover dismissPopoverAnimated:YES];
     [_calPopover dismissPopoverAnimated:YES];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [_menuDrawerDelegate deselectTableRow];
+    }];
+    
+    
 }
 
 -(void)selectDate:(UIBarButtonItem *)btn;
@@ -199,8 +198,9 @@ NSTimer *timer;
 
 -(void)hideNavigationBar
 {
-    [self.navigationItem setHidesBackButton:YES];
-    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:nil, nil]];
+    //[self.navigationItem setHidesBackButton:YES];
+    //[self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:nil, nil]];
+    self.toolbarItems = nil;
 }
 
 -(void)lock

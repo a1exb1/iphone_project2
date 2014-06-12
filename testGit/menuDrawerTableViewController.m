@@ -151,6 +151,8 @@ extern Session *session;
         UINavigationController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonSlots"];
         controller.modalPresentationStyle = UIModalPresentationFormSheet;
         controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        calenderViewController *calView = (calenderViewController *)controller.topViewController;
+        calView.menuDrawerDelegate = (id)self;
         [self presentViewController:controller animated:YES completion:nil];
     }
     
@@ -181,7 +183,8 @@ extern Session *session;
 //        UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
 //        
         UINavigationController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderView"];
-        
+        calenderViewController *calView = (calenderViewController *)controller.topViewController;
+        calView.menuDrawerDelegate = (id)self;
         //indexViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderView"];
         //Object *obj = [[Object alloc] init];
         //[obj setStr:@"hello123"];
@@ -302,6 +305,12 @@ extern Session *session;
         sectionName = [NSString stringWithFormat:@"Client controls (%@)", [[session client] name]];
     }
     return sectionName;
+}
+
+-(void)deselectTableRow
+{
+    NSIndexPath *indexPath= [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
