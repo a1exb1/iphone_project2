@@ -356,4 +356,47 @@ NSMutableArray *loaderViews;
     }
 }
 
++(BOOL) nowIsBetweenDate1:(NSDate *)date1 andDate2:(NSDate *)date2
+{
+//    int startTime;
+//    int endTime;
+//    
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+//    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[_lesson dateTime]];
+//    NSInteger lessonDateHour = [components hour];
+//    NSInteger lessonDateMinute = [components minute];
+//    [_lesson setHour:(int)lessonDateHour];
+//    [_lesson setMins:(int)lessonDateMinute];
+//    
+//    
+//    NVDate *lessonDate = [[NVDate alloc] initUsingDate:[_lesson dateTime]];
+//    NSDate *lessonEnd = lessonDate.date;
+//    lessonEnd = [lessonDate.date dateByAddingTimeInterval:[_lesson Duration]*60];
+//    NVDate *nowDate = [[NVDate alloc] initUsingToday];
+//    
+//    NSString *dayDesc;
+//    
+//    _lessonTimeLbl.text = [NSString stringWithFormat:@"%02d:%02d - %@ (%02d mins)",
+//                           [_lesson Hour],
+//                           [_lesson Mins],
+//                           [Tools convertDateToTimeStringWithDate:lessonEnd],
+//                           [_lesson Duration]
+//                           ];
+//    
+//    if ([[self beginningOfDay:lessonDate.date] isEqualToDate:[self beginningOfDay:nowDate.date]])
+//    {
+//        dayDesc = @"Today";
+//        _dayDescLbl.text = dayDesc;
+//        
+//        if (
+//            ([nowDate.date timeIntervalSinceReferenceDate] > [lessonDate.date timeIntervalSinceReferenceDate]) &&
+//            ([nowDate.date timeIntervalSinceReferenceDate] < [lessonEnd timeIntervalSinceReferenceDate])
+//            ) {
+//            NSTimeInterval secondsBetween = [lessonEnd timeIntervalSinceDate:nowDate.date];
+//            dayDesc = [NSString stringWithFormat:@"Now (%@ left)", [Tools convertSecondsToTimeStringWithSecondsWithAlternativeStyle:secondsBetween]];
+//            _dayDescLbl.text = dayDesc;
+//        }
+    return NO;
+}
+
 @end

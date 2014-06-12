@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SVPullToRefresh.h"
-
+#import "NVDate.h"
 #import "Session.h"
 
 @interface Tools : NSObject
@@ -51,5 +51,7 @@
 +(BOOL)isIpad;
 
 + (BOOL) isOrientationLandscape;
+
++(BOOL) nowIsBetweenDate1: (NSDate *) date1 andDate2: (NSDate *) date2;
 
 @end

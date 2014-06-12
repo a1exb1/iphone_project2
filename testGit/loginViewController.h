@@ -26,4 +26,6 @@
 
 @property UITabBarController *tabBar;
 
+@property BOOL hasJustLoggedOut;
+
 @end

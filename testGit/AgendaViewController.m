@@ -570,7 +570,7 @@ NSArray *daysOfWeekArray;
             _statusLbl.hidden = NO;
             _statusLbl.text = @"No lessons";
             [_mainTableView setBackgroundColor:[UIColor whiteColor]];
-            
+            [self selectEmptyLesson];
         }
         else{
             [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -604,9 +604,7 @@ NSArray *daysOfWeekArray;
                     [session setHasSetAgendaToDetail: YES];
                     _indexPath = [NSIndexPath indexPathForRow:lNo inSection:0];
                 }
-                
-                
-                
+
             }
         }
     }
@@ -689,6 +687,24 @@ NSArray *daysOfWeekArray;
     
     detailViewManager.detailViewController = detailViewController;
     
+}
+
+-(void)selectEmptyLesson
+{
+    DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
+    
+    UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
+    
+    detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
+    
+    indexViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+    top.lesson = nil;
+    top.agendaDelegate = self;
+    [detailViewController pushViewController:top animated:YES];
+    
+    [session setShouldHideMasterInLandscape:NO];
+    
+    detailViewManager.detailViewController = detailViewController;
 }
 
 - (void)didReceiveMemoryWarning

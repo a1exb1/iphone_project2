@@ -229,6 +229,7 @@ extern Session *session;
         loginViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"loginView"];
         
         view.tabBar = self.tabBarController;
+        view.hasJustLoggedOut = YES;
         
         [controller.navigationController presentViewController:view animated:NO completion:nil];
         

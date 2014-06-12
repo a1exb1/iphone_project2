@@ -77,6 +77,10 @@ extern Session *session;
     else{
         self.usernameTextField.text = [temp objectForKey:@"username"];
         self.passwordTextField.text = [temp objectForKey:@"password"];
+        if(!_hasJustLoggedOut){
+            [self loginCheck];
+        }
+        
     }
     
     
@@ -93,8 +97,8 @@ extern Session *session;
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)login:(id)sender{
-    self.statusLbl.hidden = YES;
+-(void)loginCheck
+{self.statusLbl.hidden = YES;
     
     if(self.usernameTextField.text.length > 0 && self.passwordTextField.text.length > 0){
         [self jsonRequestGetData];
@@ -105,6 +109,11 @@ extern Session *session;
         UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please enter your username and password!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [errorView show];
     }
+    
+}
+
+-(IBAction)login:(id)sender{
+    [self loginCheck];
     
 }
 
