@@ -71,6 +71,14 @@ extern Session *session;
         _attendanceLbl.text = @"No lesson selected";
         [self.attendanceLbl setCenter: CGPointMake(self.view.center.x, self.attendanceLbl.center.y)];
     }
+    
+    if(_lesson == NULL){
+        _box1View.hidden = YES;
+        _courseView.hidden = YES;
+        _studentView.hidden = YES;
+        _attendenceControl.hidden = YES;
+        self.navigationItem.rightBarButtonItem = nil;
+    }
 }
 
 
@@ -89,6 +97,7 @@ extern Session *session;
         _courseView.hidden = YES;
         _studentView.hidden = YES;
         _attendenceControl.hidden = YES;
+        self.navigationItem.rightBarButtonItem = nil;
     }
     
 }
@@ -179,6 +188,8 @@ extern Session *session;
         _box1View.frame = CGRectMake(20.0f, 87.0f, ((int)self.navigationController.view.frame.size.width  - 40), 90);
         _courseView.frame = CGRectMake(20.0f, 190.0f, ((int)self.navigationController.view.frame.size.width  - 40), _courseView.frame.size.height);
         _studentView.frame = CGRectMake(20.0f, 265.0f, ((int)self.navigationController.view.frame.size.width  - 40), _studentView.frame.size.height);
+        
+        
     }
     
     
@@ -191,7 +202,7 @@ extern Session *session;
     //[_box1View.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
     TopBorder.accessibilityValue = @"border";
     [_box1View.layer addSublayer:TopBorder];
-    [Tools addShadowToViewWithView:_box1View];
+    //[Tools addShadowToViewWithView:_box1View];
     
     //student box border
     TopBorder = [CALayer layer];
@@ -199,7 +210,7 @@ extern Session *session;
     TopBorder.backgroundColor = [Tools colorFromHexString:@"#4473b4"].CGColor;
     TopBorder.accessibilityValue = @"border";
     [_studentView.layer addSublayer:TopBorder];
-    [Tools addShadowToViewWithView:_studentView];
+    //[Tools addShadowToViewWithView:_studentView];
     
     //course box border
     TopBorder = [CALayer layer];
@@ -207,7 +218,7 @@ extern Session *session;
     TopBorder.backgroundColor = [Tools colorFromHexString:@"#57AD2C"].CGColor;
     TopBorder.accessibilityValue = @"border";
     [_courseView.layer addSublayer:TopBorder];
-    [Tools addShadowToViewWithView:_courseView];
+    //[Tools addShadowToViewWithView:_courseView];
     
     
 
