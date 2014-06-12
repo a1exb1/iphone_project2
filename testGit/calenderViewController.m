@@ -163,12 +163,18 @@ NSTimer *timer;
 
 -(void)previousWeek
 {
-    
+    NVDate *date = [[NVDate alloc] initUsingDate:_date];
+    [date nextDays:-7];
+    _date = date.date;
+    [self sendDateToAgendaWithDate:_date];
 }
 
 -(void)nextWeek
 {
-    
+    NVDate *date = [[NVDate alloc] initUsingDate:_date];
+    [date nextDays:7];
+    _date = date.date;
+    [self sendDateToAgendaWithDate:_date];
 }
 
 -(void)showNavigationBar
@@ -240,11 +246,13 @@ NSTimer *timer;
     self.webView.hidden = YES;
     
     NVDate *fromDate = [[NVDate alloc] initUsingDate:_firstDateOfWeek];
-    NSString *fromDateString = [[NSString alloc] initWithFormat:@"%ld/%ld/%ld", (long)fromDate.day, (long)fromDate.month, (long)fromDate.year];
+    NSString *fromDateString = [[NSString alloc] initWithFormat:@"%0.2ld/%0.2ld/%ld", (long)fromDate.day, (long)fromDate.month, (long)fromDate.year];
     
     NVDate *toDate = [[NVDate alloc] initUsingDate:fromDate.date];
-    [toDate nextDays:7];
-    NSString *toDateString = [[NSString alloc] initWithFormat:@"%ld/%ld/%ld", (long)toDate.day, (long)toDate.month, (long)toDate.year];
+    [toDate nextDays:6];
+    NSString *toDateString = [[NSString alloc] initWithFormat:@"%0.2ld/%0.2ld/%ld", (long)toDate.day, (long)toDate.month, (long)toDate.year];
+    
+    self.title = [NSString stringWithFormat:@"%@ - %@",fromDateString, toDateString];
     
     [self hideNavigationBar];
     [Tools showLoaderWithView:self.view];
