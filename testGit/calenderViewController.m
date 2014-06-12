@@ -20,6 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addLessonSlotBtn;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editSlotsButton;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end
 
@@ -90,21 +91,18 @@ NSTimer *timer;
     [self showNavigationBar];
     [self.navigationItem setHidesBackButton:YES];
     
-    UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
+    
     
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
         _calenderUIButton.action = @selector(selectDate:);
         _calenderUIButton.target = self;
-        
-        
-        
-        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _plusUIButton, _calenderUIButton, nil];
+        //self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _plusUIButton, _calenderUIButton, nil];
         
         _date = [[NSDate alloc] init];
         [self sendDateToAgendaWithDate:_date];
     }
     else{
-        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _addLessonSlotBtn, _editSlotsButton, nil];
+        //self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _addLessonSlotBtn, _editSlotsButton, nil];
         [self loadUrl];
     }
     
@@ -160,17 +158,6 @@ NSTimer *timer;
     
 }
 
-//-(void)showNavigationBar
-//{
-//    UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-//    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:refreshBtn, nil]];
-//}
-
-//-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-//{
-//    [_webView stringByEvaluatingJavaScriptFromString:@"adjustContainer();"];
-//
-//}
 
 -(void)changed
 {
@@ -179,19 +166,24 @@ NSTimer *timer;
 
 -(void)showNavigationBar
 {
-    [self.navigationItem setHidesBackButton:NO];
-    UIBarButtonItem *addLessonsBtn = nil;
-    if ([self.accessibilityValue isEqualToString:@"lessonSlots"]) {
-        addLessonsBtn = [[UIBarButtonItem alloc] initWithTitle:@"Add to calender" style:UIBarButtonItemStylePlain target:self action:@selector(addLessons)];
-    }
-    
     UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+    UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
     
-    if (_navigationPaneBarButtonItem == NULL) {
-        [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects: refreshBtn, _lockBtn, addLessonsBtn, nil]];
+    [self.navigationItem setHidesBackButton:NO];
+    [self.navigationItem setLeftBarButtonItem:closeBtn];
+    
+    if ([self.accessibilityValue isEqualToString:@"calenderView"]) {
+        //CALENDER
+        UIBarButtonItem *addLessonsBtn = nil;
+        addLessonsBtn = [[UIBarButtonItem alloc] initWithTitle:@"Add to calender" style:UIBarButtonItemStylePlain target:self action:@selector(addLessons)];
+        
+        self.toolbarItems = [NSArray arrayWithObjects:_calenderUIButton, refreshBtn, _lockBtn, addLessonsBtn, nil];
+        
+        
     }
     else{
-        [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:_navigationPaneBarButtonItem, refreshBtn, _lockBtn, addLessonsBtn, nil]];
+        [self.navigationItem setRightBarButtonItem:_addLessonSlotBtn];
+        self.toolbarItems = [NSArray arrayWithObjects:refreshBtn, _lockBtn, nil];
     }
     
     
@@ -214,15 +206,14 @@ NSTimer *timer;
 -(void)lock
 {
     [_webView stringByEvaluatingJavaScriptFromString:@"lockScreen();"];
-    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[self.lockedUIButton image] style:UIBarButtonItemStylePlain target:self action:@selector(unlock)];
+    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"744-locked-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(unlock)];
     [self showNavigationBar];
 }
 
 -(void)unlock
 {
     [_webView stringByEvaluatingJavaScriptFromString:@"unlockScreen();"];
-    _lockBtn = [[UIBarButtonItem alloc] initWithTitle:@"Lock" style:UIBarButtonItemStylePlain target:self action:@selector(lock)];
-    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[self.unlockedUIButton image] style:UIBarButtonItemStylePlain target:self action:@selector(lock)];
+    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"744-locked-toolbar@2x.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(lock)];
     [self showNavigationBar];
 }
 
@@ -261,7 +252,7 @@ NSTimer *timer;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+    [self setModalSize];
 }
 
 -(void)refresh
@@ -304,7 +295,8 @@ NSTimer *timer;
 }
 
 - (void)viewDidLayoutSubviews {
-    self.webView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 0);
+    [self.navigationController setToolbarHidden:NO];
+    self.webView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     
     _statusLbl.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
@@ -347,6 +339,34 @@ NSTimer *timer;
     //This method is only available in iOS5
     
     return YES;
+}
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    
+}
+
+-(void)setModalSize
+{
+    int longSide = 987;
+    int shortSide = 717;
+    
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        [self.navigationController.view.superview setBounds:CGRectMake(0, 0, shortSide, longSide)];
+    }
+    else{
+        [self.navigationController.view.superview setBounds:CGRectMake(0, 0, longSide, shortSide)];
+    }
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    
+    [self setModalSize];
+    
+    
+    //self.view.superview.bounds = CGRectMake(0, 0, (self.view.frame.size.width - 50), (self.view.frame.size.height - 50));
 }
 
 /*

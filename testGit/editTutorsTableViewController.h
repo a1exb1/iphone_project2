@@ -23,4 +23,6 @@
 
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
+//@property long currentTutorID;
+
 @end

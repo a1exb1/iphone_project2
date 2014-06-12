@@ -58,6 +58,11 @@ extern Session *session;
     
 }
 
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    _toDatePicker.center = self.view.center;
+    _fromDatePicker.center = self.view.center;
+}
 
 
 -(void)jsonRequestGetData

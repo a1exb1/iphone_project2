@@ -56,8 +56,8 @@ NSMutableArray *loaderViews;
     
     indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
+    //CGRect screenBound = [[UIScreen mainScreen] bounds];
+    //CGSize screenSize = screenBound.size;
 
     
     //indicator.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
@@ -300,7 +300,7 @@ NSMutableArray *loaderViews;
 
 +(NSString *) convertDateToTimeStringWithDate:(NSDate *)date;
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //[dateFormatter setDateFormat:@""];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:date];

@@ -18,6 +18,7 @@
 #import "DetailViewManager.h"
 #import "editTutorsTableViewController.h"
 #import "editCoursesTableViewController.h"
+#import "loginViewController.h"
 
 @interface menuDrawerTableViewController : UITableViewController
 

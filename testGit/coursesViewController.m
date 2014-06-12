@@ -77,9 +77,11 @@ extern Session *session;
             //
             [self loadData];
         }];
+        
     }
     else{
         self.navigationController.navigationBar.translucent = NO;
+        self.navigationItem.rightBarButtonItems = nil;
     }
     
     
@@ -110,6 +112,8 @@ extern Session *session;
 //    [self.navigationItem setTitleView: navigationBarTitleView];
 //    [navigationBarTitleView setTitleText:@"Courses"];
 //    [navigationBarTitleView setDetailText:[_tutor name]];
+    
+
     
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
     UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];

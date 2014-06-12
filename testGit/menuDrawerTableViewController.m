@@ -47,7 +47,8 @@ extern Session *session;
     
     cell = [[NSArray alloc]initWithObjects:@"Calendar-Date-03-80.png", @"Calender", @"", @"calender", nil];
     [section addObject:cell];
-    
+    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Courses", @"", @"courses", nil];
+    [section addObject:cell];
 
     
     cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add lessons", @"", @"addlessons", nil];
@@ -60,7 +61,7 @@ extern Session *session;
     cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Tutors", @"", @"tutors", nil];
     [section addObject:cell];
     
-    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Courses", @"", @"courses", nil];
+    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Courses", @"", @"allcourses", nil];
     [section addObject:cell];
     cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Students", @"", @"students", nil];
     [section addObject:cell];
@@ -135,7 +136,7 @@ extern Session *session;
     
     cell.backgroundColor = [UIColor whiteColor];
     if((indexPath.row == 4 && indexPath.section == 0) ||
-       (indexPath.row == 2 && indexPath.section == 0)){
+       (indexPath.row == 3 && indexPath.section == 0)){
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
@@ -148,6 +149,8 @@ extern Session *session;
     
     if([cell.accessibilityValue isEqualToString:@"slots"] ){
         UINavigationController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonSlots"];
+        controller.modalPresentationStyle = UIModalPresentationFormSheet;
+        controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         [self presentViewController:controller animated:YES completion:nil];
     }
     
@@ -187,9 +190,19 @@ extern Session *session;
         //NSArray *viewControllers = [[NSArray alloc] initWithObjects:detailViewController, top, nil];
         //detailViewManager.viewControllers = viewControllers;
         //[self presentViewController:top animated:YES];
-        [self presentViewController:controller animated:YES completion:nil];
+        // - [self presentViewController:controller animated:YES completion:nil];
         //[controller]
-
+        
+        
+        controller.modalPresentationStyle = UIModalPresentationFormSheet;
+        
+        controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        [self presentViewController:controller animated:YES completion:nil];
+        
+        // it is important to do this after presentModalViewController:animated:
+        //controller.view.superview.bounds = CGRectMake(0, 0, 600, 600);
+        //controller.view.superview.center = CGPointMake(roundf(self.view.center.x), roundf(self.view.center.y));
         //detailViewManager.detailViewController = detailViewController;
 
     }
@@ -210,9 +223,25 @@ extern Session *session;
         DetailViewController *controller = self.detailViewController;
         //[controller changed];
         
-        UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"loginView"];
+        loginViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"loginView"];
+        
+        view.tabBar = self.tabBarController;
         
         [controller.navigationController presentViewController:view animated:NO completion:nil];
+        
+        
+        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+        
+        DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
+        
+        UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
+        
+        detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
+        
+        AddLessonsViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+        [detailViewController pushViewController:top animated:YES];
+        detailViewManager.detailViewController = detailViewController;
+        
     }
     
     if([cell.accessibilityValue isEqualToString:@"people"]){

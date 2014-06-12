@@ -56,7 +56,11 @@ extern Session *session;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self getJson];
+//    if (_currentTutorID != [[session tutor] tutorID]) {
+//        [self getJson];
+//        _currentTutorID = [[session tutor] tutorID];
+//    }
+//    
     
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
     

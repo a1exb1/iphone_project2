@@ -24,4 +24,6 @@
 @property NSMutableData *data;
 -(IBAction)login:(id)sender;
 
+@property UITabBarController *tabBar;
+
 @end

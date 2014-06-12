@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *notesBtn;
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
+@property (weak, nonatomic) IBOutlet UILabel *attendanceLbl;
 @end
 
 @implementation indexViewController
@@ -64,6 +65,12 @@ extern Session *session;
     _box1View.hidden = YES;
     _courseView.hidden = YES;
     _studentView.hidden = YES;
+    
+    if(_lesson == NULL){
+        _attendenceControl.hidden = YES;
+        _attendanceLbl.text = @"No lesson selected";
+        [self.attendanceLbl setCenter: CGPointMake(self.view.center.x, self.attendanceLbl.center.y)];
+    }
 }
 
 
@@ -77,7 +84,13 @@ extern Session *session;
     if (_navigationPaneBarButtonItem)
         [self.navigationItem setLeftBarButtonItem:self.navigationPaneBarButtonItem animated:NO];
     
-
+    if(_lesson == NULL){
+        _box1View.hidden = YES;
+        _courseView.hidden = YES;
+        _studentView.hidden = YES;
+        _attendenceControl.hidden = YES;
+    }
+    
 }
 
 - (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem
@@ -131,6 +144,7 @@ extern Session *session;
     [_attendenceControl addTarget:self
                            action:@selector(changeAttendence:)
                  forControlEvents:UIControlEventValueChanged];
+    
     
     
 }
@@ -194,6 +208,8 @@ extern Session *session;
     TopBorder.accessibilityValue = @"border";
     [_courseView.layer addSublayer:TopBorder];
     [Tools addShadowToViewWithView:_courseView];
+    
+    
 
 }
 
@@ -336,6 +352,8 @@ extern Session *session;
     }
     
     [self boxes];
+    
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated

@@ -33,6 +33,10 @@ extern Session *session;
     return self;
 }
 
+-(void)existingFilePlayback
+{
+    
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
