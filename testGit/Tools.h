@@ -52,6 +52,8 @@
 
 + (BOOL) isOrientationLandscape;
 
-+(BOOL) nowIsBetweenDate1: (NSDate *) date1 andDate2: (NSDate *) date2;
++(NSString *) nowIsBetweenDate1: (NSDate *) date1 andDuration:(int)duration;
+
++ (NSDate *)beginningOfDay:(NSDate *)date;
 
 @end

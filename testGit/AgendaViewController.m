@@ -140,22 +140,15 @@ NSArray *daysOfWeekArray;
     
     self.dayPicker.delegate = self;
     self.dayPicker.dataSource = self;
-    
-    //[self.dayPicker setStartDate:[NSDate dateFromDay:28 month:9 year:2013] endDate:[NSDate dateFromDay:5 month:10 year:2013]];
-    //[Tools showLightLoader];
-    
-    //    if ( [Tools isIpad] )
-    //    {
-    //        [Tools addECSlidingDefaultSetupWithViewController:self];
-    //        [[session client] setClientID:1];
-    //        [[session client] setPremium:0];
-    //        [[session client] setClientUserName:@"Test"];
-    //        [[session tutor] setTutorID:3];
-    //        [[session tutor] setAccountType:0];
-    //    }
-    
     _clipboardItem = self.navigationItem.rightBarButtonItem;
     
+    _cellBorderColours = [[NSMutableDictionary alloc] init];
+    [_cellBorderColours setObject:@"#990f60" forKey:@"completed"];
+    [_cellBorderColours setObject:@"#4473b4" forKey:@"upcoming"];
+    [_cellBorderColours setObject:@"#990f60" forKey:@"earlier today"];
+    [_cellBorderColours setObject:@"#4473b4" forKey:@"later today"];
+    [_cellBorderColours setObject:@"#66cc33" forKey:@"now"];
+        
     
 }
 
@@ -250,6 +243,7 @@ NSArray *daysOfWeekArray;
 
 - (void)updateSelectedDate
 {
+    [session setHasSetAgendaToDetail: NO];
     _indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -452,8 +446,23 @@ NSArray *daysOfWeekArray;
         }
     }
     else{
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        UIImage *attendanceImg = [UIImage imageNamed:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Status"]];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:attendanceImg];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        cell.accessoryView = imageView;
     }
+    
+    UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 1, 3.0f, cell.viewForBaselineLayout.frame.size.height - 2)];
+    NSString *s = [_cellBorderColours objectForKey:[Tools nowIsBetweenDate1:lessonDate andDuration:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]]];
+    [lineView setBackgroundColor:[Tools colorFromHexString:s]];
+    [[cell contentView] addSubview:lineView];
+    
+    UIView *bgColorView = [[UIView alloc] init];
+    lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 1, 3.0f, cell.viewForBaselineLayout.frame.size.height - 2)];
+    [lineView setBackgroundColor:[Tools colorFromHexString:@"#FFA500"]];
+    [bgColorView addSubview:lineView];
+    bgColorView.backgroundColor = [Tools colorFromHexString:@"#FFF2DB"];
+    [cell setSelectedBackgroundView:bgColorView];
     
     return cell;
 }
@@ -593,6 +602,18 @@ NSArray *daysOfWeekArray;
                    ![session hasSetAgendaToDetail]){ // NEEDS to check for current lesson and only run at start of application - if has run once, needs to know which row to go to. + select table row
                     
                     int lNo = 0;
+                    int c = 0;
+                    for(NSDictionary *lesson in _lessons){
+                        NSString* str = [lesson objectForKey:@"LessonDateTime"];
+                        NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+                        [formatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
+                        NSDate* lessonDate = [formatter dateFromString:str];
+                        
+                        if ([[Tools nowIsBetweenDate1:lessonDate andDuration:[[lesson objectForKey:@"Duration"] intValue]]  isEqual: @"now"]) {
+                            lNo = c;
+                        }
+                        c++;
+                    }
                     
                     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lNo inSection:0];
                     [_mainTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
@@ -726,6 +747,7 @@ NSArray *daysOfWeekArray;
 
 
 -(void)sendDateToAgendaWithDate:(NSDate *) Date{
+    [session setHasSetAgendaToDetail: NO];
     _dayDate = Date;
     [self finishedAttendance];
     [self jsonRequestGetAgenda];

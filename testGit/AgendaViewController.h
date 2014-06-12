@@ -50,4 +50,6 @@
 
 @property int c;
 
+@property NSMutableDictionary *cellBorderColours;
+
 @end

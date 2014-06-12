@@ -43,8 +43,11 @@ NSMutableArray *audioNotes;
     [_notes addObject:_otherLessonNotes];
     [_lesson setNotes:_notes];
 
+    NSIndexPath *indexPath = _mainTableView.indexPathForSelectedRow;
+    [_mainTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     _data = [[NSMutableData alloc]init];
-    [_mainTableView reloadData];
+    //[_mainTableView reloadData];
     
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=notesbystudent&id=%li&lessonid=%li&ts=%f", [[_lesson student] studentID], [_lesson LessonID], [[NSDate date] timeIntervalSince1970]];
 
@@ -55,13 +58,15 @@ NSMutableArray *audioNotes;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    CGSize size = CGSizeMake(320, 480); // size of view in popover
+    CGSize size = CGSizeMake(320, 280); // size of view in popover
     self.preferredContentSize = size;
     
-    [Tools showLoader];
+    [Tools showLoaderWithView:self.view];
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
     [self jsonRequestGetData];
+    
+   
     
     [super viewWillAppear:animated];
     
@@ -89,9 +94,14 @@ NSMutableArray *audioNotes;
         }];
     }
     else{
-        [self.navigationController.navigationBar setTranslucent:NO];
+        
+        
         UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(jsonRequestGetData)];
         self.navigationItem.leftBarButtonItem = refreshBtn;
+        
+        [Tools setNavigationHeaderColorWithNavigationController:self.navigationController andTabBar:nil andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
+        
+        [self.navigationController.navigationBar setTranslucent:NO];
     }
     
     
@@ -157,7 +167,7 @@ NSMutableArray *audioNotes;
     
     UIImage *buttonBk = [Tools scaleImage:image toSize:CGSizeMake(60,88.0)];
     cell.imageView.image = buttonBk;
-
+    
     return cell;
 }
 
@@ -181,7 +191,7 @@ NSMutableArray *audioNotes;
         sectionName = @"Notes for this lesson";
     }
     else{
-        sectionName = @"";
+        sectionName = @"All notes";
     }
     return sectionName;
 }
@@ -229,7 +239,7 @@ NSMutableArray *audioNotes;
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [_mainTableView.pullToRefreshView stopAnimating];
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
     
     _thisLessonNotes = [[NSMutableArray alloc] init];
     _otherLessonNotes =[[NSMutableArray alloc] init];
@@ -270,7 +280,7 @@ NSMutableArray *audioNotes;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
     [_mainTableView.pullToRefreshView stopAnimating];
 }
 
