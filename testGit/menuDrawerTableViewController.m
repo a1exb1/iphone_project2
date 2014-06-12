@@ -26,6 +26,10 @@ extern Session *session;
     return self;
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    _indexPath = nil;
+}
+
 - (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue { }
 
 - (void)viewDidLoad
@@ -212,12 +216,14 @@ extern Session *session;
     
     
     if([cell.accessibilityValue isEqualToString:@"addlessons"]){
+        _indexPath= indexPath;
         addLessonsTableViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"addLessonsTableView"];
         [self.navigationController pushViewController:view animated:YES];
     }
     
     //logout
     if([cell.accessibilityValue isEqualToString:@"logout"]){
+        _indexPath= indexPath;
         //session = [[Session alloc] init];
         
         //[self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
@@ -249,6 +255,7 @@ extern Session *session;
     }
     
     if([cell.accessibilityValue isEqualToString:@"people"]){
+        _indexPath= indexPath;
         addLessonsTableViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"PeopleTableView"];
         [self.navigationController pushViewController:view animated:YES];
 
@@ -256,6 +263,7 @@ extern Session *session;
     
     //TUTORS
     if([cell.accessibilityValue isEqualToString:@"tutors"]){
+        _indexPath= indexPath;
         [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
         
         DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
@@ -272,6 +280,7 @@ extern Session *session;
 
     //COURSES
     if([cell.accessibilityValue isEqualToString:@"courses"]){
+        _indexPath= indexPath;
         [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
         
         DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
@@ -287,6 +296,8 @@ extern Session *session;
         detailViewManager.detailViewController = detailViewController;
         
     }
+    
+    
     
 }
 
@@ -312,6 +323,7 @@ extern Session *session;
 {
     NSIndexPath *indexPath= [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.tableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

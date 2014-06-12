@@ -91,8 +91,6 @@ NSTimer *timer;
     [self showNavigationBar];
     [self.navigationItem setHidesBackButton:YES];
     
-    
-    
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
         _calenderUIButton.action = @selector(selectDate:);
         _calenderUIButton.target = self;
@@ -235,7 +233,7 @@ NSTimer *timer;
     NSString *toDateString = [[NSString alloc] initWithFormat:@"%ld/%ld/%ld", (long)toDate.day, (long)toDate.month, (long)toDate.year];
     
     [self hideNavigationBar];
-    [Tools showLoaderWithView:self.navigationController.view];
+    [Tools showLoaderWithView:self.view];
     NSLog(@"%f", self.navigationController.view.frame.size.width);
     //[Tools showLightLoader];
     //[Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:nil theme:@"light"];
@@ -276,7 +274,7 @@ NSTimer *timer;
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     NSLog(@"Error : %@",error);
-    [Tools hideLoaderFromView:self.navigationController.view];
+    [Tools hideLoaderFromView:self.view];
     //_lockBtn = nil;
     [self showNavigationBar];
     self.statusLbl.hidden = NO;
@@ -290,7 +288,7 @@ NSTimer *timer;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [Tools hideLoaderFromView:self.navigationController.view];
+    [Tools hideLoaderFromView:self.view];
     //[self.splitViewController willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
     //[self.view setNeedsLayout];
     [timer invalidate];
@@ -356,6 +354,10 @@ NSTimer *timer;
     int longSide = 987;
     int shortSide = 717;
     
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.2f];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    
     if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
     {
         [self.navigationController.view.superview setBounds:CGRectMake(0, 0, shortSide, longSide)];
@@ -363,6 +365,8 @@ NSTimer *timer;
     else{
         [self.navigationController.view.superview setBounds:CGRectMake(0, 0, longSide, shortSide)];
     }
+    
+    [UIView commitAnimations];
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation

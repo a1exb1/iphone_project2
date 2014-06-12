@@ -31,4 +31,6 @@
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
+@property NSIndexPath *indexPath;
+
 @end

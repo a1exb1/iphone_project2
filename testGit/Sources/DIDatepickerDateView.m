@@ -26,7 +26,6 @@ const CGFloat kDIDatepickerSelectionLineWidth = 51.;
     if (!self) return nil;
 
     [self setupViews];
-
     return self;
 }
 
