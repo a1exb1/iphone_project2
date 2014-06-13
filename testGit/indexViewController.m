@@ -28,8 +28,9 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *notesBtn;
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
+@property (weak, nonatomic) IBOutlet UIImageView *studentImg;
 
-@property (weak, nonatomic) IBOutlet UILabel *attendanceLbl;
+@property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 @end
 
 @implementation indexViewController
@@ -69,8 +70,8 @@ extern Session *session;
     
     if(_lesson == NULL){
         _attendenceControl.hidden = YES;
-        _attendanceLbl.text = @"No lesson selected";
-        [self.attendanceLbl setCenter: CGPointMake(self.view.center.x, self.attendanceLbl.center.y)];
+        _statusLbl.hidden = NO;
+        [self.statusLbl setCenter: CGPointMake(self.view.center.x, self.statusLbl.center.y)];
     }
     
     if(_lesson == NULL){
@@ -79,6 +80,10 @@ extern Session *session;
         _studentView.hidden = YES;
         _attendenceControl.hidden = YES;
         self.navigationItem.rightBarButtonItem = nil;
+        
+        _mainTableView.hidden = YES;
+        _studentImg.hidden = YES;
+        _attendenceControl.hidden = YES;
     }
 }
 
@@ -99,6 +104,13 @@ extern Session *session;
         _studentView.hidden = YES;
         _attendenceControl.hidden = YES;
         self.navigationItem.rightBarButtonItem = nil;
+        
+        _statusLbl.hidden = NO;
+        [self.statusLbl setCenter: CGPointMake(self.view.center.x, self.statusLbl.center.y)];
+        
+        _mainTableView.hidden = YES;
+        _studentImg.hidden = YES;
+        _attendenceControl.hidden = YES;
     }
     
 }

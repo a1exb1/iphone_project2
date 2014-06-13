@@ -50,6 +50,7 @@ extern Session *session;
     if ([Tools isIpad])
     {
         //_tutor = [session tutor];
+        
     }
     
     if ([[session tutor] accountType] > 1) {
@@ -82,6 +83,9 @@ extern Session *session;
     else{
         self.navigationController.navigationBar.translucent = NO;
         self.navigationItem.rightBarButtonItems = nil;
+        
+        self.navigationController.view.backgroundColor = [UIColor clearColor];
+        self.view.backgroundColor = [UIColor clearColor];
     }
     
     
@@ -92,8 +96,10 @@ extern Session *session;
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
     
-    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
-    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    if(![self.accessibilityValue isEqualToString:@"coursesPopover"]){
+        [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
+        [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    }
     
     
     
@@ -119,7 +125,9 @@ extern Session *session;
     UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, editBtn, nil]];
     
-    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    if(![self.accessibilityValue isEqualToString:@"coursesPopover"]){
+        [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    }
     
     
     
@@ -265,10 +273,15 @@ extern Session *session;
     if ([_courses count] == 0) {
         _statusLbl.hidden = NO;
         _statusLbl.text = @"No courses, click the plus to add one";
-        [_mainTableView setBackgroundColor:[UIColor whiteColor]];
+        if(![self.accessibilityValue isEqualToString:@"coursesPopover"]){
+            [_mainTableView setBackgroundColor:[UIColor whiteColor]];
+        }
+        
     }
     else{
-        [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+        if(![self.accessibilityValue isEqualToString:@"coursesPopover"]){
+            [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+        }
         _statusLbl.hidden = YES;
         
     }

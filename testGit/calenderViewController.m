@@ -102,7 +102,9 @@ NSTimer *timer;
     else{
         //self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _addLessonSlotBtn, _editSlotsButton, nil];
         [self loadUrl];
-    }    
+    }
+    
+    
 }
 
 -(void)done

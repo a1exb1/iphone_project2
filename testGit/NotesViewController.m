@@ -77,8 +77,8 @@ NSMutableArray *audioNotes;
    
     [super viewDidLoad];
     
-    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
-    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    //[[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
+    //[_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     UIBarButtonItem *textNoteBtn = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addTextNote)];
     
@@ -102,6 +102,8 @@ NSMutableArray *audioNotes;
         [Tools setNavigationHeaderColorWithNavigationController:self.navigationController andTabBar:nil andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
         
         [self.navigationController.navigationBar setTranslucent:NO];
+        self.navigationController.view.backgroundColor = [UIColor clearColor];
+        self.view.backgroundColor = [UIColor clearColor];
     }
     
     
@@ -134,6 +136,13 @@ NSMutableArray *audioNotes;
     return view;
 }
 
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    [view setBackgroundColor:[UIColor clearColor]];
+    return view;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.2;
@@ -268,10 +277,10 @@ NSMutableArray *audioNotes;
     if ([_allNotes count] == 0) {
         _statusLbl.hidden = NO;
         _statusLbl.text = @"No notes";
-        [_mainTableView setBackgroundColor:[UIColor whiteColor]];
+        //[_mainTableView setBackgroundColor:[UIColor whiteColor]];
     }
     else{
-        [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+        //[_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
         _statusLbl.hidden = YES;
     }
 }

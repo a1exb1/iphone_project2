@@ -1313,10 +1313,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="attendanceLbl" destination="sLd-5R-wnU" id="qJo-mY-97P"/>
                         <outlet property="attendenceControl" destination="VFI-tt-Vbc" id="Hj8-NX-JAv"/>
                         <outlet property="mainTableView" destination="I7F-P0-75y" id="7hM-HG-Vw0"/>
                         <outlet property="notesBtn" destination="Yh4-Il-ngf" id="Vzo-88-GrB"/>
+                        <outlet property="statusLbl" destination="sLd-5R-wnU" id="fxS-zv-nKC"/>
+                        <outlet property="studentImg" destination="PCU-dS-yt8" id="QZg-2k-Pwo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tzQ-d2-BrN" sceneMemberID="firstResponder"/>

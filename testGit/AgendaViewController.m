@@ -577,7 +577,10 @@ NSArray *daysOfWeekArray;
         if ([_lessons count] == 0) {
             _statusLbl.hidden = NO;
             _statusLbl.text = @"No lessons";
-            [_mainTableView setBackgroundColor:[UIColor whiteColor]];
+            if(![Tools isIpad]){
+                [_mainTableView setBackgroundColor:[UIColor whiteColor]];
+            }
+            
             [self selectEmptyLesson];
         }
         else{
