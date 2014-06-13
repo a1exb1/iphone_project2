@@ -58,7 +58,7 @@ NSMutableArray *audioNotes;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    CGSize size = CGSizeMake(320, 280); // size of view in popover
+    CGSize size = CGSizeMake(320, 568); // size of view in popover
     self.preferredContentSize = size;
     
     [Tools showLoaderWithView:self.view];
