@@ -496,7 +496,36 @@ extern Session *session;
 
 -(void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_mainTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if(indexPath.row == 0){
+
+        
+    }
+    
+    if(indexPath.row == 1){
+        [_mainTableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+    }
+    
+    if(indexPath.row == 2){
+        [_mainTableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    
+    if(indexPath.row == 3){
+        //NotesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allNotesView"];
+        //[view setLesson:_lesson];
+        //[self.navigationController pushViewController:view animated:YES];
+        
+    }
+    if(indexPath.row == 4){
+
+        
+    }
+    
+    if(indexPath.row == 5){
+
+        
+    }
 }
 
 -(void)showMainMenu

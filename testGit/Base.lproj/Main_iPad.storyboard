@@ -1657,7 +1657,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="CfY-gI-8gC"/>
         <segue reference="nt5-br-Avs"/>
+        <segue reference="CfY-gI-8gC"/>
     </inferredMetricsTieBreakers>
 </document>
