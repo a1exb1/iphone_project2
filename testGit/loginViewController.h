@@ -11,7 +11,7 @@
 #import "Session.h"
 #import "AgendaViewController.h"
 
-@interface loginViewController : UIViewController
+@interface loginViewController : UIViewController 
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;

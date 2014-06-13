@@ -27,6 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *notesBtn;
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+@property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
 @property (weak, nonatomic) IBOutlet UILabel *attendanceLbl;
 @end
@@ -155,6 +156,8 @@ extern Session *session;
                  forControlEvents:UIControlEventValueChanged];
     
     
+    _mainTableView.delegate = self;
+    _mainTableView.dataSource = self;
     
 }
 
@@ -323,7 +326,7 @@ extern Session *session;
     
     NSString *dayDesc;
     
-    _lessonTimeLbl.text = [NSString stringWithFormat:@"%02d:%02d - %@ (%02d mins)",
+    _lessonTime = [NSString stringWithFormat:@"%02d:%02d - %@ (%02d mins)",
                            [_lesson Hour],
                            [_lesson Mins],
                            [Tools convertDateToTimeStringWithDate:lessonEnd],
@@ -333,7 +336,7 @@ extern Session *session;
     if ([[self beginningOfDay:lessonDate.date] isEqualToDate:[self beginningOfDay:nowDate.date]])
     {
         dayDesc = @"Today";
-        _dayDescLbl.text = dayDesc;
+        _lessonStatus = dayDesc;
         
         if (
             ([nowDate.date timeIntervalSinceReferenceDate] > [lessonDate.date timeIntervalSinceReferenceDate]) &&
@@ -341,28 +344,28 @@ extern Session *session;
             ) {
             NSTimeInterval secondsBetween = [lessonEnd timeIntervalSinceDate:nowDate.date];
             dayDesc = [NSString stringWithFormat:@"Now (%@ left)", [Tools convertSecondsToTimeStringWithSecondsWithAlternativeStyle:secondsBetween]];
-            _dayDescLbl.text = dayDesc;
+            _lessonStatus = dayDesc;
         }
         
         else if ([nowDate.date timeIntervalSinceReferenceDate] > [lessonDate.date timeIntervalSinceReferenceDate]) {
             dayDesc = @"Earlier";
-            _dayDescLbl.text = dayDesc;
+            _lessonStatus = dayDesc;
         }
         
         else if ([nowDate.date timeIntervalSinceReferenceDate] < [lessonEnd timeIntervalSinceReferenceDate]) {
             NSTimeInterval secondsBetween = [lessonDate.date timeIntervalSinceDate:nowDate.date];
             dayDesc = [NSString stringWithFormat:@"Lesson in: %@", [Tools convertSecondsToTimeStringWithSecondsWithAlternativeStyle:secondsBetween]];
-            _dayDescLbl.text = dayDesc;
+            _lessonStatus = dayDesc;
         }
         
         
     }
     else{
         dayDesc = [NSString stringWithFormat:@"%02ld.%02ld.%li", (long)lessonDate.day, (long)lessonDate.month, (long)lessonDate.year];
-        _dayDescLbl.text = dayDesc;
+        _lessonStatus = dayDesc;
     }
     
-    [self boxes];
+    [self.mainTableView reloadData];
     
     
 }
@@ -415,6 +418,74 @@ extern Session *session;
 //    
 //    return NO;
 //}
+
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    UIView *view = [[UIView alloc] init];
+//    [view setBackgroundColor:[UIColor clearColor]];
+//    return view;
+//}
+
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+
+        
+    
+}
+
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+
+    if(indexPath.row == 0){
+        cell.imageView.image = [UIImage imageNamed:@"769-male-selected.png"];
+        cell.textLabel.text = [[_lesson student] name];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+    }
+    
+    if(indexPath.row == 1){
+        cell.imageView.image = [UIImage imageNamed:@"728-clock.png"];
+        cell.textLabel.text = _lessonStatus;
+        cell.detailTextLabel.text = _lessonTime;
+        cell.detailTextLabel.font = [UIFont fontWithName:nil size:14];
+        
+    }
+    
+    if(indexPath.row == 2){
+        cell.imageView.image = [UIImage imageNamed:@"841-music-playlist.png"];
+        cell.textLabel.text = [[_lesson course] name];
+    }
+
+    if(indexPath.row == 3){
+        cell.imageView.image = [UIImage imageNamed:@"1012-sticky-note.png"];
+        cell.textLabel.text = @"Notes (3)";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+    }
+    if(indexPath.row == 4){
+        cell.imageView.image = [UIImage imageNamed:@"1012-sticky-note.png"];
+        cell.textLabel.text = @"Notes (3)";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+    }
+    
+    //1012-sticky-note
+    
+    return cell;
+    
+}
 
 -(void)showMainMenu
 {

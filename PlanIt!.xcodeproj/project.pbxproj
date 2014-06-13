@@ -131,6 +131,13 @@
 		E4546955194AEAB50098DE69 /* 742-wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546954194AEAB50098DE69 /* 742-wrench.png */; };
 		E4546957194AEAD60098DE69 /* 728-clock-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546956194AEAD60098DE69 /* 728-clock-selected.png */; };
 		E4546959194AEC3A0098DE69 /* 742-wrench-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546958194AEC3A0098DE69 /* 742-wrench-selected.png */; };
+		E454695B194B5CD30098DE69 /* user_large.png in Resources */ = {isa = PBXBuildFile; fileRef = E454695A194B5CD30098DE69 /* user_large.png */; };
+		E454695D194B5F9E0098DE69 /* 769-male-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = E454695C194B5F9E0098DE69 /* 769-male-selected.png */; };
+		E454695F194B65DB0098DE69 /* 769-male-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E454695E194B65DB0098DE69 /* 769-male-selected@2x.png */; };
+		E4546962194B85D90098DE69 /* 841-music-playlist.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546960194B85D90098DE69 /* 841-music-playlist.png */; };
+		E4546963194B85D90098DE69 /* 841-music-playlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546961194B85D90098DE69 /* 841-music-playlist@2x.png */; };
+		E4546966194B86CC0098DE69 /* 1012-sticky-note.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546964194B86CC0098DE69 /* 1012-sticky-note.png */; };
+		E4546967194B86CC0098DE69 /* 1012-sticky-note@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546965194B86CC0098DE69 /* 1012-sticky-note@2x.png */; };
 		E47352801900279E008006EE /* indexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E473527F1900279E008006EE /* indexViewController.m */; };
 		E4A36089191F87C900F5221B /* AudioNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A36088191F87C900F5221B /* AudioNote.m */; };
 		E4A3608C191F87E900F5221B /* TextNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3608B191F87E900F5221B /* TextNote.m */; };
@@ -357,6 +364,13 @@
 		E4546954194AEAB50098DE69 /* 742-wrench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "742-wrench.png"; sourceTree = "<group>"; };
 		E4546956194AEAD60098DE69 /* 728-clock-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "728-clock-selected.png"; sourceTree = "<group>"; };
 		E4546958194AEC3A0098DE69 /* 742-wrench-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "742-wrench-selected.png"; sourceTree = "<group>"; };
+		E454695A194B5CD30098DE69 /* user_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_large.png; sourceTree = "<group>"; };
+		E454695C194B5F9E0098DE69 /* 769-male-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "769-male-selected.png"; sourceTree = "<group>"; };
+		E454695E194B65DB0098DE69 /* 769-male-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "769-male-selected@2x.png"; sourceTree = "<group>"; };
+		E4546960194B85D90098DE69 /* 841-music-playlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "841-music-playlist.png"; sourceTree = "<group>"; };
+		E4546961194B85D90098DE69 /* 841-music-playlist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "841-music-playlist@2x.png"; sourceTree = "<group>"; };
+		E4546964194B86CC0098DE69 /* 1012-sticky-note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1012-sticky-note.png"; sourceTree = "<group>"; };
+		E4546965194B86CC0098DE69 /* 1012-sticky-note@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1012-sticky-note@2x.png"; sourceTree = "<group>"; };
 		E473527E1900279E008006EE /* indexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indexViewController.h; sourceTree = "<group>"; };
 		E473527F1900279E008006EE /* indexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = indexViewController.m; sourceTree = "<group>"; };
 		E4A36087191F87C900F5221B /* AudioNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioNote.h; sourceTree = "<group>"; };
@@ -601,6 +615,12 @@
 		E4005D1419369D91006C6ABB /* Glyphish */ = {
 			isa = PBXGroup;
 			children = (
+				E4546964194B86CC0098DE69 /* 1012-sticky-note.png */,
+				E4546965194B86CC0098DE69 /* 1012-sticky-note@2x.png */,
+				E4546960194B85D90098DE69 /* 841-music-playlist.png */,
+				E4546961194B85D90098DE69 /* 841-music-playlist@2x.png */,
+				E454695E194B65DB0098DE69 /* 769-male-selected@2x.png */,
+				E454695C194B5F9E0098DE69 /* 769-male-selected.png */,
 				E4546958194AEC3A0098DE69 /* 742-wrench-selected.png */,
 				E4546956194AEAD60098DE69 /* 728-clock-selected.png */,
 				E4546954194AEAB50098DE69 /* 742-wrench.png */,
@@ -693,6 +713,7 @@
 		E40DF284190017E100E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E454695A194B5CD30098DE69 /* user_large.png */,
 				E454692F194A69510098DE69 /* mine */,
 				E4C28931193F3FEC00538763 /* guitar_lesson2.jpg */,
 				E4005D1419369D91006C6ABB /* Glyphish */,
@@ -1070,12 +1091,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4546963194B85D90098DE69 /* 841-music-playlist@2x.png in Resources */,
 				E4AF261419356720006366D9 /* User-Time80(2).png in Resources */,
 				E4AAC5F7192A2E35008E0BD7 /* SplashScreenLogin.png in Resources */,
 				79A8685E191B93EC00AA4058 /* DSLCalendar-nextMonth@2x.png in Resources */,
 				E4546951194A79CB0098DE69 /* 728-clock@2x.png in Resources */,
 				E433C03C193B8612003543AE /* 1099-list-1-toolbar-selected@2x.png in Resources */,
 				792B23D51921090F00CAE285 /* logout.png in Resources */,
+				E4546967194B86CC0098DE69 /* 1012-sticky-note@2x.png in Resources */,
 				79A86859191B93EC00AA4058 /* DSLCalendarMonthSelectorView.xib in Resources */,
 				E44A17BC1941C8F000606179 /* 602-exit.png in Resources */,
 				E4005D1119369B2D006C6ABB /* menu-50.png in Resources */,
@@ -1083,11 +1106,13 @@
 				E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */,
 				E454694C194A6FB60098DE69 /* 0.png in Resources */,
 				E4005D1C1936A1C2006C6ABB /* 83-calendar.png in Resources */,
+				E4546962194B85D90098DE69 /* 841-music-playlist.png in Resources */,
 				E40DF294190017E100E1332A /* Main_iPad.storyboard in Resources */,
 				E4F676FC19356CA900208991 /* clock_80.png in Resources */,
 				E4546928194A13E40098DE69 /* 765-arrow-left-toolbar-selected@2x.png in Resources */,
 				792B23C41920D04C00CAE285 /* Button Record.png in Resources */,
 				E41B75CF193DFD0500255354 /* 742-wrench-selected@2x.png in Resources */,
+				E454695D194B5F9E0098DE69 /* 769-male-selected.png in Resources */,
 				E454692A194A13F80098DE69 /* 766-arrow-right-toolbar-selected@2x.png in Resources */,
 				792B23C11920D04C00CAE285 /* Button Pause.png in Resources */,
 				E4005D1319369B53006C6ABB /* menu-32.png in Resources */,
@@ -1116,6 +1141,7 @@
 				E4F676FE19356CB100208991 /* people_80.png in Resources */,
 				E4AAC5F11929FF03008E0BD7 /* glyphicons_054_clock.png in Resources */,
 				792B23D71921098500CAE285 /* Button White Remove.png in Resources */,
+				E454695B194B5CD30098DE69 /* user_large.png in Resources */,
 				E433C03E193B86B5003543AE /* 1012-sticky-note-toolbar@2x.png in Resources */,
 				E4AB8867191ACA3F001A70D9 /* text_note_icon_large.png in Resources */,
 				E4005D181936A0A7006C6ABB /* 54-unlock.png in Resources */,
@@ -1155,10 +1181,12 @@
 				E4005D1E1936A2F0006C6ABB /* 42-photos.png in Resources */,
 				79A8685F191B93EC00AA4058 /* DSLCalendar-previousMonth.png in Resources */,
 				E44A17BA1941C89D00606179 /* 602-exit@2x.png in Resources */,
+				E4546966194B86CC0098DE69 /* 1012-sticky-note.png in Resources */,
 				E4D231E6192133FB00E5797B /* Document Checklist.png in Resources */,
 				792B23B91920CAE200CAE285 /* glyphicons_173_play.png in Resources */,
 				E4AAC5F31929FFA1008E0BD7 /* glyphicons_442_earphone.png in Resources */,
 				E401DACD19195D1A00A05318 /* glyphicons_045_calendar.png in Resources */,
+				E454695F194B65DB0098DE69 /* 769-male-selected@2x.png in Resources */,
 				E4AF261A193568D4006366D9 /* logout_80.png in Resources */,
 				E40DF291190017E100E1332A /* Main_iPhone.storyboard in Resources */,
 				E4D231E8192134C400E5797B /* Note Sticky.png in Resources */,

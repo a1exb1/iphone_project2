@@ -244,7 +244,7 @@ extern Session *session;
     if ( [Tools isIpad] )
     {
         _tabBar.selectedIndex = 0;
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:NO completion:nil];
     }
     else
     {

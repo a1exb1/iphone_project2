@@ -19,7 +19,7 @@
 
 @end
 
-@interface indexViewController : UIViewController <SubstitutableDetailViewController>
+@interface indexViewController : UIViewController <SubstitutableDetailViewController, UITableViewDataSource, UITableViewDelegate>
 
 @property Lesson *lesson;
 @property bool loaded;
@@ -41,5 +41,8 @@
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
 @property UIPopoverController *notesPopover;
+
+@property NSString *lessonStatus;
+@property NSString *lessonTime;
 
 @end
