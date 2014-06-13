@@ -85,6 +85,8 @@ extern Session *session;
         _studentImg.hidden = YES;
         _attendenceControl.hidden = YES;
     }
+    
+    
 }
 
 
@@ -112,6 +114,8 @@ extern Session *session;
         _studentImg.hidden = YES;
         _attendenceControl.hidden = YES;
     }
+    
+    [self centers];
     
 }
 
@@ -171,16 +175,36 @@ extern Session *session;
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
     
+    
 }
 
 -(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [self boxes];
     //[_notesPopover dismissPopoverAnimated:YES];
+    //_mainTableView.frame.center = self.view.center;
+    //_studentImg.hidden = YES;
+    //_attendenceControl.hidden = YES;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    [self centers];
+    [UIView commitAnimations];
+    
+    
+    
+}
+
+-(void)centers
+{
+    [self.mainTableView setCenter: CGPointMake(self.view.center.x, self.mainTableView.center.y)];
+    [self.studentImg setCenter: CGPointMake(self.view.center.x, self.studentImg.center.y)];
+    [self.attendenceControl setCenter: CGPointMake(self.view.center.x, self.attendenceControl.center.y)];
 }
 
 -(void)boxes
 {
+    
+    
     for (CALayer *ca in _box1View.layer.sublayers) {
         if ([ca.accessibilityValue isEqualToString: @"border"]) {
             [ca removeFromSuperlayer];
