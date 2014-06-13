@@ -126,6 +126,8 @@
 		E454694D194A6FB60098DE69 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546949194A6FB60098DE69 /* 1.png */; };
 		E454694E194A6FB60098DE69 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = E454694A194A6FB60098DE69 /* 2.png */; };
 		E454694F194A6FB60098DE69 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = E454694B194A6FB60098DE69 /* 3.png */; };
+		E4546951194A79CB0098DE69 /* 728-clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546950194A79CB0098DE69 /* 728-clock@2x.png */; };
+		E4546953194A79D90098DE69 /* 742-wrench@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546952194A79D90098DE69 /* 742-wrench@2x.png */; };
 		E47352801900279E008006EE /* indexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E473527F1900279E008006EE /* indexViewController.m */; };
 		E4A36089191F87C900F5221B /* AudioNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A36088191F87C900F5221B /* AudioNote.m */; };
 		E4A3608C191F87E900F5221B /* TextNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3608B191F87E900F5221B /* TextNote.m */; };
@@ -347,6 +349,8 @@
 		E4546949194A6FB60098DE69 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		E454694A194A6FB60098DE69 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		E454694B194A6FB60098DE69 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		E4546950194A79CB0098DE69 /* 728-clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "728-clock@2x.png"; sourceTree = "<group>"; };
+		E4546952194A79D90098DE69 /* 742-wrench@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "742-wrench@2x.png"; sourceTree = "<group>"; };
 		E473527E1900279E008006EE /* indexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indexViewController.h; sourceTree = "<group>"; };
 		E473527F1900279E008006EE /* indexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = indexViewController.m; sourceTree = "<group>"; };
 		E4A36087191F87C900F5221B /* AudioNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioNote.h; sourceTree = "<group>"; };
@@ -804,6 +808,8 @@
 		E433C038193B85C4003543AE /* retina */ = {
 			isa = PBXGroup;
 			children = (
+				E4546952194A79D90098DE69 /* 742-wrench@2x.png */,
+				E4546950194A79CB0098DE69 /* 728-clock@2x.png */,
 				E454692D194A14F80098DE69 /* 765-arrow-left-toolbar-selected.png */,
 				E454692B194A14EC0098DE69 /* 766-arrow-right-toolbar-selected.png */,
 				E4546929194A13F80098DE69 /* 766-arrow-right-toolbar-selected@2x.png */,
@@ -1058,6 +1064,7 @@
 				E4AF261419356720006366D9 /* User-Time80(2).png in Resources */,
 				E4AAC5F7192A2E35008E0BD7 /* SplashScreenLogin.png in Resources */,
 				79A8685E191B93EC00AA4058 /* DSLCalendar-nextMonth@2x.png in Resources */,
+				E4546951194A79CB0098DE69 /* 728-clock@2x.png in Resources */,
 				E433C03C193B8612003543AE /* 1099-list-1-toolbar-selected@2x.png in Resources */,
 				792B23D51921090F00CAE285 /* logout.png in Resources */,
 				79A86859191B93EC00AA4058 /* DSLCalendarMonthSelectorView.xib in Resources */,
@@ -1117,6 +1124,7 @@
 				79A86865191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png in Resources */,
 				E4AF260919353B3C006366D9 /* Properties_80x80_A.png in Resources */,
 				792B23D31921076A00CAE285 /* Button White Add.png in Resources */,
+				E4546953194A79D90098DE69 /* 742-wrench@2x.png in Resources */,
 				E433C049193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png in Resources */,
 				79A86868191B93EC00AA4058 /* DSLCalendarDaySelection-right@2x.png in Resources */,
 				E401DAD019195D4100A05318 /* glyphicons_136_cogwheel.png in Resources */,

@@ -118,6 +118,8 @@ NSArray *daysOfWeekArray;
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    
 }
 
 - (void)viewDidLoad
@@ -149,7 +151,9 @@ NSArray *daysOfWeekArray;
     [_cellBorderColours setObject:@"#4473b4" forKey:@"later today"];
     [_cellBorderColours setObject:@"#66cc33" forKey:@"now"];
         
-    
+
+#warning not working
+    //[self.navigationController.tabBarItem setSelectedImage:[[UIImage imageNamed:@"728-clock-selected@2x.png"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
 }
 
 - (void)viewDidLayoutSubviews {

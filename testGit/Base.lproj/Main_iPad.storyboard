@@ -1118,7 +1118,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <scene sceneID="4gm-eS-tV4">
             <objects>
                 <navigationController id="LBd-dH-2td" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Agenda" image="728-clock-selected.png" id="oPx-iq-XMA"/>
+                    <tabBarItem key="tabBarItem" title="Agenda" image="728-clock.png" id="oPx-iq-XMA"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="gAM-a4-vZm">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1404,7 +1404,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <scene sceneID="Z6u-qi-rBr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ndO-sM-By0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Manage" image="742-wrench-selected.png" id="pWa-Hi-zRQ"/>
+                    <tabBarItem key="tabBarItem" title="Manage" image="742-wrench.png" id="pWa-Hi-zRQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SOl-X0-qWL">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -1697,8 +1697,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </scenes>
     <resources>
         <image name="1012-sticky-note-toolbar-selected.png" width="20" height="20"/>
-        <image name="728-clock-selected.png" width="28" height="28"/>
-        <image name="742-wrench-selected.png" width="28" height="28"/>
+        <image name="728-clock.png" width="28" height="28"/>
+        <image name="742-wrench.png" width="28" height="28"/>
         <image name="744-locked-toolbar-selected.png" width="17" height="22"/>
         <image name="744-locked-toolbar.png" width="17" height="22"/>
         <image name="744-locked-toolbar@2x.png" width="17" height="22"/>
