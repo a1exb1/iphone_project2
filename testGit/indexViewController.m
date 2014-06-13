@@ -419,12 +419,12 @@ extern Session *session;
 //    return NO;
 //}
 
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    UIView *view = [[UIView alloc] init];
-//    [view setBackgroundColor:[UIColor clearColor]];
-//    return view;
-//}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    [view setBackgroundColor:[UIColor clearColor]];
+    return view;
+}
 
 
 
@@ -442,7 +442,7 @@ extern Session *session;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return 6;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -470,13 +470,20 @@ extern Session *session;
 
     if(indexPath.row == 3){
         cell.imageView.image = [UIImage imageNamed:@"1012-sticky-note.png"];
-        cell.textLabel.text = @"Notes (3)";
+        cell.textLabel.text = @"Notes";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
     }
     if(indexPath.row == 4){
-        cell.imageView.image = [UIImage imageNamed:@"1012-sticky-note.png"];
-        cell.textLabel.text = @"Notes (3)";
+        cell.imageView.image = [UIImage imageNamed:@"888-checkmark.png"];
+        cell.textLabel.text = @"To-Do";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+    }
+    
+    if(indexPath.row == 5){
+        cell.imageView.image = [UIImage imageNamed:@"384-dollar-currency.png"];
+        cell.textLabel.text = @"Owes £23.50";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
     }
@@ -485,6 +492,11 @@ extern Session *session;
     
     return cell;
     
+}
+
+-(void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_mainTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 -(void)showMainMenu

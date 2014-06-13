@@ -176,6 +176,16 @@
 		E4C28938193F50BB00538763 /* studentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C28937193F50BB00538763 /* studentsTableViewController.m */; };
 		E4C6CCDA193B6CC800F1997C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C6CCD9193B6CC800F1997C /* DetailViewController.m */; };
 		E4C6CCDD193B6CCE00F1997C /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C6CCDC193B6CCE00F1997C /* MasterViewController.m */; };
+		E4C9FB8B194B8B3C0015BB01 /* 973-user-toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C9FB89194B8B3C0015BB01 /* 973-user-toolbar.png */; };
+		E4C9FB8C194B8B3C0015BB01 /* 973-user-toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C9FB8A194B8B3C0015BB01 /* 973-user-toolbar@2x.png */; };
+		E4C9FB8F194B8B9C0015BB01 /* 745-unlocked-toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C9FB8D194B8B9C0015BB01 /* 745-unlocked-toolbar.png */; };
+		E4C9FB90194B8B9C0015BB01 /* 745-unlocked-toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C9FB8E194B8B9C0015BB01 /* 745-unlocked-toolbar@2x.png */; };
+		E4C9FB93194B8C620015BB01 /* 888-checkmark-toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C9FB91194B8C620015BB01 /* 888-checkmark-toolbar.png */; };
+		E4C9FB94194B8C620015BB01 /* 888-checkmark-toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C9FB92194B8C620015BB01 /* 888-checkmark-toolbar@2x.png */; };
+		E4C9FB97194B8D350015BB01 /* 384-dollar-currency.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C9FB95194B8D350015BB01 /* 384-dollar-currency.png */; };
+		E4C9FB98194B8D350015BB01 /* 384-dollar-currency@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C9FB96194B8D350015BB01 /* 384-dollar-currency@2x.png */; };
+		E4C9FB9B194B8DCD0015BB01 /* 888-checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C9FB99194B8DCD0015BB01 /* 888-checkmark.png */; };
+		E4C9FB9C194B8DCD0015BB01 /* 888-checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C9FB9A194B8DCD0015BB01 /* 888-checkmark@2x.png */; };
 		E4D231E419212A6A00E5797B /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D231E319212A6A00E5797B /* Session.m */; };
 		E4D231E6192133FB00E5797B /* Document Checklist.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E5192133FB00E5797B /* Document Checklist.png */; };
 		E4D231E8192134C400E5797B /* Note Sticky.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E7192134C400E5797B /* Note Sticky.png */; };
@@ -429,6 +439,16 @@
 		E4C6CCD9193B6CC800F1997C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		E4C6CCDB193B6CCE00F1997C /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		E4C6CCDC193B6CCE00F1997C /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		E4C9FB89194B8B3C0015BB01 /* 973-user-toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "973-user-toolbar.png"; sourceTree = "<group>"; };
+		E4C9FB8A194B8B3C0015BB01 /* 973-user-toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "973-user-toolbar@2x.png"; sourceTree = "<group>"; };
+		E4C9FB8D194B8B9C0015BB01 /* 745-unlocked-toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "745-unlocked-toolbar.png"; sourceTree = "<group>"; };
+		E4C9FB8E194B8B9C0015BB01 /* 745-unlocked-toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "745-unlocked-toolbar@2x.png"; sourceTree = "<group>"; };
+		E4C9FB91194B8C620015BB01 /* 888-checkmark-toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "888-checkmark-toolbar.png"; sourceTree = "<group>"; };
+		E4C9FB92194B8C620015BB01 /* 888-checkmark-toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "888-checkmark-toolbar@2x.png"; sourceTree = "<group>"; };
+		E4C9FB95194B8D350015BB01 /* 384-dollar-currency.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "384-dollar-currency.png"; sourceTree = "<group>"; };
+		E4C9FB96194B8D350015BB01 /* 384-dollar-currency@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "384-dollar-currency@2x.png"; sourceTree = "<group>"; };
+		E4C9FB99194B8DCD0015BB01 /* 888-checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "888-checkmark.png"; sourceTree = "<group>"; };
+		E4C9FB9A194B8DCD0015BB01 /* 888-checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "888-checkmark@2x.png"; sourceTree = "<group>"; };
 		E4D231E219212A6A00E5797B /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		E4D231E319212A6A00E5797B /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
 		E4D231E5192133FB00E5797B /* Document Checklist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Document Checklist.png"; sourceTree = "<group>"; };
@@ -615,6 +635,10 @@
 		E4005D1419369D91006C6ABB /* Glyphish */ = {
 			isa = PBXGroup;
 			children = (
+				E4C9FB99194B8DCD0015BB01 /* 888-checkmark.png */,
+				E4C9FB9A194B8DCD0015BB01 /* 888-checkmark@2x.png */,
+				E4C9FB89194B8B3C0015BB01 /* 973-user-toolbar.png */,
+				E4C9FB8A194B8B3C0015BB01 /* 973-user-toolbar@2x.png */,
 				E4546964194B86CC0098DE69 /* 1012-sticky-note.png */,
 				E4546965194B86CC0098DE69 /* 1012-sticky-note@2x.png */,
 				E4546960194B85D90098DE69 /* 841-music-playlist.png */,
@@ -838,6 +862,12 @@
 		E433C038193B85C4003543AE /* retina */ = {
 			isa = PBXGroup;
 			children = (
+				E4C9FB95194B8D350015BB01 /* 384-dollar-currency.png */,
+				E4C9FB96194B8D350015BB01 /* 384-dollar-currency@2x.png */,
+				E4C9FB91194B8C620015BB01 /* 888-checkmark-toolbar.png */,
+				E4C9FB92194B8C620015BB01 /* 888-checkmark-toolbar@2x.png */,
+				E4C9FB8D194B8B9C0015BB01 /* 745-unlocked-toolbar.png */,
+				E4C9FB8E194B8B9C0015BB01 /* 745-unlocked-toolbar@2x.png */,
 				E4546952194A79D90098DE69 /* 742-wrench@2x.png */,
 				E4546950194A79CB0098DE69 /* 728-clock@2x.png */,
 				E454692D194A14F80098DE69 /* 765-arrow-left-toolbar-selected.png */,
@@ -1093,6 +1123,7 @@
 			files = (
 				E4546963194B85D90098DE69 /* 841-music-playlist@2x.png in Resources */,
 				E4AF261419356720006366D9 /* User-Time80(2).png in Resources */,
+				E4C9FB8B194B8B3C0015BB01 /* 973-user-toolbar.png in Resources */,
 				E4AAC5F7192A2E35008E0BD7 /* SplashScreenLogin.png in Resources */,
 				79A8685E191B93EC00AA4058 /* DSLCalendar-nextMonth@2x.png in Resources */,
 				E4546951194A79CB0098DE69 /* 728-clock@2x.png in Resources */,
@@ -1109,12 +1140,14 @@
 				E4546962194B85D90098DE69 /* 841-music-playlist.png in Resources */,
 				E40DF294190017E100E1332A /* Main_iPad.storyboard in Resources */,
 				E4F676FC19356CA900208991 /* clock_80.png in Resources */,
+				E4C9FB9C194B8DCD0015BB01 /* 888-checkmark@2x.png in Resources */,
 				E4546928194A13E40098DE69 /* 765-arrow-left-toolbar-selected@2x.png in Resources */,
 				792B23C41920D04C00CAE285 /* Button Record.png in Resources */,
 				E41B75CF193DFD0500255354 /* 742-wrench-selected@2x.png in Resources */,
 				E454695D194B5F9E0098DE69 /* 769-male-selected.png in Resources */,
 				E454692A194A13F80098DE69 /* 766-arrow-right-toolbar-selected@2x.png in Resources */,
 				792B23C11920D04C00CAE285 /* Button Pause.png in Resources */,
+				E4C9FB93194B8C620015BB01 /* 888-checkmark-toolbar.png in Resources */,
 				E4005D1319369B53006C6ABB /* menu-32.png in Resources */,
 				E4D231EC1921368000E5797B /* login_portrait.jpg in Resources */,
 				E4546955194AEAB50098DE69 /* 742-wrench.png in Resources */,
@@ -1138,6 +1171,7 @@
 				E433C040193B8735003543AE /* 1012-sticky-note-toolbar-selected@2x.png in Resources */,
 				792B23B81920CAE200CAE285 /* glyphicons_175_stop.png in Resources */,
 				E454694E194A6FB60098DE69 /* 2.png in Resources */,
+				E4C9FB98194B8D350015BB01 /* 384-dollar-currency@2x.png in Resources */,
 				E4F676FE19356CB100208991 /* people_80.png in Resources */,
 				E4AAC5F11929FF03008E0BD7 /* glyphicons_054_clock.png in Resources */,
 				792B23D71921098500CAE285 /* Button White Remove.png in Resources */,
@@ -1157,9 +1191,11 @@
 				E4ADAB58191CC94F00C1AC5A /* glyphicons_043_group.png in Resources */,
 				E427362F193E074600F98749 /* 746-plus-circle@2x.png in Resources */,
 				E433C045193B8AC3003543AE /* 809-clipboard-selected@2x.png in Resources */,
+				E4C9FB8C194B8B3C0015BB01 /* 973-user-toolbar@2x.png in Resources */,
 				79A86865191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png in Resources */,
 				E4AF260919353B3C006366D9 /* Properties_80x80_A.png in Resources */,
 				792B23D31921076A00CAE285 /* Button White Add.png in Resources */,
+				E4C9FB9B194B8DCD0015BB01 /* 888-checkmark.png in Resources */,
 				E4546953194A79D90098DE69 /* 742-wrench@2x.png in Resources */,
 				E433C049193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png in Resources */,
 				79A86868191B93EC00AA4058 /* DSLCalendarDaySelection-right@2x.png in Resources */,
@@ -1175,6 +1211,7 @@
 				E421C97A1935199000FA039A /* menu-background.png in Resources */,
 				E40DF299190017E100E1332A /* Images.xcassets in Resources */,
 				E4D231EA1921367900E5797B /* login_landscape.jpg in Resources */,
+				E4C9FB94194B8C620015BB01 /* 888-checkmark-toolbar@2x.png in Resources */,
 				79A86866191B93EC00AA4058 /* DSLCalendarDaySelection-middle@2x.png in Resources */,
 				E4BE4D751943567200972576 /* loginPlist.plist in Resources */,
 				79A8685D191B93EC00AA4058 /* DSLCalendar-nextMonth.png in Resources */,
@@ -1189,12 +1226,15 @@
 				E454695F194B65DB0098DE69 /* 769-male-selected@2x.png in Resources */,
 				E4AF261A193568D4006366D9 /* logout_80.png in Resources */,
 				E40DF291190017E100E1332A /* Main_iPhone.storyboard in Resources */,
+				E4C9FB90194B8B9C0015BB01 /* 745-unlocked-toolbar@2x.png in Resources */,
 				E4D231E8192134C400E5797B /* Note Sticky.png in Resources */,
 				E4AB8869191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png in Resources */,
 				E40DF288190017E100E1332A /* InfoPlist.strings in Resources */,
 				E4546957194AEAD60098DE69 /* 728-clock-selected.png in Resources */,
+				E4C9FB97194B8D350015BB01 /* 384-dollar-currency.png in Resources */,
 				79A86862191B93EC00AA4058 /* DSLCalendarDayCallout@2x.png in Resources */,
 				E454694D194A6FB60098DE69 /* 1.png in Resources */,
+				E4C9FB8F194B8B9C0015BB01 /* 745-unlocked-toolbar.png in Resources */,
 				E4AB8863191AC725001A70D9 /* audio_icon_large.png in Resources */,
 				E433C03A193B85CD003543AE /* 1099-list-1-toolbar@2x.png in Resources */,
 			);
