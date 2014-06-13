@@ -152,8 +152,8 @@ NSArray *daysOfWeekArray;
     [_cellBorderColours setObject:@"#66cc33" forKey:@"now"];
         
 
-#warning not working
-    //[self.navigationController.tabBarItem setSelectedImage:[[UIImage imageNamed:@"728-clock-selected@2x.png"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
+
+    [self.navigationController.tabBarItem setSelectedImage:[[UIImage imageNamed:@"728-clock-selected.png"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -456,13 +456,13 @@ NSArray *daysOfWeekArray;
         cell.accessoryView = imageView;
     }
     
-    UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 1, 3.0f, cell.viewForBaselineLayout.frame.size.height - 2)];
+    UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 1, 2.0f, cell.viewForBaselineLayout.frame.size.height - 2)];
     NSString *s = [_cellBorderColours objectForKey:[Tools nowIsBetweenDate1:lessonDate andDuration:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]]];
     [lineView setBackgroundColor:[Tools colorFromHexString:s]];
     [[cell contentView] addSubview:lineView];
     
     UIView *bgColorView = [[UIView alloc] init];
-    lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 1, 3.0f, cell.viewForBaselineLayout.frame.size.height - 2)];
+    lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 1, 2.0f, cell.viewForBaselineLayout.frame.size.height - 2)];
     [lineView setBackgroundColor:[Tools colorFromHexString:@"#FFA500"]];
     [bgColorView addSubview:lineView];
     bgColorView.backgroundColor = [Tools colorFromHexString:@"#FFF2DB"];
@@ -494,30 +494,25 @@ NSArray *daysOfWeekArray;
 -(void)saveAllSwitches
 {
     _c = 0;
-    NSLog(@"%@", _attendenceStrings);
     for (NSString *str in _attendenceStrings){
         _NSURLType = 1;
         NSLog(@"from save all switches %d", _c);
         NSURL *url = [NSURL URLWithString: str];
-        //NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        //[NSURLConnection connectionWithRequest:request delegate:self];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        _c++;
-        
-        if([_attendenceStrings count] > 0){
-            if(_c == [_attendenceStrings count]){
-                [NSURLConnection connectionWithRequest:request delegate:self];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+            _c++;
+            
+            
+            if((int)_c == (int)[_attendenceStrings count]){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self jsonRequestGetAgenda];
+                });
+                
             }
-            else{
-                [NSURLConnection connectionWithRequest:request delegate:nil];
-            }
-        }
-        
-        
-        
+        }];
     }
-    //[self jsonRequestGetAgenda];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

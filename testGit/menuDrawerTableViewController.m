@@ -36,6 +36,8 @@ extern Session *session;
 {
     [super viewDidLoad];
     
+    [self.navigationController.tabBarItem setSelectedImage:[[UIImage imageNamed:@"742-wrench-selected.png"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

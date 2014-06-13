@@ -12,6 +12,7 @@
 @interface loginViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
+
 @end
 
 @implementation loginViewController
@@ -98,7 +99,10 @@ extern Session *session;
 }
 
 -(void)loginCheck
-{self.statusLbl.hidden = YES;
+{
+    //self.statusLbl.hidden = YES;
+    //self.usernameTextField.hidden = YES;
+    //self.passwordTextField.hidden = YES;
     
     if(self.usernameTextField.text.length > 0 && self.passwordTextField.text.length > 0){
         [self jsonRequestGetData];
@@ -121,6 +125,8 @@ extern Session *session;
 {
     [Tools showLoader];
     self.loginBtn.hidden = YES;
+    self.usernameTextField.hidden = YES;
+    self.passwordTextField.hidden = YES;
     
     _clientArray = [[NSArray alloc] init];
     
@@ -159,6 +165,8 @@ extern Session *session;
         UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection error" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [errorView show];
         self.loginBtn.hidden = NO;
+        self.usernameTextField.hidden = NO;
+        self.passwordTextField.hidden = NO;
         //self.statusLbl.hidden = NO;
         //NSLog(@"Connection error!");
     }
@@ -182,6 +190,8 @@ extern Session *session;
             UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Incorrect username or password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [errorView show];
             self.loginBtn.hidden = NO;
+            self.usernameTextField.hidden = NO;
+            self.passwordTextField.hidden = NO;
         }
     }
 }
@@ -192,6 +202,8 @@ extern Session *session;
     [errorView show];
     [Tools hideLoader];
     self.loginBtn.hidden = NO;
+    self.usernameTextField.hidden = NO;
+    self.passwordTextField.hidden = NO;
 }
 
 -(void) loginSuccess{

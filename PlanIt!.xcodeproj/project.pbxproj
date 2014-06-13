@@ -128,6 +128,9 @@
 		E454694F194A6FB60098DE69 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = E454694B194A6FB60098DE69 /* 3.png */; };
 		E4546951194A79CB0098DE69 /* 728-clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546950194A79CB0098DE69 /* 728-clock@2x.png */; };
 		E4546953194A79D90098DE69 /* 742-wrench@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546952194A79D90098DE69 /* 742-wrench@2x.png */; };
+		E4546955194AEAB50098DE69 /* 742-wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546954194AEAB50098DE69 /* 742-wrench.png */; };
+		E4546957194AEAD60098DE69 /* 728-clock-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546956194AEAD60098DE69 /* 728-clock-selected.png */; };
+		E4546959194AEC3A0098DE69 /* 742-wrench-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = E4546958194AEC3A0098DE69 /* 742-wrench-selected.png */; };
 		E47352801900279E008006EE /* indexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E473527F1900279E008006EE /* indexViewController.m */; };
 		E4A36089191F87C900F5221B /* AudioNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A36088191F87C900F5221B /* AudioNote.m */; };
 		E4A3608C191F87E900F5221B /* TextNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3608B191F87E900F5221B /* TextNote.m */; };
@@ -351,6 +354,9 @@
 		E454694B194A6FB60098DE69 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		E4546950194A79CB0098DE69 /* 728-clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "728-clock@2x.png"; sourceTree = "<group>"; };
 		E4546952194A79D90098DE69 /* 742-wrench@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "742-wrench@2x.png"; sourceTree = "<group>"; };
+		E4546954194AEAB50098DE69 /* 742-wrench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "742-wrench.png"; sourceTree = "<group>"; };
+		E4546956194AEAD60098DE69 /* 728-clock-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "728-clock-selected.png"; sourceTree = "<group>"; };
+		E4546958194AEC3A0098DE69 /* 742-wrench-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "742-wrench-selected.png"; sourceTree = "<group>"; };
 		E473527E1900279E008006EE /* indexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indexViewController.h; sourceTree = "<group>"; };
 		E473527F1900279E008006EE /* indexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = indexViewController.m; sourceTree = "<group>"; };
 		E4A36087191F87C900F5221B /* AudioNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioNote.h; sourceTree = "<group>"; };
@@ -595,6 +601,9 @@
 		E4005D1419369D91006C6ABB /* Glyphish */ = {
 			isa = PBXGroup;
 			children = (
+				E4546958194AEC3A0098DE69 /* 742-wrench-selected.png */,
+				E4546956194AEAD60098DE69 /* 728-clock-selected.png */,
+				E4546954194AEAB50098DE69 /* 742-wrench.png */,
 				E44A17BB1941C8F000606179 /* 602-exit.png */,
 				E4273633193E7A9100F98749 /* 744-locked-toolbar@2x.png */,
 				E433C038193B85C4003543AE /* retina */,
@@ -1083,6 +1092,7 @@
 				792B23C11920D04C00CAE285 /* Button Pause.png in Resources */,
 				E4005D1319369B53006C6ABB /* menu-32.png in Resources */,
 				E4D231EC1921368000E5797B /* login_portrait.jpg in Resources */,
+				E4546955194AEAB50098DE69 /* 742-wrench.png in Resources */,
 				E454692C194A14EC0098DE69 /* 766-arrow-right-toolbar-selected.png in Resources */,
 				79A86860191B93EC00AA4058 /* DSLCalendar-previousMonth@2x.png in Resources */,
 				E4273634193E7A9100F98749 /* 744-locked-toolbar@2x.png in Resources */,
@@ -1127,6 +1137,7 @@
 				E4546953194A79D90098DE69 /* 742-wrench@2x.png in Resources */,
 				E433C049193B8DAD003543AE /* 744-locked-toolbar-selected@2x.png in Resources */,
 				79A86868191B93EC00AA4058 /* DSLCalendarDaySelection-right@2x.png in Resources */,
+				E4546959194AEC3A0098DE69 /* 742-wrench-selected.png in Resources */,
 				E401DAD019195D4100A05318 /* glyphicons_136_cogwheel.png in Resources */,
 				792B23BA1920CAE200CAE285 /* glyphicons_169_record.png in Resources */,
 				E401DAD319195D8600A05318 /* glyphicons_239_albums.png in Resources */,
@@ -1153,6 +1164,7 @@
 				E4D231E8192134C400E5797B /* Note Sticky.png in Resources */,
 				E4AB8869191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png in Resources */,
 				E40DF288190017E100E1332A /* InfoPlist.strings in Resources */,
+				E4546957194AEAD60098DE69 /* 728-clock-selected.png in Resources */,
 				79A86862191B93EC00AA4058 /* DSLCalendarDayCallout@2x.png in Resources */,
 				E454694D194A6FB60098DE69 /* 1.png in Resources */,
 				E4AB8863191AC725001A70D9 /* audio_icon_large.png in Resources */,
