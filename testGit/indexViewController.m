@@ -178,24 +178,24 @@ extern Session *session;
     
     //STUDENT IMG
     CGRect tempStudentImgFrame = _studentImg.frame;
-    _studentImg.frame = CGRectMake(_studentImg.frame.origin.x-150, _studentImg.frame.origin.y, _studentImg.frame.size.width, _studentImg.frame.size.width);
+    _studentImg.frame = CGRectMake(_studentImg.frame.origin.x-50, _studentImg.frame.origin.y, _studentImg.frame.size.width, _studentImg.frame.size.width);
     _studentImg.alpha = 0;
     
     // _attendenceControl
     CGRect tempAttendanceControlFrame = _attendenceControl.frame;
-    _attendenceControl.frame = CGRectMake(_attendenceControl.frame.origin.x-150, _attendenceControl.frame.origin.y, _attendenceControl.frame.size.width, _studentImg.frame.size.width);
+    _attendenceControl.frame = CGRectMake(_attendenceControl.frame.origin.x-50, _attendenceControl.frame.origin.y, _attendenceControl.frame.size.width, _studentImg.frame.size.width);
     _attendenceControl.alpha = 0;
     
     // TABLE
     CGRect tempTableFrame = _mainTableView.frame;
-    _mainTableView.frame = CGRectMake(_mainTableView.frame.origin.x-150, _mainTableView.frame.origin.y, _mainTableView.frame.size.width, _mainTableView.frame.size.width);
+    _mainTableView.frame = CGRectMake(_mainTableView.frame.origin.x-50, _mainTableView.frame.origin.y, _mainTableView.frame.size.width, _mainTableView.frame.size.width);
     _mainTableView.alpha = 0;
     
     _lessonTimeView.alpha = 0;
     
     [UIView animateWithDuration:0.3
                           delay:0.00
-                        options:UIViewAnimationOptionCurveEaseOut
+                        options:UIViewAnimationOptionCurveEaseIn
      
                      animations:^{
                          _studentImg.frame = tempStudentImgFrame;
@@ -208,7 +208,7 @@ extern Session *session;
     
     [UIView animateWithDuration:0.25
                           delay:0.05
-                        options:UIViewAnimationOptionCurveEaseOut
+                        options:UIViewAnimationOptionCurveEaseIn
      
                      animations:^{
                          _attendenceControl.frame = tempAttendanceControlFrame;
@@ -220,7 +220,7 @@ extern Session *session;
     
     [UIView animateWithDuration:0.2
                           delay:0.1
-                        options:UIViewAnimationOptionCurveEaseOut
+                        options:UIViewAnimationOptionCurveEaseIn
      
                      animations:^{
                          _mainTableView.frame = tempTableFrame;
@@ -258,6 +258,7 @@ extern Session *session;
 
 -(void)centers
 {
+    //self.lessonTimeView.frame = CGRectMake(self.lessonTimeView.frame.origin.x, self.lessonTimeView.frame.origin.y, self.view.frame.size.width, _lessonTimeView.frame.size.height);
     [self.mainTableView setCenter: CGPointMake(self.view.center.x, self.mainTableView.center.y)];
     [self.studentImg setCenter: CGPointMake(self.view.center.x, self.studentImg.center.y)];
     [self.attendenceControl setCenter: CGPointMake(self.view.center.x, self.attendenceControl.center.y)];
