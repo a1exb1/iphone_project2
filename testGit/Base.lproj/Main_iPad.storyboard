@@ -231,25 +231,25 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <viewControllerLayoutGuide type="bottom" id="GVL-Om-Q7G"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fuJ-JW-hNh">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zd4-5V-7fs">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <label key="tableFooterView" hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C70-q9-xpm">
-                                    <rect key="frame" x="0.0" y="173" width="1024" height="44"/>
+                                    <rect key="frame" x="0.0" y="173" width="768" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="a" id="SWm-NY-NjF">
-                                        <rect key="frame" x="0.0" y="119" width="1024" height="44"/>
+                                        <rect key="frame" x="0.0" y="119" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SWm-NY-NjF" id="JX5-V4-qqn">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -257,7 +257,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="Gx3-qZ-56L"/>
                     <size key="freeformSize" width="320" height="568"/>
@@ -1313,22 +1312,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Lesson" id="mc6-nf-mTa">
-                        <barButtonItem key="rightBarButtonItem" image="1012-sticky-note-toolbar-selected.png" id="Yh4-Il-ngf">
-                            <connections>
-                                <action selector="Notes:" destination="Vx5-kb-hSn" id="Dhf-1I-6f5"/>
-                                <segue destination="LLi-qW-sqM" kind="popover" identifier="popoverNotes" popoverAnchorBarButtonItem="Yh4-Il-ngf" id="ZLA-fQ-Fv2">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Lesson" id="mc6-nf-mTa"/>
                     <connections>
                         <outlet property="attendenceControl" destination="VFI-tt-Vbc" id="Hj8-NX-JAv"/>
                         <outlet property="lessonTimeLbl" destination="Knh-7o-t1o" id="t8l-Vd-efz"/>
                         <outlet property="lessonTimeView" destination="TWz-wP-rbo" id="oe4-4A-YqP"/>
                         <outlet property="mainTableView" destination="I7F-P0-75y" id="7hM-HG-Vw0"/>
-                        <outlet property="notesBtn" destination="Yh4-Il-ngf" id="Vzo-88-GrB"/>
                         <outlet property="statusLbl" destination="sLd-5R-wnU" id="fxS-zv-nKC"/>
                         <outlet property="studentImg" destination="PCU-dS-yt8" id="QZg-2k-Pwo"/>
                     </connections>
@@ -1652,7 +1641,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="1012-sticky-note-toolbar-selected.png" width="20" height="20"/>
         <image name="728-clock.png" width="28" height="28"/>
         <image name="742-wrench.png" width="28" height="28"/>
         <image name="744-locked-toolbar-selected.png" width="17" height="22"/>

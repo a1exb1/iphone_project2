@@ -176,19 +176,41 @@ extern Session *session;
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
     
+    //_studentImg.center = self.view.center;
+    //_attendenceControl.center = self.view.center;
+    //_mainTableView.center = self.view.center;
+    
     //STUDENT IMG
+    
     CGRect tempStudentImgFrame = _studentImg.frame;
-    _studentImg.frame = CGRectMake(_studentImg.frame.origin.x-50, _studentImg.frame.origin.y, _studentImg.frame.size.width, _studentImg.frame.size.width);
+    if([Tools isOrientationLandscape]){
+        _studentImg.frame = CGRectMake(_studentImg.frame.origin.x-40, _studentImg.frame.origin.y, _studentImg.frame.size.width, _studentImg.frame.size.width);
+    }
+    else{
+        _studentImg.frame = CGRectMake(_studentImg.frame.origin.x-150, _studentImg.frame.origin.y, _studentImg.frame.size.width, _studentImg.frame.size.width);
+    }
     _studentImg.alpha = 0;
     
     // _attendenceControl
     CGRect tempAttendanceControlFrame = _attendenceControl.frame;
-    _attendenceControl.frame = CGRectMake(_attendenceControl.frame.origin.x-50, _attendenceControl.frame.origin.y, _attendenceControl.frame.size.width, _studentImg.frame.size.width);
+    if([Tools isOrientationLandscape]){
+        _attendenceControl.frame = CGRectMake(_attendenceControl.frame.origin.x-40, _attendenceControl.frame.origin.y, _attendenceControl.frame.size.width, _studentImg.frame.size.width);
+    }
+    else{
+        _attendenceControl.frame = CGRectMake(_attendenceControl.frame.origin.x-150, _attendenceControl.frame.origin.y, _attendenceControl.frame.size.width, _studentImg.frame.size.width);
+    }
+    
     _attendenceControl.alpha = 0;
     
     // TABLE
     CGRect tempTableFrame = _mainTableView.frame;
-    _mainTableView.frame = CGRectMake(_mainTableView.frame.origin.x-50, _mainTableView.frame.origin.y, _mainTableView.frame.size.width, _mainTableView.frame.size.width);
+    if([Tools isOrientationLandscape]){
+        _mainTableView.frame = CGRectMake(_mainTableView.frame.origin.x-40, _mainTableView.frame.origin.y, _mainTableView.frame.size.width, _mainTableView.frame.size.width);
+    }
+    else{
+        _mainTableView.frame = CGRectMake(_mainTableView.frame.origin.x-150, _mainTableView.frame.origin.y, _mainTableView.frame.size.width, _mainTableView.frame.size.width);
+    }
+    
     _mainTableView.alpha = 0;
     
     _lessonTimeView.alpha = 0;
