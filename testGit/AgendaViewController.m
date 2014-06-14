@@ -154,6 +154,7 @@ NSArray *daysOfWeekArray;
 
 
     [self.navigationController.tabBarItem setSelectedImage:[[UIImage imageNamed:@"728-clock-selected.png"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
+    
 }
 
 - (void)viewDidLayoutSubviews {
@@ -174,6 +175,15 @@ NSArray *daysOfWeekArray;
     
     //NVDate *agendaDate = [[NVDate alloc] initUsingDate:_dayDate];
     
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self fillPicker];
+}
+
+-(void)fillPicker
+{
     NVDate *firstDateOfMonth = [[NVDate alloc] initUsingDate:_dayDate];
     [firstDateOfMonth firstDayOfMonth];
     NVDate *lastDateOfMonth = [[NVDate alloc] initUsingDate:_dayDate];
@@ -183,9 +193,6 @@ NSArray *daysOfWeekArray;
     //[NSDate dateFromDay:28 month:9 year:2013]
     [self.dayPicker setCurrentDate:_dayDate animated:NO];
     //[self.dayPicker setCurrentDate:[NSDate dateFromDay:3 month:10 year:2013] animated:NO];
-    
-    _tutor = [[Tutor alloc] init];
-    [_tutor setTutorID:3];
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -208,18 +215,18 @@ NSArray *daysOfWeekArray;
     [comps setWeekday:2]; // 2: monday
     NSDate *firstDayOfTheWeek = [calendar dateFromComponents:comps];
     
-    if ( [Tools isIpad]  )
-    {
-        //NSDate *today = [NSDate date]; //Get a date object for today's date
-        NSCalendar *c = [NSCalendar currentCalendar];
-        NSRange days = [c rangeOfUnit:NSDayCalendarUnit
-                               inUnit:NSMonthCalendarUnit
-                              forDate:_dayDate];
-        [self.datePicker fillDatesFromDate:firstDateOfMonth.date numberOfDays:days.length];
-    }
-    else{
-        [self.datePicker fillDatesFromDate:firstDayOfTheWeek numberOfDays:7];
-    }
+    //    if ( [Tools isIpad]  )
+    //    {
+    //        //NSDate *today = [NSDate date]; //Get a date object for today's date
+    //        NSCalendar *c = [NSCalendar currentCalendar];
+    //        NSRange days = [c rangeOfUnit:NSDayCalendarUnit
+    //                               inUnit:NSMonthCalendarUnit
+    //                              forDate:_dayDate];
+    //        [self.datePicker fillDatesFromDate:firstDateOfMonth.date numberOfDays:days.length];
+    //    }
+    //else{
+    [self.datePicker fillDatesFromDate:firstDayOfTheWeek numberOfDays:7];
+    //}
     
     
     
@@ -228,19 +235,19 @@ NSArray *daysOfWeekArray;
     //NSLog(@"we're here curreent weekday = %ld", (long)[currentDayOfWeek weekday]);
     //[self.datepicker fillCurrentYear];
     
-    if ( [Tools isIpad]  )
-    {
-        NVDate *dayDate = [[NVDate alloc] initUsingDate:_dayDate];
-        [self.datePicker selectDateAtIndex:(dayDate.day -1)];
+    //    if ( [Tools isIpad]  )
+    //    {
+    //        NVDate *dayDate = [[NVDate alloc] initUsingDate:_dayDate];
+    //        [self.datePicker selectDateAtIndex:(dayDate.day -1)];
+    //    }
+    //    else{
+    if((long)[currentDayOfWeek weekday] == 1){
+        [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] +5)];
     }
     else{
-        if((long)[currentDayOfWeek weekday] == 1){
-            [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] +5)];
-        }
-        else{
-            [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] -2)];
-        }
+        [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] -2)];
     }
+    //}
     
     [Tools showLightLoaderWithView:self.navigationController.view];
 }
@@ -750,9 +757,14 @@ NSArray *daysOfWeekArray;
 
 -(void)sendDateToAgendaWithDate:(NSDate *) Date{
     [session setHasSetAgendaToDetail: NO];
+    //_dayDate = [[NSDate alloc] init];
     _dayDate = Date;
-    [self finishedAttendance];
-    [self jsonRequestGetAgenda];
+    
+    //[self setDayDate:_dayDate];
+    
+    [self fillPicker];
+
+    
 }
 
 +(NSDate *)getFirstDayOfTheWeekFromDate:(NSDate *)givenDate

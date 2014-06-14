@@ -45,4 +45,6 @@
 @property NSString *lessonStatus;
 @property NSString *lessonTime;
 
+@property UILabel *lessonTimeCellView;
+
 @end

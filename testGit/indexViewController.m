@@ -615,9 +615,17 @@ extern Session *session;
     }
     
     if(indexPath.row == 3){
-        //NotesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allNotesView"];
-        //[view setLesson:_lesson];
+        UINavigationController *navigationController = [[UINavigationController alloc] init];
+        
+        NotesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allNotesView"];
+        [view setLesson:_lesson];
         //[self.navigationController pushViewController:view animated:YES];
+        
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+        navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        navigationController.viewControllers = [[NSArray alloc] initWithObjects:view, nil];
+        [self presentViewController:navigationController animated:YES completion:nil];
         
     }
     if(indexPath.row == 4){
