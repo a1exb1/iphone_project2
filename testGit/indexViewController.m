@@ -29,6 +29,7 @@
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (weak, nonatomic) IBOutlet UIImageView *studentImg;
+@property (weak, nonatomic) IBOutlet UIView *lessonTimeView;
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 @end
@@ -165,7 +166,7 @@ extern Session *session;
     
     //timer
     //[self updateLabels];
-    //_timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTick:) userInfo:nil repeats:YES];
+    _timer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTick:) userInfo:nil repeats:YES];
     
     [_attendenceControl addTarget:self
                            action:@selector(changeAttendence:)
@@ -175,6 +176,67 @@ extern Session *session;
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
     
+    //STUDENT IMG
+    CGRect tempStudentImgFrame = _studentImg.frame;
+    _studentImg.frame = CGRectMake(_studentImg.frame.origin.x-150, _studentImg.frame.origin.y, _studentImg.frame.size.width, _studentImg.frame.size.width);
+    _studentImg.alpha = 0;
+    
+    // _attendenceControl
+    CGRect tempAttendanceControlFrame = _attendenceControl.frame;
+    _attendenceControl.frame = CGRectMake(_attendenceControl.frame.origin.x-150, _attendenceControl.frame.origin.y, _attendenceControl.frame.size.width, _studentImg.frame.size.width);
+    _attendenceControl.alpha = 0;
+    
+    // TABLE
+    CGRect tempTableFrame = _mainTableView.frame;
+    _mainTableView.frame = CGRectMake(_mainTableView.frame.origin.x-150, _mainTableView.frame.origin.y, _mainTableView.frame.size.width, _mainTableView.frame.size.width);
+    _mainTableView.alpha = 0;
+    
+    _lessonTimeView.alpha = 0;
+    
+    [UIView animateWithDuration:0.3
+                          delay:0.00
+                        options:UIViewAnimationOptionCurveEaseOut
+     
+                     animations:^{
+                         _studentImg.frame = tempStudentImgFrame;
+                         _studentImg.alpha = 1;
+                         _lessonTimeView.alpha = 1;
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+    
+    [UIView animateWithDuration:0.25
+                          delay:0.05
+                        options:UIViewAnimationOptionCurveEaseOut
+     
+                     animations:^{
+                         _attendenceControl.frame = tempAttendanceControlFrame;
+                         _attendenceControl.alpha = 1;
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+    
+    [UIView animateWithDuration:0.2
+                          delay:0.1
+                        options:UIViewAnimationOptionCurveEaseOut
+     
+                     animations:^{
+                         _mainTableView.frame = tempTableFrame;
+                         _mainTableView.alpha = 1;
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+    
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:0.3];
+//    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+//    
+//    _studentImg.frame = tempStudentImgFrame;
+//    _studentImg.alpha = 1;
+//    [UIView commitAnimations];
     
 }
 
@@ -346,7 +408,9 @@ extern Session *session;
     [self updateLabels];
 }
 
--(void)updateLabels{    
+-(void)updateLabels{
+    _lessonTimeView.hidden = YES;
+    
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[_lesson dateTime]];
     NSInteger lessonDateHour = [components hour];
@@ -380,7 +444,9 @@ extern Session *session;
             ) {
             NSTimeInterval secondsBetween = [lessonEnd timeIntervalSinceDate:nowDate.date];
             dayDesc = [NSString stringWithFormat:@"Now (%@ left)", [Tools convertSecondsToTimeStringWithSecondsWithAlternativeStyle:secondsBetween]];
-            _lessonStatus = dayDesc;
+            _lessonStatus = @"Now";
+            _lessonTimeView.hidden = NO;
+            _lessonTimeLbl.text = dayDesc;
         }
         
         else if ([nowDate.date timeIntervalSinceReferenceDate] > [lessonDate.date timeIntervalSinceReferenceDate]) {
