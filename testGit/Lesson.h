@@ -10,6 +10,7 @@
 #import "Student.h"
 #import "Course.h"
 #import "Tutor.h"
+#import "jsonReader.h"
 
 @interface Lesson : NSObject
 
@@ -28,5 +29,7 @@
 @property int status;
 
 @property NSArray *Notes;
+
+-(void)loadNotes;
 
 @end

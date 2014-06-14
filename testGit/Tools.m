@@ -369,13 +369,13 @@ NSMutableArray *loaderViews;
 {
     NSString *r;
     
-    int startTime;
-    int endTime;
+    //int startTime;
+    //int endTime;
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:date1];
-    NSInteger lessonDateHour = [components hour];
-    NSInteger lessonDateMinute = [components minute];
+   // NSInteger lessonDateHour = [components hour];
+    //NSInteger lessonDateMinute = [components minute];
    
     
     NVDate *lessonDate = [[NVDate alloc] initUsingDate:date1];
@@ -420,5 +420,7 @@ NSMutableArray *loaderViews;
     
         return r;
 }
+
+
 
 @end

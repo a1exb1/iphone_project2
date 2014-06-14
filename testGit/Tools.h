@@ -56,4 +56,6 @@
 
 + (NSDate *)beginningOfDay:(NSDate *)date;
 
+
+
 @end

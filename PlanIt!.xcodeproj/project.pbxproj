@@ -162,6 +162,7 @@
 		E4AF26161935672A006366D9 /* Calendar-Date-03-80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF26151935672A006366D9 /* Calendar-Date-03-80.png */; };
 		E4AF261A193568D4006366D9 /* logout_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF2619193568D4006366D9 /* logout_80.png */; };
 		E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */; };
+		E4BBD488194CEDFF00D67B79 /* jsonReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD487194CEDFF00D67B79 /* jsonReader.m */; };
 		E4BE4D751943567200972576 /* loginPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4BE4D741943567200972576 /* loginPlist.plist */; };
 		E4C1C969191459F70068A10D /* editTutorsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C1C968191459F70068A10D /* editTutorsListViewController.m */; };
 		E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C1C96A1914F75B0068A10D /* glyphicons_030_pencil.png */; };
@@ -413,6 +414,8 @@
 		E4AF2619193568D4006366D9 /* logout_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout_80.png; sourceTree = "<group>"; };
 		E4B1DF7C190BCB3C0069DB6A /* StudentCourseLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentCourseLink.h; sourceTree = "<group>"; };
 		E4B1DF7D190BCB3C0069DB6A /* StudentCourseLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentCourseLink.m; sourceTree = "<group>"; };
+		E4BBD486194CEDFF00D67B79 /* jsonReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsonReader.h; sourceTree = "<group>"; };
+		E4BBD487194CEDFF00D67B79 /* jsonReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jsonReader.m; sourceTree = "<group>"; };
 		E4BE4D741943567200972576 /* loginPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = loginPlist.plist; sourceTree = "<group>"; };
 		E4C1C967191459F70068A10D /* editTutorsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editTutorsListViewController.h; sourceTree = "<group>"; };
 		E4C1C968191459F70068A10D /* editTutorsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editTutorsListViewController.m; sourceTree = "<group>"; };
@@ -1001,6 +1004,8 @@
 				E4C1C97A1916700F0068A10D /* Tools.m */,
 				E4C1C9761915A4450068A10D /* NavigationBarTitleWithSubtitleView.h */,
 				E4C1C9771915A4450068A10D /* NavigationBarTitleWithSubtitleView.m */,
+				E4BBD486194CEDFF00D67B79 /* jsonReader.h */,
+				E4BBD487194CEDFF00D67B79 /* jsonReader.m */,
 			);
 			name = tools;
 			sourceTree = "<group>";
@@ -1303,6 +1308,7 @@
 				79A86858191B93EC00AA4058 /* DSLCalendarMonthSelectorView.m in Sources */,
 				E441CEFB19115BF900088FEE /* viewAllStudentsViewController.m in Sources */,
 				792B23D11921057A00CAE285 /* ManageTableViewController.m in Sources */,
+				E4BBD488194CEDFF00D67B79 /* jsonReader.m in Sources */,
 				E401DADB191ABA3000A05318 /* Lesson.m in Sources */,
 				E441CEF819101C7D00088FEE /* editLessonSlotViewController.m in Sources */,
 				E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */,

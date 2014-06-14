@@ -28,4 +28,26 @@
     
 }
 
+-(void)loadNotes
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=notesbystudent&id=%li&lessonid=%li&ts=%f", [[self student] studentID], [self LessonID], [[NSDate date] timeIntervalSince1970]];
+    
+    NSArray *arr = [jsonReader jsonRequestWithUrl:urlString];
+    NSMutableArray *thisLessonNotes = [[NSMutableArray alloc] init];
+    NSMutableArray *otherLessonNotes = [[NSMutableArray alloc] init];
+    
+    
+    for (int c=0; c < [arr count]; c++) {
+        if ([[[arr objectAtIndex:c] objectForKey:@"LessonID"] isEqualToString:[NSString stringWithFormat:@"%li", [self LessonID]]]) {
+            [thisLessonNotes addObject:[arr objectAtIndex:c]];
+        }
+        else{
+            [otherLessonNotes addObject:[arr objectAtIndex:c]];
+        }
+    }
+
+    self.Notes = [[NSArray alloc] initWithObjects:thisLessonNotes, otherLessonNotes, nil];
+    
+}
+
 @end

@@ -31,45 +31,64 @@ NSMutableArray *audioNotes;
     }
     return self;
 }
-
--(void)jsonRequestGetData
-{
-    _thisLessonNotes = [[NSMutableArray alloc] init];
-    _otherLessonNotes =[[NSMutableArray alloc] init];
-    _allNotes = [[NSArray alloc] init];
-    
-    _notes = [[NSMutableArray alloc]init];
-    [_notes addObject:_thisLessonNotes];
-    [_notes addObject:_otherLessonNotes];
-    [_lesson setNotes:_notes];
-
-    NSIndexPath *indexPath = _mainTableView.indexPathForSelectedRow;
-    [_mainTableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    _data = [[NSMutableData alloc]init];
-    //[_mainTableView reloadData];
-    
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=notesbystudent&id=%li&lessonid=%li&ts=%f", [[_lesson student] studentID], [_lesson LessonID], [[NSDate date] timeIntervalSince1970]];
-
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
-}
+//
+//-(void)jsonRequestGetData
+//{
+//    _thisLessonNotes = [[NSMutableArray alloc] init];
+//    _otherLessonNotes =[[NSMutableArray alloc] init];
+//    _allNotes = [[NSArray alloc] init];
+//    
+//    _notes = [[NSMutableArray alloc]init];
+//    [_notes addObject:_thisLessonNotes];
+//    [_notes addObject:_otherLessonNotes];
+//    [_lesson setNotes:_notes];
+//
+//    NSIndexPath *indexPath = _mainTableView.indexPathForSelectedRow;
+//    [_mainTableView deselectRowAtIndexPath:indexPath animated:YES];
+//    
+//    _data = [[NSMutableData alloc]init];
+//    //[_mainTableView reloadData];
+//    
+//    [_lesson loadNotes];
+//    
+//}
 
 -(void)viewWillAppear:(BOOL)animated
 {
     //CGSize size = CGSizeMake(320, 568); // size of view in popover
     //self.preferredContentSize = size;
     
-    [Tools showLoaderWithView:self.view];
-    _mainTableView.delegate = self;
-    _mainTableView.dataSource = self;
+    
     [self jsonRequestGetData];
     
-   
+    //
+    _statusLbl.center = self.view.center;
     
     [super viewWillAppear:animated];
     
+}
+
+-(void)jsonRequestGetData
+{
+    _mainTableView.delegate = self;
+    _mainTableView.dataSource = self;
+    
+    [Tools showLoaderWithView:self.view];
+    [_lesson loadNotes];
+    [self.mainTableView reloadData];
+
+    if ([[[_lesson Notes] objectAtIndex:0] count] == 0 &&
+        [[[_lesson Notes] objectAtIndex:1] count] == 0) {
+        _statusLbl.hidden = NO;
+        _statusLbl.text = @"No notes";
+        [_mainTableView setBackgroundColor:[UIColor whiteColor]];
+    }
+    else{
+        [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+        _statusLbl.hidden = YES;
+    }
+    
+    [Tools hideLoaderFromView:self.view];
 }
 
 - (void)viewDidLoad
@@ -90,7 +109,7 @@ NSMutableArray *audioNotes;
     if(![Tools isIpad])
     {
         [_mainTableView addPullToRefreshWithActionHandler:^{
-            [self jsonRequestGetData];
+            [_lesson loadNotes];
         }];
     }
     else{
@@ -204,12 +223,14 @@ NSMutableArray *audioNotes;
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionName;
-    if(section == 0){
+
+    if(section == 0 && [[[_lesson Notes] objectAtIndex:0] count] != 0){
         sectionName = @"Notes for this lesson";
     }
-    else{
+    else if([[[_lesson Notes] objectAtIndex:1] count] != 0){
         sectionName = @"All notes";
     }
+    
     return sectionName;
 }
 
@@ -243,63 +264,63 @@ NSMutableArray *audioNotes;
     }
 }
 
--(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
-{
-    _data = [[NSMutableData alloc]init];
-}
-
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
-{
-    [_data appendData:theData];
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    [_mainTableView.pullToRefreshView stopAnimating];
-    [Tools hideLoaderFromView:self.view];
-    
-    _thisLessonNotes = [[NSMutableArray alloc] init];
-    _otherLessonNotes =[[NSMutableArray alloc] init];
-    
-    _allNotes = [[NSArray alloc] init];
-    _allNotes = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
-    
-    for (int c=0; c < [_allNotes count]; c++) {
-        if ([[[_allNotes objectAtIndex:c] objectForKey:@"LessonID"] isEqualToString:[NSString stringWithFormat:@"%li", [_lesson LessonID]]]) {
-            [_thisLessonNotes addObject:[_allNotes objectAtIndex:c]];
-        }
-        else{
-            [_otherLessonNotes addObject:[_allNotes objectAtIndex:c]];
-        }
-    }
-    
-    _notes = [[NSMutableArray alloc]init];
-    [_notes addObject:_thisLessonNotes];
-    [_notes addObject:_otherLessonNotes];
-    [_lesson setNotes:_notes];
-    
-    NSLog(@"%@", _notes);
-    
-    [self.mainTableView reloadData];
-    
-    if ([_allNotes count] == 0) {
-        _statusLbl.hidden = NO;
-        _statusLbl.text = @"No notes";
-        [_mainTableView setBackgroundColor:[UIColor whiteColor]];
-    }
-    else{
-        [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-        _statusLbl.hidden = YES;
-    }
-}
-
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    [errorView show];
-    [Tools hideLoaderFromView:self.view];
-    [_mainTableView.pullToRefreshView stopAnimating];
-}
+//-(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
+//{
+//    _data = [[NSMutableData alloc]init];
+//}
+//
+//-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
+//{
+//    [_data appendData:theData];
+//}
+//
+//-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+//{
+//    [_mainTableView.pullToRefreshView stopAnimating];
+//    [Tools hideLoaderFromView:self.view];
+//    
+//    _thisLessonNotes = [[NSMutableArray alloc] init];
+//    _otherLessonNotes =[[NSMutableArray alloc] init];
+//    
+//    _allNotes = [[NSArray alloc] init];
+//    _allNotes = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+//    
+//    for (int c=0; c < [_allNotes count]; c++) {
+//        if ([[[_allNotes objectAtIndex:c] objectForKey:@"LessonID"] isEqualToString:[NSString stringWithFormat:@"%li", [_lesson LessonID]]]) {
+//            [_thisLessonNotes addObject:[_allNotes objectAtIndex:c]];
+//        }
+//        else{
+//            [_otherLessonNotes addObject:[_allNotes objectAtIndex:c]];
+//        }
+//    }
+//    
+//    _notes = [[NSMutableArray alloc]init];
+//    [_notes addObject:_thisLessonNotes];
+//    [_notes addObject:_otherLessonNotes];
+//    [_lesson setNotes:_notes];
+//    
+//    NSLog(@"%@", _notes);
+//    
+//    [self.mainTableView reloadData];
+//    
+//    if ([_allNotes count] == 0) {
+//        _statusLbl.hidden = NO;
+//        _statusLbl.text = @"No notes";
+//        [_mainTableView setBackgroundColor:[UIColor whiteColor]];
+//    }
+//    else{
+//        [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+//        _statusLbl.hidden = YES;
+//    }
+//}
+//
+//-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+//{
+//    UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//    [errorView show];
+//    [Tools hideLoaderFromView:self.view];
+//    [_mainTableView.pullToRefreshView stopAnimating];
+//}
 
 
 
