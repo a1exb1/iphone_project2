@@ -127,6 +127,8 @@ NSArray *daysOfWeekArray;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self.datePicker addTarget:self action:@selector(updateSelectedDate) forControlEvents:UIControlEventValueChanged];
+    
     [_mainTableView addPullToRefreshWithActionHandler:^{
         if(!_editing){
             [self jsonRequestGetAgenda];
@@ -200,7 +202,7 @@ NSArray *daysOfWeekArray;
     
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:[Tools colorFromHexString:@"#4473b4"] theme:@"light"];
     
-    [self.datePicker addTarget:self action:@selector(updateSelectedDate) forControlEvents:UIControlEventValueChanged];
+    
     
     //    [self.datepicker fillDatesFromCurrentDate:14];
     //[self.datePicker fillCurrentWeek];
@@ -241,6 +243,9 @@ NSArray *daysOfWeekArray;
     //        [self.datePicker selectDateAtIndex:(dayDate.day -1)];
     //    }
     //    else{
+
+    NSLog(@"day date %@", _dayDate);
+    
     if((long)[currentDayOfWeek weekday] == 1){
         [self.datePicker selectDateAtIndex:([currentDayOfWeek weekday] +5)];
     }
@@ -265,6 +270,7 @@ NSArray *daysOfWeekArray;
     [self finishedAttendanceBtn];
     
     if(_counter > 0){
+#warning this next line messes up date when coming back - this fires after the delgate function
         _dayDate = self.datePicker.selectedDate;
         [Tools showLightLoaderWithView:self.navigationController.view];
         [self jsonRequestGetAgenda];
@@ -587,8 +593,10 @@ NSArray *daysOfWeekArray;
             if(![Tools isIpad]){
                 [_mainTableView setBackgroundColor:[UIColor whiteColor]];
             }
+            else{
+                [self selectEmptyLesson];
+            }
             
-            [self selectEmptyLesson];
         }
         else{
             [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -759,6 +767,11 @@ NSArray *daysOfWeekArray;
     [session setHasSetAgendaToDetail: NO];
     //_dayDate = [[NSDate alloc] init];
     _dayDate = Date;
+    
+    
+    NSLog(@"%@", _dayDate);
+
+    
     
     //[self setDayDate:_dayDate];
     

@@ -30,7 +30,7 @@
 
 -(void)loadNotes
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=notesbystudent&id=%li&lessonid=%li&ts=%f", [[self student] studentID], [self LessonID], [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=notesbystudent&id=%li&lessonid=%li", [[self student] studentID], [self LessonID]];
     
     NSArray *arr = [jsonReader jsonRequestWithUrl:urlString];
     NSMutableArray *thisLessonNotes = [[NSMutableArray alloc] init];
