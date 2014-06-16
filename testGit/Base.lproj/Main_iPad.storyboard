@@ -1237,7 +1237,18 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="January" id="wmv-up-bQh"/>
+                    <navigationItem key="navigationItem" title="January" id="wmv-up-bQh">
+                        <barButtonItem key="leftBarButtonItem" image="765-arrow-left-toolbar-selected.png" id="tGa-xW-S67">
+                            <connections>
+                                <action selector="previousMonth:" destination="0ie-kG-zjt" id="2cx-HE-GEt"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="766-arrow-right-toolbar-selected.png" id="1yR-VV-lhp">
+                            <connections>
+                                <action selector="nextMonth:" destination="0ie-kG-zjt" id="1bY-CF-XeV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CY-IG-FT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1692,6 +1703,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="744-locked-toolbar-selected.png" width="17" height="22"/>
         <image name="744-locked-toolbar.png" width="17" height="22"/>
         <image name="744-locked-toolbar@2x.png" width="17" height="22"/>
+        <image name="765-arrow-left-toolbar-selected.png" width="10" height="20"/>
+        <image name="766-arrow-right-toolbar-selected.png" width="10" height="20"/>
         <image name="809-clipboard-selected.png" width="20" height="28"/>
         <image name="851-calendar-toolbar-selected.png" width="22" height="22"/>
         <image name="905-chat-2-selected.png" width="28" height="26"/>

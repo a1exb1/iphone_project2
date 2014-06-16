@@ -28,35 +28,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-    
-    
-
-    
-     //self.title. = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height + 40);
-    
+    [self.navigationController setToolbarHidden:NO];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self drawSquares];
+    [self drawSquaresWithDirection:0 andOldContainer:nil];
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    [self drawSquares];
+    [self drawSquaresWithDirection:0 andOldContainer:nil];
 }
 
--(void)drawSquares
+-(void)drawSquaresWithDirection:(int)direction andOldContainer: (UIView *)oldContainer
 {
-    self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height + 40);
+    self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, 84);
     
     CGFloat verticalOffset = -22;
     [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
     
+    [self.navigationItem.rightBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
+    [self.navigationItem.leftBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
+        
     float left = 0;
     float top = 0;
-    float height = 100;
+    float height = 107;
     
     CGRect containerFrame = CGRectMake(0, 83, self.view.frame.size.width, (height * 6));
     UIView *container = [[UIView alloc] initWithFrame:containerFrame];
@@ -72,13 +69,17 @@
     }
     
     //container views
-    for(UIView *view in self.view.subviews){
-        if([view.accessibilityValue isEqualToString:@"container"]){
-            [view removeFromSuperview];
+    if(direction == 0){
+        for(UIView *view in self.view.subviews){
+            if([view.accessibilityValue isEqualToString:@"container"]){
+                [view removeFromSuperview];
+            }
         }
     }
+    
 
     [self.view addSubview:container];
+    _currentCalenderView = container;
     
     NSString *addTitle = @"";
     
@@ -125,21 +126,63 @@
         //Label
         if(![addTitle isEqualToString:@""])
         {
-            UITextField *textfieldTxt = [[UITextField alloc]initWithFrame:CGRectMake(x, 35, width, 70)];
-            textfieldTxt.text = addTitle;
-            textfieldTxt.textAlignment = NSTextAlignmentCenter;
-            textfieldTxt.font = [UIFont fontWithName:nil size:13];
-            textfieldTxt.textColor = [Tools colorFromHexString:@"#9b9b9b"];
-            textfieldTxt.accessibilityValue = @"dayTitle";
-            [self.navigationController.navigationBar addSubview:textfieldTxt];
-            
-            
-            
+            UILabel *dayLabel = [[UILabel alloc]initWithFrame:CGRectMake(x, 37, width, 70)];
+            dayLabel.text = addTitle;
+            dayLabel.textAlignment = NSTextAlignmentCenter;
+            dayLabel.font = [UIFont fontWithName:nil size:13];
+            dayLabel.textColor = [Tools colorFromHexString:@"#9b9b9b"];
+            dayLabel.accessibilityValue = @"dayTitle";
+            [self.navigationController.navigationBar addSubview:dayLabel];
         }
         
         left++;
         addTitle = @"";
+
     }
+    
+    if(direction == 1){
+        CGRect tempContainerFrame = container.frame;
+        container.frame = CGRectMake((container.frame.origin.x - self.view.frame.size.width), container.frame.origin.y, container.frame.size.width, container.frame.size.height);
+        
+        [UIView animateWithDuration:0.6
+                              delay:0.00
+                            options:UIViewAnimationOptionCurveEaseIn
+         
+                         animations:^{
+                             container.frame = tempContainerFrame;
+                             oldContainer.frame = CGRectMake((container.frame.origin.x + self.view.frame.size.width), container.frame.origin.y, container.frame.size.width, container.frame.size.height);
+                         }
+                         completion:^(BOOL finished){
+                             [oldContainer removeFromSuperview];
+                         }];
+    }
+    
+    else if(direction == 2){
+        CGRect tempContainerFrame = container.frame;
+        container.frame = CGRectMake((container.frame.origin.x + self.view.frame.size.width), container.frame.origin.y, container.frame.size.width, container.frame.size.height);
+        
+        [UIView animateWithDuration:0.6
+                              delay:0.00
+                            options:UIViewAnimationOptionCurveEaseIn
+         
+                         animations:^{
+                             container.frame = tempContainerFrame;
+                             oldContainer.frame = CGRectMake((container.frame.origin.x - self.view.frame.size.width), container.frame.origin.y, container.frame.size.width, container.frame.size.height);
+                         }
+                         completion:^(BOOL finished){
+                             [oldContainer removeFromSuperview];
+                         }];
+    }
+}
+
+-(void)previousMonth:(id)sender
+{
+    [self drawSquaresWithDirection:1 andOldContainer:_currentCalenderView];
+}
+
+-(void)nextMonth:(id)sender
+{
+    [self drawSquaresWithDirection:2 andOldContainer:_currentCalenderView];
 }
 
 - (void)didReceiveMemoryWarning

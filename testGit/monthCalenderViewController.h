@@ -11,4 +11,9 @@
 
 @interface monthCalenderViewController : UIViewController
 
+-(IBAction)previousMonth:(id)sender;
+-(IBAction)nextMonth:(id)sender;
+
+@property UIView *currentCalenderView;
+
 @end
