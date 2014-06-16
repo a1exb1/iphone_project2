@@ -421,6 +421,17 @@ NSMutableArray *loaderViews;
         return r;
 }
 
-
++(NSArray *)daysOfWeekArray
+{
+    return [[NSArray alloc] initWithObjects:
+                       @"Monday",
+                       @"Tuesday",
+                       @"Wednesday",
+                       @"Thursday",
+                       @"Friday",
+                       @"Saturday",
+                       @"Sunday",
+                       nil];
+}
 
 @end

@@ -53,7 +53,7 @@ extern Session *session;
     [session setShouldHideMasterInLandscape:NO];
     
     if ([[session client]clientID] == 0) {
-        UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"loginView"];
+        UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"monthCalView"]; //loginView
         
         [self presentViewController:view animated:NO completion:nil];
     }

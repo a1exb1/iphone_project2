@@ -104,7 +104,7 @@ NSTimer *timer;
         [self loadUrl];
     }
     
-    
+    [self setModalSize];
 }
 
 -(void)done

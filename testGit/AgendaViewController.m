@@ -127,7 +127,7 @@ NSArray *daysOfWeekArray;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.datePicker addTarget:self action:@selector(updateSelectedDate) forControlEvents:UIControlEventValueChanged];
+    [self.datePicker addTarget:self action:@selector(updateSelectedDate:) forControlEvents:UIControlEventValueChanged];
     
     [_mainTableView addPullToRefreshWithActionHandler:^{
         if(!_editing){
@@ -257,7 +257,7 @@ NSArray *daysOfWeekArray;
     [Tools showLightLoaderWithView:self.navigationController.view];
 }
 
-- (void)updateSelectedDate
+- (void)updateSelectedDate:(DIDatepicker*) picker;
 {
     [session setHasSetAgendaToDetail: NO];
     _indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -268,6 +268,8 @@ NSArray *daysOfWeekArray;
     //NSLog(@"%@", [formatter stringFromDate:self.datePicker.selectedDate]);
     
     [self finishedAttendanceBtn];
+    
+    NSLog(@"%lu", picker.tag);
     
     if(_counter > 0){
 #warning this next line messes up date when coming back - this fires after the delgate function

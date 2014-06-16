@@ -56,6 +56,6 @@
 
 + (NSDate *)beginningOfDay:(NSDate *)date;
 
-
++(NSArray *)daysOfWeekArray;
 
 @end

@@ -1215,6 +1215,34 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1023" y="-3753"/>
         </scene>
+        <!--Month Calender View Controller - January-->
+        <scene sceneID="QJ4-NP-x5T">
+            <objects>
+                <viewController id="0ie-kG-zjt" customClass="monthCalenderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jGO-Tc-cRd"/>
+                        <viewControllerLayoutGuide type="bottom" id="yAQ-TZ-dmi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mrk-6W-94x">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpr-Xu-fm1">
+                                <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Item" id="ENF-JQ-lRf"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="January" id="wmv-up-bQh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6CY-IG-FT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1978" y="1637"/>
+        </scene>
         <!--People Table View Controller - People-->
         <scene sceneID="jMt-4w-NxN">
             <objects>
@@ -1638,6 +1666,24 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DdX-0J-NQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3605" y="-7858"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Anp-pg-45I">
+            <objects>
+                <navigationController storyboardIdentifier="monthCalView" automaticallyAdjustsScrollViewInsets="NO" id="HyF-EK-G0B" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2rG-1X-MBq">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0ie-kG-zjt" kind="relationship" relationship="rootViewController" id="yev-M7-5P3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fgx-s8-udG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="612" y="1645"/>
         </scene>
     </scenes>
     <resources>

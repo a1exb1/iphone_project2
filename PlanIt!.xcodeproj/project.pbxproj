@@ -155,6 +155,7 @@
 		E4AB8871191D4199001A70D9 /* MZDay.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB886C191D4199001A70D9 /* MZDay.m */; };
 		E4AB8872191D4199001A70D9 /* MZDayPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB886E191D4199001A70D9 /* MZDayPicker.m */; };
 		E4AB8873191D4199001A70D9 /* MZDayPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB8870191D4199001A70D9 /* MZDayPickerCell.m */; };
+		E4AC12C1194F54930092ED31 /* monthCalenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AC12C0194F54930092ED31 /* monthCalenderViewController.m */; };
 		E4ADAB58191CC94F00C1AC5A /* glyphicons_043_group.png in Resources */ = {isa = PBXBuildFile; fileRef = E4ADAB57191CC94F00C1AC5A /* glyphicons_043_group.png */; };
 		E4AF260719353AA6006366D9 /* Calendar_80x80_A.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF260619353AA6006366D9 /* Calendar_80x80_A.png */; };
 		E4AF260919353B3C006366D9 /* Properties_80x80_A.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF260819353B3C006366D9 /* Properties_80x80_A.png */; };
@@ -406,6 +407,8 @@
 		E4AB886E191D4199001A70D9 /* MZDayPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDayPicker.m; sourceTree = "<group>"; };
 		E4AB886F191D4199001A70D9 /* MZDayPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDayPickerCell.h; sourceTree = "<group>"; };
 		E4AB8870191D4199001A70D9 /* MZDayPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDayPickerCell.m; sourceTree = "<group>"; };
+		E4AC12BF194F54930092ED31 /* monthCalenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = monthCalenderViewController.h; sourceTree = "<group>"; };
+		E4AC12C0194F54930092ED31 /* monthCalenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = monthCalenderViewController.m; sourceTree = "<group>"; };
 		E4ADAB57191CC94F00C1AC5A /* glyphicons_043_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_043_group.png; sourceTree = "<group>"; };
 		E4AF260619353AA6006366D9 /* Calendar_80x80_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Calendar_80x80_A.png; sourceTree = "<group>"; };
 		E4AF260819353B3C006366D9 /* Properties_80x80_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Properties_80x80_A.png; sourceTree = "<group>"; };
@@ -820,6 +823,8 @@
 				E421C97219350D6500FA039A /* menu */,
 				E4F676FF1935F9D900208991 /* calenderViewController.h */,
 				E4F677001935F9D900208991 /* calenderViewController.m */,
+				E4AC12BF194F54930092ED31 /* monthCalenderViewController.h */,
+				E4AC12C0194F54930092ED31 /* monthCalenderViewController.m */,
 			);
 			name = ipad_only;
 			sourceTree = "<group>";
@@ -1319,6 +1324,7 @@
 				E4AB8871191D4199001A70D9 /* MZDay.m in Sources */,
 				79A8685C191B93EC00AA4058 /* DSLCalendarView.m in Sources */,
 				E4C1C969191459F70068A10D /* editTutorsListViewController.m in Sources */,
+				E4AC12C1194F54930092ED31 /* monthCalenderViewController.m in Sources */,
 				E430DCB5190A582B00DEFD7C /* coursesViewController.m in Sources */,
 				E4494DD7190D851E00585CB8 /* Tutor.m in Sources */,
 				79481D64192364EC00674ACF /* AddLessonsViewController.m in Sources */,
