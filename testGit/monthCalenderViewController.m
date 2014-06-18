@@ -39,10 +39,13 @@
     _todayDate = [[NSDate alloc]init];
     
     UIBarButtonItem *todayBtn = [[UIBarButtonItem alloc] initWithTitle:@"Today" style:UIBarButtonItemStyleBordered target:self action:@selector(selectToday)];
+
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] ;
+
     
-     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
+    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
     
-    self.toolbarItems = [[NSArray alloc] initWithObjects:todayBtn, cancelBtn, nil];
+    self.toolbarItems = [[NSArray alloc] initWithObjects:cancelBtn, flex, todayBtn, nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
