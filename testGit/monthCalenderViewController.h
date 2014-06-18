@@ -19,6 +19,8 @@
 @property UIView *currentCalenderView;
 
 @property NSDate *dayDate;
+@property NSDate *todayDate;
 @property NVDate *firstDateOfCalender;
+@property NVDate *calDate;
 
 @end

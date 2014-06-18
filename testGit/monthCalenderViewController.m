@@ -33,10 +33,9 @@
     if(_dayDate == NULL){
         _dayDate = [[NSDate alloc]init];
     }
-    
-    
-    
 
+    _calDate = [[NVDate alloc] initUsingDate:_dayDate];
+    _todayDate = [[NSDate alloc]init];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -111,8 +110,12 @@
     
     NVDate *cellDate = _firstDateOfCalender;
     
-    NVDate *todayDate = [[NVDate alloc] initUsingDate:_dayDate];
-    self.title = [Tools monthName:(int)todayDate.month];
+    NVDate *todayDate = [[NVDate alloc] initUsingDate:_todayDate];
+    NVDate *dayDate = [[NVDate alloc] initUsingDate:_dayDate];
+    
+    self.title = [Tools monthName:(int)dayDate.month];
+    
+    
     
     for (int i = 0; i<42; i++) {
         if (left == 7 || left == 14 || left == 21 || left == 28 || left == 35 || left == 42)
@@ -151,11 +154,19 @@
         if (cellDate.month != [[NVDate alloc] initUsingDate:_dayDate].month){
             dayNumber.textColor = [Tools colorFromHexString:@"#cccccc"];
         }
+      
+        NSLog(@"%@", todayDate.date);
         
-        NSLog(@"ce   %@", _dayDate);
-        NSLog(@"cell %@", cellDate.date);
+        if(cellDate.day   == todayDate.day &&
+           cellDate.month == todayDate.month &&
+           cellDate.year  == todayDate.year){
+            dayNumber.backgroundColor = [UIColor blueColor];
+            dayNumber.textColor = [UIColor whiteColor];
+        }
         
-        if(cellDate.date == _dayDate){
+        if(cellDate.day   == dayDate.day &&
+           cellDate.month == dayDate.month &&
+           cellDate.year  == dayDate.year){
             dayNumber.backgroundColor = [UIColor redColor];
             dayNumber.textColor = [UIColor whiteColor];
         }
