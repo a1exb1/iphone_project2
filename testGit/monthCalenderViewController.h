@@ -11,6 +11,12 @@
 #import "NVDate.h"
 #import "monthCalenderCell.h"
 
+@protocol monthCalenderDelegate <NSObject>
+
+-(void)sendDateToAgendaWithDate:(NSDate *) Date;
+
+@end
+
 @interface monthCalenderViewController : UIViewController
 
 -(IBAction)previousMonth:(id)sender;
@@ -22,5 +28,9 @@
 @property NSDate *todayDate;
 @property NVDate *firstDateOfCalender;
 @property NVDate *calDate;
+
+
+
+@property (weak, nonatomic) id<SelectDateDelegate> monthCalenderDelegate;
 
 @end

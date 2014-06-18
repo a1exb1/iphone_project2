@@ -359,6 +359,8 @@ NSArray *daysOfWeekArray;
     
     controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
+    monthCalenderViewController *view = (monthCalenderViewController*)controller.topViewController;
+    view.monthCalenderDelegate = self;
     [self presentViewController:controller animated:YES completion:nil];
     
 }

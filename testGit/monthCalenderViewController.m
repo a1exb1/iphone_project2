@@ -57,13 +57,26 @@
 
 -(void)drawSquaresWithDirection:(int)direction andOldContainer: (UIView *)oldContainer
 {
-    NVDate *firstDateOfMonth = [[NVDate alloc] initUsingDate:_dayDate];
+    NVDate *firstDateOfMonth = [[NVDate alloc] initUsingDate:_calDate.date];
     [firstDateOfMonth firstDayOfMonth];
-    NVDate *lastDateOfMonth = [[NVDate alloc] initUsingDate:_dayDate];
+    NVDate *lastDateOfMonth = [[NVDate alloc] initUsingDate:_calDate.date];
     [lastDateOfMonth lastDayOfMonth];
     
     NVDate *firstDateOfWeek = firstDateOfMonth;
-    int goBack = 6 -[Tools currentDayOfWeekFromDate:firstDateOfMonth.date];
+    
+    NSLog(@"first date of month %d", [Tools currentDayOfWeekFromDate:firstDateOfMonth.date]);
+    
+    int goBack;
+    if([Tools currentDayOfWeekFromDate:firstDateOfMonth.date] == 0){
+        goBack = 6;
+    }
+    else if([Tools currentDayOfWeekFromDate:firstDateOfMonth.date] == 1){
+        goBack = 7;
+    }
+    else{
+        goBack = [Tools currentDayOfWeekFromDate:firstDateOfMonth.date] - 1;
+    }
+
     NSLog(@"go back: %d", goBack);
     [firstDateOfWeek nextDays:-goBack];
     _firstDateOfCalender = firstDateOfWeek;
@@ -109,13 +122,10 @@
     NSString *addTitle = @"";
     
     NVDate *cellDate = _firstDateOfCalender;
-    
     NVDate *todayDate = [[NVDate alloc] initUsingDate:_todayDate];
     NVDate *dayDate = [[NVDate alloc] initUsingDate:_dayDate];
     
-    self.title = [Tools monthName:(int)dayDate.month];
-    
-    
+    self.title = [NSString stringWithFormat:@"%@, %ld", [Tools monthName:(int)_calDate.month], (long)_calDate.year];
     
     for (int i = 0; i<42; i++) {
         if (left == 7 || left == 14 || left == 21 || left == 28 || left == 35 || left == 42)
@@ -151,11 +161,9 @@
         dayNumber.textAlignment = NSTextAlignmentCenter;
         dayNumber.textColor = [Tools colorFromHexString:@"#676767"];
         
-        if (cellDate.month != [[NVDate alloc] initUsingDate:_dayDate].month){
+        if (cellDate.month != _calDate.month){
             dayNumber.textColor = [Tools colorFromHexString:@"#cccccc"];
         }
-      
-        NSLog(@"%@", todayDate.date);
         
         if(cellDate.day   == todayDate.day &&
            cellDate.month == todayDate.month &&
@@ -235,6 +243,7 @@
 {
     monthCalenderCell *cell = (monthCalenderCell *)sender.superview;
     NSLog(@"%@", cell.date);
+    [self.monthCalenderDelegate sendDateToAgendaWithDate:cell.date];
     [self dismissViewControllerAnimated:YES completion:^{
         //
     }];
@@ -242,17 +251,17 @@
 
 -(void)previousMonth:(id)sender
 {
-    NVDate *tempDate = [[NVDate alloc] initUsingDate:_dayDate];
-    [tempDate nextMonths:-1];
-    _dayDate = tempDate.date;
+    
+    [_calDate nextMonths:-1];
+
     [self drawSquaresWithDirection:1 andOldContainer:_currentCalenderView];
 }
 
 -(void)nextMonth:(id)sender
 {
-    NVDate *tempDate = [[NVDate alloc] initUsingDate:_dayDate];
-    [tempDate nextMonths:1];
-    _dayDate = tempDate.date;
+
+    [_calDate nextMonths:1];
+
     [self drawSquaresWithDirection:2 andOldContainer:_currentCalenderView];
 }
 
