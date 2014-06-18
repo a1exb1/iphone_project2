@@ -243,9 +243,9 @@
 {
     monthCalenderCell *cell = (monthCalenderCell *)sender.superview;
     NSLog(@"%@", cell.date);
-    [self.monthCalenderDelegate sendDateToAgendaWithDate:cell.date];
+    
     [self dismissViewControllerAnimated:YES completion:^{
-        //
+        [self.monthCalenderDelegate sendDateToAgendaWithDate:cell.date];
     }];
 }
 

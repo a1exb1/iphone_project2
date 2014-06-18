@@ -361,6 +361,7 @@ NSArray *daysOfWeekArray;
     
     monthCalenderViewController *view = (monthCalenderViewController*)controller.topViewController;
     view.monthCalenderDelegate = self;
+    view.dayDate = _dayDate;
     [self presentViewController:controller animated:YES completion:nil];
     
 }

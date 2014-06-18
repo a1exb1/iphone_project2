@@ -453,7 +453,7 @@ NSMutableArray *loaderViews;
     
     [UIView commitAnimations];
     
-    [UIView animateWithDuration:0.2f
+    [UIView animateWithDuration:0.0f
                           delay:0.00
                         options:UIViewAnimationOptionCurveEaseOut
      
