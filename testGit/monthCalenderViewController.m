@@ -43,7 +43,7 @@
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] ;
 
     
-    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
+    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
     
     self.toolbarItems = [[NSArray alloc] initWithObjects:cancelBtn, flex, todayBtn, nil];
 }
@@ -197,6 +197,15 @@
         dayNumber.font = [UIFont fontWithName:nil size:15];
         
         [square addSubview:dayNumber];
+        
+        //Number of lessons label
+        UILabel *lessonCountLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, square.frame.size.width, square.frame.size.height)];
+        lessonCountLbl.textAlignment = NSTextAlignmentCenter;
+        lessonCountLbl.font = [UIFont fontWithName:nil size:11];
+        lessonCountLbl.textColor = [Tools colorFromHexString:@"#cccccc"];
+        lessonCountLbl.text = @"5 lessons";
+        
+        [square addSubview:lessonCountLbl];
         [container addSubview:square];
         
         //Label
