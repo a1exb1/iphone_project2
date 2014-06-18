@@ -42,10 +42,20 @@
 
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] ;
 
+    NSArray *segmentedControlsItems = [NSArray arrayWithObjects: @"Week", @"Month", nil];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentedControlsItems];
+    segmentedControl.frame = CGRectMake(0, 0, 100, 30);
+    //segmentedControl.segmentedControlStyle = UISegmentedControlStylePlain;
+    [segmentedControl addTarget:self action:@selector(changeCalType) forControlEvents: UIControlEventValueChanged];
+    segmentedControl.selectedSegmentIndex = 1;
+    
+    UIBarButtonItem *segmentButton = [[UIBarButtonItem alloc] initWithCustomView: segmentedControl];
     
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
     
-    self.toolbarItems = [[NSArray alloc] initWithObjects:cancelBtn, flex, todayBtn, nil];
+    self.toolbarItems = [[NSArray alloc] initWithObjects:cancelBtn, flex, segmentButton, flex, todayBtn, nil];
+    
+    [Tools setNavigationHeaderColorWithNavigationController:self.navigationController andTabBar:nil andBackground:nil andTint:[UIColor redColor] theme:@"light"];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -162,10 +172,10 @@
         square.layer.borderWidth = 0.25f;
         square.accessibilityValue = @"square";
         
-        UIButton *selectSquareBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, square.frame.size.width, square.frame.size.width)];
+        UIButton *selectSquareBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, square.frame.size.width, square.frame.size.height)];
         [selectSquareBtn addTarget:self action:@selector(selectDay:) forControlEvents:UIControlEventTouchUpInside];
         
-        [selectSquareBtn setBackgroundImage:[Tools imageWithColor:[UIColor grayColor] size:CGSizeMake(100, 100)] forState:UIControlStateSelected];
+        [selectSquareBtn setBackgroundImage:[Tools imageWithColor:[UIColor grayColor] size:CGSizeMake(square.frame.size.width, square.frame.size.height)] forState:UIControlStateHighlighted];
         [square addSubview:selectSquareBtn];
         
         CGRect dayNumberFrame = CGRectMake(((square.frame.size.width /2) -20), 20, 36, 36);
@@ -342,6 +352,11 @@
                      completion:^(BOOL finished){
                          [self drawSquaresWithDirection:0 andOldContainer:nil];
                      }];
+}
+
+-(void)changeCalType
+{
+    
 }
 
 /*
