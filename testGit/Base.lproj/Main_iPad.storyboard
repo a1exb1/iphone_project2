@@ -1047,7 +1047,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0sx-XV-OZ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="426" y="-5066"/>
+            <point key="canvasLocation" x="426" y="-4674"/>
         </scene>
         <!--Tutors2 View Controller - Tutors-->
         <scene sceneID="rq9-B6-0M4">
@@ -1110,7 +1110,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="640-1L-uwK" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="-5066"/>
+            <point key="canvasLocation" x="-36" y="-4674"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Qna-53-id9">
@@ -1249,6 +1249,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="toolbar" destination="hpr-Xu-fm1" id="Tle-cC-0bV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CY-IG-FT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -9,6 +9,7 @@
 #import "monthCalenderViewController.h"
 
 @interface monthCalenderViewController ()
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end
 
@@ -36,11 +37,18 @@
 
     _calDate = [[NVDate alloc] initUsingDate:_dayDate];
     _todayDate = [[NSDate alloc]init];
+    
+    UIBarButtonItem *todayBtn = [[UIBarButtonItem alloc] initWithTitle:@"Today" style:UIBarButtonItemStyleBordered target:self action:@selector(selectToday)];
+    
+     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
+    
+    self.toolbarItems = [[NSArray alloc] initWithObjects:todayBtn, cancelBtn, nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [Tools setModalSizeOfView:self.navigationController.view];
+    [self setModalSizeOfView];
+    [self drawSquaresWithDirection:0 andOldContainer:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -50,8 +58,8 @@
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    [Tools setModalSizeOfView:self.navigationController.view];
-    [self drawSquaresWithDirection:0 andOldContainer:nil];
+    [self setModalSizeOfView];
+    
     
 }
 
@@ -81,9 +89,9 @@
     [firstDateOfWeek nextDays:-goBack];
     _firstDateOfCalender = firstDateOfWeek;
     
-    self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, 84);
+    self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width,75);
     
-    CGFloat verticalOffset = -22;
+    CGFloat verticalOffset = -27; //31 is same as default
     [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
     
     [self.navigationItem.rightBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
@@ -91,9 +99,9 @@
         
     float left = 0;
     float top = 0;
-    float height = 99;
+    float height = 100;
     
-    CGRect containerFrame = CGRectMake(0, 83, self.view.frame.size.width, (height * 6));
+    CGRect containerFrame = CGRectMake(0, 74, self.view.frame.size.width, (height * 6));
     UIView *container = [[UIView alloc] initWithFrame:containerFrame];
     container.layer.borderColor = [Tools colorFromHexString:@"#d8d8d8"].CGColor;
     container.layer.borderWidth = 1.0f;
@@ -153,6 +161,8 @@
         
         UIButton *selectSquareBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, square.frame.size.width, square.frame.size.width)];
         [selectSquareBtn addTarget:self action:@selector(selectDay:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [selectSquareBtn setBackgroundImage:[Tools imageWithColor:[UIColor grayColor] size:CGSizeMake(100, 100)] forState:UIControlStateSelected];
         [square addSubview:selectSquareBtn];
         
         CGRect dayNumberFrame = CGRectMake(((square.frame.size.width /2) -20), 20, 36, 36);
@@ -189,7 +199,7 @@
         //Label
         if(![addTitle isEqualToString:@""])
         {
-            UILabel *dayLabel = [[UILabel alloc]initWithFrame:CGRectMake(x, 37, width, 70)];
+            UILabel *dayLabel = [[UILabel alloc]initWithFrame:CGRectMake(x, 37, width, 45)];
             dayLabel.text = addTitle;
             dayLabel.textAlignment = NSTextAlignmentCenter;
             dayLabel.font = [UIFont fontWithName:nil size:13];
@@ -249,6 +259,18 @@
     }];
 }
 
+-(void)selectToday
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.monthCalenderDelegate sendDateToAgendaWithDate:_todayDate];
+    }];
+}
+
+-(void)cancel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void)previousMonth:(id)sender
 {
     
@@ -269,6 +291,45 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)setModalSizeOfView
+{
+    int longSide = 987;
+    int shortSide = 717;
+    
+    UIView *view = self.navigationController.view;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.2f];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        [view.superview setBounds:CGRectMake(0, 0, shortSide, longSide)];
+    }
+    else{
+        [view.superview setBounds:CGRectMake(0, 0, longSide, shortSide)];
+    }
+    
+    [UIView commitAnimations];
+    
+    [UIView animateWithDuration:0.2f
+                          delay:0.00
+                        options:UIViewAnimationOptionCurveEaseOut
+     
+                     animations:^{
+                         if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+                         {
+                             [view.superview setBounds:CGRectMake(0, 0, shortSide, longSide)];
+                         }
+                         else{
+                             [view.superview setBounds:CGRectMake(0, 0, longSide, shortSide)];
+                         }
+                     }
+                     completion:^(BOOL finished){
+                         [self drawSquaresWithDirection:0 andOldContainer:nil];
+                     }];
 }
 
 /*

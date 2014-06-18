@@ -52,4 +52,6 @@
 
 @property NSMutableDictionary *cellBorderColours;
 
+@property BOOL setPickerDate;
+
 @end

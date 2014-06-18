@@ -139,6 +139,8 @@ NSArray *daysOfWeekArray;
         
     }];
     
+    _setPickerDate = true;
+    
     _dayDate = [[NSDate alloc] init];
     _dayDate = [NSDate date];
     
@@ -269,11 +271,15 @@ NSArray *daysOfWeekArray;
     
     [self finishedAttendanceBtn];
     
-    NSLog(@"%lu", picker.tag);
+    NSLog(@"%@", _dayDate);
     
     if(_counter > 0){
-#warning this next line messes up date when coming back - this fires after the delgate function
-        _dayDate = self.datePicker.selectedDate;
+        if (_setPickerDate) {
+            _dayDate = self.datePicker.selectedDate;
+            
+        }
+        _setPickerDate = true;
+        
         [Tools showLightLoaderWithView:self.navigationController.view];
         [self jsonRequestGetAgenda];
         
@@ -791,6 +797,7 @@ NSArray *daysOfWeekArray;
     
     //[self setDayDate:_dayDate];
     
+    _setPickerDate = false;
     [self fillPicker];
 
     
