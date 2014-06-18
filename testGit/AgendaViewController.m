@@ -335,21 +335,32 @@ NSArray *daysOfWeekArray;
 
 -(IBAction)selectDate{
     
-    SelectDateViewController *view = [[SelectDateViewController alloc] initWithNibName:@"SelectDateViewController" bundle:nil];
-    //    window.rootViewController = viewController;
-    //    [window makeKeyAndVisible];
-    //    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
-    //    view.lesson = _lessonSender;
-    view.selectDateDelegate = self;
-    view.previousDate = _dayDate;
-    [UIView animateWithDuration:0.35
-                     animations:^{
-                         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-                         [self.navigationController pushViewController:view animated:NO];
-                         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
-                     }];
+//    SelectDateViewController *view = [[SelectDateViewController alloc] initWithNibName:@"SelectDateViewController" bundle:nil];
+//    //    window.rootViewController = viewController;
+//    //    [window makeKeyAndVisible];
+//    //    indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+//    //    view.lesson = _lessonSender;
+//    view.selectDateDelegate = self;
+//    view.previousDate = _dayDate;
+//    [UIView animateWithDuration:0.35
+//                     animations:^{
+//                         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//                         [self.navigationController pushViewController:view animated:NO];
+//                         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
+//                     }];
+//    
+//    //[self.navigationController pushViewController:view animated:YES];
     
-    //[self.navigationController pushViewController:view animated:YES];
+    
+    UINavigationController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"monthCalView"];
+    //calView.menuDrawerDelegate = (id)self;
+    controller.topViewController.accessibilityValue = @"calenderView";
+    controller.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    [self presentViewController:controller animated:YES completion:nil];
+    
 }
 
 

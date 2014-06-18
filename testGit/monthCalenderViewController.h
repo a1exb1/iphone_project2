@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Tools.h"
+#import "NVDate.h"
+#import "monthCalenderCell.h"
 
 @interface monthCalenderViewController : UIViewController
 
@@ -15,5 +17,8 @@
 -(IBAction)nextMonth:(id)sender;
 
 @property UIView *currentCalenderView;
+
+@property NSDate *dayDate;
+@property NVDate *firstDateOfCalender;
 
 @end

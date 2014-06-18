@@ -434,4 +434,62 @@ NSMutableArray *loaderViews;
                        nil];
 }
 
++(void)setModalSizeOfView:(UIView *)view
+{
+    int longSide = 987;
+    int shortSide = 717;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.2f];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        [view.superview setBounds:CGRectMake(0, 0, shortSide, longSide)];
+    }
+    else{
+        [view.superview setBounds:CGRectMake(0, 0, longSide, shortSide)];
+    }
+    
+    [UIView commitAnimations];
+    
+    [UIView animateWithDuration:0.2f
+                          delay:0.00
+                        options:UIViewAnimationOptionCurveEaseOut
+     
+                     animations:^{
+                         if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+                         {
+                             [view.superview setBounds:CGRectMake(0, 0, shortSide, longSide)];
+                         }
+                         else{
+                             [view.superview setBounds:CGRectMake(0, 0, longSide, shortSide)];
+                         }
+                     }
+                     completion:^(BOOL finished){
+                         //[self.ToolsDelegate completion];
+                     }];
+}
+
++(int)currentDayOfWeekFromDate:(NSDate *)date
+{
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    long weekday = [[gregorian components:NSWeekdayCalendarUnit fromDate:date] weekday];
+    weekday --;
+    return (int)weekday;
+}
+
+//+(NSDateComponents *)dateComponentFromDate: (NSDate *)date
+//{
+//    return
+//}
+
++(NSString *)monthName:(int)month
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    return [[df monthSymbols] objectAtIndex:(month-1)];
+}
+
+
 @end

@@ -29,6 +29,19 @@
     // Do any additional setup after loading the view.
     
     [self.navigationController setToolbarHidden:NO];
+    
+    if(_dayDate == NULL){
+        _dayDate = [[NSDate alloc]init];
+    }
+    
+    
+    
+
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [Tools setModalSizeOfView:self.navigationController.view];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -38,11 +51,24 @@
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+    [Tools setModalSizeOfView:self.navigationController.view];
     [self drawSquaresWithDirection:0 andOldContainer:nil];
+    
 }
 
 -(void)drawSquaresWithDirection:(int)direction andOldContainer: (UIView *)oldContainer
 {
+    NVDate *firstDateOfMonth = [[NVDate alloc] initUsingDate:_dayDate];
+    [firstDateOfMonth firstDayOfMonth];
+    NVDate *lastDateOfMonth = [[NVDate alloc] initUsingDate:_dayDate];
+    [lastDateOfMonth lastDayOfMonth];
+    
+    NVDate *firstDateOfWeek = firstDateOfMonth;
+    int goBack = 6 -[Tools currentDayOfWeekFromDate:firstDateOfMonth.date];
+    NSLog(@"go back: %d", goBack);
+    [firstDateOfWeek nextDays:-goBack];
+    _firstDateOfCalender = firstDateOfWeek;
+    
     self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, 84);
     
     CGFloat verticalOffset = -22;
@@ -53,7 +79,7 @@
         
     float left = 0;
     float top = 0;
-    float height = 107;
+    float height = 99;
     
     CGRect containerFrame = CGRectMake(0, 83, self.view.frame.size.width, (height * 6));
     UIView *container = [[UIView alloc] initWithFrame:containerFrame];
@@ -83,6 +109,11 @@
     
     NSString *addTitle = @"";
     
+    NVDate *cellDate = _firstDateOfCalender;
+    
+    NVDate *todayDate = [[NVDate alloc] initUsingDate:_dayDate];
+    self.title = [Tools monthName:(int)todayDate.month];
+    
     for (int i = 0; i<42; i++) {
         if (left == 7 || left == 14 || left == 21 || left == 28 || left == 35 || left == 42)
         {
@@ -100,18 +131,31 @@
         float width = (self.view.frame.size.width /7);
         
         CGRect frame = CGRectMake(x, y, width, height);
-        UIView *square = [[UIView alloc] initWithFrame:frame];
+        monthCalenderCell *square = [[monthCalenderCell alloc] initWithFrame:frame];
+
+        square.date = cellDate.date;
         square.layer.borderColor = [Tools colorFromHexString:@"#d8d8d8"].CGColor;
         square.layer.borderWidth = 0.25f;
         square.accessibilityValue = @"square";
         
+        UIButton *selectSquareBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, square.frame.size.width, square.frame.size.width)];
+        [selectSquareBtn addTarget:self action:@selector(selectDay:) forControlEvents:UIControlEventTouchUpInside];
+        [square addSubview:selectSquareBtn];
+        
         CGRect dayNumberFrame = CGRectMake(((square.frame.size.width /2) -20), 20, 36, 36);
         UILabel *dayNumber = [[UILabel alloc] initWithFrame:dayNumberFrame];
-        dayNumber.text = [NSString stringWithFormat:@"%d", i];
+        dayNumber.text = [NSString stringWithFormat:@"%ld", (long)cellDate.day];
         dayNumber.textAlignment = NSTextAlignmentCenter;
         dayNumber.textColor = [Tools colorFromHexString:@"#676767"];
         
-        if(i == 26){
+        if (cellDate.month != [[NVDate alloc] initUsingDate:_dayDate].month){
+            dayNumber.textColor = [Tools colorFromHexString:@"#cccccc"];
+        }
+        
+        NSLog(@"ce   %@", _dayDate);
+        NSLog(@"cell %@", cellDate.date);
+        
+        if(cellDate.date == _dayDate){
             dayNumber.backgroundColor = [UIColor redColor];
             dayNumber.textColor = [UIColor whiteColor];
         }
@@ -135,18 +179,19 @@
             [self.navigationController.navigationBar addSubview:dayLabel];
         }
         
+        [cellDate nextDay];
         left++;
         addTitle = @"";
 
     }
-    
+
     if(direction == 1){
         CGRect tempContainerFrame = container.frame;
         container.frame = CGRectMake((container.frame.origin.x - self.view.frame.size.width), container.frame.origin.y, container.frame.size.width, container.frame.size.height);
         
         [UIView animateWithDuration:0.6
                               delay:0.00
-                            options:UIViewAnimationOptionCurveEaseIn
+                            options:UIViewAnimationOptionCurveEaseOut
          
                          animations:^{
                              container.frame = tempContainerFrame;
@@ -163,7 +208,7 @@
         
         [UIView animateWithDuration:0.6
                               delay:0.00
-                            options:UIViewAnimationOptionCurveEaseIn
+                            options:UIViewAnimationOptionCurveEaseOut
          
                          animations:^{
                              container.frame = tempContainerFrame;
@@ -175,13 +220,28 @@
     }
 }
 
+-(void)selectDay:(UIButton *)sender
+{
+    monthCalenderCell *cell = (monthCalenderCell *)sender.superview;
+    NSLog(@"%@", cell.date);
+    [self dismissViewControllerAnimated:YES completion:^{
+        //
+    }];
+}
+
 -(void)previousMonth:(id)sender
 {
+    NVDate *tempDate = [[NVDate alloc] initUsingDate:_dayDate];
+    [tempDate nextMonths:-1];
+    _dayDate = tempDate.date;
     [self drawSquaresWithDirection:1 andOldContainer:_currentCalenderView];
 }
 
 -(void)nextMonth:(id)sender
 {
+    NVDate *tempDate = [[NVDate alloc] initUsingDate:_dayDate];
+    [tempDate nextMonths:1];
+    _dayDate = tempDate.date;
     [self drawSquaresWithDirection:2 andOldContainer:_currentCalenderView];
 }
 

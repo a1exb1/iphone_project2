@@ -11,7 +11,15 @@
 #import "NVDate.h"
 #import "Session.h"
 
+@protocol ToolsDelegate <NSObject>
+
+-(void)completion;
+
+@end
+
 @interface Tools : NSObject
+
+@property id<ToolsDelegate> ToolsDelegate;
 
 +(void)showLoader;
 +(void)showLightLoader;
@@ -57,5 +65,12 @@
 + (NSDate *)beginningOfDay:(NSDate *)date;
 
 +(NSArray *)daysOfWeekArray;
+
++(void)setModalSizeOfView:(UIView *)view;
+
++(int)currentDayOfWeekFromDate:(NSDate *)date;
+
++(NSString *)monthName:(int)month;
+//+(NSDateComponents *)dateComponentFromDate: (NSDate *)date;
 
 @end
