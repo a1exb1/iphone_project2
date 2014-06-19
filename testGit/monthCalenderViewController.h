@@ -10,6 +10,8 @@
 #import "Tools.h"
 #import "NVDate.h"
 #import "monthCalenderCell.h"
+#import "jsonReader.h"
+#import "Session.h"
 
 @protocol monthCalenderDelegate <NSObject>
 
@@ -28,8 +30,6 @@
 @property NSDate *todayDate;
 @property NVDate *firstDateOfCalender;
 @property NVDate *calDate;
-
-
 
 @property (weak, nonatomic) id<SelectDateDelegate> monthCalenderDelegate;
 

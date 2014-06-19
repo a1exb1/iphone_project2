@@ -560,7 +560,7 @@
 		79AA222E1909439D005AC8A3 /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				E421C97B19351B9800FA039A /* other */,
+				E421C97B19351B9800FA039A /* main */,
 				E4C1C9751915A4200068A10D /* tools */,
 			);
 			name = classes;
@@ -841,7 +841,7 @@
 			name = menu;
 			sourceTree = "<group>";
 		};
-		E421C97B19351B9800FA039A /* other */ = {
+		E421C97B19351B9800FA039A /* main */ = {
 			isa = PBXGroup;
 			children = (
 				E4B1DF7C190BCB3C0069DB6A /* StudentCourseLink.h */,
@@ -867,7 +867,7 @@
 				E4D231E219212A6A00E5797B /* Session.h */,
 				E4D231E319212A6A00E5797B /* Session.m */,
 			);
-			name = other;
+			name = main;
 			sourceTree = "<group>";
 		};
 		E433C038193B85C4003543AE /* retina */ = {

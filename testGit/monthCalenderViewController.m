@@ -15,6 +15,8 @@
 
 @implementation monthCalenderViewController
 
+extern Session *session;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -85,8 +87,6 @@
     
     NVDate *firstDateOfWeek = firstDateOfMonth;
     
-    NSLog(@"first date of month %d", [Tools currentDayOfWeekFromDate:firstDateOfMonth.date]);
-    
     int goBack;
     if([Tools currentDayOfWeekFromDate:firstDateOfMonth.date] == 0){
         goBack = 6;
@@ -98,10 +98,11 @@
         goBack = [Tools currentDayOfWeekFromDate:firstDateOfMonth.date] - 1;
     }
 
-    NSLog(@"go back: %d", goBack);
     [firstDateOfWeek nextDays:-goBack];
     _firstDateOfCalender = firstDateOfWeek;
     
+    NSArray *data = [self loadData];
+
     self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width,75);
     
     CGFloat verticalOffset = -27; //31 is same as default
@@ -149,6 +150,8 @@
     self.title = [NSString stringWithFormat:@"%@, %ld", [Tools monthName:(int)_calDate.month], (long)_calDate.year];
     
     for (int i = 0; i<42; i++) {
+        NSDictionary *cellData = (NSDictionary *)[data objectAtIndex:i];
+        
         if (left == 7 || left == 14 || left == 21 || left == 28 || left == 35 || left == 42)
         {
             
@@ -191,7 +194,7 @@
         if(cellDate.day   == todayDate.day &&
            cellDate.month == todayDate.month &&
            cellDate.year  == todayDate.year){
-            dayNumber.backgroundColor = [UIColor blueColor];
+            dayNumber.backgroundColor = [Tools colorFromHexString:@"#006de7"];
             dayNumber.textColor = [UIColor whiteColor];
         }
         
@@ -209,16 +212,24 @@
         [square addSubview:dayNumber];
         
         //Number of lessons label
-        UILabel *lessonCountLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, square.frame.size.width, square.frame.size.height)];
-        lessonCountLbl.textAlignment = NSTextAlignmentCenter;
-        lessonCountLbl.font = [UIFont fontWithName:nil size:11];
-        lessonCountLbl.textColor = [Tools colorFromHexString:@"#cccccc"];
-        lessonCountLbl.text = @"5 lessons";
+        if ((int)[cellData objectForKey:@"total"] > 0 ){
+            NSLog(@"%d", (int)[cellData objectForKey:@"total"]);
+            UILabel *lessonCountLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, square.frame.size.width, square.frame.size.height)];
+            lessonCountLbl.textAlignment = NSTextAlignmentCenter;
+            lessonCountLbl.font = [UIFont fontWithName:nil size:11];
+            lessonCountLbl.textColor = [Tools colorFromHexString:@"#cccccc"];
+            if ((int)[cellData objectForKey:@"total"] == 1 ){
+                lessonCountLbl.text = [NSString stringWithFormat:@"%@ lesson", [cellData objectForKey:@"total"]];
+            }
+            else{
+                lessonCountLbl.text = [NSString stringWithFormat:@"%@ lessons", [cellData objectForKey:@"total"]];
+            }
+            [square addSubview:lessonCountLbl];
+        }
         
-        [square addSubview:lessonCountLbl];
         [container addSubview:square];
         
-        //Label
+        //Labels for each day (nav bar)
         if(![addTitle isEqualToString:@""])
         {
             UILabel *dayLabel = [[UILabel alloc]initWithFrame:CGRectMake(x, 37, width, 45)];
@@ -297,7 +308,6 @@
 {
     
     [_calDate nextMonths:-1];
-
     [self drawSquaresWithDirection:1 andOldContainer:_currentCalenderView];
 }
 
@@ -357,6 +367,16 @@
 -(void)changeCalType
 {
     
+}
+
+-(NSArray *)loadData
+{
+    NVDate *lastDateOfCalender = [[NVDate alloc] initUsingDate:_firstDateOfCalender.date];
+    [lastDateOfCalender nextDays:41];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonscountbytutoranddate&id=%li&datefrom=%@&dateto=%@&ts=0", [[session tutor] tutorID], [_firstDateOfCalender stringValueWithFormat:@"dd/MM/yyyy"], [lastDateOfCalender stringValueWithFormat:@"dd/MM/yyyy"]];
+    
+    return [jsonReader jsonRequestWithUrl:urlString];
 }
 
 /*

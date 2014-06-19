@@ -20,14 +20,12 @@
     NSError *error = nil;
     
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
     if (response == nil) {
         UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [errorView show];
     } else {
         arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    }
-    
+    }    
     return arr;
 }
 
