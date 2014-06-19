@@ -154,8 +154,8 @@ NSArray *daysOfWeekArray;
     [_cellBorderColours setObject:@"#990f60" forKey:@"earlier today"];
     [_cellBorderColours setObject:@"#4473b4" forKey:@"later today"];
     [_cellBorderColours setObject:@"#66cc33" forKey:@"now"];
-        
-
+    
+    _attendanceColours = [[NSArray alloc] initWithObjects:@"#b4b4b4" , @"#e84721", @"#b44444",@"#5cb444",  nil];
 
     [self.navigationController.tabBarItem setSelectedImage:[[UIImage imageNamed:@"728-clock-selected.png"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
     
@@ -493,21 +493,7 @@ NSArray *daysOfWeekArray;
                                  statusString
                                  ];
     
-    if(_editing){
-        UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
-        cell.accessoryView = switchview;
-        switchview.tag = indexPath.row;
-        [switchview addTarget:self action:@selector(updateSwitchAtIndexPath:) forControlEvents:UIControlEventTouchUpInside];
-        if ([[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Status"] intValue] == 3) {
-            [switchview setOn:YES animated:NO];
-        }
-    }
-    else{
-        UIImage *attendanceImg = [UIImage imageNamed:[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Status"]];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:attendanceImg];
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
-        cell.accessoryView = imageView;
-    }
+    
     
     UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 1, 2.0f, cell.viewForBaselineLayout.frame.size.height - 2)];
     NSString *s = [_cellBorderColours objectForKey:[Tools nowIsBetweenDate1:lessonDate andDuration:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]]];
@@ -519,8 +505,26 @@ NSArray *daysOfWeekArray;
     [lineView setBackgroundColor:[Tools colorFromHexString:@"#FFA500"]];
     [bgColorView addSubview:lineView];
     bgColorView.backgroundColor = [Tools colorFromHexString:@"#FFF2DB"];
-    [cell setSelectedBackgroundView:bgColorView];
     
+    
+    if(_editing){
+        UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+        cell.accessoryView = switchview;
+        switchview.tag = indexPath.row;
+        [switchview addTarget:self action:@selector(updateSwitchAtIndexPath:) forControlEvents:UIControlEventTouchUpInside];
+        if ([[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Status"] intValue] == 3) {
+            [switchview setOn:YES animated:NO];
+        }
+    }
+    else{
+        UIImageView *attendenceCircle = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 8, 8)];
+        attendenceCircle.image = [Tools imageWithColor:[Tools colorFromHexString:[_attendanceColours objectAtIndex:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Status"] intValue]]] size:CGSizeMake(8, 8)];
+        CALayer * l = [attendenceCircle layer];
+        [l setMasksToBounds:YES];
+        [l setCornerRadius:4.0];
+        cell.accessoryView = attendenceCircle;
+    }
+    [cell setSelectedBackgroundView:bgColorView];
     return cell;
 }
 
@@ -580,6 +584,7 @@ NSArray *daysOfWeekArray;
             NSIndexPath*    selection = [self.mainTableView indexPathForSelectedRow];
             [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
             [_mainTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+            
         }
         
     }

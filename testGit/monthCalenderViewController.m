@@ -62,13 +62,14 @@ extern Session *session;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self setModalSizeOfView];
-    [self drawSquaresWithDirection:0 andOldContainer:nil];
+    [self setNavigationBarSize];
+    //[self drawSquaresWithDirection:0 andOldContainer:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self drawSquaresWithDirection:0 andOldContainer:nil];
+    [self setModalSizeOfView];
+    //[self drawSquaresWithDirection:0 andOldContainer:nil];
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -80,6 +81,7 @@ extern Session *session;
 
 -(void)drawSquaresWithDirection:(int)direction andOldContainer: (UIView *)oldContainer
 {
+    NSLog(@"draw");
     NVDate *firstDateOfMonth = [[NVDate alloc] initUsingDate:_calDate.date];
     [firstDateOfMonth firstDayOfMonth];
     NVDate *lastDateOfMonth = [[NVDate alloc] initUsingDate:_calDate.date];
@@ -103,13 +105,7 @@ extern Session *session;
     
     NSArray *data = [self loadData];
 
-    self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width,75);
-    
-    CGFloat verticalOffset = -27; //31 is same as default
-    [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
-    
-    [self.navigationItem.rightBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
-    [self.navigationItem.leftBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
+    [self setNavigationBarSize];
         
     float left = 0;
     float top = 0;
@@ -223,7 +219,7 @@ extern Session *session;
         if(result==NSOrderedDescending){
             if ([[cellData objectForKey:@"total"] isEqualToString:[cellData objectForKey:@"notset"]] && ![[cellData objectForKey:@"total"] isEqualToString:@"0"] ){
                 
-                NSLog(@"%@, %@", [cellData objectForKey:@"total"], [cellData objectForKey:@"notset"] );
+                //NSLog(@"%@, %@", [cellData objectForKey:@"total"], [cellData objectForKey:@"notset"] );
                 UIImageView *attendenceIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(square.frame.size.width - 15, 5 , 10, 10)];
                 attendenceIndicator.image = [UIImage imageNamed:@"791-warning-toolbar.png"];
                 attendenceIndicator.image = [attendenceIndicator.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -315,8 +311,6 @@ extern Session *session;
 -(void)selectDay:(UIButton *)sender
 {
     monthCalenderCell *cell = (monthCalenderCell *)sender.superview;
-    NSLog(@"%@", cell.date);
-    
     [self dismissViewControllerAnimated:YES completion:^{
         [self.monthCalenderDelegate sendDateToAgendaWithDate:cell.date];
     }];
@@ -407,6 +401,17 @@ extern Session *session;
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonscountbytutoranddate&id=%li&datefrom=%@&dateto=%@&ts=0", [[session tutor] tutorID], [_firstDateOfCalender stringValueWithFormat:@"dd/MM/yyyy"], [lastDateOfCalender stringValueWithFormat:@"dd/MM/yyyy"]];
     
     return [jsonReader jsonRequestWithUrl:urlString];
+}
+
+-(void)setNavigationBarSize
+{
+    self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width,75);
+    
+    CGFloat verticalOffset = -27; //31 is same as default
+    [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
+    
+    [self.navigationItem.rightBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
+    [self.navigationItem.leftBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
 }
 
 /*

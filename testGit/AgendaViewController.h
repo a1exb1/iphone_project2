@@ -17,6 +17,7 @@
 #import "DetailViewManager.h"
 #import "monthCalenderViewController.h"
 
+
 @interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SelectDateDelegate, MZDayPickerDataSource, MZDayPickerDelegate, agendaDelegate>
 
 @property NSArray *lessons;
@@ -51,7 +52,7 @@
 @property int c;
 
 @property NSMutableDictionary *cellBorderColours;
-
+@property NSArray *attendanceColours;
 @property BOOL setPickerDate;
 
 @end
