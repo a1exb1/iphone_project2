@@ -239,6 +239,7 @@ NSTimer *timer;
 {
     monthCalenderViewController *weekView = [self.storyboard instantiateViewControllerWithIdentifier:@"monthCal"];
     weekView.dayDate = _date;
+    [weekView drawSquaresWithDirection:3 andOldContainer:nil];
     self.navigationController.viewControllers = [[NSArray alloc] initWithObjects:weekView, nil];
 }
 

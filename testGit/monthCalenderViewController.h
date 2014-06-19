@@ -34,4 +34,6 @@
 @property (weak, nonatomic) id<SelectDateDelegate> monthCalenderDelegate;
 @property bool hasResized;
 
+-(void)drawSquaresWithDirection:(int)direction andOldContainer: (UIView *)oldContainer;
+
 @end
