@@ -158,6 +158,15 @@ extern Session *session;
     _studentNameLbl.text = [[_lesson student] name];
     _attendenceControl.selectedSegmentIndex = [_lesson status];
 
+    NSDate *dayDateC = [Tools beginningOfDay:[_lesson dateTime]];
+    NSDate *today = [[NSDate alloc] init];
+    today = [Tools beginningOfDay:today];
+    
+    NSComparisonResult result = [today compare:dayDateC];
+    if(result==NSOrderedAscending){
+        [_attendenceControl removeSegmentAtIndex:3 animated:YES];
+        [_attendenceControl removeSegmentAtIndex:2 animated:YES];
+    }
     
     self.navigationController.navigationBar.barTintColor = [UIColor greenColor];
     self.navigationController.navigationBar.tintColor = [UIColor greenColor];

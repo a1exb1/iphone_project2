@@ -143,7 +143,7 @@ extern Session *session;
     
     NSString *addTitle = @"";
     
-    NVDate *cellDate = _firstDateOfCalender;
+    NVDate *cellDate = [[NVDate alloc] initUsingDate:_firstDateOfCalender.date];
     NVDate *todayDate = [[NVDate alloc] initUsingDate:_todayDate];
     NVDate *dayDate = [[NVDate alloc] initUsingDate:_dayDate];
     
@@ -198,6 +198,8 @@ extern Session *session;
             dayNumber.textColor = [UIColor whiteColor];
         }
         
+        
+        
         if(cellDate.day   == dayDate.day &&
            cellDate.month == dayDate.month &&
            cellDate.year  == dayDate.year){
@@ -211,21 +213,44 @@ extern Session *session;
         
         [square addSubview:dayNumber];
         
+        // if not future - attendence mark
+        NVDate *d = [[NVDate alloc] initUsingDate:cellDate.date];
+        [d nextDay]; // FIX FOR DIFFERENT NVDATE DAY VALUES
+        NSDate *cellDateC = [Tools beginningOfDay:d.date];
+        NSDate *today = [[NSDate alloc] init];
+        today = [Tools beginningOfDay:today];
+
+        NSComparisonResult result = [today compare:cellDateC];
+
+        if(result==NSOrderedDescending){
+            if ([[cellData objectForKey:@"total"] isEqualToString:[cellData objectForKey:@"notset"]] && ![[cellData objectForKey:@"total"] isEqualToString:@"0"] ){
+                
+                NSLog(@"%@, %@", [cellData objectForKey:@"total"], [cellData objectForKey:@"notset"] );
+                UIImageView *attendenceIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(square.frame.size.width - 15, 5 , 10, 10)];
+                attendenceIndicator.image = [Tools imageNamed:@"791-warning-toolbar.png" withColor:[UIColor yellowColor]];                //attendenceIndicator.image =
+                attendenceIndicator.tintColor = [UIColor yellowColor];
+                [square addSubview:attendenceIndicator];
+                
+            }
+        }
+        
         //Number of lessons label
-        if ((int)[cellData objectForKey:@"total"] > 0 ){
-            NSLog(@"%d", (int)[cellData objectForKey:@"total"]);
+        if (![[cellData objectForKey:@"total"] isEqualToString:@"0"] ){
             UILabel *lessonCountLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, square.frame.size.width, square.frame.size.height)];
             lessonCountLbl.textAlignment = NSTextAlignmentCenter;
             lessonCountLbl.font = [UIFont fontWithName:nil size:11];
             lessonCountLbl.textColor = [Tools colorFromHexString:@"#cccccc"];
-            if ((int)[cellData objectForKey:@"total"] == 1 ){
+            if ([[cellData objectForKey:@"total"] isEqualToString:@"1"] ){
                 lessonCountLbl.text = [NSString stringWithFormat:@"%@ lesson", [cellData objectForKey:@"total"]];
             }
             else{
+                
                 lessonCountLbl.text = [NSString stringWithFormat:@"%@ lessons", [cellData objectForKey:@"total"]];
             }
             [square addSubview:lessonCountLbl];
         }
+        
+        
         
         [container addSubview:square];
         

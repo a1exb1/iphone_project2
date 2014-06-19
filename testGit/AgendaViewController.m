@@ -387,6 +387,24 @@ NSArray *daysOfWeekArray;
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:editBtn, nil]];
     }
     
+    NSDate *dayDateC = [Tools beginningOfDay:_dayDate];
+    NSDate *today = [[NSDate alloc] init];
+    today = [Tools beginningOfDay:today];
+    
+    NSComparisonResult result = [today compare:dayDateC];
+    if(result==NSOrderedAscending){
+        [self.navigationItem setRightBarButtonItems:nil];
+    }
+    
+    else if(result==NSOrderedDescending)
+    {
+        // past
+    }
+    
+    else{
+        //same
+    }
+    
     //[_mainTableView reloadData];
     if(_indexPath >= 0)
     {
