@@ -73,6 +73,6 @@
 +(NSString *)monthName:(int)month;
 //+(NSDateComponents *)dateComponentFromDate: (NSDate *)date;
 
-+ (UIImage *)imageNamed:(NSString *)name withColor:(UIColor *)color;
+
 
 @end

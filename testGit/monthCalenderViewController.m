@@ -227,8 +227,10 @@ extern Session *session;
                 
                 NSLog(@"%@, %@", [cellData objectForKey:@"total"], [cellData objectForKey:@"notset"] );
                 UIImageView *attendenceIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(square.frame.size.width - 15, 5 , 10, 10)];
-                attendenceIndicator.image = [Tools imageNamed:@"791-warning-toolbar.png" withColor:[UIColor yellowColor]];                //attendenceIndicator.image =
-                attendenceIndicator.tintColor = [UIColor yellowColor];
+                attendenceIndicator.image = [UIImage imageNamed:@"791-warning-toolbar.png"];
+                attendenceIndicator.image = [attendenceIndicator.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                attendenceIndicator.tintColor = [UIColor colorWithRed:0.98 green:0.47 blue:0 alpha:1];
+                
                 [square addSubview:attendenceIndicator];
                 
             }
