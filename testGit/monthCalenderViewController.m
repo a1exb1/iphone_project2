@@ -194,12 +194,10 @@ extern Session *session;
         if(cellDate.day   == todayDate.day &&
            cellDate.month == todayDate.month &&
            cellDate.year  == todayDate.year){
-            dayNumber.backgroundColor = [Tools colorFromHexString:@"#006de7"];
+            dayNumber.backgroundColor = [Tools colorFromHexString:@"#b7d9ff"];
             dayNumber.textColor = [UIColor whiteColor];
         }
-        
-        
-        
+
         if(cellDate.day   == dayDate.day &&
            cellDate.month == dayDate.month &&
            cellDate.year  == dayDate.year){
@@ -232,7 +230,6 @@ extern Session *session;
                 attendenceIndicator.tintColor = [UIColor colorWithRed:0.98 green:0.47 blue:0 alpha:1];
                 
                 [square addSubview:attendenceIndicator];
-                
             }
         }
         
@@ -241,7 +238,13 @@ extern Session *session;
             UILabel *lessonCountLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, square.frame.size.width, square.frame.size.height)];
             lessonCountLbl.textAlignment = NSTextAlignmentCenter;
             lessonCountLbl.font = [UIFont fontWithName:nil size:11];
-            lessonCountLbl.textColor = [Tools colorFromHexString:@"#cccccc"];
+            if (cellDate.month != _calDate.month){
+                lessonCountLbl.textColor = [Tools colorFromHexString:@"#cccccc"];
+            }
+            else{
+                lessonCountLbl.textColor = [Tools colorFromHexString:@"#b2b2b2"];
+            }
+            
             if ([[cellData objectForKey:@"total"] isEqualToString:@"1"] ){
                 lessonCountLbl.text = [NSString stringWithFormat:@"%@ lesson", [cellData objectForKey:@"total"]];
             }
