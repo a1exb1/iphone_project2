@@ -54,5 +54,6 @@
 @property NSMutableDictionary *cellBorderColours;
 @property NSArray *attendanceColours;
 @property BOOL setPickerDate;
+@property bool hasFilled;
 
 @end

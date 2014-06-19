@@ -46,28 +46,29 @@ NSTimer *timer;
 //    //spv.delegate=self;
 //    [spv willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
 //    [spv.view setNeedsLayout];
+    [self setModalSize];
 }
 
 
-- (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem
-{
-    NSLog(@"set navigation pane in calender view");
-    if (navigationPaneBarButtonItem != _navigationPaneBarButtonItem) {
-        if (navigationPaneBarButtonItem)
-            //[self.toolbar setItems:[NSArray arrayWithObject:navigationPaneBarButtonItem] animated:NO];
-            [self.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
-        else
-            //[self.toolbar setItems:nil animated:NO];
-            [self.navigationItem setLeftBarButtonItem:nil animated:NO];
-        
-        //[self.navigationController.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
-        _navigationPaneBarButtonItem = navigationPaneBarButtonItem;
-        
-        [self showNavigationBar];
-        
-        NSLog(@"title: %@", _navigationPaneBarButtonItem.title);
-    }
-}
+//- (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem
+//{
+//    NSLog(@"set navigation pane in calender view");
+//    if (navigationPaneBarButtonItem != _navigationPaneBarButtonItem) {
+//        if (navigationPaneBarButtonItem)
+//            //[self.toolbar setItems:[NSArray arrayWithObject:navigationPaneBarButtonItem] animated:NO];
+//            [self.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
+//        else
+//            //[self.toolbar setItems:nil animated:NO];
+//            [self.navigationItem setLeftBarButtonItem:nil animated:NO];
+//        
+//        //[self.navigationController.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
+//        _navigationPaneBarButtonItem = navigationPaneBarButtonItem;
+//        
+//        [self showNavigationBar];
+//        
+//        NSLog(@"title: %@", _navigationPaneBarButtonItem.title);
+//    }
+//}
 
 - (void)viewDidLoad
 {
@@ -89,14 +90,17 @@ NSTimer *timer;
 
     [session setCalController:self];
     [self showNavigationBar];
-    [self.navigationItem setHidesBackButton:YES];
+    //[self.navigationItem setHidesBackButton:YES];
     
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
         _calenderUIButton.action = @selector(selectDate:);
         _calenderUIButton.target = self;
         //self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _plusUIButton, _calenderUIButton, nil];
         
-        _date = [[NSDate alloc] init];
+        if(_date == NULL){
+            _date = [[NSDate alloc] init];
+        }
+        
         [self sendDateToAgendaWithDate:_date];
     }
     else{
@@ -121,23 +125,23 @@ NSTimer *timer;
 
 -(void)selectDate:(UIBarButtonItem *)btn;
 {
-    [_popover dismissPopoverAnimated:YES];
-    [_calPopover dismissPopoverAnimated:YES];
-    
-    UINavigationController *controller = [[UINavigationController alloc] init];
-    
-    SelectDateViewController* viewController2 = [[SelectDateViewController alloc] initWithNibName:@"SelectDateViewController" bundle:nil];
-    viewController2.previousDate = _date;
-    viewController2.selectDateDelegate = (id)self;
-    self.calPopover = [[UIPopoverController alloc] initWithContentViewController:controller];
-    
-    [controller pushViewController:viewController2 animated:NO];
-    [controller.navigationItem setHidesBackButton:YES];
-    //self.calPopover = [[UIPopoverController alloc] initWithContentViewController:viewController2];
-    
-    _calPopover.popoverContentSize = CGSizeMake(320,568);
-    
-    [_calPopover presentPopoverFromBarButtonItem:btn permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//    [_popover dismissPopoverAnimated:YES];
+//    [_calPopover dismissPopoverAnimated:YES];
+//    
+//    UINavigationController *controller = [[UINavigationController alloc] init];
+//    
+//    SelectDateViewController* viewController2 = [[SelectDateViewController alloc] initWithNibName:@"SelectDateViewController" bundle:nil];
+//    viewController2.previousDate = _date;
+//    viewController2.selectDateDelegate = (id)self;
+//    self.calPopover = [[UIPopoverController alloc] initWithContentViewController:controller];
+//    
+//    [controller pushViewController:viewController2 animated:NO];
+//    [controller.navigationItem setHidesBackButton:YES];
+//    //self.calPopover = [[UIPopoverController alloc] initWithContentViewController:viewController2];
+//    
+//    _calPopover.popoverContentSize = CGSizeMake(320,568);
+//    
+//    [_calPopover presentPopoverFromBarButtonItem:btn permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 -(void)sendDateToAgendaWithDate:(NSDate *) Date
@@ -185,9 +189,17 @@ NSTimer *timer;
     fixedSpace.width = 20;
     
     UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-    UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(done)];
-    
-    [self.navigationItem setHidesBackButton:NO];
+    //UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
+
+
+    UIView *closeBtnView = [[UIView alloc] initWithFrame:CGRectMake(0, -27, 80, 30)];
+    UIButton *closeUIBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [closeUIBtn setFrame:CGRectMake(0, -27, 80, 30)];
+    [closeUIBtn setTitle:@"Close" forState:UIControlStateNormal];
+    closeUIBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [closeUIBtn titleLabel].font = [UIFont fontWithName:nil size:17];
+    [closeBtnView addSubview:closeUIBtn];
+    UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithCustomView:closeBtnView];
     [self.navigationItem setLeftBarButtonItem:closeBtn];
     
     if ([self.accessibilityValue isEqualToString:@"calenderView"]) {
@@ -195,13 +207,22 @@ NSTimer *timer;
         UIBarButtonItem *addLessonsBtn = nil;
         addLessonsBtn = [[UIBarButtonItem alloc] initWithTitle:@"Add to calender" style:UIBarButtonItemStylePlain target:self action:@selector(addLessons)];
         
-        UIBarButtonItem *calButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"851-calendar-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(selectDate:)];
+        //UIBarButtonItem *calButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"851-calendar-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(selectDate:)];
         
         UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"765-arrow-left-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(previousWeek)];
         
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"766-arrow-right-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(nextWeek)];
         
-        self.toolbarItems = [NSArray arrayWithObjects: refreshBtn, fixedSpace, _lockBtn, fixedSpace, fixedSpace, leftButton, fixedSpace,  rightButton, fixedSpace, fixedSpace, calButton, nil];
+        UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] ;
+        
+        NSArray *segmentedControlsItems = [NSArray arrayWithObjects: @"Month", @"Week", nil];
+        UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentedControlsItems];
+        segmentedControl.frame = CGRectMake(0, 0, 100, 30);
+        [segmentedControl addTarget:self action:@selector(changeCalType) forControlEvents: UIControlEventValueChanged];
+        segmentedControl.selectedSegmentIndex = 1;
+        UIBarButtonItem *segmentButton = [[UIBarButtonItem alloc] initWithCustomView: segmentedControl];
+        
+        self.toolbarItems = [NSArray arrayWithObjects: refreshBtn, fixedSpace, _lockBtn, flex, segmentButton, flex, leftButton, fixedSpace,  rightButton, nil];
         
         
     }
@@ -210,6 +231,26 @@ NSTimer *timer;
         self.toolbarItems = [NSArray arrayWithObjects:refreshBtn,fixedSpace,  _lockBtn, nil];
     }
     
+    [self setNavigationBarSize];
+    
+}
+
+-(void)changeCalType
+{
+    monthCalenderViewController *weekView = [self.storyboard instantiateViewControllerWithIdentifier:@"monthCal"];
+    weekView.dayDate = _date;
+    self.navigationController.viewControllers = [[NSArray alloc] initWithObjects:weekView, nil];
+}
+
+-(void)setNavigationBarSize
+{
+    self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width,75);
+    
+    CGFloat verticalOffset = -27; //31 is same as default
+    [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
+    
+    [self.navigationItem.rightBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
+    [self.navigationItem.leftBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
     
 }
 
@@ -222,10 +263,36 @@ NSTimer *timer;
 }
 
 -(void)hideNavigationBar
-{
-    //[self.navigationItem setHidesBackButton:YES];
-    //[self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:nil, nil]];
-    self.toolbarItems = nil;
+{    
+    if ([self.accessibilityValue isEqualToString:@"calenderView"]) {
+        //CALENDER
+        
+        UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        fixedSpace.width = 20;
+
+        UIBarButtonItem *addLessonsBtn = nil;
+        addLessonsBtn = [[UIBarButtonItem alloc] initWithTitle:@"Add to calender" style:UIBarButtonItemStylePlain target:self action:@selector(addLessons)];
+        
+        UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"765-arrow-left-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(previousWeek)];
+        
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"766-arrow-right-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(nextWeek)];
+        
+        UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] ;
+        
+        NSArray *segmentedControlsItems = [NSArray arrayWithObjects: @"Month", @"Week", nil];
+        UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentedControlsItems];
+        segmentedControl.frame = CGRectMake(0, 0, 100, 30);
+        [segmentedControl addTarget:self action:@selector(changeCalType) forControlEvents: UIControlEventValueChanged];
+        segmentedControl.selectedSegmentIndex = 1;
+        UIBarButtonItem *segmentButton = [[UIBarButtonItem alloc] initWithCustomView: segmentedControl];
+        
+        self.toolbarItems = [NSArray arrayWithObjects: flex, segmentButton, flex, leftButton, fixedSpace,  rightButton, nil];
+
+    }
+    else{
+        self.toolbarItems = nil;
+    }
+    
 }
 
 -(void)lock
@@ -391,6 +458,7 @@ NSTimer *timer;
     }
     
     [UIView commitAnimations];
+    
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation

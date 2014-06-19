@@ -49,6 +49,7 @@ NSArray *daysOfWeekArray;
         _keepEditing = YES;
     }
     _indexPath= [self.mainTableView indexPathForSelectedRow];
+    //_attendenceStrings = [_attendenceStrings]
     [self jsonRequestGetAgenda];
     
     //if (selection) {
@@ -183,7 +184,11 @@ NSArray *daysOfWeekArray;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    [self fillPicker];
+    if(_hasFilled == false){
+        [self fillPicker];
+    }
+    _hasFilled = true;
+    
 }
 
 -(void)fillPicker
@@ -545,7 +550,7 @@ NSArray *daysOfWeekArray;
     [_attendenceStrings addObject:urlString];
     
     
-    
+    NSLog(@"updating switch");
 }
 
 -(void)saveAllSwitches

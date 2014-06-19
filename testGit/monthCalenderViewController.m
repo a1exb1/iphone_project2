@@ -40,29 +40,38 @@ extern Session *session;
     _calDate = [[NVDate alloc] initUsingDate:_dayDate];
     _todayDate = [[NSDate alloc]init];
     
+    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    fixedSpace.width = 20;
+    
     UIBarButtonItem *todayBtn = [[UIBarButtonItem alloc] initWithTitle:@"Today" style:UIBarButtonItemStyleBordered target:self action:@selector(selectToday)];
 
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] ;
 
-    NSArray *segmentedControlsItems = [NSArray arrayWithObjects: @"Week", @"Month", nil];
+    NSArray *segmentedControlsItems = [NSArray arrayWithObjects: @"Month", @"Week", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentedControlsItems];
     segmentedControl.frame = CGRectMake(0, 0, 100, 30);
-    //segmentedControl.segmentedControlStyle = UISegmentedControlStylePlain;
     [segmentedControl addTarget:self action:@selector(changeCalType) forControlEvents: UIControlEventValueChanged];
-    segmentedControl.selectedSegmentIndex = 1;
-    
+    segmentedControl.selectedSegmentIndex = 0;
     UIBarButtonItem *segmentButton = [[UIBarButtonItem alloc] initWithCustomView: segmentedControl];
     
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
+    [self.navigationItem setLeftBarButtonItem:cancelBtn];
     
-    self.toolbarItems = [[NSArray alloc] initWithObjects:cancelBtn, flex, segmentButton, flex, todayBtn, nil];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"765-arrow-left-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(previousMonth)];
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"766-arrow-right-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(nextMonth)];
+    
+    self.toolbarItems = [[NSArray alloc] initWithObjects:todayBtn, flex, segmentButton, flex, leftButton, fixedSpace, rightButton, nil];
+    
+    
     
     [Tools setNavigationHeaderColorWithNavigationController:self.navigationController andTabBar:nil andBackground:nil andTint:[UIColor redColor] theme:@"light"];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self setNavigationBarSize];
+    [self setModalSizeOfView];
+    //[self setNavigationBarSize];
     //[self drawSquaresWithDirection:0 andOldContainer:nil];
 }
 
@@ -328,14 +337,14 @@ extern Session *session;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)previousMonth:(id)sender
+-(void)previousMonth
 {
     
     [_calDate nextMonths:-1];
     [self drawSquaresWithDirection:1 andOldContainer:_currentCalenderView];
 }
 
--(void)nextMonth:(id)sender
+-(void)nextMonth
 {
 
     [_calDate nextMonths:1];
@@ -355,7 +364,7 @@ extern Session *session;
     int shortSide = 717;
     
     UIView *view = self.navigationController.view;
-    
+    [self setNavigationBarSize];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.2f];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
@@ -384,13 +393,19 @@ extern Session *session;
                          }
                      }
                      completion:^(BOOL finished){
-                         [self drawSquaresWithDirection:0 andOldContainer:nil];
+                         if(_hasResized == true){
+                             [self drawSquaresWithDirection:0 andOldContainer:nil];
+                         }
+                         _hasResized = true;
                      }];
 }
 
 -(void)changeCalType
 {
-    
+    calenderViewController *weekView = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderViewActual"];
+    weekView.accessibilityValue = @"calenderView";
+    weekView.date = _dayDate;
+    self.navigationController.viewControllers = [[NSArray alloc] initWithObjects:weekView, nil];
 }
 
 -(NSArray *)loadData

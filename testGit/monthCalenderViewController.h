@@ -12,6 +12,7 @@
 #import "monthCalenderCell.h"
 #import "jsonReader.h"
 #import "Session.h"
+#import "calenderViewController.h"
 
 @protocol monthCalenderDelegate <NSObject>
 
@@ -21,8 +22,7 @@
 
 @interface monthCalenderViewController : UIViewController
 
--(IBAction)previousMonth:(id)sender;
--(IBAction)nextMonth:(id)sender;
+
 
 @property UIView *currentCalenderView;
 
@@ -32,5 +32,6 @@
 @property NVDate *calDate;
 
 @property (weak, nonatomic) id<SelectDateDelegate> monthCalenderDelegate;
+@property bool hasResized;
 
 @end
