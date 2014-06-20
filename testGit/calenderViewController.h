@@ -36,6 +36,6 @@
 
 @property (weak, nonatomic) id<menuDrawDelegate> menuDrawerDelegate;
 
-
-
+@property (weak, nonatomic) id<SelectDateDelegate> monthCalenderDelegate;
+@property int c;
 @end

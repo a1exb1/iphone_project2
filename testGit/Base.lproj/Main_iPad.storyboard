@@ -62,7 +62,6 @@
                         <outlet property="addLessonSlotBtn" destination="ldN-dw-yP6" id="Ozu-BZ-atB"/>
                         <outlet property="editSlotsButton" destination="c7g-Ns-u6R" id="nv5-cW-gbb"/>
                         <outlet property="lockedUIButton" destination="pCL-T0-Uuo" id="n9e-Mp-IAk"/>
-                        <outlet property="statusLbl" destination="J6X-ja-s4n" id="8i8-iY-dPA"/>
                         <outlet property="toolbar" destination="PMc-pS-GkM" id="Djk-5V-BGW"/>
                         <outlet property="unlockedUIButton" destination="qGG-m2-kPW" id="2fB-ly-Sv9"/>
                         <outlet property="webView" destination="B0G-9u-W2d" id="kRm-dP-n5h"/>
@@ -210,7 +209,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="calenderUIButton" destination="aCp-n4-fil" id="2W2-Pk-Cpg"/>
                         <outlet property="lockedUIButton" destination="b0a-gG-0Gm" id="dlq-BS-GUs"/>
                         <outlet property="plusUIButton" destination="ArJ-Fw-OPM" id="YVw-BQ-V8C"/>
-                        <outlet property="statusLbl" destination="3pX-CT-Tin" id="mXa-jr-2Er"/>
                         <outlet property="toolbar" destination="hsN-eA-GDG" id="MBq-lo-ZvQ"/>
                         <outlet property="unlockedUIButton" destination="z1Z-0T-fHE" id="Iv3-vK-tnh"/>
                         <outlet property="webView" destination="rkQ-hS-dFF" id="cGJ-j8-8Rs"/>

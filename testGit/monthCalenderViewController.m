@@ -41,7 +41,7 @@ extern Session *session;
     _todayDate = [[NSDate alloc]init];
     
     UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    fixedSpace.width = 20;
+    fixedSpace.width = 40;
     
     UIBarButtonItem *todayBtn = [[UIBarButtonItem alloc] initWithTitle:@"Today" style:UIBarButtonItemStyleBordered target:self action:@selector(selectToday)];
 
@@ -63,8 +63,6 @@ extern Session *session;
     
     self.toolbarItems = [[NSArray alloc] initWithObjects:todayBtn, flex, segmentButton, flex, leftButton, fixedSpace, rightButton, nil];
     
-    
-    
     [Tools setNavigationHeaderColorWithNavigationController:self.navigationController andTabBar:nil andBackground:nil andTint:[UIColor redColor] theme:@"light"];
 }
 
@@ -73,12 +71,14 @@ extern Session *session;
     [self setModalSizeOfView];
     //[self setNavigationBarSize];
     //[self drawSquaresWithDirection:0 andOldContainer:nil];
+    [Tools showLightLoaderWithView:self.view];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [self setModalSizeOfView];
     //[self drawSquaresWithDirection:0 andOldContainer:nil];
+    
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -90,7 +90,22 @@ extern Session *session;
 
 -(void)drawSquaresWithDirection:(int)direction andOldContainer: (UIView *)oldContainer
 {
-    NSLog(@"draw");
+    
+    
+    if(direction == 3){
+        [Tools hideLoaderFromView:self.view];
+        return;
+    }
+    
+    if(direction == 0 || direction == 3){
+        for(UIView *view in self.view.subviews){
+            if([view.accessibilityValue isEqualToString:@"container"]){
+                [view removeFromSuperview];
+            }
+        }
+    }
+    
+    NSLog(@"draw %d", direction);
     NVDate *firstDateOfMonth = [[NVDate alloc] initUsingDate:_calDate.date];
     [firstDateOfMonth firstDayOfMonth];
     NVDate *lastDateOfMonth = [[NVDate alloc] initUsingDate:_calDate.date];
@@ -132,20 +147,10 @@ extern Session *session;
             [view removeFromSuperview];
         }
     }
-    
-    //container views
-    if(direction == 0){
-        for(UIView *view in self.view.subviews){
-            if([view.accessibilityValue isEqualToString:@"container"]){
-                [view removeFromSuperview];
-            }
-        }
-    }
-    
 
     [self.view addSubview:container];
     _currentCalenderView = container;
-    
+    [Tools hideLoaderFromView:self.view];
     NSString *addTitle = @"";
     
     NVDate *cellDate = [[NVDate alloc] initUsingDate:_firstDateOfCalender.date];
@@ -334,7 +339,10 @@ extern Session *session;
 
 -(void)cancel
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.monthCalenderDelegate sendDateToAgendaWithDate:NULL];
+    }];
 }
 
 -(void)previousMonth
@@ -405,6 +413,7 @@ extern Session *session;
     calenderViewController *weekView = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderViewActual"];
     weekView.accessibilityValue = @"calenderView";
     weekView.date = _calDate.date;
+    weekView.monthCalenderDelegate = self.monthCalenderDelegate;
     self.navigationController.viewControllers = [[NSArray alloc] initWithObjects:weekView, nil];
 }
 

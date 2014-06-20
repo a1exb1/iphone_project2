@@ -12,4 +12,6 @@
 
 +(NSArray*)jsonRequestWithUrl:(NSString*)urlString;
 
++(NSArray*)jsonAsyncRequestWithUrl:(NSString*)urlString;
+
 @end

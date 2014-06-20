@@ -24,40 +24,56 @@
     
 }
 
--(void)load{
-    
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=login&id=0&username=bm.fiona&password=fff&ts=%f", [[NSDate date] timeIntervalSince1970]];
-    
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
-    
-}
+//-(void)load{
+//    
+//    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=login&id=0&username=bm.fiona&password=fff&ts=%f", [[NSDate date] timeIntervalSince1970]];
+//    
+//    NSURL *url = [NSURL URLWithString: urlString];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    [NSURLConnection connectionWithRequest:request delegate:self];
+//    
+//}
+//
+//-(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
+//{
+//    _data = [[NSMutableData alloc]init];
+//    
+//}
+//
+//-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
+//{
+//    [_data appendData:theData];
+//}
+//
+//-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+//{
+//    
+//    _array = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+//    [_delegate finishLoading];
+//    
+//}
+//
+//-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+//{
+//    UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//    [errorView show];
+//}
 
--(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
+-(NSArray *)loadLessonsForDate:(NSDate *)date
 {
-    _data = [[NSMutableData alloc]init];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date]; // Get necessary date components
     
-}
+    int dd = (int)[components day]; //gives you day
+    int mm = (int)[components month]; //gives you month
+    int yy = (int)[components year]; // gives you year
 
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
-{
-    [_data appendData:theData];
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
+    NSString *dateString = [[NSString alloc] initWithFormat:@"%02d/%02d/%i", dd, mm, yy ];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=lessonsbytutoranddate&id=%li&date=%@&ts=%f", [self tutorID], dateString, [[NSDate date] timeIntervalSince1970]];
     
-    _array = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
-    [_delegate finishLoading];
-    
-}
+    NSLog(@"%@", urlString);
+    return [jsonReader jsonRequestWithUrl:urlString];
 
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    [errorView show];
 }
-
 
 @end

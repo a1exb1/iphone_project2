@@ -11,6 +11,7 @@
 @interface calenderViewController ()
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+
 @property (weak, nonatomic) IBOutlet UILabel *statusLbl;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *lockedUIButton;
@@ -111,6 +112,7 @@ NSTimer *timer;
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"765-arrow-left-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(done)];
     [self.navigationItem setLeftBarButtonItem:cancelBtn];
     [self setModalSize];
+    [self setNavigationBarSize];
 }
 
 -(void)done
@@ -118,10 +120,13 @@ NSTimer *timer;
     [_popover dismissPopoverAnimated:YES];
     [_calPopover dismissPopoverAnimated:YES];
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        [_menuDrawerDelegate deselectTableRow];
-    }];
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        [_menuDrawerDelegate deselectTableRow];
+//    }];
     
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.monthCalenderDelegate sendDateToAgendaWithDate:NULL];
+    }];
     
 }
 
@@ -130,6 +135,18 @@ NSTimer *timer;
 -(void)sendDateToAgendaWithDate:(NSDate *) Date
 {
     _date = Date;
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(400, 400, self.view.frame.size.width, self.view.frame.size.height)];
+    _statusLbl = label;
+    _statusLbl.text = @"Error with download";
+    _statusLbl.accessibilityValue = @"statusLbl";
+    for(UIView *view in self.view.subviews){
+        if([view.accessibilityValue isEqualToString:@"statusLbl"]){
+            [view removeFromSuperview];
+        }
+    }
+    [self.view addSubview:_statusLbl];
+    _statusLbl.hidden = YES;
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     [calendar setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"GB"]];
@@ -147,6 +164,8 @@ NSTimer *timer;
 
 -(void)previousWeek
 {
+    _c++;
+    [_statusLbl removeFromSuperview];
     NVDate *date = [[NVDate alloc] initUsingDate:_date];
     [date nextDays:-7];
     _date = date.date;
@@ -155,6 +174,8 @@ NSTimer *timer;
 
 -(void)nextWeek
 {
+    _c++;
+    [_statusLbl removeFromSuperview];
     NVDate *date = [[NVDate alloc] initUsingDate:_date];
     [date nextDays:7];
     _date = date.date;
@@ -164,7 +185,7 @@ NSTimer *timer;
 -(void)showNavigationBar
 {
     UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    fixedSpace.width = 20;
+    fixedSpace.width = 40;
     
     UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
     //UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
@@ -207,10 +228,11 @@ NSTimer *timer;
 
 -(void)changeCalType
 {
-    monthCalenderViewController *weekView = [self.storyboard instantiateViewControllerWithIdentifier:@"monthCal"];
-    weekView.dayDate = _date;
-    [weekView drawSquaresWithDirection:3 andOldContainer:nil];
-    self.navigationController.viewControllers = [[NSArray alloc] initWithObjects:weekView, nil];
+    monthCalenderViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"monthCal"];
+    view.dayDate = _date;
+    view.monthCalenderDelegate = self.monthCalenderDelegate;
+    [view drawSquaresWithDirection:3 andOldContainer:nil];
+    self.navigationController.viewControllers = [[NSArray alloc] initWithObjects:view, nil];
 }
 
 -(void)setNavigationBarSize
@@ -239,7 +261,7 @@ NSTimer *timer;
         //CALENDER
         
         UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-        fixedSpace.width = 20;
+        fixedSpace.width = 40;
 
         UIBarButtonItem *addLessonsBtn = nil;
         addLessonsBtn = [[UIBarButtonItem alloc] initWithTitle:@"Add to calender" style:UIBarButtonItemStylePlain target:self action:@selector(addLessons)];
@@ -284,7 +306,7 @@ NSTimer *timer;
 {
     self.statusLbl.hidden = YES;
     self.webView.hidden = YES;
-    
+        
     NVDate *fromDate = [[NVDate alloc] initUsingDate:_firstDateOfWeek];
     NSString *fromDateString = [[NSString alloc] initWithFormat:@"%0.2ld/%0.2ld/%ld", (long)fromDate.day, (long)fromDate.month, (long)fromDate.year];
     
@@ -311,6 +333,8 @@ NSTimer *timer;
     
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    
+    self.webView.tag = _c;
     [self.webView loadRequest:requestObj];
 }
 
@@ -335,11 +359,16 @@ NSTimer *timer;
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    NSLog(@"Error : %@",error);
-    [Tools hideLoader];
+    NSLog(@"Error : %ld, %d %@", (long)webView.tag, _c, error);
+    
     //_lockBtn = nil;
     [self showNavigationBar];
-    self.statusLbl.hidden = NO;
+//    if(webView.tag == _c){
+//        [Tools hideLoader];
+//        self.statusLbl.hidden = NO;
+//        self.statusLbl.center = self.view.center;
+//    }
+    
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -356,6 +385,7 @@ NSTimer *timer;
     [timer invalidate];
     [self lock];
     self.webView.hidden = NO;
+    self.statusLbl.hidden = YES;
     
 }
 

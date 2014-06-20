@@ -817,17 +817,16 @@ NSArray *daysOfWeekArray;
 -(void)sendDateToAgendaWithDate:(NSDate *) Date{
     [session setHasSetAgendaToDetail: NO];
     //_dayDate = [[NSDate alloc] init];
-    _dayDate = Date;
     
+    if(Date != NULL){
+        _dayDate = Date;
+        _setPickerDate = false;
+        [self fillPicker];
+    }
     
-    NSLog(@"%@", _dayDate);
-
-    
-    
-    //[self setDayDate:_dayDate];
-    
-    _setPickerDate = false;
-    [self fillPicker];
+    else{
+        [self jsonRequestGetAgenda];
+    }
 
     
 }

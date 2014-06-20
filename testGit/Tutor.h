@@ -7,6 +7,7 @@
 //
 
 #import "User.h"
+#import "jsonReader.h"
 
 @protocol tutorDelegate <NSObject>
 - (void) finishLoading;
@@ -22,7 +23,10 @@
 @property NSArray *array;
 @property NSMutableData *data;
 
+
+
 -(void)load;
 
+-(NSArray*)loadLessonsForDate:(NSDate *)date;
 
 @end

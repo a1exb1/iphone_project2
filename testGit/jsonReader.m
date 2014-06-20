@@ -29,4 +29,23 @@
     return arr;
 }
 
++(NSArray*)jsonAsyncRequestWithUrl:(NSString*)urlString
+{
+    NSArray *arr = [[NSArray alloc] init];
+    
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (response == nil) {
+        UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [errorView show];
+    } else {
+        arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    }
+    return arr;
+}
+
 @end
