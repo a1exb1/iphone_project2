@@ -54,7 +54,7 @@ extern Session *session;
     segmentedControl.selectedSegmentIndex = 0;
     UIBarButtonItem *segmentButton = [[UIBarButtonItem alloc] initWithCustomView: segmentedControl];
     
-    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
+    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"765-arrow-left-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
     [self.navigationItem setLeftBarButtonItem:cancelBtn];
     
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"765-arrow-left-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(previousMonth)];
@@ -404,7 +404,7 @@ extern Session *session;
 {
     calenderViewController *weekView = [self.storyboard instantiateViewControllerWithIdentifier:@"calenderViewActual"];
     weekView.accessibilityValue = @"calenderView";
-    weekView.date = _dayDate;
+    weekView.date = _calDate.date;
     self.navigationController.viewControllers = [[NSArray alloc] initWithObjects:weekView, nil];
 }
 

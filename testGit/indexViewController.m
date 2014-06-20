@@ -618,7 +618,7 @@ extern Session *session;
     }
     
     if(indexPath.row == 5){
-        cell.imageView.image = [UIImage imageNamed:@"384-dollar-currency.png"];
+        cell.imageView.image = [UIImage imageNamed:@"573-money.png"];
         cell.textLabel.text = @"Owes £23.50";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         

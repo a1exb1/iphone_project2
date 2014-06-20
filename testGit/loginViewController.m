@@ -35,18 +35,10 @@ extern Session *session;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-    
-    //_bgImg.image = [UIImage imageNamed:@"login_portrait.jpg"];
-    
-    //_bgImg.image = [UIImage imageNamed:@"SplashScreenLogin2.png"];
-    
     [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:nil theme:@"dark"];
     
     [self.view setBackgroundColor:[UIColor blackColor]];
-    
-    _bgImg.clipsToBounds = YES;
-    _bgImg.contentMode = UIViewContentModeScaleAspectFit;
+    _bgImg.clipsToBounds = YES; // ?
     
     //PLIST GET
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
@@ -60,8 +52,6 @@ extern Session *session;
         // if not in documents, get property list from main bundle
         plistPath = [[ NSBundle mainBundle] pathForResource:@"loginPlist" ofType:@"plist"];
     }
-    
-    
     
     NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
     NSString *errorDesc = nil;
@@ -84,12 +74,18 @@ extern Session *session;
         
     }
     
-    
+    [self fitImg];
+}
+
+-(void)fitImg
+{
+    //_bgImg.frame= CGRectMake(0.0f, 0.0f, ([UIScreen mainScreen].bounds.size.width), [UIScreen mainScreen].bounds.size.height);
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    _bgImg.frame= CGRectMake(0.0f, 0.0f, self.view.frame.size.width, _bgImg.frame.size.height);
+    [self fitImg];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,7 +119,7 @@ extern Session *session;
 
 -(void)jsonRequestGetData
 {
-    [Tools showLoader];
+    [Tools showLoaderWithView:self.view];
     self.loginBtn.hidden = YES;
     self.usernameTextField.hidden = YES;
     self.passwordTextField.hidden = YES;
@@ -155,7 +151,7 @@ extern Session *session;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
     
     _clientArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     
@@ -200,7 +196,7 @@ extern Session *session;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
     self.loginBtn.hidden = NO;
     self.usernameTextField.hidden = NO;
     self.passwordTextField.hidden = NO;

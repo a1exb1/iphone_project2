@@ -93,8 +93,8 @@ NSTimer *timer;
     //[self.navigationItem setHidesBackButton:YES];
     
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
-        _calenderUIButton.action = @selector(selectDate:);
-        _calenderUIButton.target = self;
+        //_calenderUIButton.action = @selector(selectDate:);
+        //_calenderUIButton.target = self;
         //self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _plusUIButton, _calenderUIButton, nil];
         
         if(_date == NULL){
@@ -109,6 +109,10 @@ NSTimer *timer;
     }
     
     [self setModalSize];
+    
+    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"765-arrow-left-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(done)];
+    [self.navigationItem setLeftBarButtonItem:cancelBtn];
+    
 }
 
 -(void)done
@@ -123,26 +127,7 @@ NSTimer *timer;
     
 }
 
--(void)selectDate:(UIBarButtonItem *)btn;
-{
-//    [_popover dismissPopoverAnimated:YES];
-//    [_calPopover dismissPopoverAnimated:YES];
-//    
-//    UINavigationController *controller = [[UINavigationController alloc] init];
-//    
-//    SelectDateViewController* viewController2 = [[SelectDateViewController alloc] initWithNibName:@"SelectDateViewController" bundle:nil];
-//    viewController2.previousDate = _date;
-//    viewController2.selectDateDelegate = (id)self;
-//    self.calPopover = [[UIPopoverController alloc] initWithContentViewController:controller];
-//    
-//    [controller pushViewController:viewController2 animated:NO];
-//    [controller.navigationItem setHidesBackButton:YES];
-//    //self.calPopover = [[UIPopoverController alloc] initWithContentViewController:viewController2];
-//    
-//    _calPopover.popoverContentSize = CGSizeMake(320,568);
-//    
-//    [_calPopover presentPopoverFromBarButtonItem:btn permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-}
+
 
 -(void)sendDateToAgendaWithDate:(NSDate *) Date
 {
@@ -161,11 +146,6 @@ NSTimer *timer;
     
 }
 
-
--(void)changed
-{
-    
-}
 
 -(void)previousWeek
 {
@@ -192,15 +172,7 @@ NSTimer *timer;
     //UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
 
 
-    UIView *closeBtnView = [[UIView alloc] initWithFrame:CGRectMake(0, -27, 80, 30)];
-    UIButton *closeUIBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [closeUIBtn setFrame:CGRectMake(0, -27, 80, 30)];
-    [closeUIBtn setTitle:@"Close" forState:UIControlStateNormal];
-    closeUIBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [closeUIBtn titleLabel].font = [UIFont fontWithName:nil size:17];
-    [closeBtnView addSubview:closeUIBtn];
-    UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithCustomView:closeBtnView];
-    [self.navigationItem setLeftBarButtonItem:closeBtn];
+    
     
     if ([self.accessibilityValue isEqualToString:@"calenderView"]) {
         //CALENDER

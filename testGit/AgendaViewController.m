@@ -380,7 +380,7 @@ NSArray *daysOfWeekArray;
 
 -(void)finishedAttendance{
     if(_editing){
-        [self saveAllSwitches];
+        
         [_mainTableView reloadData];
     }
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishedAttendanceBtn)];
@@ -428,6 +428,7 @@ NSArray *daysOfWeekArray;
 
 -(void)finishedAttendanceBtn{
     _keepEditing = NO;
+    [self saveAllSwitches];
     [self finishedAttendance];
 }
 
