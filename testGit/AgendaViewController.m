@@ -184,9 +184,9 @@ NSArray *daysOfWeekArray;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    if(_hasFilled == false){
+    //if(_hasFilled == false){
         [self fillPicker];
-    }
+    //}
     _hasFilled = true;
     
 }

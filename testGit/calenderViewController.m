@@ -112,7 +112,28 @@ NSTimer *timer;
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"765-arrow-left-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(done)];
     [self.navigationItem setLeftBarButtonItem:cancelBtn];
     [self setModalSize];
-    [self setNavigationBarSize];
+    if([self.accessibilityValue isEqualToString:@"calenderView"]){
+        [self setNavigationBarSize];
+    }
+    
+    int c = 0;
+    int containerWidth = (self.view.frame.size.width /100) * 91;
+    int width = containerWidth / 7;
+    int leftPadding =self.view.frame.size.width - containerWidth;
+    
+    for(UIView *view in self.navigationController.navigationBar.subviews){
+        if([view.accessibilityValue isEqualToString:@"dayTitle"]){
+            int l = leftPadding + (c * width);
+            
+            NSLog(@"%f, %d, %d",self.view.frame.size.width, containerWidth, width);
+            if(c==0) {
+                //view.backgroundColor = [UIColor redColor];
+            }
+            view.frame = CGRectMake(l, view.frame.origin.y, width, view.frame.size.height);
+
+            c++;
+        }
+    }
 }
 
 -(void)done
@@ -222,7 +243,9 @@ NSTimer *timer;
         self.toolbarItems = [NSArray arrayWithObjects:refreshBtn,fixedSpace,  _lockBtn, nil];
     }
     
-    [self setNavigationBarSize];
+    if([self.accessibilityValue isEqualToString:@"calenderView"]){
+        [self setNavigationBarSize];
+    }
     
 }
 
@@ -391,7 +414,13 @@ NSTimer *timer;
 
 - (void)viewDidLayoutSubviews {
     [self.navigationController setToolbarHidden:NO];
-    self.webView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    if([self.accessibilityValue isEqualToString:@"calenderView"]){
+        self.webView.frame = CGRectMake(0, -24, self.view.frame.size.width, self.view.frame.size.height);
+    }
+    else{
+        self.webView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    }
+    
     
     _statusLbl.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
@@ -466,7 +495,9 @@ NSTimer *timer;
 {
     
     [self setModalSize];
-    
+    if([self.accessibilityValue isEqualToString:@"calenderView"]){
+        [self setNavigationBarSize];
+    }
     
     //self.view.superview.bounds = CGRectMake(0, 0, (self.view.frame.size.width - 50), (self.view.frame.size.height - 50));
 }

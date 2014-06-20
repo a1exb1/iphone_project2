@@ -71,12 +71,13 @@ extern Session *session;
     [self setModalSizeOfView];
     //[self setNavigationBarSize];
     //[self drawSquaresWithDirection:0 andOldContainer:nil];
-    [Tools showLightLoaderWithView:self.view];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [self setModalSizeOfView];
+    [Tools showLightLoaderWithView:self.view];
     //[self drawSquaresWithDirection:0 andOldContainer:nil];
     
 }
@@ -264,8 +265,6 @@ extern Session *session;
             }
             [square addSubview:lessonCountLbl];
         }
-        
-        
         
         [container addSubview:square];
         

@@ -7,7 +7,7 @@
 //
 
 #import "User.h"
-
+#import "jsonReader.h"
 
 @protocol clientDelegate <NSObject>
 - (void) finishLoading;
@@ -23,8 +23,10 @@
 @property (nonatomic, assign) id<clientDelegate> delegate;
 @property NSArray *array;
 @property NSMutableData *data;
-
+@property NSArray *courses;
 
 -(void)loadTutors;
+
+-(void)loadCourses;
 
 @end

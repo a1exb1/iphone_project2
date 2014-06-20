@@ -497,8 +497,16 @@ extern Session *session;
         
     }
     else{
-        dayDesc = [NSString stringWithFormat:@"%02ld.%02ld.%li", (long)lessonDate.day, (long)lessonDate.month, (long)lessonDate.year];
-        _lessonStatus = dayDesc;
+        if ([nowDate.date timeIntervalSinceReferenceDate] < [lessonDate.date timeIntervalSinceReferenceDate]) {
+            dayDesc = @"Upcoming";
+            _lessonStatus = dayDesc;
+        }
+        else{
+            dayDesc = [NSString stringWithFormat:@"%02ld.%02ld.%li", (long)lessonDate.day, (long)lessonDate.month, (long)lessonDate.year];
+            _lessonStatus = dayDesc;
+        }
+        
+        
     }
     
     [self.mainTableView reloadData];

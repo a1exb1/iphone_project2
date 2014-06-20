@@ -188,6 +188,7 @@
 		E4CB075C19530075005D506F /* 791-warning-toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CB075A19530075005D506F /* 791-warning-toolbar@2x.png */; };
 		E4CB076519542CE4005D506F /* 573-money.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CB076319542CE4005D506F /* 573-money.png */; };
 		E4CB076619542CE4005D506F /* 573-money@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CB076419542CE4005D506F /* 573-money@2x.png */; };
+		E4CB07691954675C005D506F /* clientCoursesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4CB07681954675C005D506F /* clientCoursesTableViewController.m */; };
 		E4D231E419212A6A00E5797B /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D231E319212A6A00E5797B /* Session.m */; };
 		E4D231E6192133FB00E5797B /* Document Checklist.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E5192133FB00E5797B /* Document Checklist.png */; };
 		E4D231E8192134C400E5797B /* Note Sticky.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E7192134C400E5797B /* Note Sticky.png */; };
@@ -456,6 +457,8 @@
 		E4CB075A19530075005D506F /* 791-warning-toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "791-warning-toolbar@2x.png"; sourceTree = "<group>"; };
 		E4CB076319542CE4005D506F /* 573-money.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "573-money.png"; sourceTree = "<group>"; };
 		E4CB076419542CE4005D506F /* 573-money@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "573-money@2x.png"; sourceTree = "<group>"; };
+		E4CB07671954675C005D506F /* clientCoursesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clientCoursesTableViewController.h; sourceTree = "<group>"; };
+		E4CB07681954675C005D506F /* clientCoursesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = clientCoursesTableViewController.m; sourceTree = "<group>"; };
 		E4D231E219212A6A00E5797B /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		E4D231E319212A6A00E5797B /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
 		E4D231E5192133FB00E5797B /* Document Checklist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Document Checklist.png"; sourceTree = "<group>"; };
@@ -506,6 +509,8 @@
 				792B23D01921057A00CAE285 /* ManageTableViewController.m */,
 				E4C28933193F4B1D00538763 /* addLessonsTableViewController.h */,
 				E4C28934193F4B1D00538763 /* addLessonsTableViewController.m */,
+				E4CB07671954675C005D506F /* clientCoursesTableViewController.h */,
+				E4CB07681954675C005D506F /* clientCoursesTableViewController.m */,
 			);
 			name = Manage;
 			sourceTree = "<group>";
@@ -1285,6 +1290,7 @@
 				E4AA7DDB191D501D00269A3F /* NVDate.m in Sources */,
 				79A8686E191B941C00AA4058 /* SelectDateViewController.m in Sources */,
 				E40DF28E190017E100E1332A /* ABAppDelegate.m in Sources */,
+				E4CB07691954675C005D506F /* clientCoursesTableViewController.m in Sources */,
 				79A86857191B93EC00AA4058 /* DSLCalendarDayView.m in Sources */,
 				E47352801900279E008006EE /* indexViewController.m in Sources */,
 				E4C6CCDA193B6CC800F1997C /* DetailViewController.m in Sources */,
