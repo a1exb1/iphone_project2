@@ -51,8 +51,8 @@ extern Session *session;
     NSArray *cell = [[NSArray alloc]initWithObjects:@"clock_80.png", @"Slots", @"", @"slots", nil];
     [section addObject:cell];
     
-    cell = [[NSArray alloc]initWithObjects:@"Calendar-Date-03-80.png", @"Calender", @"", @"calender", nil];
-    [section addObject:cell];
+//    cell = [[NSArray alloc]initWithObjects:@"Calendar-Date-03-80.png", @"Calender", @"", @"calender", nil];
+//    [section addObject:cell];
     cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Courses", @"", @"courses", nil];
     [section addObject:cell];
 
@@ -294,6 +294,23 @@ extern Session *session;
         editCoursesTableViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"editCourses"];
         top.tutor = [session tutor];
     
+        [detailViewController pushViewController:top animated:YES];
+        detailViewManager.detailViewController = detailViewController;
+        
+    }
+    
+    if([cell.accessibilityValue isEqualToString:@"allcourses"]){
+        _indexPath= indexPath;
+        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+        
+        DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
+        
+        UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
+        
+        detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
+        
+        clientCoursesTableViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"clientCourses"];
+        
         [detailViewController pushViewController:top animated:YES];
         detailViewManager.detailViewController = detailViewController;
         

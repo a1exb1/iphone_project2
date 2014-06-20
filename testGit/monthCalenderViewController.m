@@ -437,6 +437,11 @@ extern Session *session;
     [self.navigationItem.leftBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [Tools hideLoader];
+}
+
 /*
 #pragma mark - Navigation
 

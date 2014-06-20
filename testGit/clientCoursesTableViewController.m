@@ -35,12 +35,21 @@ extern Session *session;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [[session client] loadCourses];
+    NSLog(@"hello%@", [[session client] courses]);
+    [self.navigationItem setHidesBackButton:YES];
+    [self.tableView reloadData];
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    
+    NSDictionary *tutor = [[[session client] courses] objectAtIndex:indexPath.section];
+    NSArray *course = [tutor objectForKey:@"courses"];
+    
+    cell.textLabel.text = [course objectAtIndex:1];
+    cell.accessibilityValue = [course objectAtIndex:0];
     
     return cell;
 }

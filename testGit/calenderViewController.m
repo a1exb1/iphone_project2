@@ -415,7 +415,7 @@ NSTimer *timer;
 - (void)viewDidLayoutSubviews {
     [self.navigationController setToolbarHidden:NO];
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
-        self.webView.frame = CGRectMake(0, -24, self.view.frame.size.width, self.view.frame.size.height);
+        self.webView.frame = CGRectMake(0, -23, self.view.frame.size.width, self.view.frame.size.height);
     }
     else{
         self.webView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
@@ -500,6 +500,11 @@ NSTimer *timer;
     }
     
     //self.view.superview.bounds = CGRectMake(0, 0, (self.view.frame.size.width - 50), (self.view.frame.size.height - 50));
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [Tools hideLoader];
 }
 
 /*

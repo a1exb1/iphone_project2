@@ -19,6 +19,7 @@
 #import "editTutorsTableViewController.h"
 #import "editCoursesTableViewController.h"
 #import "loginViewController.h"
+#import "clientCoursesTableViewController.h"
 
 @interface menuDrawerTableViewController : UITableViewController
 

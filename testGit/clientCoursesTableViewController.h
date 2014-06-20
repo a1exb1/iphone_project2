@@ -11,4 +11,6 @@
 
 @interface clientCoursesTableViewController : UITableViewController
 
+@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
+
 @end

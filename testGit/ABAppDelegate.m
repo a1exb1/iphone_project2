@@ -43,7 +43,7 @@ Session *session;
         splitViewController.delegate = self.detailViewManager;
         
         if ([splitViewController respondsToSelector:@selector(setPresentsWithGesture:)])
-            [splitViewController setPresentsWithGesture:YES];
+            //[splitViewController setPresentsWithGesture:YES];
         
         return YES;
 }

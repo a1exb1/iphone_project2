@@ -28,5 +28,6 @@
 -(void)loadTutors;
 
 -(void)loadCourses;
+-(void)loadStudents;
 
 @end

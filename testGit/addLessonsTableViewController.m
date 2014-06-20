@@ -40,11 +40,11 @@
     NSArray *cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add multiple lessons", @"Between two dates", nil];
     [section addObject:cell];
     
-    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add multiple lessons", @"For one day", nil];
-    [section addObject:cell];
-    
-    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add a single lesson", @"", nil];
-    [section addObject:cell];
+//    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add multiple lessons", @"For one day", nil];
+//    [section addObject:cell];
+//    
+//    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add a single lesson", @"", nil];
+//    [section addObject:cell];
     
     
     [_cellsArray addObject:section];

@@ -52,12 +52,18 @@
 {
 
     
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=notesbystudent&id=%li&lessonid=", [self clientID]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsandcoursesbyclient&id=%li", [self clientID]];
+    
     
     self.courses = [jsonReader jsonRequestWithUrl:urlString];
     
         
 
+}
+
+-(void)loadStudents
+{
+    //NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbytutor&id=%li&", [[self tutor] tutorID]];
 }
 
 @end

@@ -177,7 +177,9 @@ extern Session *session;
             [[session client] setClientID:[[[_clientArray objectAtIndex:0] objectForKey:@"clientid"] intValue]];
             [[session client] setPremium:[[[_clientArray objectAtIndex:0] objectForKey:@"clientaccounttype"] intValue]];
             [[session client] setClientUserName:[[_clientArray objectAtIndex:0] objectForKey:@"clientusername"]];
+            [[session client] setName:[[_clientArray objectAtIndex:0] objectForKey:@"clientname"]];
             [[session tutor] setTutorID:[[[_clientArray objectAtIndex:0] objectForKey:@"tutorid"] intValue]];
+            [[session tutor] setName:[[_clientArray objectAtIndex:0] objectForKey:@"tutorname"] ];
             [[session tutor] setAccountType:[[[_clientArray objectAtIndex:0] objectForKey:@"tutoraccounttype"] intValue]];
             
             [self loginSuccess];
