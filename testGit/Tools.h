@@ -32,7 +32,10 @@
 +(void)lockInputWithFrame: (CGRect)frame;
 +(void)unlockInputWithView;
 
-// Assumes input like "#00FF00" (#RRGGBB).
++(void)showActivityIndicator;
++(void)hideActivityIndicator;
+
+// Assumes input like "#00FF00" (#RRGGBB)
 + (UIColor *)colorFromHexString:(NSString *)hexString;
 
 +(void)setNavigationHeaderColorWithNavigationController: (UINavigationController *)view  andTabBar: (UITabBar*)tabBar andBackground: (UIColor *)bgCol andTint: (UIColor *)tint theme: (NSString *)theme;

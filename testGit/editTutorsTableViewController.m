@@ -29,9 +29,9 @@ extern Session *session;
 -(void)viewWillAppear:(BOOL)animated{
     _data = [[NSMutableData alloc]init];
     _tutors = [[NSArray alloc] init];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
     
-    [Tools showLoader];
+    [Tools showLoaderWithView:self.view];
     //
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%ld&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
@@ -65,7 +65,9 @@ extern Session *session;
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
     
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, nil]];
-    
+        
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 -(void)plus{
@@ -81,7 +83,7 @@ extern Session *session;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [Tools showLoader];
+    [Tools showLoaderWithView:self.view];
     
 
     self.title = @"Edit a tutor";
@@ -107,7 +109,7 @@ extern Session *session;
     _data = [[NSMutableData alloc]init];
     _tutors = [[NSArray alloc] init];
     [self.tableView reloadData];
-    [Tools showLoader];
+    [Tools showLoaderWithView:self.view];
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%ld&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -209,7 +211,7 @@ extern Session *session;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
     [self.tableView.pullToRefreshView stopAnimating];
     
     _tutors = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
@@ -233,7 +235,7 @@ extern Session *session;
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
     [self.tableView.pullToRefreshView stopAnimating];
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
 }
 
 

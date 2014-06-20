@@ -335,6 +335,16 @@ NSMutableArray *loaderViews;
 //    vc.view.layer.shadowColor = [UIColor blackColor].CGColor;
 }
 
++(void)showActivityIndicator
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
+}
+
++(void)hideActivityIndicator
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
 +(BOOL)isIpad
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)

@@ -12,6 +12,7 @@
 
 +(NSArray*)jsonRequestWithUrl:(NSString*)urlString
 {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
     NSArray *arr = [[NSArray alloc] init];
     
     NSURL *url = [NSURL URLWithString: urlString];
@@ -25,7 +26,8 @@
         [errorView show];
     } else {
         arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    }    
+    }
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     return arr;
 }
 

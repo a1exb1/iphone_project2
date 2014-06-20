@@ -29,7 +29,7 @@
     _courses = [[NSArray alloc] init];
     [self.tableView reloadData];
     
-    [Tools showLoader];
+    //[Tools showLoader];
     //
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
@@ -45,11 +45,13 @@
     else{
         [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#57AD2C"] andTint:[UIColor whiteColor] theme:@"dark"];
     }
+    
+   [self getJson];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     
-    [self getJson];
+    
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -57,6 +59,9 @@
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
     
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, nil]];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 
@@ -94,7 +99,7 @@
     _data = [[NSMutableData alloc]init];
     _courses = [[NSArray alloc] init];
     [self.tableView reloadData];
-    [Tools showLoader];
+    [Tools showLoaderWithView:self.view];
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -179,7 +184,7 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
     [self.tableView.pullToRefreshView stopAnimating];
     
     _courses = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
@@ -201,7 +206,7 @@
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
     [self.tableView.pullToRefreshView stopAnimating];
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
 }
 
 

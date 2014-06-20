@@ -35,9 +35,8 @@ extern Session *session;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [[session client] loadCourses];
-    NSLog(@"hello%@", [[session client] courses]);
     [self.navigationItem setHidesBackButton:YES];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
     
 }
 
@@ -46,10 +45,14 @@ extern Session *session;
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     
     NSDictionary *tutor = [[[session client] courses] objectAtIndex:indexPath.section];
-    NSArray *course = [tutor objectForKey:@"courses"];
+    NSArray *courses = [tutor objectForKey:@"courses"];
+    NSArray *course = [courses objectAtIndex:indexPath.row];
+    
     
     cell.textLabel.text = [course objectAtIndex:1];
-    cell.accessibilityValue = [course objectAtIndex:0];
+//    
+//    cell.textLabel.text = [course objectAtIndex:1];
+//    cell.accessibilityValue = [course objectAtIndex:0];
     
     return cell;
 }
@@ -67,13 +70,26 @@ extern Session *session;
 {
     // Return the number of sections.
     return [[[session client] courses]count];
+    //return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSDictionary *tutor = [[[session client] courses] objectAtIndex:section];
-    // Return the number of rows in the section.
-    return [[tutor objectForKey:@"courses"] count];
+    NSArray *courses = [tutor objectForKey:@"courses"];
+    //return [[tutor objectForKey:@"courses"] count];
+    return [courses count];
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSDictionary *tutor = [[[session client] courses] objectAtIndex:section];
+    NSString *status = @"";
+    NSArray *courses = [tutor objectForKey:@"courses"];
+    if ([courses count] == 0) {
+        status = @"(No courses)";
+    }
+    return [NSString stringWithFormat:@"%@ %@", [tutor objectForKey:@"tutorname"], status];
 }
 
 /*
