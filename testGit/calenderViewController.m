@@ -108,11 +108,9 @@ NSTimer *timer;
         [self loadUrl];
     }
     
-    [self setModalSize];
-    
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"765-arrow-left-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(done)];
     [self.navigationItem setLeftBarButtonItem:cancelBtn];
-    
+    [self setModalSize];
 }
 
 -(void)done
@@ -297,7 +295,7 @@ NSTimer *timer;
     self.title = [NSString stringWithFormat:@"%@ - %@",fromDateString, toDateString];
     
     [self hideNavigationBar];
-    [Tools showLoaderWithView:self.view];
+    [Tools showLightLoader];
     NSLog(@"%f", self.navigationController.view.frame.size.width);
     //[Tools showLightLoader];
     //[Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:nil andTint:nil theme:@"light"];
@@ -338,7 +336,7 @@ NSTimer *timer;
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     NSLog(@"Error : %@",error);
-    [Tools hideLoaderFromView:self.view];
+    [Tools hideLoader];
     //_lockBtn = nil;
     [self showNavigationBar];
     self.statusLbl.hidden = NO;
@@ -352,7 +350,7 @@ NSTimer *timer;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [Tools hideLoaderFromView:self.view];
+    [Tools hideLoader];
     //[self.splitViewController willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
     //[self.view setNeedsLayout];
     [timer invalidate];
