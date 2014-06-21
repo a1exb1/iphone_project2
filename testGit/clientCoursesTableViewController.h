@@ -10,6 +10,7 @@
 #import "Session.h"
 #import "Course.h"
 #import "saveCourseViewController.h"
+#import "customTableViewCell.h"
 
 @interface clientCoursesTableViewController : UITableViewController
 

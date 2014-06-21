@@ -84,6 +84,7 @@
 		E40DF2A2190017E200E1332A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF281190017E100E1332A /* UIKit.framework */; };
 		E40DF2AA190017E200E1332A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E40DF2A8190017E200E1332A /* InfoPlist.strings */; };
 		E40DF2AC190017E200E1332A /* testGitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E40DF2AB190017E200E1332A /* testGitTests.m */; };
+		E419E73119563B4B00E14309 /* customTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E419E73019563B4B00E14309 /* customTableViewCell.m */; };
 		E41B75CC193DFD0500255354 /* menuDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41B75CB193DFD0500255354 /* menuDrawerTableViewController.m */; };
 		E41B75CF193DFD0500255354 /* 742-wrench-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E41B75CE193DFD0500255354 /* 742-wrench-selected@2x.png */; };
 		E41B75D1193DFD0500255354 /* 728-clock-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E41B75D0193DFD0500255354 /* 728-clock-selected@2x.png */; };
@@ -315,6 +316,8 @@
 		E40DF2A7190017E200E1332A /* PlanIt!Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlanIt!Tests-Info.plist"; sourceTree = "<group>"; };
 		E40DF2A9190017E200E1332A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E40DF2AB190017E200E1332A /* testGitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testGitTests.m; sourceTree = "<group>"; };
+		E419E72F19563B4B00E14309 /* customTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customTableViewCell.h; sourceTree = "<group>"; };
+		E419E73019563B4B00E14309 /* customTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customTableViewCell.m; sourceTree = "<group>"; };
 		E41B75CA193DFD0500255354 /* menuDrawerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuDrawerTableViewController.h; sourceTree = "<group>"; };
 		E41B75CB193DFD0500255354 /* menuDrawerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menuDrawerTableViewController.m; sourceTree = "<group>"; };
 		E41B75CE193DFD0500255354 /* 742-wrench-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "742-wrench-selected@2x.png"; sourceTree = "<group>"; };
@@ -563,6 +566,7 @@
 		79AA222E1909439D005AC8A3 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				E419E72E19563B3000E14309 /* other */,
 				E421C97B19351B9800FA039A /* main */,
 				E4C1C9751915A4200068A10D /* tools */,
 			);
@@ -803,6 +807,15 @@
 				E40DF2A8190017E200E1332A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E419E72E19563B3000E14309 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				E419E72F19563B4B00E14309 /* customTableViewCell.h */,
+				E419E73019563B4B00E14309 /* customTableViewCell.m */,
+			);
+			name = other;
 			sourceTree = "<group>";
 		};
 		E41B75CD193DFD0500255354 /* tab bar */ = {
@@ -1264,6 +1277,7 @@
 				E4C1C97B1916700F0068A10D /* Tools.m in Sources */,
 				792B23CA1920FB1700CAE285 /* Client.m in Sources */,
 				E4F96CCC19097D49008D75D6 /* tutors2ViewController.m in Sources */,
+				E419E73119563B4B00E14309 /* customTableViewCell.m in Sources */,
 				E4C1C98319167BA90068A10D /* UIScrollView+SVPullToRefresh.m in Sources */,
 				E40DF28A190017E100E1332A /* main.m in Sources */,
 				E4B05BDE1951EEEA0031151C /* monthCalenderCell.m in Sources */,

@@ -1247,7 +1247,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1023" y="-3753"/>
         </scene>
-        <!--Month Calender View Controller - January-->
+        <!--Month Calender View Controller-->
         <scene sceneID="QJ4-NP-x5T">
             <objects>
                 <viewController storyboardIdentifier="monthCal" id="0ie-kG-zjt" customClass="monthCalenderViewController" sceneMemberID="viewController">
@@ -1269,7 +1269,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="January" id="wmv-up-bQh">
+                    <navigationItem key="navigationItem" id="wmv-up-bQh">
                         <barButtonItem key="leftBarButtonItem" image="765-arrow-left-toolbar-selected.png" id="tGa-xW-S67">
                             <connections>
                                 <action selector="previousMonth:" destination="0ie-kG-zjt" id="2cx-HE-GEt"/>
@@ -1770,7 +1770,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="nt5-br-Avs"/>
+        <segue reference="5gf-Tb-f5e"/>
         <segue reference="CfY-gI-8gC"/>
     </inferredMetricsTieBreakers>
 </document>
