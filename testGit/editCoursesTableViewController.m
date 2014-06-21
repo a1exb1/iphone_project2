@@ -80,7 +80,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    self.title = @"Edit a course";
+    self.title = @"Manage your courses";
     
     [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     

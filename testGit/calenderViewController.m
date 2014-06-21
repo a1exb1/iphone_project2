@@ -44,9 +44,7 @@ NSTimer *timer;
         [self.navigationItem setLeftBarButtonItem:self.navigationPaneBarButtonItem animated:NO];
     
     [self setModalSize];
-    
-    if(![self.accessibilityValue isEqualToString:@"calenderView"])
-        [self loadUrl];
+    [self loadUrl];
 
 }
 
@@ -330,6 +328,7 @@ NSTimer *timer;
     [toDate nextDays:6];
     NSString *toDateString = [[NSString alloc] initWithFormat:@"%0.2ld/%0.2ld/%ld", (long)toDate.day, (long)toDate.month, (long)toDate.year];
     
+    if([self.accessibilityValue isEqualToString:@"calenderView"])
     self.title = [NSString stringWithFormat:@"%@ - %@",fromDateString, toDateString];
     
     [self hideNavigationBar];
