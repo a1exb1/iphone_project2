@@ -22,7 +22,7 @@
 @property Tutor *tutorSender;
 
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
-
+@property bool loaded;
 //@property long currentTutorID;
 
 @end

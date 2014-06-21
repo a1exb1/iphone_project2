@@ -28,24 +28,31 @@ extern Session *session;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    //[self.tableView reloadData];
+    self.title = [NSString stringWithFormat:@"Courses (%@)", [[session client] name]];
     
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [[session client] setCourses:[[NSArray alloc] init]];
-    [self.tableView reloadData];
-    [Tools showLightLoaderWithView:self.view];
-    [[session client] loadCoursesAsyncWithDelegate:self];
-    [self.navigationItem setHidesBackButton:YES];
+    if(!_loaded){
+        [[session client] setCourses:[[NSArray alloc] init]];
+        [self.tableView reloadData];
+        [Tools showLightLoaderWithView:self.view];
+        [[session client] loadCoursesAsyncWithDelegate:self];
+        [self.navigationItem setHidesBackButton:YES];
+        _loaded = YES;
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    if(_loaded){
+        [[session client] setCourses:[[NSArray alloc] init]];
+        [self.tableView reloadData];
+        [Tools showLightLoaderWithView:self.view];
+        [[session client] loadCoursesAsyncWithDelegate:self];
+        [self.navigationItem setHidesBackButton:YES];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -56,12 +63,7 @@ extern Session *session;
     NSArray *courses = [tutor objectForKey:@"courses"];
     NSArray *course = [courses objectAtIndex:indexPath.row];
     
-    
-    cell.textLabel.text = [course objectAtIndex:1];
-//    
-//    cell.textLabel.text = [course objectAtIndex:1];
-//    cell.accessibilityValue = [course objectAtIndex:0];
-    
+    cell.textLabel.text = [course objectAtIndex:1];    
     return cell;
 }
 
@@ -100,65 +102,31 @@ extern Session *session;
     return [NSString stringWithFormat:@"%@ %@", [tutor objectForKey:@"tutorname"], status];
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //onclick for each object, put to label for example
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    //self.tutorIDSender = cell.accessibilityValue;
+    //self.tutorNameSender = cell.textLabel.text;
+    //[self performSegueWithIdentifier:@"TutorsToCourses" sender:self];
+    NSDictionary *tutorDict = [[[session client] courses] objectAtIndex:indexPath.section];
+    NSArray *courses = [tutorDict objectForKey:@"courses"];
+    NSArray *courseArr = [courses objectAtIndex:indexPath.row];
     
-    // Configure the cell...
+    Course *course = [[Course alloc] init];
+    [course setCourseID:[[courseArr objectAtIndex:0] intValue]];
+    [course setName:cell.textLabel.text];
     
-    return cell;
+    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourseL"];
+    view.course = course;
+    
+    NSArray *tutorid = [tutorDict objectForKey:@"tutorid"];
+    NSString *str = [[NSString alloc] initWithFormat:@"%@", tutorid];
+    Tutor *tutor = [[Tutor alloc] init];
+    [tutor setName:[tutorDict objectForKey:@"tutorname"]];
+    [tutor setTutorID:[str intValue]];
+    view.tutor = tutor;
+    [self.navigationController pushViewController:view animated:YES];
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void) finished:(NSString *)status withArray:(NSArray *)array;
 {

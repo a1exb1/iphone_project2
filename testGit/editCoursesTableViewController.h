@@ -24,5 +24,6 @@
 @property Course *courseSender;
 
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
+@property bool loaded;
 
 @end

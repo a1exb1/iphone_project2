@@ -67,7 +67,7 @@
 
 -(void)plus{
     _courseSender = [[Course alloc] init];
-    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourse"];
+    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourseL"];
     view.course = _courseSender;
     view.tutor = _tutor;
     [self.navigationController pushViewController:view animated:YES];
@@ -166,7 +166,7 @@
     [_courseSender setCourseID:[cell.accessibilityValue intValue]];
     [_courseSender setName:cell.textLabel.text];
     
-    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourse"];
+    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourseL"];
     view.course = self.courseSender;
     view.tutor = _tutor;
     [self.navigationController pushViewController:view animated:YES];

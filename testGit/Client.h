@@ -9,6 +9,7 @@
 #import "User.h"
 #import "jsonReader.h"
 
+
 @protocol clientDelegate <NSObject>
 - (void) finishLoading; // not used any more ?
 @end

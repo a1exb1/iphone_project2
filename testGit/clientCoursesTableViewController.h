@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Session.h"
+#import "Course.h"
+#import "saveCourseViewController.h"
 
 @interface clientCoursesTableViewController : UITableViewController
 
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
+@property bool loaded;
 
 @end

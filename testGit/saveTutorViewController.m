@@ -41,6 +41,11 @@ extern Session *session;
     }
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self rotateValues];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -58,10 +63,10 @@ extern Session *session;
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
     }
     
-    self.accountTypePicker.hidden = YES;
-    if ([[session tutor] accountType] < 2) {
-        self.accountTypePicker.hidden = NO;
-    }
+    //self.accountTypePicker.hidden = YES;
+//    if ([[session tutor] accountType] < 2) {
+//        self.accountTypePicker.hidden = NO;
+//    }
     
     self.nameTextField.text = [_tutor name];
     self.phoneTextField.text = [_tutor phone];
@@ -82,6 +87,7 @@ extern Session *session;
     }
     
     if ([_tutor accountType] == 0) {
+        NSLog(@"%d", [_tutor accountType]);
         _ComponentsArray = [[NSArray alloc] initWithObjects:@"Owner", nil];
         [self.accountTypePicker selectRow:[_tutor accountType] inComponent:0 animated:YES];
     }
@@ -92,6 +98,20 @@ extern Session *session;
     
     self.passwordTextField.text = [_tutor password];
     
+}
+
+-(void)rotateValues
+{
+//    [self.accountTypePicker setFrame:CGRectMake(0, self.accountTypePicker.frame.origin.y, self.view.frame.size.width, self.accountTypePicker.frame.size.height)];
+//    
+//    [self.nameTextField setFrame:CGRectMake(((self.view.frame.size.width - self.nameTextField.frame.size.width)/2), self.nameTextField.frame.origin.y, self.nameTextField.frame.size.width, self.nameTextField.frame.size.height)];
+//    [self.phoneTextField setFrame:CGRectMake(((self.view.frame.size.width - self.phoneTextField.frame.size.width)/2), self.phoneTextField.frame.origin.y, self.phoneTextField.frame.size.width, self.phoneTextField.frame.size.height)];
+//    [self.phoneTextField setFrame:CGRectMake(((self.view.frame.size.width - self.phoneTextField.frame.size.width)/2), self.phoneTextField.frame.origin.y, self.phoneTextField.frame.size.width, self.phoneTextField.frame.size.height)];
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self rotateValues];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {

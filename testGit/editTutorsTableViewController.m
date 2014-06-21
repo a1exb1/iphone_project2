@@ -31,12 +31,6 @@ extern Session *session;
     _tutors = [[NSArray alloc] init];
     //[self.tableView reloadData];
     
-    [Tools showLoaderWithView:self.view];
-    //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%ld&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -51,6 +45,9 @@ extern Session *session;
     //self.tableView.bounds = CGRectInset(self.tableView.bounds, 5, 5);
     self.tableView = [[UITableView alloc] initWithFrame:self.tableView.frame style:UITableViewStyleGrouped];
     
+    if(_loaded){
+        [self getJson];
+    }
 
     
 }
@@ -68,6 +65,12 @@ extern Session *session;
         
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if(!_loaded){
+        [self getJson];
+        _loaded = YES;
+    }
+    
 }
 
 -(void)plus{
@@ -86,16 +89,14 @@ extern Session *session;
     [Tools showLoaderWithView:self.view];
     
 
-    self.title = @"Edit a tutor";
+    self.title = [NSString stringWithFormat:@"Tutors (%@)", [[session client]name]];
     
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
     [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
+    __weak typeof(self) weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
-        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%ld&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
-        NSURL *url = [NSURL URLWithString: urlString];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [NSURLConnection connectionWithRequest:request delegate:self];
+        [weakSelf getJson];
         
     }];
     
@@ -106,14 +107,8 @@ extern Session *session;
 
 -(void)getJson
 {
-    _data = [[NSMutableData alloc]init];
-    _tutors = [[NSArray alloc] init];
-    [self.tableView reloadData];
-    [Tools showLoaderWithView:self.view];
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%ld&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
+    [Tools showLightLoaderWithView:self.view];
+    [[session client] loadTutorsAsyncWithDelegate:self];
 }
 
 - (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem
@@ -199,25 +194,15 @@ extern Session *session;
     [self.navigationController pushViewController:view animated:YES];
 }
 
--(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
-{
-    _data = [[NSMutableData alloc]init];
-}
 
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)theData
-{
-    [_data appendData:theData];
-}
 
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
+
+- (void) finished:(NSString *)status withArray:(NSArray *)array;
 {
-    [Tools hideLoaderFromView:self.view];
+    _tutors = array;
     [self.tableView.pullToRefreshView stopAnimating];
-    
-    _tutors = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.tableView reloadData];
-    
-    NSLog(@"%@", _tutors);
+    [Tools hideLoaderFromView:self.view];
     
     if ([_tutors count] == 0) {
         _statusLbl.text = @"No tutors, click the plus to add one";
@@ -230,13 +215,7 @@ extern Session *session;
     }
 }
 
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    [errorView show];
-    [self.tableView.pullToRefreshView stopAnimating];
-    [Tools hideLoaderFromView:self.view];
-}
+
 
 
 - (void)didReceiveMemoryWarning

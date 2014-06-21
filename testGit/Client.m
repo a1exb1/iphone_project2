@@ -10,6 +10,8 @@
 
 @implementation Client
 
+
+
 //extern Session *session;
 
 //-(void)loadTutors{
@@ -47,14 +49,13 @@
 //    [errorView show];
 //}
 
-//-(void)loadTutorsAsyncWithDelegate:(id)loadDelgate
-//{
-//    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%ld&ts=%f", self.clientID]]; // untested
-//    jsonReader *reader = [[jsonReader alloc] init];
-//    reader.delegate = loadDelgate;
-//    [reader jsonAsyncRequestWithDelegateAndUrl:urlString];
-//    
-//}
+-(void)loadTutorsAsyncWithDelegate:(id)loadDelegate
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsbyclient&id=%ld", self.clientID ]; // untested
+    jsonReader *reader = [[jsonReader alloc] init];
+    reader.delegate = loadDelegate;
+    [reader jsonAsyncRequestWithDelegateAndUrl:urlString];
+}
 
 -(void)loadCourses
 {
@@ -66,11 +67,11 @@
     
 }
 
--(void)loadCoursesAsyncWithDelegate:(id)loadDelgate
+-(void)loadCoursesAsyncWithDelegate:(id)loadDelegate
 {
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsandcoursesbyclient&id=%li", [self clientID]];
     jsonReader *reader = [[jsonReader alloc] init];
-    reader.delegate = loadDelgate;
+    reader.delegate = loadDelegate;
     [reader jsonAsyncRequestWithDelegateAndUrl:urlString];
     
 }

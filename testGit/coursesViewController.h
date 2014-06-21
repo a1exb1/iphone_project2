@@ -25,5 +25,5 @@
 @property Course *courseSender;
 
 @property (strong, nonatomic) studentsViewController *detailViewController;
-
+@property bool loaded;
 @end

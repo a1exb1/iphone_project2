@@ -37,6 +37,11 @@ extern Session *session;
 {
     //[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
+    if(!_loaded){
+        [Tools showLightLoaderWithView:self.view];
+        [self loadData];
+        _loaded = YES;
+    }
     
     
     
@@ -63,9 +68,11 @@ extern Session *session;
         [self.mainTableView deselectRowAtIndexPath:selection animated:YES];
     }
     
-    _data = [[NSMutableData alloc]init];
-    _courses = [[NSArray alloc] init];
-    [_mainTableView reloadData];
+    if(_loaded){
+        [Tools showLightLoaderWithView:self.view];
+        [self loadData];
+    }
+    
     _statusLbl.hidden = YES;
     //_statusLbl.text = @"Loading...";
     
@@ -89,12 +96,9 @@ extern Session *session;
     }
     
     
-    [Tools showLoader];
+    
     //
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=coursesbytutor&id=%li&ts=%f", [_tutor tutorID], [[NSDate date] timeIntervalSince1970]];
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
+
     
     if(![self.accessibilityValue isEqualToString:@"coursesPopover"]){
         [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor groupTableViewBackgroundColor]];
@@ -143,7 +147,7 @@ extern Session *session;
 
 -(void)plus{
     _courseSender = [[Course alloc] init];
-    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourse"];
+    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourseL"];
     view.course = _courseSender;
     view.tutor = _tutor;
     [self.navigationController pushViewController:view animated:YES];
@@ -264,7 +268,7 @@ extern Session *session;
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
     [_mainTableView.pullToRefreshView stopAnimating];
     
     _courses = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
@@ -291,7 +295,7 @@ extern Session *session;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
     [_mainTableView.pullToRefreshView stopAnimating];
 }
 

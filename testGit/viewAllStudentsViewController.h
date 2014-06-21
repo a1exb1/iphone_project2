@@ -18,5 +18,6 @@
 
 @property StudentCourseLink *studentCourseLink;
 @property StudentCourseLink *studentCourseLinkSender;
+@property bool loaded;
 
 @end

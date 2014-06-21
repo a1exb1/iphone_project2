@@ -33,14 +33,7 @@ int goToSlots = 0;
     _data = [[NSMutableData alloc]init];
     _students = [[NSArray alloc] init];
     [_mainTableView reloadData];
-    
-    [Tools showLoader];
-    
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbytutor&id=%li&ts=%f", [[_studentCourseLink tutor] tutorID], [[NSDate date] timeIntervalSince1970]];
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
-    
+        
     if(![Tools isIpad])
     {
         [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
@@ -53,11 +46,13 @@ int goToSlots = 0;
     }
     else{
         [_mainTableView addPullToRefreshWithActionHandler:^{
-            NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbytutor&id=%li&ts=%f", [[_studentCourseLink tutor] tutorID], [[NSDate date] timeIntervalSince1970]];
-            NSURL *url = [NSURL URLWithString: urlString];
-            NSURLRequest *request = [NSURLRequest requestWithURL:url];
-            [NSURLConnection connectionWithRequest:request delegate:self];
+            [self loadData];
         }];
+    }
+    
+    if(_loaded){
+        [Tools showLightLoaderWithView:self.view];
+        [self loadData];
     }
 }
 
@@ -72,6 +67,12 @@ int goToSlots = 0;
     [_studentCourseLinkSender setCourse:previousCourse];
     goToSlots = 0;
     [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
+    if(!_loaded){
+        [Tools showLightLoaderWithView:self.view];
+        [self loadData];
+        _loaded = YES;
+    }
 }
 
 - (void)viewDidLoad
@@ -81,12 +82,18 @@ int goToSlots = 0;
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
     
-    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-    [Tools showLoader];
-    
+    [_mainTableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];  
     
     
     //[self.mainTableView setEditing:YES animated:YES];
+}
+
+-(void)loadData
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbytutor&id=%li&ts=%f", [[_studentCourseLink tutor] tutorID], [[NSDate date] timeIntervalSince1970]];
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -162,7 +169,7 @@ int goToSlots = 0;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
     [_mainTableView.pullToRefreshView stopAnimating];
     _students = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.mainTableView reloadData];
@@ -173,7 +180,7 @@ int goToSlots = 0;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
     [_mainTableView.pullToRefreshView stopAnimating];
 }
 

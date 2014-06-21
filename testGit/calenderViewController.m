@@ -43,33 +43,13 @@ NSTimer *timer;
     if (_navigationPaneBarButtonItem)
         [self.navigationItem setLeftBarButtonItem:self.navigationPaneBarButtonItem animated:NO];
     
-//    UISplitViewController* spv = self.splitViewController;
-//    //spv.delegate=self;
-//    [spv willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
-//    [spv.view setNeedsLayout];
     [self setModalSize];
+    
+    if(![self.accessibilityValue isEqualToString:@"calenderView"])
+        [self loadUrl];
+
 }
 
-
-//- (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem
-//{
-//    NSLog(@"set navigation pane in calender view");
-//    if (navigationPaneBarButtonItem != _navigationPaneBarButtonItem) {
-//        if (navigationPaneBarButtonItem)
-//            //[self.toolbar setItems:[NSArray arrayWithObject:navigationPaneBarButtonItem] animated:NO];
-//            [self.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
-//        else
-//            //[self.toolbar setItems:nil animated:NO];
-//            [self.navigationItem setLeftBarButtonItem:nil animated:NO];
-//        
-//        //[self.navigationController.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
-//        _navigationPaneBarButtonItem = navigationPaneBarButtonItem;
-//        
-//        [self showNavigationBar];
-//        
-//        NSLog(@"title: %@", _navigationPaneBarButtonItem.title);
-//    }
-//}
 
 - (void)viewDidLoad
 {
@@ -90,13 +70,10 @@ NSTimer *timer;
     }
 
     [session setCalController:self];
-    [self showNavigationBar];
+    
     //[self.navigationItem setHidesBackButton:YES];
     
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
-        //_calenderUIButton.action = @selector(selectDate:);
-        //_calenderUIButton.target = self;
-        //self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _plusUIButton, _calenderUIButton, nil];
         
         if(_date == NULL){
             _date = [[NSDate alloc] init];
@@ -105,35 +82,15 @@ NSTimer *timer;
         [self sendDateToAgendaWithDate:_date];
     }
     else{
-        //self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects: closeBtn, _addLessonSlotBtn, _editSlotsButton, nil];
-        [self loadUrl];
+        
+        //[self loadUrl];
     }
     
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"765-arrow-left-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(done)];
     [self.navigationItem setLeftBarButtonItem:cancelBtn];
     [self setModalSize];
-    if([self.accessibilityValue isEqualToString:@"calenderView"]){
-        [self setNavigationBarSize];
-    }
     
-    int c = 0;
-    int containerWidth = (self.view.frame.size.width /100) * 91;
-    int width = containerWidth / 7;
-    int leftPadding =self.view.frame.size.width - containerWidth;
     
-    for(UIView *view in self.navigationController.navigationBar.subviews){
-        if([view.accessibilityValue isEqualToString:@"dayTitle"]){
-            int l = leftPadding + (c * width);
-            
-            NSLog(@"%f, %d, %d",self.view.frame.size.width, containerWidth, width);
-            if(c==0) {
-                //view.backgroundColor = [UIColor redColor];
-            }
-            view.frame = CGRectMake(l, view.frame.origin.y, width, view.frame.size.height);
-
-            c++;
-        }
-    }
 }
 
 -(void)done
@@ -141,12 +98,9 @@ NSTimer *timer;
     [_popover dismissPopoverAnimated:YES];
     [_calPopover dismissPopoverAnimated:YES];
     
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        [_menuDrawerDelegate deselectTableRow];
-//    }];
-    
     [self dismissViewControllerAnimated:YES completion:^{
         [self.monthCalenderDelegate sendDateToAgendaWithDate:NULL];
+        [_menuDrawerDelegate deselectTableRow];
     }];
     
 }
@@ -243,9 +197,9 @@ NSTimer *timer;
         self.toolbarItems = [NSArray arrayWithObjects:refreshBtn,fixedSpace,  _lockBtn, nil];
     }
     
-    if([self.accessibilityValue isEqualToString:@"calenderView"]){
+    //if([self.accessibilityValue isEqualToString:@"calenderView"]){
         [self setNavigationBarSize];
-    }
+    //}
     
 }
 
@@ -260,6 +214,17 @@ NSTimer *timer;
 
 -(void)setNavigationBarSize
 {
+    [self.navigationController setToolbarHidden:NO];
+    if([self.accessibilityValue isEqualToString:@"calenderView"]){
+        self.webView.frame = CGRectMake(0, -23, self.view.frame.size.width, self.view.frame.size.height);
+    }
+    else{
+        self.webView.frame = CGRectMake(0, -23, self.view.frame.size.width, self.view.frame.size.height);
+    }
+    
+    
+    _statusLbl.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    
     self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width,75);
     
     CGFloat verticalOffset = -27; //31 is same as default
@@ -267,6 +232,34 @@ NSTimer *timer;
     
     [self.navigationItem.rightBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
     [self.navigationItem.leftBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
+    
+    //DAY VIEWS
+    for(UIView *view in self.navigationController.navigationBar.subviews){
+        if([view.accessibilityValue isEqualToString:@"dayTitle"]){
+            [view removeFromSuperview];
+        }
+    }
+    
+    NSLog(@"here");
+    float padding = self.view.frame.size.width * 0.09;
+    float labelContainer = self.view.frame.size.width - padding;
+    float labelWidth = self.view.frame.size.width * 0.13;
+    
+    //float y = (top * height);
+    //float width = (self.view.frame.size.width /7);
+    //float left = 0;
+    
+    for (int i=0; i<7; i++) {
+        float x = padding + (i*labelWidth);
+        
+        UILabel *dayLabel = [[UILabel alloc]initWithFrame:CGRectMake(x, 37, labelWidth, 45)];
+        dayLabel.text = [[Tools daysOfWeekArray] objectAtIndex:i];
+        dayLabel.textAlignment = NSTextAlignmentCenter;
+        dayLabel.font = [UIFont fontWithName:nil size:13];
+        dayLabel.textColor = [Tools colorFromHexString:@"#9b9b9b"];
+        dayLabel.accessibilityValue = @"dayTitle";
+        [self.navigationController.navigationBar addSubview:dayLabel];
+    }
     
 }
 
@@ -412,18 +405,6 @@ NSTimer *timer;
     
 }
 
-- (void)viewDidLayoutSubviews {
-    [self.navigationController setToolbarHidden:NO];
-    if([self.accessibilityValue isEqualToString:@"calenderView"]){
-        self.webView.frame = CGRectMake(0, -23, self.view.frame.size.width, self.view.frame.size.height);
-    }
-    else{
-        self.webView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    }
-    
-    
-    _statusLbl.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -472,6 +453,7 @@ NSTimer *timer;
 
 -(void)setModalSize
 {
+    [self setNavigationBarSize];
     int longSide = 987;
     int shortSide = 717;
     
@@ -479,25 +461,40 @@ NSTimer *timer;
     [UIView setAnimationDuration:0.2f];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     
-    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
-    {
-        [self.navigationController.view.superview setBounds:CGRectMake(0, 0, shortSide, longSide)];
-    }
-    else{
-        [self.navigationController.view.superview setBounds:CGRectMake(0, 0, longSide, shortSide)];
-    }
+    
     
     [UIView commitAnimations];
+    
+
+    [UIView animateWithDuration:0.0f
+                          delay:0.00
+                        options:UIViewAnimationOptionCurveEaseOut
+     
+                     animations:^{
+                         if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+                         {
+                             [self.navigationController.view.superview setBounds:CGRectMake(0, 0, shortSide, longSide)];
+                         }
+                         else{
+                             [self.navigationController.view.superview setBounds:CGRectMake(0, 0, longSide, shortSide)];
+                         }
+                     }
+                     completion:^(BOOL finished){
+                         [self setNavigationBarSize];
+                     }];
+    
+
     
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     
+    
+    //if([self.accessibilityValue isEqualToString:@"calenderView"]){
+    
     [self setModalSize];
-    if([self.accessibilityValue isEqualToString:@"calenderView"]){
-        [self setNavigationBarSize];
-    }
+    //}
     
     //self.view.superview.bounds = CGRectMake(0, 0, (self.view.frame.size.width - 50), (self.view.frame.size.height - 50));
 }

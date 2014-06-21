@@ -142,7 +142,7 @@ extern Session *session;
     
     cell.backgroundColor = [UIColor whiteColor];
     if((indexPath.row == 4 && indexPath.section == 0) ||
-       (indexPath.row == 3 && indexPath.section == 0)){
+       (indexPath.row == 2 && indexPath.section == 0)){
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
