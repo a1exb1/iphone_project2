@@ -50,4 +50,38 @@
     return arr;
 }
 
+-(void)jsonAsyncRequestWithDelegateAndUrl:(NSString*)urlString;
+{
+    __block NSArray *arr = [[NSArray alloc] init];
+    
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    //NSURLResponse *response = nil;
+    //NSError *error = nil;
+    
+//    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+//    if (response == nil) {
+//        UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [errorView show];
+//    } else {
+//        arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//    }
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+
+        if (response == nil) {
+            UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [errorView show];
+        } else {
+            arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        }
+
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_delegate finished:@"load" withArray:arr];
+        });
+    }];
+}
+
+
 @end

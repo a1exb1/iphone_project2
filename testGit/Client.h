@@ -10,7 +10,7 @@
 #import "jsonReader.h"
 
 @protocol clientDelegate <NSObject>
-- (void) finishLoading;
+- (void) finishLoading; // not used any more ?
 @end
 
 @interface Client : User
@@ -26,8 +26,13 @@
 @property NSArray *courses;
 
 -(void)loadTutors;
+-(void)loadTutorsAsyncWithDelegate:(id)loadDelegate;
 
 -(void)loadCourses;
+-(void)loadCoursesAsyncWithDelegate:(id)loadDelegate;
+
 -(void)loadStudents;
+
+
 
 @end

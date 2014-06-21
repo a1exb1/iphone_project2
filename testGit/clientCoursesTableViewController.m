@@ -34,10 +34,18 @@ extern Session *session;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [[session client] loadCourses];
-    [self.navigationItem setHidesBackButton:YES];
+    
     //[self.tableView reloadData];
     
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [[session client] setCourses:[[NSArray alloc] init]];
+    [self.tableView reloadData];
+    [Tools showLightLoaderWithView:self.view];
+    [[session client] loadCoursesAsyncWithDelegate:self];
+    [self.navigationItem setHidesBackButton:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -151,5 +159,12 @@ extern Session *session;
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void) finished:(NSString *)status withArray:(NSArray *)array;
+{
+    [[session client] setCourses:array];
+    [self.tableView reloadData];
+    [Tools hideLoaderFromView:self.view];
+}
 
 @end
