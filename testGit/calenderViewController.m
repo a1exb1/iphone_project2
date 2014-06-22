@@ -433,8 +433,14 @@ NSTimer *timer;
         
     }
     
-    
-    
+    if([segue.identifier isEqualToString:@"newCalenderItem"])
+    {
+        UINavigationController *navVC = segue.destinationViewController;
+        newCalenderEventViewController *view = (newCalenderEventViewController *)navVC.topViewController;
+        //view.accessibilityValue = @"coursesPopover";
+        //view.tutor = [session tutor];
+        _popover = [(UIStoryboardPopoverSegue *) segue popoverController];
+    }
     
 }
 

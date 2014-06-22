@@ -196,6 +196,7 @@
 		E4D231E8192134C400E5797B /* Note Sticky.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E7192134C400E5797B /* Note Sticky.png */; };
 		E4D231EA1921367900E5797B /* login_landscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E91921367900E5797B /* login_landscape.jpg */; };
 		E4D231EC1921368000E5797B /* login_portrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4D231EB1921368000E5797B /* login_portrait.jpg */; };
+		E4D3D60A19579C7700478BA4 /* newCalenderEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D3D60919579C7700478BA4 /* newCalenderEventViewController.m */; };
 		E4F676FC19356CA900208991 /* clock_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F676FB19356CA900208991 /* clock_80.png */; };
 		E4F676FE19356CB100208991 /* people_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F676FD19356CB100208991 /* people_80.png */; };
 		E4F677011935F9D900208991 /* calenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F677001935F9D900208991 /* calenderViewController.m */; };
@@ -471,6 +472,8 @@
 		E4D231E7192134C400E5797B /* Note Sticky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Note Sticky.png"; sourceTree = "<group>"; };
 		E4D231E91921367900E5797B /* login_landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_landscape.jpg; sourceTree = "<group>"; };
 		E4D231EB1921368000E5797B /* login_portrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_portrait.jpg; sourceTree = "<group>"; };
+		E4D3D60819579C7700478BA4 /* newCalenderEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newCalenderEventViewController.h; sourceTree = "<group>"; };
+		E4D3D60919579C7700478BA4 /* newCalenderEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newCalenderEventViewController.m; sourceTree = "<group>"; };
 		E4F676FB19356CA900208991 /* clock_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock_80.png; sourceTree = "<group>"; };
 		E4F676FD19356CB100208991 /* people_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people_80.png; sourceTree = "<group>"; };
 		E4F676FF1935F9D900208991 /* calenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calenderViewController.h; sourceTree = "<group>"; };
@@ -623,6 +626,8 @@
 				79A8686F191B950900AA4058 /* SelectDateViewController.xib */,
 				79A8686C191B941C00AA4058 /* SelectDateViewController.h */,
 				79A8686D191B941C00AA4058 /* SelectDateViewController.m */,
+				E4D3D60819579C7700478BA4 /* newCalenderEventViewController.h */,
+				E4D3D60919579C7700478BA4 /* newCalenderEventViewController.m */,
 			);
 			name = calender;
 			sourceTree = "<group>";
@@ -1276,6 +1281,7 @@
 				79F7196319124FA100C644A1 /* Course.m in Sources */,
 				E4C28935193F4B1D00538763 /* addLessonsTableViewController.m in Sources */,
 				79A8686B191B93EC00AA4058 /* NSDate+DSLCalendarView.m in Sources */,
+				E4D3D60A19579C7700478BA4 /* newCalenderEventViewController.m in Sources */,
 				E42B6112190C0582001B977F /* studentNote.m in Sources */,
 				E4AB8872191D4199001A70D9 /* MZDayPicker.m in Sources */,
 				E4A3608C191F87E900F5221B /* TextNote.m in Sources */,

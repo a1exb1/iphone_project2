@@ -32,4 +32,6 @@
 
 -(void)loadNotes;
 
+-(void)save;
+
 @end

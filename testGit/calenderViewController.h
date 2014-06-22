@@ -14,6 +14,7 @@
 #import "NVDate.h"
 #import "DetailViewManager.h"
 #import "monthCalenderViewController.h"
+#import "newCalenderEventViewController.h"
 
 @protocol menuDrawDelegate <NSObject>
 

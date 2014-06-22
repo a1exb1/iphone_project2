@@ -163,9 +163,7 @@ extern Session *session;
     [self.tableView reloadData];
     if(_pushed){
         [self.tableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-        if (_scrollPosition < 0) {
-            _scrollPosition = 0;
-        }
+
         [self.tableView setContentOffset:CGPointMake(0, _scrollPosition)];
         [self.tableView deselectRowAtIndexPath:_indexPath animated:YES];
     }

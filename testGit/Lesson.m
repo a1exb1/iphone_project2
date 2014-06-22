@@ -50,4 +50,14 @@
     
 }
 
+-(void)save
+{
+    //NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsandcoursesbyclient&id=%li", [self clientID]];
+    
+    
+    //self.courses = [jsonReader jsonRequestWithUrl:urlString];
+    
+    
+}
+
 @end
