@@ -1,20 +1,20 @@
 //
-//  clientCoursesTableViewController.m
+//  allStudentsTableViewController.m
 //  PlanIt!
 //
-//  Created by Alex Bechmann on 20/06/14.
+//  Created by Alex Bechmann on 22/06/14.
 //  Copyright (c) 2014 Alex Bechmann. All rights reserved.
 //
 
-#import "clientCoursesTableViewController.h"
+#import "allStudentsTableViewController.h"
 
-@interface clientCoursesTableViewController ()
+@interface allStudentsTableViewController ()
 
 @end
 
-@implementation clientCoursesTableViewController
-
 extern Session *session;
+
+@implementation allStudentsTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,10 +35,10 @@ extern Session *session;
 -(void)viewDidAppear:(BOOL)animated
 {
     if(!_loaded){
-        [[session client] setCourses:[[NSArray alloc] init]];
+        [[session client] setStudents:[[NSArray alloc] init]];
         [self.tableView reloadData];
         [Tools showLightLoaderWithView:self.view];
-        [[session client] loadCoursesAsyncWithDelegate:self];
+        [[session client] loadStudentsAsyncWithDelegate:self];
         [self.navigationItem setHidesBackButton:YES];
         _loaded = YES;
     }
@@ -59,11 +59,13 @@ extern Session *session;
 {
     customTableViewCell *cell = [[customTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     
-    NSDictionary *tutor = [[[session client] courses] objectAtIndex:indexPath.section];
-    NSArray *courses = [tutor objectForKey:@"courses"];
+
+    NSDictionary *tutor = [[[session client] students] objectAtIndex:indexPath.section];
+    NSArray *courses = [tutor objectForKey:@"students"];
     NSArray *course = [courses objectAtIndex:indexPath.row];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    cell.textLabel.text = [course objectAtIndex:1];    
+    cell.textLabel.text = [course objectAtIndex:1];
+    
     return cell;
 }
 
@@ -79,25 +81,23 @@ extern Session *session;
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [[[session client] courses]count];
+    return [[[session client] students]count];
     //return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSDictionary *tutor = [[[session client] courses] objectAtIndex:section];
-    NSArray *courses = [tutor objectForKey:@"courses"];
-    //return [[tutor objectForKey:@"courses"] count];
-    return [courses count];
+
+    return [[[session client] students] count];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSDictionary *tutor = [[[session client] courses] objectAtIndex:section];
     NSString *status = @"";
-    NSArray *courses = [tutor objectForKey:@"courses"];
-    if ([courses count] == 0) {
-        status = @"(No courses)";
+    NSArray *students = [tutor objectForKey:@"students"];
+    if ([students count] == 0) {
+        status = @"(No students)";
     }
     return [NSString stringWithFormat:@"%@ %@", [tutor objectForKey:@"tutorname"], status];
 }
@@ -105,26 +105,17 @@ extern Session *session;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //onclick for each object, put to label for example
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    //self.tutorIDSender = cell.accessibilityValue;
-    //self.tutorNameSender = cell.textLabel.text;
-    //[self performSegueWithIdentifier:@"TutorsToCourses" sender:self];
+    
     NSDictionary *tutorDict = [[[session client] courses] objectAtIndex:indexPath.section];
-    NSArray *courses = [tutorDict objectForKey:@"courses"];
-    NSArray *courseArr = [courses objectAtIndex:indexPath.row];
+    NSArray *students = [tutorDict objectForKey:@"students"];
+    NSArray *studentsArr = [students objectAtIndex:indexPath.row];
     
-    Course *course = [[Course alloc] init];
-    [course setCourseID:[[courseArr objectAtIndex:0] intValue]];
-    [course setName:cell.textLabel.text];
+    Student *student = [[Student alloc] init];
+    [student setStudentID:[[studentsArr objectAtIndex:0] intValue]];
+    [student setName:cell.textLabel.text];
     
-    saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourseL"];
-    view.course = course;
-    
-    NSArray *tutorid = [tutorDict objectForKey:@"tutorid"];
-    NSString *str = [[NSString alloc] initWithFormat:@"%@", tutorid];
-    Tutor *tutor = [[Tutor alloc] init];
-    [tutor setName:[tutorDict objectForKey:@"tutorname"]];
-    [tutor setTutorID:[str intValue]];
-    view.tutor = tutor;
+    editStudentViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveStudent"];
+    view.studentID = [NSString stringWithFormat:@"%ld", student.studentID];
     [self.navigationController pushViewController:view animated:YES];
 }
 
@@ -144,7 +135,7 @@ extern Session *session;
     [sectionHeader setTextColor:[UIColor grayColor]];
     [sectionView addSubview:sectionHeader];
     [container addSubview:sectionView];
-
+    
     return container;
 }
 

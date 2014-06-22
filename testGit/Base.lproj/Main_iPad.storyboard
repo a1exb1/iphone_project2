@@ -547,7 +547,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Edit Student View Controller-->
         <scene sceneID="Kd4-2d-f6j">
             <objects>
-                <viewController id="1Lw-9q-KRL" customClass="editStudentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="saveStudent" id="1Lw-9q-KRL" customClass="editStudentViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Baa-RQ-blR"/>
                         <viewControllerLayoutGuide type="bottom" id="Zd4-L7-HAh"/>
@@ -853,6 +853,34 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXB-HJ-0iv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4319" y="981"/>
+        </scene>
+        <!--All Students Table View Controller-->
+        <scene sceneID="04B-YA-vbo">
+            <objects>
+                <tableViewController id="xcc-kf-mqL" customClass="allStudentsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="H2w-WT-hmX">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="b1P-DD-vIR">
+                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b1P-DD-vIR" id="5fI-US-QBx">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xcc-kf-mqL" id="ZPE-gK-MAa"/>
+                            <outlet property="delegate" destination="xcc-kf-mqL" id="ZUH-aG-LqY"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uCB-4j-wYM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5247" y="997"/>
         </scene>
         <!--Edit Tutors Table View Controller-->
         <scene sceneID="ZJK-Q7-Crt">
@@ -1770,7 +1798,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5gf-Tb-f5e"/>
-        <segue reference="CfY-gI-8gC"/>
+        <segue reference="nt5-br-Avs"/>
+        <segue reference="LWh-Mf-gbI"/>
     </inferredMetricsTieBreakers>
 </document>

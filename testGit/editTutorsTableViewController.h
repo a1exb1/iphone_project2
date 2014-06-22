@@ -12,6 +12,7 @@
 #import "Tools.h"
 #import "Session.h"
 #import "DetailViewManager.h"
+#import "customTableViewCell.h"
 
 @interface editTutorsTableViewController : UITableViewController <SubstitutableDetailViewController>
 

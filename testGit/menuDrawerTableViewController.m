@@ -63,15 +63,18 @@ extern Session *session;
     [_cellsArray addObject:section];
     
     //SECTION
-    section =[[NSMutableArray alloc ]init];
-    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Tutors", @"", @"tutors", nil];
-    [section addObject:cell];
+    if ([[session tutor] accountType] < 2) {
+        section =[[NSMutableArray alloc ]init];
+        cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Tutors", @"", @"tutors", nil];
+        [section addObject:cell];
+        
+        cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Courses", @"", @"allcourses", nil];
+        [section addObject:cell];
+        cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Students", @"", @"students", nil];
+        [section addObject:cell];
+        [_cellsArray addObject:section];
+    }
     
-    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Courses", @"", @"allcourses", nil];
-    [section addObject:cell];
-    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Students", @"", @"students", nil];
-    [section addObject:cell];
-    [_cellsArray addObject:section];
     
     //SECTION
     section =[[NSMutableArray alloc ]init];

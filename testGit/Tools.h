@@ -76,6 +76,7 @@
 +(NSString *)monthName:(int)month;
 //+(NSDateComponents *)dateComponentFromDate: (NSDate *)date;
 
++ (void)marginedtableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
 
 @end

@@ -13,6 +13,7 @@
 #import "saveCourseViewController.h"
 #import "Tools.h"
 #import "DetailViewController.h"
+#import "customTableViewCell.h"
 
 @interface editCoursesTableViewController : UITableViewController <SubstitutableDetailViewController>
 

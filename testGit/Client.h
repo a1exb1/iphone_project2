@@ -25,6 +25,7 @@
 @property NSArray *array;
 @property NSMutableData *data;
 @property NSArray *courses;
+@property NSArray *students;
 
 -(void)loadTutors;
 -(void)loadTutorsAsyncWithDelegate:(id)loadDelegate;
@@ -34,6 +35,6 @@
 
 -(void)loadStudents;
 
-
+-(void)loadStudentsAsyncWithDelegate:(id)loadDelegate;
 
 @end
