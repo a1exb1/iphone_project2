@@ -319,6 +319,22 @@ extern Session *session;
         
     }
     
+    if([cell.accessibilityValue isEqualToString:@"students"]){
+        _indexPath= indexPath;
+        [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];
+        
+        DetailViewManager *detailViewManager = (DetailViewManager*)self.splitViewController.delegate;
+        
+        UINavigationController <SubstitutableDetailViewController> *detailViewController = nil;
+        
+        detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
+        
+        clientCoursesTableViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"allStudents"];
+        
+        [detailViewController pushViewController:top animated:YES];
+        detailViewManager.detailViewController = detailViewController;
+        
+    }
     
     
 }

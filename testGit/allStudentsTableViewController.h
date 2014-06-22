@@ -16,5 +16,6 @@
 @interface allStudentsTableViewController : UITableViewController
 
 @property bool loaded;
+@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
 @end

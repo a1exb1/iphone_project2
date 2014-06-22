@@ -28,7 +28,7 @@ extern Session *session;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = [NSString stringWithFormat:@"Courses (%@)", [[session client] name]];
+    self.title = [NSString stringWithFormat:@"Students (%@)", [[session client] name]];
     
 }
 
@@ -47,10 +47,10 @@ extern Session *session;
 -(void)viewWillAppear:(BOOL)animated
 {
     if(_loaded){
-        [[session client] setCourses:[[NSArray alloc] init]];
+        [[session client] setStudents:[[NSArray alloc] init]];
         [self.tableView reloadData];
         [Tools showLightLoaderWithView:self.view];
-        [[session client] loadCoursesAsyncWithDelegate:self];
+        [[session client] loadStudentsAsyncWithDelegate:self];
         [self.navigationItem setHidesBackButton:YES];
     }
 }
@@ -87,13 +87,15 @@ extern Session *session;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
-    return [[[session client] students] count];
+    NSDictionary *tutor = [[[session client] students] objectAtIndex:section];
+    NSArray *students = [tutor objectForKey:@"students"];
+    //return [[tutor objectForKey:@"courses"] count];
+    return [students count];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSDictionary *tutor = [[[session client] courses] objectAtIndex:section];
+    NSDictionary *tutor = [[[session client] students] objectAtIndex:section];
     NSString *status = @"";
     NSArray *students = [tutor objectForKey:@"students"];
     if ([students count] == 0) {
@@ -106,7 +108,7 @@ extern Session *session;
     //onclick for each object, put to label for example
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    NSDictionary *tutorDict = [[[session client] courses] objectAtIndex:indexPath.section];
+    NSDictionary *tutorDict = [[[session client] students] objectAtIndex:indexPath.section];
     NSArray *students = [tutorDict objectForKey:@"students"];
     NSArray *studentsArr = [students objectAtIndex:indexPath.row];
     
@@ -114,8 +116,11 @@ extern Session *session;
     [student setStudentID:[[studentsArr objectAtIndex:0] intValue]];
     [student setName:cell.textLabel.text];
     
-    editStudentViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveStudent"];
-    view.studentID = [NSString stringWithFormat:@"%ld", student.studentID];
+    editStudentViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveStudent"];    
+    StudentCourseLink *link = [[StudentCourseLink alloc] init];
+    link.student = student;
+    view.studentCourseLink = link;
+    
     [self.navigationController pushViewController:view animated:YES];
 }
 
@@ -146,7 +151,7 @@ extern Session *session;
 
 - (void) finished:(NSString *)status withArray:(NSArray *)array;
 {
-    [[session client] setCourses:array];
+    [[session client] setStudents:array];
     [self.tableView reloadData];
     [Tools hideLoaderFromView:self.view];
 }

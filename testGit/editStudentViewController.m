@@ -166,7 +166,7 @@ extern Session *session;
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
-        if ([[_studentCourseLink student] studentID] == 0) {
+        if ([[_studentCourseLink student] studentID] == 0 && ![self.accessibilityValue isEqualToString:@"allStudents"]) {
             [[_studentCourseLink student] setStudentID:[[[_saveResultArray objectAtIndex:0] objectForKey:@"studentid" ] intValue]];
 
             [self performSegueWithIdentifier:@"editStudentToEditSlot" sender:self];

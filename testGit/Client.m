@@ -83,7 +83,7 @@
 
 -(void)loadStudentsAsyncWithDelegate:(id)loadDelegate
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbyclient&id=%li", [self clientID]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsandstudentsbyclient&id=%li", [self clientID]];
     jsonReader *reader = [[jsonReader alloc] init];
     reader.delegate = loadDelegate;
     [reader jsonAsyncRequestWithDelegateAndUrl:urlString];
