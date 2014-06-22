@@ -20,6 +20,8 @@ int goToSlots = 0;
 
 @implementation viewAllStudentsViewController
 
+extern Session *session;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,10 +41,16 @@ int goToSlots = 0;
         [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: self.tabBarController.tabBar andBackground:[Tools colorFromHexString:@"#4473b4"] andTint:[UIColor whiteColor] theme:@"dark"];
     }
     
-    if(![self.accessibilityValue isEqualToString:@"coursePopover"])
+    NSLog(@"hi %@", self.accessibilityValue);
+    _mainTableView.frame = CGRectMake(0, 0, self.view.frame.size.width, 568); // not working
+    
+    if([self.accessibilityValue isEqualToString:@"coursesPopover"])
     {
         self.preferredContentSize = CGSizeMake(320, 568);
         self.navigationController.navigationBar.translucent = NO;
+        self.navigationItem.rightBarButtonItem = nil;
+        
+        
     }
     else{
         [_mainTableView addPullToRefreshWithActionHandler:^{
@@ -90,7 +98,7 @@ int goToSlots = 0;
 
 -(void)loadData
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbytutor&id=%li&ts=%f", [[_studentCourseLink tutor] tutorID], [[NSDate date] timeIntervalSince1970]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=studentsbyclient&id=%li&ts=%f", [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];

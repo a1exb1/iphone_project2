@@ -182,6 +182,9 @@ extern Session *session;
             [[session tutor] setName:[[_clientArray objectAtIndex:0] objectForKey:@"tutorname"] ];
             [[session tutor] setAccountType:[[[_clientArray objectAtIndex:0] objectForKey:@"tutoraccounttype"] intValue]];
             
+
+            NSLog(@"%li", session.tutor.tutorID);
+            
             [self loginSuccess];
         }
         else{

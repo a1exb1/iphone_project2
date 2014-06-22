@@ -30,6 +30,7 @@ extern Session *session;
     [super viewDidLoad];
     self.title = [NSString stringWithFormat:@"Students (%@)", [[session client] name]];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addStudent)];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -65,7 +66,7 @@ extern Session *session;
     NSArray *course = [courses objectAtIndex:indexPath.row];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     cell.textLabel.text = [course objectAtIndex:1];
-    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
@@ -110,6 +111,8 @@ extern Session *session;
     
     NSDictionary *tutorDict = [[[session client] students] objectAtIndex:indexPath.section];
     NSArray *students = [tutorDict objectForKey:@"students"];
+    NSArray *tutorIDArr = [tutorDict objectForKey:@"tutorid"];
+    long tutorID = [[NSString stringWithFormat:@"%@", tutorIDArr]intValue];
     NSArray *studentsArr = [students objectAtIndex:indexPath.row];
     
     Student *student = [[Student alloc] init];
@@ -119,8 +122,13 @@ extern Session *session;
     editStudentViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveStudent"];    
     StudentCourseLink *link = [[StudentCourseLink alloc] init];
     link.student = student;
-    view.studentCourseLink = link;
     
+    Tutor *tutor = [[Tutor alloc] init];
+    tutor.tutorID = tutorID;
+    link.tutor = tutor;
+    
+    view.studentCourseLink = link;
+    view.accessibilityValue = @"allStudents";
     [self.navigationController pushViewController:view animated:YES];
 }
 
@@ -154,6 +162,17 @@ extern Session *session;
     [[session client] setStudents:array];
     [self.tableView reloadData];
     [Tools hideLoaderFromView:self.view];
+}
+
+-(void)addStudent
+{
+    Student *student = [[Student alloc] init];    
+    editStudentViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveStudent"];
+    StudentCourseLink *link = [[StudentCourseLink alloc] init];
+    link.student = student;
+    view.studentCourseLink = link;
+    view.accessibilityValue = @"allStudents";
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 @end

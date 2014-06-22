@@ -120,6 +120,8 @@ NSArray *daysOfWeekArray;
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
     
+    NSLog(@"tutor = %@", [[session tutor] name]);
+    
     
 }
 

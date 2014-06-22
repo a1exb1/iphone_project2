@@ -55,17 +55,49 @@ extern Session *session;
     
     _saveResultArray = [[NSArray alloc] init];
     
-    UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveStudent)];
+    NSLog(@"tutor id %li", [[_studentCourseLink tutor] tutorID]);
     
-    if([[_studentCourseLink student] studentID] == 0) {
-        self.title = @"Create student";
+    self.navigationItem.rightBarButtonItem = nil;
+    if ([[session tutor] accountType] < 2) {
+        UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveStudent)];
+        
+        if([[_studentCourseLink student] studentID] == 0) {
+            self.title = @"Create student";
+            [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
+        }
+        else{
+            self.title = @"Edit student info";
+            UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(authorizeDelete)];
+            [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, deleteBtn, nil]];
+        }
+    }
+    else if([[session tutor] tutorID] == [[_studentCourseLink tutor] tutorID]){
+        UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveStudent)];
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
+        
+        if([[_studentCourseLink student] studentID] == 0) {
+            self.title = @"Create student";
+        }
+        else{
+            self.title = @"Edit student info";
+        }
+        
     }
-    else{
-        self.title = @"Edit student info";
-        UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(authorizeDelete)];
-        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, deleteBtn, nil]];
+    else if([[session tutor] tutorID] != [[_studentCourseLink tutor] tutorID]){
+        self.studentNameTextField.userInteractionEnabled = NO;
+        self.studentPhoneTextField.userInteractionEnabled = NO;
+        self.studentNameTextField.backgroundColor = [Tools colorFromHexString:@"#efefef"];
+        self.studentPhoneTextField.backgroundColor = [Tools colorFromHexString:@"#efefef"];
     }
+    else if([[_studentCourseLink student] studentID] == 0)
+    {
+        self.title = @"Create student";
+        UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveStudent)];
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveBtn, nil]];
+        
+    }
+    
+    
         
 }
 
@@ -110,29 +142,41 @@ extern Session *session;
 
 -(void)saveStudent
 {
-    self.statusLbl.hidden = YES;
-    [[_studentCourseLink student] setName:self.studentNameTextField.text];
-    [[_studentCourseLink student] setPhone:self.studentPhoneTextField.text];
+    if ([self.studentNameTextField.text isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No name!"
+                                                        message:@"Please enter a name."
+                                                       delegate:nil    // <------
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
+    else{
+        self.statusLbl.hidden = YES;
+        [[_studentCourseLink student] setName:self.studentNameTextField.text];
+        [[_studentCourseLink student] setPhone:self.studentPhoneTextField.text];
+        
+        [Tools showLoaderWithView:self.view];
+        //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
+        NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&name=%@&phone=%@&clientid=%li&ts=%f", [[_studentCourseLink student] studentID], [[_studentCourseLink student]name], [[_studentCourseLink student] phone], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
+        
+        urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
+                     NSASCIIStringEncoding];
+        
+        NSURL *url = [NSURL URLWithString: urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [NSURLConnection connectionWithRequest:request delegate:self];
+        
+        _saveResultArray = [[NSArray alloc] init];
+    }
     
-    [Tools showLoader];
-    //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&name=%@&phone=%@&clientid=%li&ts=%f", [[_studentCourseLink student] studentID], [[_studentCourseLink student]name], [[_studentCourseLink student] phone], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
-    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
-                 NSASCIIStringEncoding];
-    
-    NSURL *url = [NSURL URLWithString: urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
-    
-    _saveResultArray = [[NSArray alloc] init];
 }
 
 
 -(void)deleteStudent
 {
     self.statusLbl.hidden = YES;
-    [Tools showLoader];
+    [Tools showLoaderWithView:self.view];
     //http://localhost:59838/mobileapp/save_data.aspx?datatype=student&id=29&name=hellofromquery2
     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=student&id=%li&delete=1&clientid=%li&ts=%f", [[_studentCourseLink student] studentID], [[session client] clientID], [[NSDate date] timeIntervalSince1970]];
     
@@ -161,8 +205,10 @@ extern Session *session;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
     _saveResultArray = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+    
+    NSLog(@"%@", _saveResultArray);
     
     if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
@@ -185,7 +231,13 @@ extern Session *session;
     
     else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"3"])
     {
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
+        if ([self.accessibilityValue isEqualToString:@"allStudents"]) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
+        }
+        
     }
     else{
         self.statusLbl.text = @"Error with saving";
@@ -197,7 +249,7 @@ extern Session *session;
 {
     UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Data download failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [errorView show];
-    [Tools hideLoader];
+    [Tools hideLoaderFromView:self.view];
 }
 //
 
