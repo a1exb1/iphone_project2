@@ -16,6 +16,9 @@
 @interface allStudentsTableViewController : UITableViewController
 
 @property bool loaded;
+@property bool pushed;
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
+@property float scrollPosition;
+@property NSIndexPath *indexPath;
 
 @end

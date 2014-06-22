@@ -28,9 +28,17 @@ extern Session *session;
 
 -(void)viewDidAppear:(BOOL)animated{
     _indexPath = nil;
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self setCellsArr];
+    [self.tableView reloadData];
 }
 
 - (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue { }
+
 
 - (void)viewDidLoad
 {
@@ -44,6 +52,13 @@ extern Session *session;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    [self setCellsArr];
+    
+    [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+}
+
+-(void)setCellsArr
+{
     _cellsArray = [[NSMutableArray alloc] init];
     NSMutableArray *section =[[NSMutableArray alloc ]init];
     
@@ -51,15 +66,15 @@ extern Session *session;
     NSArray *cell = [[NSArray alloc]initWithObjects:@"clock_80.png", @"Slots", @"", @"slots", nil];
     [section addObject:cell];
     
-//    cell = [[NSArray alloc]initWithObjects:@"Calendar-Date-03-80.png", @"Calender", @"", @"calender", nil];
-//    [section addObject:cell];
+    //    cell = [[NSArray alloc]initWithObjects:@"Calendar-Date-03-80.png", @"Calender", @"", @"calender", nil];
+    //    [section addObject:cell];
     cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Courses", @"", @"courses", nil];
     [section addObject:cell];
-
+    
     
     cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add lessons", @"", @"addlessons", nil];
     [section addObject:cell];
-
+    
     [_cellsArray addObject:section];
     
     //SECTION
@@ -84,8 +99,6 @@ extern Session *session;
     cell = [[NSArray alloc]initWithObjects:@"602-exit.png", @"Logout", @"", @"logout", nil];
     [section addObject:cell];
     [_cellsArray addObject:section];
-    
-    [self.tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 }
 
 - (void)didReceiveMemoryWarning

@@ -130,6 +130,10 @@ extern Session *session;
     view.studentCourseLink = link;
     view.accessibilityValue = @"allStudents";
     [self.navigationController pushViewController:view animated:YES];
+    
+    _scrollPosition = tableView.contentOffset.y;
+    _indexPath = indexPath;
+    _pushed = YES;
 }
 
 //MARGINED TABLE VIEW
@@ -161,6 +165,14 @@ extern Session *session;
 {
     [[session client] setStudents:array];
     [self.tableView reloadData];
+    if(_pushed){
+        [self.tableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        if (_scrollPosition < 0) {
+            _scrollPosition = 0;
+        }
+        [self.tableView setContentOffset:CGPointMake(0, _scrollPosition)];
+        [self.tableView deselectRowAtIndexPath:_indexPath animated:YES];
+    }
     [Tools hideLoaderFromView:self.view];
 }
 
@@ -173,6 +185,9 @@ extern Session *session;
     view.studentCourseLink = link;
     view.accessibilityValue = @"allStudents";
     [self.navigationController pushViewController:view animated:YES];
+    _scrollPosition = self.tableView.contentOffset.y;
+    _indexPath = nil;
+    _pushed = YES;
 }
 
 @end

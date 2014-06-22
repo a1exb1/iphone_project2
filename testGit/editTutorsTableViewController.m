@@ -206,6 +206,10 @@ extern Session *session;
     saveTutorViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveTutor"];
     view.tutor = self.tutorSender;
     [self.navigationController pushViewController:view animated:YES];
+    
+    _scrollPosition = tableView.contentOffset.y;
+    _indexPath = indexPath;
+    _pushed = YES;
 }
 
 
@@ -216,6 +220,14 @@ extern Session *session;
     _tutors = array;
     [self.tableView.pullToRefreshView stopAnimating];
     [self.tableView reloadData];
+    if(_pushed){
+        [self.tableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        if (_scrollPosition < 0) {
+            _scrollPosition = 0;
+        }
+        [self.tableView setContentOffset:CGPointMake(0, _scrollPosition)];
+        [self.tableView deselectRowAtIndexPath:_indexPath animated:YES];
+    }
     [Tools hideLoaderFromView:self.view];
     
     if ([_tutors count] == 0) {

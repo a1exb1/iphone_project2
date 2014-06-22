@@ -196,6 +196,10 @@
     view.course = self.courseSender;
     view.tutor = _tutor;
     [self.navigationController pushViewController:view animated:YES];
+    
+    _scrollPosition = tableView.contentOffset.y;
+    _indexPath = indexPath;
+    _pushed = YES;
 }
 
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
@@ -215,6 +219,15 @@
     
     _courses = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
     [self.tableView reloadData];
+    
+    if(_pushed){
+        [self.tableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        if (_scrollPosition < 0) {
+            _scrollPosition = 0;
+        }
+        [self.tableView setContentOffset:CGPointMake(0, _scrollPosition)];
+        [self.tableView deselectRowAtIndexPath:_indexPath animated:YES];
+    }
     
     if ([_courses count] == 0) {
         _statusLbl.text = @"No courses, click the plus to add one";

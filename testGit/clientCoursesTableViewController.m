@@ -126,6 +126,10 @@ extern Session *session;
     [tutor setTutorID:[str intValue]];
     view.tutor = tutor;
     [self.navigationController pushViewController:view animated:YES];
+    
+    _scrollPosition = tableView.contentOffset.y;
+    _indexPath = indexPath;
+    _pushed = YES;
 }
 
 //MARGINED TABLE VIEW
@@ -157,6 +161,15 @@ extern Session *session;
 {
     [[session client] setCourses:array];
     [self.tableView reloadData];
+    if(_pushed){
+        [self.tableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        if (_scrollPosition < 0) {
+            _scrollPosition = 0;
+        }
+        [self.tableView setContentOffset:CGPointMake(0, _scrollPosition)];
+        [self.tableView deselectRowAtIndexPath:_indexPath animated:YES];
+    }
+    
     [Tools hideLoaderFromView:self.view];
 }
 

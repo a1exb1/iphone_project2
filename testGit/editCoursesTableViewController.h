@@ -26,5 +26,7 @@
 
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 @property bool loaded;
-
+@property bool pushed;
+@property NSIndexPath *indexPath;
+@property float scrollPosition;
 @end

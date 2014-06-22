@@ -83,7 +83,7 @@ extern Session *session;
         }
         
     }
-    else if([[session tutor] tutorID] != [[_studentCourseLink tutor] tutorID]){
+    else if(([[session tutor] tutorID] != [[_studentCourseLink tutor] tutorID]) && ([[_studentCourseLink student] studentID] != 0)){
         self.studentNameTextField.userInteractionEnabled = NO;
         self.studentPhoneTextField.userInteractionEnabled = NO;
         self.studentNameTextField.backgroundColor = [Tools colorFromHexString:@"#efefef"];

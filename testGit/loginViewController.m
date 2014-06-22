@@ -245,6 +245,7 @@ extern Session *session;
     if ( [Tools isIpad] )
     {
         _tabBar.selectedIndex = 0;
+        NSLog(@"views: %lu", (unsigned long)[self.parentViewController.splitViewController.viewControllers count]);
         [self dismissViewControllerAnimated:NO completion:nil];
     }
     else
