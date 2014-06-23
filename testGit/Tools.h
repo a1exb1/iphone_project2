@@ -78,5 +78,7 @@
 
 + (void)marginedtableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
++(NSString *)formatDate:(NSDate *)Date withFormat:(NSString *)format;
+
 
 @end

@@ -56,7 +56,8 @@
 
 -(void)save
 {
-    
+    NSArray *returnArr = [_lesson save];
+    NSLog(@"retrun %@", returnArr);
 }
 
 -(void)delete

@@ -24,6 +24,7 @@
     frame.origin.x += 50;
     frame.size.width -= 2 * 50;
     [super setFrame:frame];
+    //30 
     
 }
 

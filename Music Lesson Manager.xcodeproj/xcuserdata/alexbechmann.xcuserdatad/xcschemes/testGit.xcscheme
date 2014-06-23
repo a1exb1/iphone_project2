@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E40DF279190017E100E1332A"
-               BuildableName = "PlanIt!.app"
+               BuildableName = "Music Lesson Manager.app"
                BlueprintName = "Music Lesson Manager"
                ReferencedContainer = "container:Music Lesson Manager.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E40DF29D190017E200E1332A"
-               BuildableName = "PlanIt!Tests.xctest"
+               BuildableName = "Music Lesson ManagerTests.xctest"
                BlueprintName = "Music Lesson ManagerTests"
                ReferencedContainer = "container:Music Lesson Manager.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E40DF279190017E100E1332A"
-            BuildableName = "PlanIt!.app"
+            BuildableName = "Music Lesson Manager.app"
             BlueprintName = "Music Lesson Manager"
             ReferencedContainer = "container:Music Lesson Manager.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E40DF279190017E100E1332A"
-            BuildableName = "PlanIt!.app"
+            BuildableName = "Music Lesson Manager.app"
             BlueprintName = "Music Lesson Manager"
             ReferencedContainer = "container:Music Lesson Manager.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E40DF279190017E100E1332A"
-            BuildableName = "PlanIt!.app"
+            BuildableName = "Music Lesson Manager.app"
             BlueprintName = "Music Lesson Manager"
             ReferencedContainer = "container:Music Lesson Manager.xcodeproj">
          </BuildableReference>

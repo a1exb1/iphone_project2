@@ -547,5 +547,13 @@ NSMutableArray *loaderViews;
     }
 }
 
++(NSString *)formatDate:(NSDate *)Date withFormat:(NSString *)format
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:format];
+    NSString *stringFromDate = [formatter stringFromDate:Date];
+    return stringFromDate;
+}
+
 
 @end

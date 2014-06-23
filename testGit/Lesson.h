@@ -32,6 +32,6 @@
 
 -(void)loadNotes;
 
--(void)save;
+-(NSArray *)save;
 
 @end

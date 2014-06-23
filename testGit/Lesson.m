@@ -50,14 +50,24 @@
     
 }
 
--(void)save
+-(NSArray *)save
 {
-    //NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/get_data.aspx?datatype=tutorsandcoursesbyclient&id=%li", [self clientID]];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=addupdatelesson&id=0&lessondatetime=%@&duration=30&tutorid=16&courseid=58&studentid=132&ts=1402752735", [self formatDate:_dateTime withFormat:@"yyyy-MM-dd HH:mm:ss"]];
+    NSLog(@"uirl %@", urlString);
+    return [[NSArray alloc] init];
+    //return [jsonReader jsonRequestWithUrl:urlString];
     
     
-    //self.courses = [jsonReader jsonRequestWithUrl:urlString];
-    
-    
+}
+
+
+-(NSString *)formatDate:(NSDate *)Date withFormat:(NSString *)format
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:format];
+    NSString *stringFromDate = [formatter stringFromDate:Date];
+    return stringFromDate;
 }
 
 @end
