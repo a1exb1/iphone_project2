@@ -42,6 +42,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
+      "filename" : "splash_ipad.png",
       "scale" : "2x"
     }
   ],

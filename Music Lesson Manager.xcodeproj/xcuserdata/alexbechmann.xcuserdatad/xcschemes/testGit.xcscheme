@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E40DF279190017E100E1332A"
                BuildableName = "PlanIt!.app"
-               BlueprintName = "PlanIt!"
-               ReferencedContainer = "container:PlanIt!.xcodeproj">
+               BlueprintName = "Music Lesson Manager"
+               ReferencedContainer = "container:Music Lesson Manager.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E40DF29D190017E200E1332A"
                BuildableName = "PlanIt!Tests.xctest"
-               BlueprintName = "PlanIt!Tests"
-               ReferencedContainer = "container:PlanIt!.xcodeproj">
+               BlueprintName = "Music Lesson ManagerTests"
+               ReferencedContainer = "container:Music Lesson Manager.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E40DF279190017E100E1332A"
             BuildableName = "PlanIt!.app"
-            BlueprintName = "PlanIt!"
-            ReferencedContainer = "container:PlanIt!.xcodeproj">
+            BlueprintName = "Music Lesson Manager"
+            ReferencedContainer = "container:Music Lesson Manager.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E40DF279190017E100E1332A"
             BuildableName = "PlanIt!.app"
-            BlueprintName = "PlanIt!"
-            ReferencedContainer = "container:PlanIt!.xcodeproj">
+            BlueprintName = "Music Lesson Manager"
+            ReferencedContainer = "container:Music Lesson Manager.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E40DF279190017E100E1332A"
             BuildableName = "PlanIt!.app"
-            BlueprintName = "PlanIt!"
-            ReferencedContainer = "container:PlanIt!.xcodeproj">
+            BlueprintName = "Music Lesson Manager"
+            ReferencedContainer = "container:Music Lesson Manager.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

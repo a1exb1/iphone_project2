@@ -298,14 +298,14 @@
 		E407AD70191E962C00F22977 /* textNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = textNoteViewController.m; sourceTree = "<group>"; };
 		E407AD72191E963E00F22977 /* audioNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audioNoteViewController.h; sourceTree = "<group>"; };
 		E407AD73191E963E00F22977 /* audioNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = audioNoteViewController.m; sourceTree = "<group>"; };
-		E40DF27A190017E100E1332A /* PlanIt!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PlanIt!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E40DF27A190017E100E1332A /* Music Lesson Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Lesson Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E40DF27D190017E100E1332A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E40DF27F190017E100E1332A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E40DF281190017E100E1332A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E40DF285190017E100E1332A /* PlanIt!-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlanIt!-Info.plist"; sourceTree = "<group>"; };
+		E40DF285190017E100E1332A /* Music Lesson Manager-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Music Lesson Manager-Info.plist"; sourceTree = "<group>"; };
 		E40DF287190017E100E1332A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E40DF289190017E100E1332A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E40DF28B190017E100E1332A /* PlanIt!-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlanIt!-Prefix.pch"; sourceTree = "<group>"; };
+		E40DF28B190017E100E1332A /* Music Lesson Manager-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Music Lesson Manager-Prefix.pch"; sourceTree = "<group>"; };
 		E40DF28C190017E100E1332A /* ABAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABAppDelegate.h; sourceTree = "<group>"; };
 		E40DF28D190017E100E1332A /* ABAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABAppDelegate.m; sourceTree = "<group>"; };
 		E40DF290190017E100E1332A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
@@ -313,9 +313,9 @@
 		E40DF295190017E100E1332A /* ABViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABViewController.h; sourceTree = "<group>"; };
 		E40DF296190017E100E1332A /* ABViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABViewController.m; sourceTree = "<group>"; };
 		E40DF298190017E100E1332A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E40DF29E190017E200E1332A /* PlanIt!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PlanIt!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E40DF29E190017E200E1332A /* Music Lesson ManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Music Lesson ManagerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E40DF29F190017E200E1332A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		E40DF2A7190017E200E1332A /* PlanIt!Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlanIt!Tests-Info.plist"; sourceTree = "<group>"; };
+		E40DF2A7190017E200E1332A /* Music Lesson ManagerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Music Lesson ManagerTests-Info.plist"; sourceTree = "<group>"; };
 		E40DF2A9190017E200E1332A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E40DF2AB190017E200E1332A /* testGitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testGitTests.m; sourceTree = "<group>"; };
 		E419E72F19563B4B00E14309 /* customTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customTableViewCell.h; sourceTree = "<group>"; };
@@ -715,8 +715,8 @@
 		E40DF27B190017E100E1332A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E40DF27A190017E100E1332A /* PlanIt!.app */,
-				E40DF29E190017E200E1332A /* PlanIt!Tests.xctest */,
+				E40DF27A190017E100E1332A /* Music Lesson Manager.app */,
+				E40DF29E190017E200E1332A /* Music Lesson ManagerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -793,10 +793,10 @@
 				E401DACF19195D4100A05318 /* glyphicons_137_cogwheels.png */,
 				E401DACC19195D1A00A05318 /* glyphicons_045_calendar.png */,
 				E4C1C96A1914F75B0068A10D /* glyphicons_030_pencil.png */,
-				E40DF285190017E100E1332A /* PlanIt!-Info.plist */,
+				E40DF285190017E100E1332A /* Music Lesson Manager-Info.plist */,
 				E40DF286190017E100E1332A /* InfoPlist.strings */,
 				E40DF289190017E100E1332A /* main.m */,
-				E40DF28B190017E100E1332A /* PlanIt!-Prefix.pch */,
+				E40DF28B190017E100E1332A /* Music Lesson Manager-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -813,7 +813,7 @@
 		E40DF2A6190017E200E1332A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E40DF2A7190017E200E1332A /* PlanIt!Tests-Info.plist */,
+				E40DF2A7190017E200E1332A /* Music Lesson ManagerTests-Info.plist */,
 				E40DF2A8190017E200E1332A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -1068,9 +1068,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E40DF279190017E100E1332A /* PlanIt! */ = {
+		E40DF279190017E100E1332A /* Music Lesson Manager */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E40DF2AF190017E200E1332A /* Build configuration list for PBXNativeTarget "PlanIt!" */;
+			buildConfigurationList = E40DF2AF190017E200E1332A /* Build configuration list for PBXNativeTarget "Music Lesson Manager" */;
 			buildPhases = (
 				E40DF276190017E100E1332A /* Sources */,
 				E40DF277190017E100E1332A /* Frameworks */,
@@ -1080,14 +1080,14 @@
 			);
 			dependencies = (
 			);
-			name = "PlanIt!";
+			name = "Music Lesson Manager";
 			productName = testGit;
-			productReference = E40DF27A190017E100E1332A /* PlanIt!.app */;
+			productReference = E40DF27A190017E100E1332A /* Music Lesson Manager.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E40DF29D190017E200E1332A /* PlanIt!Tests */ = {
+		E40DF29D190017E200E1332A /* Music Lesson ManagerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E40DF2B2190017E200E1332A /* Build configuration list for PBXNativeTarget "PlanIt!Tests" */;
+			buildConfigurationList = E40DF2B2190017E200E1332A /* Build configuration list for PBXNativeTarget "Music Lesson ManagerTests" */;
 			buildPhases = (
 				E40DF29A190017E200E1332A /* Sources */,
 				E40DF29B190017E200E1332A /* Frameworks */,
@@ -1098,9 +1098,9 @@
 			dependencies = (
 				E40DF2A4190017E200E1332A /* PBXTargetDependency */,
 			);
-			name = "PlanIt!Tests";
+			name = "Music Lesson ManagerTests";
 			productName = testGitTests;
-			productReference = E40DF29E190017E200E1332A /* PlanIt!Tests.xctest */;
+			productReference = E40DF29E190017E200E1332A /* Music Lesson ManagerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1121,7 +1121,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E40DF275190017E100E1332A /* Build configuration list for PBXProject "PlanIt!" */;
+			buildConfigurationList = E40DF275190017E100E1332A /* Build configuration list for PBXProject "Music Lesson Manager" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1134,8 +1134,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E40DF279190017E100E1332A /* PlanIt! */,
-				E40DF29D190017E200E1332A /* PlanIt!Tests */,
+				E40DF279190017E100E1332A /* Music Lesson Manager */,
+				E40DF29D190017E200E1332A /* Music Lesson ManagerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1363,7 +1363,7 @@
 /* Begin PBXTargetDependency section */
 		E40DF2A4190017E200E1332A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E40DF279190017E100E1332A /* PlanIt! */;
+			target = E40DF279190017E100E1332A /* Music Lesson Manager */;
 			targetProxy = E40DF2A3190017E200E1332A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1438,6 +1438,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "5A6C2FE2-6916-425D-AD7E-1962F4F091B6";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1470,6 +1471,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "5A6C2FE2-6916-425D-AD7E-1962F4F091B6";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1484,10 +1486,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "testGit/PlanIt!-Prefix.pch";
-				INFOPLIST_FILE = "testGit/PlanIt!-Info.plist";
-				PRODUCT_NAME = "PlanIt!";
+				GCC_PREFIX_HEADER = "testGit/Music Lesson Manager-Prefix.pch";
+				INFOPLIST_FILE = "testGit/Music Lesson Manager-Info.plist";
+				PRODUCT_NAME = "Music Lesson Manager";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1500,10 +1503,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "testGit/PlanIt!-Prefix.pch";
-				INFOPLIST_FILE = "testGit/PlanIt!-Info.plist";
-				PRODUCT_NAME = "PlanIt!";
+				GCC_PREFIX_HEADER = "testGit/Music Lesson Manager-Prefix.pch";
+				INFOPLIST_FILE = "testGit/Music Lesson Manager-Info.plist";
+				PRODUCT_NAME = "Music Lesson Manager";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1523,8 +1527,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "testGitTests/PlanIt!Tests-Info.plist";
-				PRODUCT_NAME = "PlanIt!Tests";
+				INFOPLIST_FILE = "testGitTests/Music Lesson ManagerTests-Info.plist";
+				PRODUCT_NAME = "Music Lesson ManagerTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1541,8 +1545,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "testGit/testGit-Prefix.pch";
-				INFOPLIST_FILE = "testGitTests/PlanIt!Tests-Info.plist";
-				PRODUCT_NAME = "PlanIt!Tests";
+				INFOPLIST_FILE = "testGitTests/Music Lesson ManagerTests-Info.plist";
+				PRODUCT_NAME = "Music Lesson ManagerTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1551,7 +1555,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E40DF275190017E100E1332A /* Build configuration list for PBXProject "PlanIt!" */ = {
+		E40DF275190017E100E1332A /* Build configuration list for PBXProject "Music Lesson Manager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E40DF2AD190017E200E1332A /* Debug */,
@@ -1560,7 +1564,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E40DF2AF190017E200E1332A /* Build configuration list for PBXNativeTarget "PlanIt!" */ = {
+		E40DF2AF190017E200E1332A /* Build configuration list for PBXNativeTarget "Music Lesson Manager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E40DF2B0190017E200E1332A /* Debug */,
@@ -1569,7 +1573,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E40DF2B2190017E200E1332A /* Build configuration list for PBXNativeTarget "PlanIt!Tests" */ = {
+		E40DF2B2190017E200E1332A /* Build configuration list for PBXNativeTarget "Music Lesson ManagerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E40DF2B3190017E200E1332A /* Debug */,
