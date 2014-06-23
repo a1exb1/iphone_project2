@@ -10,6 +10,7 @@
 #import "Lesson.h"
 #import "NVDate.h"
 //#import "AgendaViewController.h"
+#import "editStudentViewController.h"
 
 #import "DetailViewManager.h"
 
@@ -46,5 +47,8 @@
 @property NSString *lessonTime;
 
 @property UILabel *lessonTimeCellView;
+
+@property int lessonNumber;
+@property int lessonTotal;
 
 @end

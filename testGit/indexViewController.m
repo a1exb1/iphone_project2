@@ -271,6 +271,9 @@ extern Session *session;
 //    _studentImg.alpha = 1;
 //    [UIView commitAnimations];
     
+    if (_lessonTotal > 0) {
+        self.title = [NSString stringWithFormat:@"Lesson %d of %d", _lessonNumber, _lessonTotal];
+    }
 }
 
 -(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -490,7 +493,7 @@ extern Session *session;
         
         else if ([nowDate.date timeIntervalSinceReferenceDate] < [lessonEnd timeIntervalSinceReferenceDate]) {
             NSTimeInterval secondsBetween = [lessonDate.date timeIntervalSinceDate:nowDate.date];
-            dayDesc = [NSString stringWithFormat:@"Lesson in: %@", [Tools convertSecondsToTimeStringWithSecondsWithAlternativeStyle:secondsBetween]];
+            dayDesc = [NSString stringWithFormat:@"In: %@", [Tools convertSecondsToTimeStringWithSecondsWithAlternativeStyle:secondsBetween]];
             _lessonStatus = dayDesc;
         }
         
@@ -537,31 +540,7 @@ extern Session *session;
     NSLog(@"Students phone number: %@", [[_lesson student] phone]);
 }
 
-//
-//- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
-//{
-//    //barButtonItem.image = [_menuBtn image];
-//    //barButtonItem.title = NSLocalizedString(@"Agenda", @"Agenda");
-//    //[self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-//    self.masterPopoverController = popoverController;
-//
-//    //[self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects: barButtonItem, nil]];
-//}
-//
-//- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-//{
-//    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-//    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-//    self.masterPopoverController = nil;
-//    
-//}
-//
-//- (BOOL)splitViewController: (UISplitViewController*)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
-//{
-//    //This method is only available in iOS5
-//    
-//    return NO;
-//}
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
@@ -642,8 +621,23 @@ extern Session *session;
 {
     
     if(indexPath.row == 0){
+        editStudentViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveStudent"];
+        StudentCourseLink *link = [[StudentCourseLink alloc] init];
+        link.student = [_lesson student];
 
+        link.tutor = [session tutor];
         
+        view.studentCourseLink = link;
+        view.accessibilityValue = @"allStudents";
+        
+         UINavigationController *navigationController = [[UINavigationController alloc] init];
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+        navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        navigationController.viewControllers = [[NSArray alloc] initWithObjects:view, nil];
+        [view setPopoverButtons];
+        view.isFormSheet = YES;
+        [self presentViewController:navigationController animated:YES completion:nil];
     }
     
     if(indexPath.row == 1){

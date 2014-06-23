@@ -59,7 +59,7 @@ NSTimer *timer;
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
         self.title = @"Calender";
         
-        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground: nil andTint:[Tools colorFromHexString:@"#b44444"] theme:@"light"];
+        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground: nil andTint:[UIColor redColor] theme:@"light"];     //[Tools colorFromHexString:@"#b44444"]
     }
     else{
         self.title = @"Lesson slots";
@@ -240,7 +240,7 @@ NSTimer *timer;
     
     NSLog(@"here");
     float padding = self.view.frame.size.width * 0.09;
-    float labelContainer = self.view.frame.size.width - padding;
+    //float labelContainer = self.view.frame.size.width - padding;
     float labelWidth = self.view.frame.size.width * 0.13;
     
     //float y = (top * height);
@@ -507,6 +507,8 @@ NSTimer *timer;
 -(void)viewDidDisappear:(BOOL)animated
 {
     [Tools hideLoader];
+    [_popover dismissPopoverAnimated:YES];
+    [_calPopover dismissPopoverAnimated:YES];
 }
 
 /*

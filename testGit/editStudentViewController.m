@@ -218,8 +218,14 @@ extern Session *session;
             [self performSegueWithIdentifier:@"editStudentToEditSlot" sender:self];
         }
         else{
-            [self.editStudentDelegate updatedSlot: _studentCourseLink];
-            [self.navigationController popViewControllerAnimated:YES];
+            if (_isFormSheet) {
+                [self closePopover];
+            }
+            else{
+                [self.editStudentDelegate updatedSlot: _studentCourseLink];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+           
         }
     }
     else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"0"])
@@ -231,11 +237,16 @@ extern Session *session;
     
     else if([[[_saveResultArray objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"3"])
     {
-        if ([self.accessibilityValue isEqualToString:@"allStudents"]) {
-            [self.navigationController popViewControllerAnimated:YES];
+        if (_isFormSheet) {
+            [self closePopover];
         }
         else{
-            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
+            if ([self.accessibilityValue isEqualToString:@"allStudents"]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else{
+                [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
+            }
         }
         
     }
@@ -252,6 +263,17 @@ extern Session *session;
     [Tools hideLoaderFromView:self.view];
 }
 //
+
+-(void)setPopoverButtons
+{
+    UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closePopover)];
+    self.navigationItem.leftBarButtonItem = closeBtn;
+}
+
+-(void)closePopover
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

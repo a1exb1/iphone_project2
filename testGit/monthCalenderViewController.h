@@ -33,6 +33,7 @@
 
 @property (weak, nonatomic) id<SelectDateDelegate> monthCalenderDelegate;
 @property bool hasResized;
+@property UIPopoverController *popover;
 
 -(void)drawSquaresWithDirection:(int)direction andOldContainer: (UIView *)oldContainer;
 

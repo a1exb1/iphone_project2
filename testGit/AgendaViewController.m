@@ -769,7 +769,8 @@ NSArray *daysOfWeekArray;
     //[obj setStr:@"hello123"];
     top.lesson = _lessonSender;
     top.agendaDelegate = self;
-    
+    top.lessonNumber = (row + 1);
+    top.lessonTotal = [_lessons count];
     //NSArray *viewControllers = [[NSArray alloc] initWithObjects:detailViewController, top, nil];
     //detailViewManager.viewControllers = viewControllers;
     [detailViewController pushViewController:top animated:YES];

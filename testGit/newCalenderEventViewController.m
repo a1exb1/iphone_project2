@@ -36,7 +36,9 @@
     UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
     self.navigationItem.rightBarButtonItem = saveBtn;
-    self.navigationItem.leftBarButtonItem = deleteBtn;
+    if ([_lesson LessonID] > 0) {
+        self.navigationItem.leftBarButtonItem = deleteBtn;
+    }
     self.navigationController.navigationBar.translucent = NO;
     
     _studentLbl.text = [[_lesson student] name];

@@ -26,5 +26,8 @@
 
 @property (weak, nonatomic) id<editStudentDelegate> editStudentDelegate;
 
+-(void)setPopoverButtons;
+
+@property bool isFormSheet;
 
 @end

@@ -437,9 +437,23 @@ extern Session *session;
     [self.navigationItem.leftBarButtonItem setBackgroundVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{    
+    if([segue.identifier isEqualToString:@"newCalenderItem"])
+    {
+        UINavigationController *navVC = segue.destinationViewController;
+        newCalenderEventViewController *view = (newCalenderEventViewController *)navVC.topViewController;
+        //view.accessibilityValue = @"coursesPopover";
+        //view.tutor = [session tutor];
+        _popover = [(UIStoryboardPopoverSegue *) segue popoverController];
+    }
+    
+}
+
 -(void)viewDidDisappear:(BOOL)animated
 {
     [Tools hideLoader];
+    [_popover dismissPopoverAnimated:YES];
 }
 
 /*

@@ -550,7 +550,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="4049" y="-5140"/>
         </scene>
-        <!--New Calender Event View Controller-->
+        <!--New Calender Event View Controller - New lesson-->
         <scene sceneID="9pw-cu-gKN">
             <objects>
                 <viewController storyboardIdentifier="newCalenderItemView" id="ZY5-AL-Jna" customClass="newCalenderEventViewController" sceneMemberID="viewController">
@@ -598,7 +598,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="EnP-He-fIA"/>
+                    <navigationItem key="navigationItem" title="New lesson" id="EnP-He-fIA"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="548"/>
                     <connections>
@@ -1381,6 +1381,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <action selector="previousMonth:" destination="0ie-kG-zjt" id="2cx-HE-GEt"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2hY-YI-9gU">
+                            <connections>
+                                <segue destination="eWf-zE-UHL" kind="popover" identifier="newCalenderItem" popoverAnchorBarButtonItem="2hY-YI-9gU" id="ugO-DN-v36">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="toolbar" destination="hpr-Xu-fm1" id="Tle-cC-0bV"/>
@@ -1420,7 +1427,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1031" y="-2863"/>
         </scene>
-        <!--Index View Controller - Lesson-->
+        <!--Index View Controller-->
         <scene sceneID="QLP-Af-uUp">
             <objects>
                 <viewController storyboardIdentifier="dayView" id="Vx5-kb-hSn" customClass="indexViewController" sceneMemberID="viewController">
@@ -1487,7 +1494,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Lesson" id="mc6-nf-mTa"/>
+                    <navigationItem key="navigationItem" id="mc6-nf-mTa"/>
                     <connections>
                         <outlet property="attendenceControl" destination="VFI-tt-Vbc" id="Hj8-NX-JAv"/>
                         <outlet property="lessonTimeLbl" destination="Knh-7o-t1o" id="t8l-Vd-efz"/>
@@ -1859,6 +1866,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eWf-zE-UHL" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Im1-nk-eK6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xeV-1o-TpE">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1894,6 +1902,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Qt7-aI-T6M"/>
         <segue reference="nt5-br-Avs"/>
         <segue reference="LWh-Mf-gbI"/>
     </inferredMetricsTieBreakers>
