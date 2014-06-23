@@ -1902,8 +1902,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Qt7-aI-T6M"/>
         <segue reference="nt5-br-Avs"/>
         <segue reference="LWh-Mf-gbI"/>
+        <segue reference="Qt7-aI-T6M"/>
     </inferredMetricsTieBreakers>
 </document>

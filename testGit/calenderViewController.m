@@ -183,7 +183,11 @@ NSTimer *timer;
         segmentedControl.selectedSegmentIndex = 1;
         UIBarButtonItem *segmentButton = [[UIBarButtonItem alloc] initWithCustomView: segmentedControl];
         
-        self.toolbarItems = [NSArray arrayWithObjects: refreshBtn, fixedSpace, _lockBtn, flex, segmentButton, flex, leftButton, fixedSpace,  rightButton, nil];
+        if(_lockBtn == nil){
+            _lockBtn = [[UIBarButtonItem alloc ] init];
+        }
+        
+        self.toolbarItems = [NSArray arrayWithObjects:refreshBtn, fixedSpace, _lockBtn, flex, segmentButton, flex, leftButton, fixedSpace,  rightButton, nil];
         
         
     }
@@ -270,7 +274,6 @@ NSTimer *timer;
 {    
     if ([self.accessibilityValue isEqualToString:@"calenderView"]) {
         //CALENDER
-        
         UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
         fixedSpace.width = 40;
 
