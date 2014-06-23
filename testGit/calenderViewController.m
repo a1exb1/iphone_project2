@@ -163,9 +163,6 @@ NSTimer *timer;
     UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
     //UIBarButtonItem *closeBtn = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
 
-
-    
-    
     if ([self.accessibilityValue isEqualToString:@"calenderView"]) {
         //CALENDER
         UIBarButtonItem *addLessonsBtn = nil;
