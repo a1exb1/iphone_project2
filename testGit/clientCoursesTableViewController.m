@@ -63,7 +63,8 @@ extern Session *session;
     NSArray *courses = [tutor objectForKey:@"courses"];
     NSArray *course = [courses objectAtIndex:indexPath.row];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    cell.textLabel.text = [course objectAtIndex:1];    
+    cell.textLabel.text = [course objectAtIndex:1];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 

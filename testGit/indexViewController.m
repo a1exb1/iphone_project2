@@ -553,7 +553,58 @@ extern Session *session;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-
+    if(indexPath.row == 0){
+        editStudentViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveStudent"];
+        StudentCourseLink *link = [[StudentCourseLink alloc] init];
+        link.student = [_lesson student];
+        
+        link.tutor = [session tutor];
+        
+        view.studentCourseLink = link;
+        view.accessibilityValue = @"allStudents";
+        
+        UINavigationController *navigationController = [[UINavigationController alloc] init];
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+        navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        navigationController.viewControllers = [[NSArray alloc] initWithObjects:view, nil];
+        [view setPopoverButtons];
+        view.isFormSheet = YES;
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
+    
+    if(indexPath.row == 1){
+        [_mainTableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+    }
+    
+    if(indexPath.row == 2){
+        [_mainTableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    
+    if(indexPath.row == 3){
+        UINavigationController *navigationController = [[UINavigationController alloc] init];
+        
+        NotesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allNotesView"];
+        [view setLesson:_lesson];
+        //[self.navigationController pushViewController:view animated:YES];
+        
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+        navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        navigationController.viewControllers = [[NSArray alloc] initWithObjects:view, nil];
+        [self presentViewController:navigationController animated:YES completion:nil];
+        
+    }
+    if(indexPath.row == 4){
+        
+        
+    }
+    
+    if(indexPath.row == 5){
+        
+        
+    }
         
     
 }
@@ -620,58 +671,7 @@ extern Session *session;
 -(void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if(indexPath.row == 0){
-        editStudentViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveStudent"];
-        StudentCourseLink *link = [[StudentCourseLink alloc] init];
-        link.student = [_lesson student];
-
-        link.tutor = [session tutor];
-        
-        view.studentCourseLink = link;
-        view.accessibilityValue = @"allStudents";
-        
-         UINavigationController *navigationController = [[UINavigationController alloc] init];
-        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-        navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        
-        navigationController.viewControllers = [[NSArray alloc] initWithObjects:view, nil];
-        [view setPopoverButtons];
-        view.isFormSheet = YES;
-        [self presentViewController:navigationController animated:YES completion:nil];
-    }
     
-    if(indexPath.row == 1){
-        [_mainTableView deselectRowAtIndexPath:indexPath animated:YES];
-        
-    }
-    
-    if(indexPath.row == 2){
-        [_mainTableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
-    
-    if(indexPath.row == 3){
-        UINavigationController *navigationController = [[UINavigationController alloc] init];
-        
-        NotesViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allNotesView"];
-        [view setLesson:_lesson];
-        //[self.navigationController pushViewController:view animated:YES];
-        
-        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-        navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        
-        navigationController.viewControllers = [[NSArray alloc] initWithObjects:view, nil];
-        [self presentViewController:navigationController animated:YES completion:nil];
-        
-    }
-    if(indexPath.row == 4){
-
-        
-    }
-    
-    if(indexPath.row == 5){
-
-        
-    }
 }
 
 -(void)showMainMenu
