@@ -38,6 +38,11 @@ NSTimer *timer;
 }
 
 
+-(void)reload
+{
+    [self reloadWebView];
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {    
     if (_navigationPaneBarButtonItem)
@@ -59,7 +64,7 @@ NSTimer *timer;
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
         self.title = @"Calender";
         
-        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground: nil andTint:[UIColor redColor] theme:@"light"];     //[Tools colorFromHexString:@"#b44444"]
+        [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground: nil andTint:[Tools colorFromHexString:@"#b44444"] theme:@"light"];     //[Tools colorFromHexString:@"#b44444"]
     }
     else{
         self.title = @"Lesson slots";

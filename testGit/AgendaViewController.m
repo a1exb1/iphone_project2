@@ -503,13 +503,13 @@ NSArray *daysOfWeekArray;
     
     
     
-    UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 1, 2.0f, cell.viewForBaselineLayout.frame.size.height - 2)];
+    UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 1, 3.0f, cell.viewForBaselineLayout.frame.size.height - 2)];
     NSString *s = [_cellBorderColours objectForKey:[Tools nowIsBetweenDate1:lessonDate andDuration:[[[_lessons objectAtIndex:indexPath.row] objectForKey:@"Duration"] intValue]]];
     [lineView setBackgroundColor:[Tools colorFromHexString:s]];
     [[cell contentView] addSubview:lineView];
     
     UIView *bgColorView = [[UIView alloc] init];
-    lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 1, 2.0f, cell.viewForBaselineLayout.frame.size.height - 2)];
+    lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 1, 3.0f, cell.viewForBaselineLayout.frame.size.height - 2)];
     [lineView setBackgroundColor:[Tools colorFromHexString:@"#FFA500"]];
     [bgColorView addSubview:lineView];
     bgColorView.backgroundColor = [Tools colorFromHexString:@"#FFF2DB"];
@@ -770,7 +770,7 @@ NSArray *daysOfWeekArray;
     top.lesson = _lessonSender;
     top.agendaDelegate = self;
     top.lessonNumber = (row + 1);
-    top.lessonTotal = [_lessons count];
+    top.lessonTotal = (int)[_lessons count];
     //NSArray *viewControllers = [[NSArray alloc] initWithObjects:detailViewController, top, nil];
     //detailViewManager.viewControllers = viewControllers;
     [detailViewController pushViewController:top animated:YES];

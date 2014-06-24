@@ -30,8 +30,12 @@
 
 @property NSArray *Notes;
 
--(void)loadNotes;
+@property (nonatomic) NSArray *saveReturn;
 
--(NSArray *)save;
+@property int someNumber;
+
+-(void)loadNotes;
+-(void)save;
+
 
 @end

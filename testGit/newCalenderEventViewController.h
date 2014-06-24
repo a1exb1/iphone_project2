@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "Lesson.h"
+#import "Session.h"
+#import "clientCoursesTableViewController.h"
+#import "allStudentsTableViewController.h"
+
+@protocol calDelegate <NSObject>
+
+-(void)reload;
+
+@end
 
 @interface newCalenderEventViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property Lesson *lesson;
+@property id<calDelegate> delegate;
 
 @end

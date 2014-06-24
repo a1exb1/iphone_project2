@@ -26,10 +26,16 @@ extern Session *session;
     return self;
 }
 
+-(void)reload{
+    [self drawSquaresWithDirection:0 andOldContainer:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
     
     [self.navigationController setToolbarHidden:NO];
     
@@ -63,7 +69,7 @@ extern Session *session;
     
     self.toolbarItems = [[NSArray alloc] initWithObjects:todayBtn, flex, segmentButton, flex, leftButton, fixedSpace, rightButton, nil];
     
-    [Tools setNavigationHeaderColorWithNavigationController:self.navigationController andTabBar:nil andBackground:nil andTint:[UIColor redColor] theme:@"light"];
+    [Tools setNavigationHeaderColorWithNavigationController: self.navigationController andTabBar: nil andBackground: nil andTint:[Tools colorFromHexString:@"#b44444"] theme:@"light"]; 
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -443,6 +449,7 @@ extern Session *session;
     {
         UINavigationController *navVC = segue.destinationViewController;
         newCalenderEventViewController *view = (newCalenderEventViewController *)navVC.topViewController;
+        view.delegate = (id)self;
         //view.accessibilityValue = @"coursesPopover";
         //view.tutor = [session tutor];
         _popover = [(UIStoryboardPopoverSegue *) segue popoverController];

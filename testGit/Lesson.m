@@ -10,6 +10,7 @@
 
 @implementation Lesson
 
+
 - (id)init {
     
     self = [super init];
@@ -27,6 +28,8 @@
     return self;
     
 }
+
+
 
 -(void)loadNotes
 {
@@ -50,17 +53,22 @@
     
 }
 
--(NSArray *)save
+-(NSArray *)saveReturn
 {
     
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=addupdatelesson&id=0&lessondatetime=%@&duration=30&tutorid=16&courseid=58&studentid=132&ts=1402752735", [self formatDate:_dateTime withFormat:@"yyyy-MM-dd HH:mm:ss"]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=addupdatelesson&id=%li&lessondatetime=%@&duration=30&tutorid=%li&courseid=%li&studentid=%li&ts=1402752735",_LessonID, [self formatDate:_dateTime withFormat:@"yyyy-MM-dd HH:mm:ss"], [_tutor tutorID], [_course courseID], [_student studentID]];
     NSLog(@"uirl %@", urlString);
-    return [[NSArray alloc] init];
-    //return [jsonReader jsonRequestWithUrl:urlString];
-    
-    
+    //return [[NSArray alloc] initWithObjects:@"hi", @"hi1", nil];
+    return [jsonReader jsonRequestWithUrl:urlString];
 }
 
+
+
+//- (NSArray *)saveReturn
+//{
+//    _saveReturn = [[NSArray alloc] init];
+//    return _saveReturn;
+//}
 
 -(NSString *)formatDate:(NSDate *)Date withFormat:(NSString *)format
 {

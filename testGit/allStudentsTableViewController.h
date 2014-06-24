@@ -13,6 +13,10 @@
 #import "editStudentViewController.h"
 #import "Student.h"
 
+@protocol lessonPopoverStudentDelegate <NSObject>
+-(void)sendBackStudent:(Student*) student;
+@end
+
 @interface allStudentsTableViewController : UITableViewController
 
 @property bool loaded;
@@ -20,5 +24,7 @@
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 @property float scrollPosition;
 @property NSIndexPath *indexPath;
+
+@property id<lessonPopoverStudentDelegate> delegate;
 
 @end

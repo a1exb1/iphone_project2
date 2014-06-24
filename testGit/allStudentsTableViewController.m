@@ -31,6 +31,13 @@ extern Session *session;
     self.title = [NSString stringWithFormat:@"Students (%@)", [[session client] name]];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addStudent)];
+    
+    if([self.accessibilityValue isEqualToString:@"lessonPopover"]){
+        self.preferredContentSize = CGSizeMake(320, 568);
+    }
+    else{
+        [self.navigationItem setHidesBackButton:YES];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -40,7 +47,7 @@ extern Session *session;
         [self.tableView reloadData];
         [Tools showLightLoaderWithView:self.view];
         [[session client] loadStudentsAsyncWithDelegate:self];
-        [self.navigationItem setHidesBackButton:YES];
+        
         _loaded = YES;
     }
 }
@@ -129,7 +136,14 @@ extern Session *session;
     
     view.studentCourseLink = link;
     view.accessibilityValue = @"allStudents";
-    [self.navigationController pushViewController:view animated:YES];
+    
+    if([self.accessibilityValue isEqualToString:@"lessonPopover"]){
+        [self.delegate sendBackStudent:student];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        [self.navigationController pushViewController:view animated:YES];
+    }
     
     _scrollPosition = tableView.contentOffset.y;
     _indexPath = indexPath;

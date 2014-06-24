@@ -17,6 +17,8 @@
 
 @implementation newCalenderEventViewController
 
+extern Session *session;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -41,11 +43,17 @@
     }
     self.navigationController.navigationBar.translucent = NO;
     
+    if(_lesson == nil){
+        _lesson = [[Lesson alloc] init];
+    }
+    
     _studentLbl.text = [[_lesson student] name];
     _courseLbl.text = [[_lesson course] name];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    
 
 }
 
@@ -56,13 +64,32 @@
 
 -(void)save
 {
-    NSArray *returnArr = [_lesson save];
-    NSLog(@"retrun %@", returnArr);
+    [_lesson setDateTime: self.lessonDatePicker.date];
+    [_lesson setTutor:[session tutor]];
+    
+    Course *course = [[Course alloc] init];
+    [course setCourseID:1];
+    [_lesson setCourse:course];
+    
+    if([[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
+    {
+        [self.delegate reload];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"errormsg" ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 -(void)delete
 {
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -82,23 +109,54 @@
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     
     if(indexPath.row == 0){
-        cell.textLabel.text = [[_lesson student] name];
-        cell.detailTextLabel.text = @"Select student";
+        if ([_lesson student] == nil)
+            cell.textLabel.text = @"Select student";
+
+        else
+            cell.textLabel.text = [[_lesson student] name];
+
     }
     else if(indexPath.row == 1){
-        cell.textLabel.text = [[_lesson course] name];
-        cell.detailTextLabel.text = @"Select course";
+        if([_lesson course] == nil)
+            cell.textLabel.text = @"Select course";
+        
+        else
+            cell.textLabel.text = [[_lesson course] name];
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.row == 0){
+        allStudentsTableViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allStudents"];
+        view.accessibilityValue = @"lessonPopover";
+        view.delegate = (id)self;
+        
+        [self.navigationController pushViewController:view animated:YES];
+    }
+    
+    else if(indexPath.row == 1){
+        clientCoursesTableViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"clientCourses"];
+        view.accessibilityValue = @"lessonPopover";
+        view.delegate = (id)self;
+        [self.navigationController pushViewController:view animated:YES];
+        
+    }
     
 }
 
+-(void)sendBackStudent:(Student *)student{
+    _lesson.student = student;
+    [self.tableView reloadData];
+}
+
+-(void)sendBackCourse:(Course *)course{
+    _lesson.course = course;
+    [self.tableView reloadData];
+}
 
 - (void)didReceiveMemoryWarning
 {

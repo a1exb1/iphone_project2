@@ -12,6 +12,12 @@
 #import "saveCourseViewController.h"
 #import "customTableViewCell.h"
 
+@protocol lessonPopoverCourseDelegate <NSObject>
+
+-(void)sendBackCourse:(Course*) course;
+
+@end
+
 @interface clientCoursesTableViewController : UITableViewController
 
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
@@ -19,4 +25,6 @@
 @property bool pushed;
 @property NSIndexPath *indexPath;
 @property float scrollPosition;
+
+@property id<lessonPopoverCourseDelegate> delegate;
 @end

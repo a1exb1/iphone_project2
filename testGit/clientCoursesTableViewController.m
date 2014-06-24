@@ -30,6 +30,13 @@ extern Session *session;
     [super viewDidLoad];
     self.title = [NSString stringWithFormat:@"Courses (%@)", [[session client] name]];
     
+    if([self.accessibilityValue isEqualToString:@"lessonPopover"]){
+        self.preferredContentSize = CGSizeMake(320, 568);
+    }
+    else{
+        [self.navigationItem setHidesBackButton:YES];
+    }
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -39,7 +46,7 @@ extern Session *session;
         [self.tableView reloadData];
         [Tools showLightLoaderWithView:self.view];
         [[session client] loadCoursesAsyncWithDelegate:self];
-        [self.navigationItem setHidesBackButton:YES];
+        
         _loaded = YES;
     }
 }
@@ -105,6 +112,7 @@ extern Session *session;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //onclick for each object, put to label for example
+    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     //self.tutorIDSender = cell.accessibilityValue;
     //self.tutorNameSender = cell.textLabel.text;
@@ -126,7 +134,16 @@ extern Session *session;
     [tutor setName:[tutorDict objectForKey:@"tutorname"]];
     [tutor setTutorID:[str intValue]];
     view.tutor = tutor;
-    [self.navigationController pushViewController:view animated:YES];
+    
+    if([self.accessibilityValue isEqualToString:@"lessonPopover"]){
+        [self.delegate sendBackCourse:course];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        [self.navigationController pushViewController:view animated:YES];
+    }
+    
+    
     
     _scrollPosition = tableView.contentOffset.y;
     _indexPath = indexPath;
