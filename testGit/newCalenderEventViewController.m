@@ -67,10 +67,6 @@ extern Session *session;
     [_lesson setDateTime: self.lessonDatePicker.date];
     [_lesson setTutor:[session tutor]];
     
-    Course *course = [[Course alloc] init];
-    [course setCourseID:1];
-    [_lesson setCourse:course];
-    
     if([[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
     {
         [self.delegate reload];

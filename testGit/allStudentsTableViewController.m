@@ -59,7 +59,7 @@ extern Session *session;
         [self.tableView reloadData];
         [Tools showLightLoaderWithView:self.view];
         [[session client] loadStudentsAsyncWithDelegate:self];
-        [self.navigationItem setHidesBackButton:YES];
+        
     }
 }
 

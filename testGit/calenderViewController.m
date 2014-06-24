@@ -442,6 +442,7 @@ NSTimer *timer;
     {
         UINavigationController *navVC = segue.destinationViewController;
         newCalenderEventViewController *view = (newCalenderEventViewController *)navVC.topViewController;
+        view.delegate = (id)self;
         //view.accessibilityValue = @"coursesPopover";
         //view.tutor = [session tutor];
         _popover = [(UIStoryboardPopoverSegue *) segue popoverController];

@@ -16,6 +16,7 @@
     NSArray *arr = [[NSArray alloc] init];
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:
                  NSASCIIStringEncoding];
+    NSLog(@"%@", urlString);
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
     NSURLResponse *response = nil;

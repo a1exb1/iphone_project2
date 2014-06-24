@@ -58,7 +58,6 @@ extern Session *session;
         [self.tableView reloadData];
         [Tools showLightLoaderWithView:self.view];
         [[session client] loadCoursesAsyncWithDelegate:self];
-        [self.navigationItem setHidesBackButton:YES];
     }
 }
 
