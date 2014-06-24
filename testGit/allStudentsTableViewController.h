@@ -26,5 +26,6 @@
 @property NSIndexPath *indexPath;
 
 @property id<lessonPopoverStudentDelegate> delegate;
+@property bool popover;
 
 @end

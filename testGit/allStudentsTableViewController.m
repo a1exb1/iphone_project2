@@ -67,17 +67,32 @@ extern Session *session;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    customTableViewCell *cell = [[customTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    if (_popover) {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        
+        
+        NSDictionary *tutor = [[[session client] students] objectAtIndex:indexPath.section];
+        NSArray *courses = [tutor objectForKey:@"students"];
+        NSArray *course = [courses objectAtIndex:indexPath.row];
+        //tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        cell.textLabel.text = [course objectAtIndex:1];
+        return cell;
+    }
     
-
-    NSDictionary *tutor = [[[session client] students] objectAtIndex:indexPath.section];
-    NSArray *courses = [tutor objectForKey:@"students"];
-    NSArray *course = [courses objectAtIndex:indexPath.row];
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    cell.textLabel.text = [course objectAtIndex:1];
-    if(![self.accessibilityValue isEqualToString:@"lessonPopover"])
+    else{
+        customTableViewCell *cell = [[customTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        
+        
+        NSDictionary *tutor = [[[session client] students] objectAtIndex:indexPath.section];
+        NSArray *courses = [tutor objectForKey:@"students"];
+        NSArray *course = [courses objectAtIndex:indexPath.row];
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        cell.textLabel.text = [course objectAtIndex:1];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    return cell;
+        return cell;
+    }
+    
+    
 }
 
 
@@ -156,7 +171,8 @@ extern Session *session;
 //MARGINED TABLE VIEW
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [Tools marginedtableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    if(!_popover)
+        [Tools marginedtableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

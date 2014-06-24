@@ -24,4 +24,6 @@
 @property Lesson *lesson;
 @property id<calDelegate> delegate;
 
+@property NSDate *dayDate;
+
 @end

@@ -35,6 +35,18 @@ extern Session *session;
     NSDate *today = [[NSDate alloc] init];
     [_lessonDatePicker setMinimumDate:today];
     
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [gregorian components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: today];
+    
+    if(_dayDate != nil){
+        
+        NSCalendar *gregorian2 = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDateComponents *components2 = [gregorian2 components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: _dayDate];
+        components2.hour = components.hour;
+        components2.minute = components.minute;
+        [_lessonDatePicker setDate:[gregorian dateFromComponents:components2]]; //??
+    }
+    
     UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
     self.navigationItem.rightBarButtonItem = saveBtn;
@@ -53,7 +65,8 @@ extern Session *session;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor clearColor];
 
 }
 
@@ -64,16 +77,22 @@ extern Session *session;
 
 -(void)save
 {
-    [_lesson setDateTime: self.lessonDatePicker.date];
-    [_lesson setTutor:[session tutor]];
-    
-    if([[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
-    {
-        [self.delegate reload];
+    if ([_lesson student] == nil || [_lesson course] == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please select a course, student and lesson time." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
     }
     else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"errormsg" ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
+        [_lesson setDateTime: self.lessonDatePicker.date];
+        [_lesson setTutor:[session tutor]];
+        
+        if([[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
+        {
+            [self.delegate reload];
+        }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"errormsg" ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
     }
 }
 
@@ -130,8 +149,9 @@ extern Session *session;
         allStudentsTableViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allStudents"];
         view.accessibilityValue = @"lessonPopover";
         view.delegate = (id)self;
-        view.loaded = NO;
-        
+        view.loaded = YES;
+        view.popover = YES;
+        view.tableView.backgroundColor = [UIColor clearColor];
         [self.navigationController pushViewController:view animated:YES];
     }
     
@@ -139,8 +159,9 @@ extern Session *session;
         clientCoursesTableViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"clientCourses"];
         view.accessibilityValue = @"lessonPopover";
         view.delegate = (id)self;
-        view.loaded = NO;
+        view.loaded = YES;
         view.popover = YES;
+        view.tableView.backgroundColor = [UIColor clearColor];
         [self.navigationController pushViewController:view animated:YES];
         
     }

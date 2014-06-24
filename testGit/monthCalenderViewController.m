@@ -451,6 +451,7 @@ extern Session *session;
         UINavigationController *navVC = segue.destinationViewController;
         newCalenderEventViewController *view = (newCalenderEventViewController *)navVC.topViewController;
         view.delegate = (id)self;
+        view.dayDate = _calDate.date;
         //view.accessibilityValue = @"coursesPopover";
         //view.tutor = [session tutor];
         _popover = [(UIStoryboardPopoverSegue *) segue popoverController];
