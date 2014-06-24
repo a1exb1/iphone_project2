@@ -140,7 +140,7 @@ extern Session *session;
         view.accessibilityValue = @"lessonPopover";
         view.delegate = (id)self;
         view.loaded = NO;
-        
+        view.popover = YES;
         [self.navigationController pushViewController:view animated:YES];
         
     }

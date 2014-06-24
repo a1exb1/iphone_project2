@@ -23,9 +23,12 @@
 @property NSArray *array;
 @property NSMutableData *data;
 
+@property NSArray *courses;
 
 
 -(void)load;
+
+-(void)loadCoursesAsyncWithDelegate:(id)loadDelegate;
 
 -(NSArray*)loadLessonsForDate:(NSDate *)date;
 

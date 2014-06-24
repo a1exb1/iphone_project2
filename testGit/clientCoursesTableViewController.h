@@ -25,4 +25,6 @@
 @property float scrollPosition;
 
 @property id<lessonPopoverCourseDelegate> delegate;
+@property bool popover;
+
 @end

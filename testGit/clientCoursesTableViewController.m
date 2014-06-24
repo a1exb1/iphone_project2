@@ -176,6 +176,7 @@ extern Session *session;
 
 - (void) finished:(NSString *)status withArray:(NSArray *)array;
 {
+    
     [[session client] setCourses:array];
     [self.tableView reloadData];
     if(_pushed){
