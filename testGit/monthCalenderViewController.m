@@ -27,6 +27,7 @@ extern Session *session;
 }
 
 -(void)reload{
+    [_popover dismissPopoverAnimated:YES];
     [self drawSquaresWithDirection:0 andOldContainer:nil];
 }
 

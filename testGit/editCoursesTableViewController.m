@@ -148,7 +148,9 @@
     
     cell.textLabel.text = [[_courses objectAtIndex:indexPath.row] objectForKey:@"CourseName"];
     cell.accessibilityValue = [[_courses objectAtIndex:indexPath.row] objectForKey:@"CourseID"];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if(![self.accessibilityValue isEqualToString:@"lessonPopover"])
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     if(![Tools isIpad]){
         cell.detailTextLabel.text = @"Edit the course's details";
     }
@@ -195,7 +197,13 @@
     saveCourseViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"saveCourseL"];
     view.course = self.courseSender;
     view.tutor = _tutor;
-    [self.navigationController pushViewController:view animated:YES];
+    
+    if([self.accessibilityValue isEqualToString:@"lessonPopover"]){
+        //[self.delegate sendBackCourse:_courseSender];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+        [self.navigationController pushViewController:view animated:YES];
     
     _scrollPosition = tableView.contentOffset.y;
     _indexPath = indexPath;

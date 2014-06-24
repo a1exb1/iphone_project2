@@ -15,6 +15,8 @@
 #import "DetailViewController.h"
 #import "customTableViewCell.h"
 
+
+
 @interface editCoursesTableViewController : UITableViewController <SubstitutableDetailViewController>
 
 
@@ -29,4 +31,5 @@
 @property bool pushed;
 @property NSIndexPath *indexPath;
 @property float scrollPosition;
+
 @end

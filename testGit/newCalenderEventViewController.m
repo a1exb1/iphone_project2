@@ -130,6 +130,7 @@ extern Session *session;
         allStudentsTableViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"allStudents"];
         view.accessibilityValue = @"lessonPopover";
         view.delegate = (id)self;
+        view.loaded = NO;
         
         [self.navigationController pushViewController:view animated:YES];
     }
@@ -138,6 +139,8 @@ extern Session *session;
         clientCoursesTableViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"clientCourses"];
         view.accessibilityValue = @"lessonPopover";
         view.delegate = (id)self;
+        view.loaded = NO;
+        
         [self.navigationController pushViewController:view animated:YES];
         
     }

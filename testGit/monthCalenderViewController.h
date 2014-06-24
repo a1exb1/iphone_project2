@@ -35,6 +35,7 @@
 @property bool hasResized;
 @property UIPopoverController *popover;
 
+
 -(void)drawSquaresWithDirection:(int)direction andOldContainer: (UIView *)oldContainer;
 
 @end

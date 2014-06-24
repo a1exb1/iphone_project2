@@ -134,6 +134,10 @@ NSMutableArray *viewStudentsArray;
     UIBarButtonItem *plusBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plus)];
     UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:plusBtn, deleteBtn, nil]];
+    
+    if([self.accessibilityValue isEqualToString:@"lessonPopover"]){
+        self.preferredContentSize = CGSizeMake(320, 568);
+    }
 }
 
 -(void)loadData

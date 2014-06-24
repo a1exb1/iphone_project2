@@ -13,9 +13,7 @@
 #import "customTableViewCell.h"
 
 @protocol lessonPopoverCourseDelegate <NSObject>
-
 -(void)sendBackCourse:(Course*) course;
-
 @end
 
 @interface clientCoursesTableViewController : UITableViewController

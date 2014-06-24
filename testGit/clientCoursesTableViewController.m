@@ -36,7 +36,7 @@ extern Session *session;
     else{
         [self.navigationItem setHidesBackButton:YES];
     }
-    
+    [[session client] setCourses:[[NSArray alloc] init]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -46,7 +46,6 @@ extern Session *session;
         [self.tableView reloadData];
         [Tools showLightLoaderWithView:self.view];
         [[session client] loadCoursesAsyncWithDelegate:self];
-        
         _loaded = YES;
     }
 }
@@ -70,7 +69,8 @@ extern Session *session;
     NSArray *course = [courses objectAtIndex:indexPath.row];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     cell.textLabel.text = [course objectAtIndex:1];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if(![self.accessibilityValue isEqualToString:@"lessonPopover"])
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
@@ -179,7 +179,7 @@ extern Session *session;
     [[session client] setCourses:array];
     [self.tableView reloadData];
     if(_pushed){
-        [self.tableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self.tableView selectRowAtIndexPath:_indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 
         [self.tableView setContentOffset:CGPointMake(0, _scrollPosition)];
         [self.tableView deselectRowAtIndexPath:_indexPath animated:YES];

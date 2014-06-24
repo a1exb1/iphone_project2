@@ -27,6 +27,7 @@
 @property UIBarButtonItem *lockBtn;
 @property UIPopoverController *popover;
 @property UIPopoverController *calPopover;
+@property UIPopoverController *addLessonPopover;
 
 @property NSDate *date;
 @property NSDate *firstDateOfWeek;
