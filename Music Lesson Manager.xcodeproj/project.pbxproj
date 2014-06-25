@@ -65,6 +65,7 @@
 		E401DAD5191AA0AF00A05318 /* glyphicons_029_notes_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E401DAD4191AA0AF00A05318 /* glyphicons_029_notes_2.png */; };
 		E401DAD8191AB82400A05318 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E401DAD7191AB82400A05318 /* NotesViewController.m */; };
 		E401DADB191ABA3000A05318 /* Lesson.m in Sources */ = {isa = PBXBuildFile; fileRef = E401DADA191ABA3000A05318 /* Lesson.m */; };
+		E4035802195B24B20012194B /* calenderItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4035801195B24B20012194B /* calenderItemTableViewController.m */; };
 		E407AD6C191D620200F22977 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E407AD69191D620200F22977 /* DIDatepicker.m */; };
 		E407AD6D191D620200F22977 /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E407AD6B191D620200F22977 /* DIDatepickerDateView.m */; };
 		E407AD71191E962C00F22977 /* textNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E407AD70191E962C00F22977 /* textNoteViewController.m */; };
@@ -290,6 +291,8 @@
 		E401DAD7191AB82400A05318 /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
 		E401DAD9191ABA3000A05318 /* Lesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lesson.h; sourceTree = "<group>"; };
 		E401DADA191ABA3000A05318 /* Lesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lesson.m; sourceTree = "<group>"; };
+		E4035800195B24B20012194B /* calenderItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calenderItemTableViewController.h; sourceTree = "<group>"; };
+		E4035801195B24B20012194B /* calenderItemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = calenderItemTableViewController.m; sourceTree = "<group>"; };
 		E407AD68191D620200F22977 /* DIDatepicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepicker.h; sourceTree = "<group>"; };
 		E407AD69191D620200F22977 /* DIDatepicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepicker.m; sourceTree = "<group>"; };
 		E407AD6A191D620200F22977 /* DIDatepickerDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepickerDateView.h; sourceTree = "<group>"; };
@@ -938,6 +941,8 @@
 				E446CE5919479300000C6121 /* editTutorsTableViewController.m */,
 				E45469241948ADB50098DE69 /* editCoursesTableViewController.h */,
 				E45469251948ADB50098DE69 /* editCoursesTableViewController.m */,
+				E4035800195B24B20012194B /* calenderItemTableViewController.h */,
+				E4035801195B24B20012194B /* calenderItemTableViewController.m */,
 			);
 			name = tableViewControllers;
 			sourceTree = "<group>";
@@ -1330,6 +1335,7 @@
 				795B6422190E5BC400A2C879 /* Student.m in Sources */,
 				79A86858191B93EC00AA4058 /* DSLCalendarMonthSelectorView.m in Sources */,
 				E441CEFB19115BF900088FEE /* viewAllStudentsViewController.m in Sources */,
+				E4035802195B24B20012194B /* calenderItemTableViewController.m in Sources */,
 				792B23D11921057A00CAE285 /* ManageTableViewController.m in Sources */,
 				E4BBD488194CEDFF00D67B79 /* jsonReader.m in Sources */,
 				E401DADB191ABA3000A05318 /* Lesson.m in Sources */,

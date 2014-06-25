@@ -458,7 +458,6 @@ NSTimer *timer;
         [dateFormatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
         //[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
         NSDate *date = [dateFormatter dateFromString: [jsonDictionary objectForKey:@"lessondate"]];
-        NSLog(@"Captured Date %@", [date description]);
         
         view.dayDate = date;
         lesson.dateTime = date;
