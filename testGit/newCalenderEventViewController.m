@@ -218,6 +218,16 @@ extern Session *session;
         view.delegate = (id)self;
         view.date = _dayDate;
         view.minDate = _minDate;
+        view.title = @"Date";
+        [self.navigationController pushViewController:view animated:YES];
+        
+    }
+    
+    else if(indexPath.row == 3){
+        PickerViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"pickerView"];
+        view.delegate = (id)self;
+        view.number = _lesson.Duration;
+        view.title = @"Duration";
         [self.navigationController pushViewController:view animated:YES];
         
     }
@@ -237,6 +247,11 @@ extern Session *session;
 
 -(void)sendBackCourse:(Course *)course{
     _lesson.course = course;
+    [self.tableView reloadData];
+}
+
+-(void)sendBackInt:(int)number{
+    _lesson.Duration = number;
     [self.tableView reloadData];
 }
 

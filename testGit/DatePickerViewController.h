@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol selectDateDelegate <NSObject>
-
 -(void)sendBackDate:(NSDate *)date;
-
 @end
 
 @interface DatePickerViewController : UIViewController
