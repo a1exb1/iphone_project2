@@ -41,7 +41,7 @@ extern Session *session;
     }
     if(![self.accessibilityValue isEqualToString:@"coursePopover"])
     {
-        self.preferredContentSize = CGSizeMake(320, 568);
+        //self.preferredContentSize = CGSizeMake(320, 568);
         self.navigationController.navigationBar.translucent = NO;
     }
 }

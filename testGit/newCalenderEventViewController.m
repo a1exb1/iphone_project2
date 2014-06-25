@@ -33,20 +33,33 @@ extern Session *session;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     NSDate *today = [[NSDate alloc] init];
-    [_lessonDatePicker setMinimumDate:today];
     
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [gregorian components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: today];
-    
-    if(_dayDate != nil){
-        
-        NSCalendar *gregorian2 = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        NSDateComponents *components2 = [gregorian2 components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: _dayDate];
-        components2.hour = components.hour;
-        components2.minute = components.minute;
-        [_lessonDatePicker setDate:[gregorian dateFromComponents:components2]]; //??
+    if(_lesson == nil){
+        _lesson = [[Lesson alloc] init];
     }
     
+    if(!_lesson.LessonID > 0){
+        [_lessonDatePicker setMinimumDate:today];
+        
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDateComponents *components = [gregorian components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: today];
+        
+        if(_dayDate != nil){
+            
+            NSCalendar *gregorian2 = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDateComponents *components2 = [gregorian2 components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: _dayDate];
+            components2.hour = components.hour;
+            components2.minute = components.minute;
+            [_lessonDatePicker setDate:[gregorian dateFromComponents:components2]]; //??
+        }
+   
+    
+    }
+    
+    else{
+        [_lessonDatePicker setDate:_dayDate];
+    }
+        
     UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
     self.navigationItem.rightBarButtonItem = saveBtn;
@@ -55,9 +68,7 @@ extern Session *session;
     }
     self.navigationController.navigationBar.translucent = NO;
     
-    if(_lesson == nil){
-        _lesson = [[Lesson alloc] init];
-    }
+    
     
     _studentLbl.text = [[_lesson student] name];
     _courseLbl.text = [[_lesson course] name];

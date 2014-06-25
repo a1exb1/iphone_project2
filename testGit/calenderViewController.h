@@ -41,4 +41,5 @@
 @property (weak, nonatomic) id<SelectDateDelegate> monthCalenderDelegate;
 @property int c;
 @property bool loaded;
+@property bool locked;
 @end

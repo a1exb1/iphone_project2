@@ -177,16 +177,20 @@ extern Session *session;
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(40, 0, self.view.frame.size.width -80, 50)];
-    UITableViewHeaderFooterView *sectionView = [[UITableViewHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, container.frame.size.width, 50)];
-    UILabel *sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(65, 12, sectionView.frame.size.width, 50)];
-    sectionHeader.text = [[self tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section] uppercaseString];
-    [sectionHeader setFont:[UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:13]];
-    [sectionHeader setTextColor:[UIColor grayColor]];
-    [sectionView addSubview:sectionHeader];
-    [container addSubview:sectionView];
-    
-    return container;
+    if(_popover)
+        return nil;
+    else{
+        UIView *container = [[UIView alloc] initWithFrame:CGRectMake(40, 0, self.view.frame.size.width -80, 50)];
+        UITableViewHeaderFooterView *sectionView = [[UITableViewHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, container.frame.size.width, 50)];
+        UILabel *sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(65, 12, sectionView.frame.size.width, 50)];
+        sectionHeader.text = [[self tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section] uppercaseString];
+        [sectionHeader setFont:[UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:13]];
+        [sectionHeader setTextColor:[UIColor grayColor]];
+        [sectionView addSubview:sectionHeader];
+        [container addSubview:sectionView];
+        
+        return container;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -217,6 +221,9 @@ extern Session *session;
     link.student = student;
     view.studentCourseLink = link;
     view.accessibilityValue = @"allStudents";
+    if(_popover)
+        view.preferredContentSize = CGSizeMake(320, 310);
+        
     [self.navigationController pushViewController:view animated:YES];
     _scrollPosition = self.tableView.contentOffset.y;
     _indexPath = nil;

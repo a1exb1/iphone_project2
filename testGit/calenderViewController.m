@@ -59,6 +59,10 @@ NSTimer *timer;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    _lockBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"744-locked-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(unlock)];
+    _locked = YES;
+    
+
     self.webView.delegate = self;
     
     if([self.accessibilityValue isEqualToString:@"calenderView"]){
@@ -92,6 +96,7 @@ NSTimer *timer;
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"765-arrow-left-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(done)];
     [self.navigationItem setLeftBarButtonItem:cancelBtn];
     [self setModalSize];
+    
     
     
 }
@@ -311,6 +316,7 @@ NSTimer *timer;
 {
     [_webView stringByEvaluatingJavaScriptFromString:@"lockScreen();"];
     _lockBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"744-locked-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(unlock)];
+    _locked = YES;
     [self showNavigationBar];
 }
 
@@ -318,7 +324,9 @@ NSTimer *timer;
 {
     [_webView stringByEvaluatingJavaScriptFromString:@"unlockScreen();"];
     _lockBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"745-unlocked-toolbar.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(lock)];
+     _locked = NO;
     [self showNavigationBar];
+    
 }
 
 -(void)loadUrl
@@ -433,12 +441,33 @@ NSTimer *timer;
         Lesson *lesson = [[Lesson alloc] init];
         lesson.LessonID = [[jsonDictionary objectForKey:@"lessonid"]intValue];
         
+        Course *course = [[Course alloc] init];
+        course.courseID = [[jsonDictionary objectForKey:@"lessoncourseid"]intValue];
+        course.name = [jsonDictionary objectForKey:@"lessoncoursename"];
+        lesson.course = course;
+        
+        Student *student = [[Student alloc] init];
+        student.studentID = [[jsonDictionary objectForKey:@"lessonstudentid"]intValue];
+        student.name = [jsonDictionary objectForKey:@"lessonstudentname"];
+        lesson.student = student;
+        
+        //NVDate *date = [[NVDate alloc] initUsingString:[jsonDictionary objectForKey:@"lessondate"] ];
+        
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
+        //[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
+        NSDate *date = [dateFormatter dateFromString: [jsonDictionary objectForKey:@"lessondate"]];
+        NSLog(@"Captured Date %@", [date description]);
+        
+        view.dayDate = date;
+        lesson.dateTime = date;
         view.lesson = lesson;
         
         UIPopoverController *popController = [[UIPopoverController alloc] initWithContentViewController:navVC];
         _popover = popController;
         [popController presentPopoverFromRect:rect inView:self.webView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        return YES;
+        return NO;
     }
     return YES;
 }
@@ -449,7 +478,12 @@ NSTimer *timer;
     //[self.splitViewController willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
     //[self.view setNeedsLayout];
     [timer invalidate];
-    [self lock];
+    if(_locked)
+        [self lock];
+    
+    else{
+        [self showNavigationBar];
+    }
     self.webView.hidden = NO;
     self.statusLbl.hidden = YES;
     //[_webView stringByEvaluatingJavaScriptFromString:@"sendDataToIoS();"];
