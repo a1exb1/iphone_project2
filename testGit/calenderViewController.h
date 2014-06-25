@@ -34,7 +34,7 @@
 
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
--(void)changed;
+//-(void)changed;
 
 @property (weak, nonatomic) id<menuDrawDelegate> menuDrawerDelegate;
 

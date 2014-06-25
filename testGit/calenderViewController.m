@@ -395,6 +395,43 @@ NSTimer *timer;
 {
     // webView connected
     //timer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(cancelWeb) userInfo:nil repeats:NO];
+    
+    
+}
+
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSURL *url = request.URL;
+    if ([[url scheme] isEqualToString:@"toolbar"]) {
+        
+        NSString *prefix = @"toolbar://pano/tapped:";
+
+        NSString *urlString = [[NSString alloc] initWithFormat:@"%@", url ];
+        
+        NSRange range = NSMakeRange(prefix.length,
+                                          urlString.length - prefix.length);
+        NSString *jsonString = [urlString substringWithRange:range];
+        jsonString = [jsonString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        NSLog(@"%@", jsonDictionary);
+        
+        CGRect rect = CGRectMake([[jsonDictionary objectForKey:@"x"]intValue], [[jsonDictionary objectForKey:@"y"]intValue] + 50, 50, 50);
+        
+        UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonNavigationController"];
+        newCalenderEventViewController *view = (newCalenderEventViewController *)navVC.topViewController;
+        
+        view.delegate = (id)self;
+        view.dayDate = _date;
+        //view.accessibilityValue = @"coursesPopover";
+        //view.tutor = [session tutor];
+        UIPopoverController *popController = [[UIPopoverController alloc] initWithContentViewController:navVC];
+        _popover = popController;
+        [popController presentPopoverFromRect:rect inView:self.webView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        return YES;
+    }
+    return YES;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -406,6 +443,7 @@ NSTimer *timer;
     [self lock];
     self.webView.hidden = NO;
     self.statusLbl.hidden = YES;
+    //[_webView stringByEvaluatingJavaScriptFromString:@"sendDataToIoS();"];
     
 }
 

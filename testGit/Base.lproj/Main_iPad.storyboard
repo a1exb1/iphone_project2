@@ -1864,7 +1864,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Navigation Controller-->
         <scene sceneID="fh1-gq-qJT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eWf-zE-UHL" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="lessonNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="eWf-zE-UHL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Im1-nk-eK6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xeV-1o-TpE">
