@@ -65,6 +65,13 @@ extern Session *session;
     }
 }
 
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+     _scrollPosition = self.tableView.contentOffset.y;
+    [self.tableView reloadData];
+    [self.tableView setContentOffset:CGPointMake(0, _scrollPosition)];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_popover) {

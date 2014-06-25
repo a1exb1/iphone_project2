@@ -126,6 +126,13 @@ extern Session *session;
     }
 }
 
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    _scrollPosition = self.tableView.contentOffset.y;
+    [self.tableView reloadData];
+    [self.tableView setContentOffset:CGPointMake(0, _scrollPosition)];
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] init];

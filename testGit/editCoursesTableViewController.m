@@ -210,6 +210,13 @@
     _pushed = YES;
 }
 
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    _scrollPosition = self.tableView.contentOffset.y;
+    [self.tableView reloadData];
+    [self.tableView setContentOffset:CGPointMake(0, _scrollPosition)];
+}
+
 -(void)connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *)response
 {
     _data = [[NSMutableData alloc]init];
