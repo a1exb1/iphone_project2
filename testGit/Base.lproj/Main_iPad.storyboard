@@ -1530,16 +1530,19 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No lesson selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLd-5R-wnU">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No lesson selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLd-5R-wnU">
                                 <rect key="frame" x="20" y="391" width="663" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VFI-tt-Vbc">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VFI-tt-Vbc">
                                 <rect key="frame" x="211" y="343" width="280" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="hRF-yz-f6Y"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Not set"/>
                                     <segment title="Cancelled"/>
@@ -1548,7 +1551,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </segments>
                                 <color key="tintColor" red="0.26666666666666666" green="0.45098039215686275" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="I7F-P0-75y">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="I7F-P0-75y">
                                 <rect key="frame" x="191" y="412" width="320" height="534"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1563,11 +1566,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_large.png" translatesAutoresizingMaskIntoConstraints="NO" id="PCU-dS-yt8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="user_large.png" translatesAutoresizingMaskIntoConstraints="NO" id="PCU-dS-yt8">
                                 <rect key="frame" x="257" y="125" width="189" height="189"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TWz-wP-rbo">
+                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TWz-wP-rbo">
                                 <rect key="frame" x="0.0" y="64" width="703" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1583,6 +1586,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="VFI-tt-Vbc" firstAttribute="centerX" secondItem="sLd-5R-wnU" secondAttribute="centerX" id="5kD-Lj-rjR"/>
+                            <constraint firstItem="VFI-tt-Vbc" firstAttribute="top" secondItem="PCU-dS-yt8" secondAttribute="bottom" constant="29" id="DI2-OD-Yjt"/>
+                            <constraint firstItem="VFI-tt-Vbc" firstAttribute="centerX" secondItem="PCU-dS-yt8" secondAttribute="centerX" id="DcP-Be-gFP"/>
+                            <constraint firstItem="VFI-tt-Vbc" firstAttribute="centerX" secondItem="TWz-wP-rbo" secondAttribute="centerX" id="EPR-6r-mea"/>
+                            <constraint firstItem="VFI-tt-Vbc" firstAttribute="centerX" secondItem="9He-yv-yfS" secondAttribute="centerX" id="Fvk-qo-ewY"/>
+                            <constraint firstItem="VFI-tt-Vbc" firstAttribute="top" secondItem="9He-yv-yfS" secondAttribute="top" constant="343" id="IyJ-l8-WIo"/>
+                            <constraint firstItem="VFI-tt-Vbc" firstAttribute="centerX" secondItem="I7F-P0-75y" secondAttribute="centerX" id="MKt-On-N3m"/>
+                            <constraint firstItem="sLd-5R-wnU" firstAttribute="top" secondItem="VFI-tt-Vbc" secondAttribute="bottom" constant="20" id="r7o-YI-viC"/>
+                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="mc6-nf-mTa"/>

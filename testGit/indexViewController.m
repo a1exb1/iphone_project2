@@ -298,6 +298,8 @@ extern Session *session;
     [self.mainTableView setCenter: CGPointMake(self.view.center.x, self.mainTableView.center.y)];
     [self.studentImg setCenter: CGPointMake(self.view.center.x, self.studentImg.center.y)];
     [self.attendenceControl setCenter: CGPointMake(self.view.center.x, self.attendenceControl.center.y)];
+    
+    
 }
 
 -(void)boxes
@@ -371,6 +373,7 @@ extern Session *session;
     NSURL *url = [NSURL URLWithString: urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
+    
 }
 
 //-(IBAction)Notes:(id)sender
