@@ -33,7 +33,7 @@ extern Session *session;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addStudent)];
     
     if([self.accessibilityValue isEqualToString:@"lessonPopover"]){
-        self.preferredContentSize = CGSizeMake(320, 568);
+        self.preferredContentSize = CGSizeMake(320, 310);
     }
     else{
         [self.navigationItem setHidesBackButton:YES];

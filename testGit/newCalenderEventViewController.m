@@ -67,6 +67,9 @@ extern Session *session;
     
     self.navigationController.view.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor clearColor];
+    
+    if([_lesson LessonID] > 0)
+        self.title = @"Edit lesson";
 
 }
 

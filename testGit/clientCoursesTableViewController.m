@@ -34,7 +34,7 @@ extern Session *session;
         self.title = [NSString stringWithFormat:@"Courses (%@)", [[session client] name]];
     
     if([self.accessibilityValue isEqualToString:@"lessonPopover"]){
-        self.preferredContentSize = CGSizeMake(320, 568);
+        self.preferredContentSize = CGSizeMake(320, 310);
     }
     else{
         [self.navigationItem setHidesBackButton:YES];

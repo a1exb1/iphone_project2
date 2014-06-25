@@ -417,15 +417,24 @@ NSTimer *timer;
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
         NSLog(@"%@", jsonDictionary);
         
-        CGRect rect = CGRectMake([[jsonDictionary objectForKey:@"x"]intValue], [[jsonDictionary objectForKey:@"y"]intValue] + 50, 50, 50);
+        int scrollPosition = [[self.webView stringByEvaluatingJavaScriptFromString:@"window.pageYOffset"] intValue];
+        
+        int y = [[jsonDictionary objectForKey:@"y"]intValue] + 75;
+        y = y -scrollPosition;
+        
+        CGRect rect = CGRectMake([[jsonDictionary objectForKey:@"x"]intValue], y, 1, 1);
         
         UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonNavigationController"];
         newCalenderEventViewController *view = (newCalenderEventViewController *)navVC.topViewController;
         
         view.delegate = (id)self;
         view.dayDate = _date;
-        //view.accessibilityValue = @"coursesPopover";
-        //view.tutor = [session tutor];
+        
+        Lesson *lesson = [[Lesson alloc] init];
+        lesson.LessonID = [[jsonDictionary objectForKey:@"lessonid"]intValue];
+        
+        view.lesson = lesson;
+        
         UIPopoverController *popController = [[UIPopoverController alloc] initWithContentViewController:navVC];
         _popover = popController;
         [popController presentPopoverFromRect:rect inView:self.webView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
@@ -544,6 +553,7 @@ NSTimer *timer;
     //if([self.accessibilityValue isEqualToString:@"calenderView"]){
     
     [self setModalSize];
+    [_popover dismissPopoverAnimated:YES];
     //}
     
     //self.view.superview.bounds = CGRectMake(0, 0, (self.view.frame.size.width - 50), (self.view.frame.size.height - 50));
