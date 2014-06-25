@@ -33,9 +33,16 @@ extern Session *session;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     NSDate *today = [[NSDate alloc] init];
+    today = [Tools dateRoundedDownTo5Minutes:today];
+    
+    if(_dayDate == nil){
+        _dayDate = today;
+        _lesson.dateTime = today;
+    }
     
     if(_lesson == nil){
         _lesson = [[Lesson alloc] init];
+        _lesson.dateTime = _dayDate;
     }
     
     if(!_lesson.LessonID > 0){
@@ -103,7 +110,7 @@ extern Session *session;
         
         if([[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
         {
-            //[self.delegate reload]; //reloda bit
+            [self.delegate reload];
         }
         else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"errormsg" ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -160,7 +167,7 @@ extern Session *session;
     }
     
     else if(indexPath.row == 2){
-        if([_lesson course] == nil)
+        if([_lesson dateTime] == nil)
             cell.textLabel.text = @"Select date";
         
         else{
@@ -170,7 +177,7 @@ extern Session *session;
     }
     
     else if(indexPath.row == 3){
-        if([_lesson course] == nil)
+        if([_lesson Duration] == 0)
             cell.textLabel.text = @"Select duration";
         
         else{
@@ -219,6 +226,7 @@ extern Session *session;
 
 -(void)sendBackDate:(NSDate *)date{
     _dayDate = date;
+    _lesson.dateTime = date;
     [self.tableView reloadData];
 }
 

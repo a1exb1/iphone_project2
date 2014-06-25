@@ -56,7 +56,7 @@
 -(NSArray *)saveReturn
 {
     
-    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=addupdatelesson&id=%li&lessondatetime=%@&duration=30&tutorid=%li&courseid=%li&studentid=%li&ts=1402752735",_LessonID, [self formatDate:_dateTime withFormat:@"yyyy/MM/dd HH:mm"], [_tutor tutorID], [_course courseID], [_student studentID]];
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=addupdatelesson&id=%li&lessondatetime=%@&duration=%d&tutorid=%li&courseid=%li&studentid=%li&ts=1402752735",_LessonID, [self formatDate:_dateTime withFormat:@"yyyy/MM/dd HH:mm"], _Duration, [_tutor tutorID], [_course courseID], [_student studentID]];
     //return [[NSArray alloc] initWithObjects:@"hi", @"hi1", nil];
     return [jsonReader jsonRequestWithUrl:urlString];
 }

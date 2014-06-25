@@ -440,6 +440,7 @@ NSTimer *timer;
         
         Lesson *lesson = [[Lesson alloc] init];
         lesson.LessonID = [[jsonDictionary objectForKey:@"lessonid"]intValue];
+        lesson.Duration = [[jsonDictionary objectForKey:@"lessonduration"]intValue];
         
         Course *course = [[Course alloc] init];
         course.courseID = [[jsonDictionary objectForKey:@"lessoncourseid"]intValue];
