@@ -12,7 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *studentLbl;
 @property (weak, nonatomic) IBOutlet UILabel *courseLbl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIDatePicker *lessonDatePicker;
+//@property (weak, nonatomic) IBOutlet UIDatePicker *lessonDatePicker;
 @end
 
 @implementation newCalenderEventViewController
@@ -39,7 +39,8 @@ extern Session *session;
     }
     
     if(!_lesson.LessonID > 0){
-        [_lessonDatePicker setMinimumDate:today];
+        //[_lessonDatePicker setMinimumDate:today];
+        _minDate = today;
         
         NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         NSDateComponents *components = [gregorian components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: today];
@@ -50,14 +51,15 @@ extern Session *session;
             NSDateComponents *components2 = [gregorian2 components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: _dayDate];
             components2.hour = components.hour;
             components2.minute = components.minute;
-            [_lessonDatePicker setDate:[gregorian dateFromComponents:components2]]; //??
+            //[_lessonDatePicker setDate:[gregorian dateFromComponents:components2]]; //??
+            _dayDate = [gregorian dateFromComponents:components2];
         }
    
     
     }
     
     else{
-        [_lessonDatePicker setDate:_dayDate];
+        //[_lessonDatePicker setDate:_dayDate];
     }
         
     UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
@@ -96,12 +98,12 @@ extern Session *session;
         [alert show];
     }
     else{
-        [_lesson setDateTime: self.lessonDatePicker.date];
+        [_lesson setDateTime: _dayDate];
         [_lesson setTutor:[session tutor]];
         
         if([[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
         {
-            [self.delegate reload];
+            //[self.delegate reload]; //reloda bit
         }
         else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"errormsg" ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -123,7 +125,7 @@ extern Session *session;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 4;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -135,22 +137,46 @@ extern Session *session;
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     
     if(indexPath.row == 0){
         if ([_lesson student] == nil)
             cell.textLabel.text = @"Select student";
 
-        else
-            cell.textLabel.text = [[_lesson student] name];
+        else{
+            cell.textLabel.text = @"Student";
+            cell.detailTextLabel.text = [[_lesson student] name];
+        }
 
     }
     else if(indexPath.row == 1){
         if([_lesson course] == nil)
             cell.textLabel.text = @"Select course";
         
-        else
-            cell.textLabel.text = [[_lesson course] name];
+        else{
+            cell.textLabel.text = @"Course";
+            cell.detailTextLabel.text = [[_lesson course] name];
+        }
+    }
+    
+    else if(indexPath.row == 2){
+        if([_lesson course] == nil)
+            cell.textLabel.text = @"Select date";
+        
+        else{
+            cell.textLabel.text = @"Date";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [Tools formatDate:_dayDate withFormat:@"dd/MM/yyyy HH:mm"]];
+        }
+    }
+    
+    else if(indexPath.row == 3){
+        if([_lesson course] == nil)
+            cell.textLabel.text = @"Select duration";
+        
+        else{
+            cell.textLabel.text = @"Duration";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [_lesson Duration]];
+        }
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -180,6 +206,20 @@ extern Session *session;
         
     }
     
+    else if(indexPath.row == 2){
+        DatePickerViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"datePickerView"];
+        view.delegate = (id)self;
+        view.date = _dayDate;
+        view.minDate = _minDate;
+        [self.navigationController pushViewController:view animated:YES];
+        
+    }
+    
+}
+
+-(void)sendBackDate:(NSDate *)date{
+    _dayDate = date;
+    [self.tableView reloadData];
 }
 
 -(void)sendBackStudent:(Student *)student{

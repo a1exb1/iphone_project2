@@ -12,18 +12,17 @@
 #import "clientCoursesTableViewController.h"
 #import "allStudentsTableViewController.h"
 //#import "editCoursesTableViewController.h"
+#import "DatePickerViewController.h"
 
 @protocol calDelegate <NSObject>
-
 -(void)reload;
-
 @end
 
 @interface newCalenderEventViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property Lesson *lesson;
 @property id<calDelegate> delegate;
-
+@property NSDate *minDate;
 @property NSDate *dayDate;
 
 @end
