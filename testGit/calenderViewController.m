@@ -432,41 +432,73 @@ NSTimer *timer;
         
         CGRect rect = CGRectMake([[jsonDictionary objectForKey:@"x"]intValue], y, 1, 1);
         
-        UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonNavigationController"];
-        newCalenderEventViewController *view = (newCalenderEventViewController *)navVC.topViewController;
-        
-        view.delegate = (id)self;
-        view.dayDate = _date;
-        
-        Lesson *lesson = [[Lesson alloc] init];
-        lesson.LessonID = [[jsonDictionary objectForKey:@"lessonid"]intValue];
-        lesson.Duration = [[jsonDictionary objectForKey:@"lessonduration"]intValue];
-        
-        Course *course = [[Course alloc] init];
-        course.courseID = [[jsonDictionary objectForKey:@"lessoncourseid"]intValue];
-        course.name = [jsonDictionary objectForKey:@"lessoncoursename"];
-        lesson.course = course;
-        
-        Student *student = [[Student alloc] init];
-        student.studentID = [[jsonDictionary objectForKey:@"lessonstudentid"]intValue];
-        student.name = [jsonDictionary objectForKey:@"lessonstudentname"];
-        lesson.student = student;
-        
-        //NVDate *date = [[NVDate alloc] initUsingString:[jsonDictionary objectForKey:@"lessondate"] ];
-        
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
-        //[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
-        NSDate *date = [dateFormatter dateFromString: [jsonDictionary objectForKey:@"lessondate"]];
-        
-        view.dayDate = date;
-        lesson.dateTime = date;
-        view.lesson = lesson;
-        
-        UIPopoverController *popController = [[UIPopoverController alloc] initWithContentViewController:navVC];
-        _popover = popController;
-        [popController presentPopoverFromRect:rect inView:self.webView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        if ([self.accessibilityValue isEqualToString:@"calenderView"]) {
+            UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonNavigationController"];
+            newCalenderEventViewController *view = (newCalenderEventViewController *)navVC.topViewController;
+            
+            view.delegate = (id)self;
+            view.dayDate = _date;
+            
+            Lesson *lesson = [[Lesson alloc] init];
+            lesson.LessonID = [[jsonDictionary objectForKey:@"lessonid"]intValue];
+            lesson.Duration = [[jsonDictionary objectForKey:@"lessonduration"]intValue];
+            
+            Course *course = [[Course alloc] init];
+            course.courseID = [[jsonDictionary objectForKey:@"lessoncourseid"]intValue];
+            course.name = [jsonDictionary objectForKey:@"lessoncoursename"];
+            lesson.course = course;
+            
+            Student *student = [[Student alloc] init];
+            student.studentID = [[jsonDictionary objectForKey:@"lessonstudentid"]intValue];
+            student.name = [jsonDictionary objectForKey:@"lessonstudentname"];
+            lesson.student = student;
+            
+            //NVDate *date = [[NVDate alloc] initUsingString:[jsonDictionary objectForKey:@"lessondate"] ];
+            
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
+            //[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
+            NSDate *date = [dateFormatter dateFromString: [jsonDictionary objectForKey:@"lessondate"]];
+            
+            view.dayDate = date;
+            lesson.dateTime = date;
+            view.lesson = lesson;
+            
+            UIPopoverController *popController = [[UIPopoverController alloc] initWithContentViewController:navVC];
+            _popover = popController;
+            [popController presentPopoverFromRect:rect inView:self.webView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        }
+        else{
+            UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonNavigationController"];
+            newCalenderEventViewController *view = (newCalenderEventViewController *)navVC.topViewController;
+            
+            view.delegate = (id)self;
+            view.dayDate = _date;
+            
+            StudentCourseLink *link = [[StudentCourseLink alloc] init];
+            link.StudentCourseLinkID = [[jsonDictionary objectForKey:@"linkid"]intValue];
+            link.Duration = [[jsonDictionary objectForKey:@"linkduration"]intValue];
+            link.Hour = [[jsonDictionary objectForKey:@"linkhour"]intValue];
+            link.Mins = [[jsonDictionary objectForKey:@"linkmin"]intValue];
+            link.Weekday = [[jsonDictionary objectForKey:@"linkweekday"]intValue];
+            
+            Course *course = [[Course alloc] init];
+            course.courseID = [[jsonDictionary objectForKey:@"linkcourseid"]intValue];
+            course.name = [jsonDictionary objectForKey:@"linkcoursename"];
+            link.course = course;
+            
+            Student *student = [[Student alloc] init];
+            student.studentID = [[jsonDictionary objectForKey:@"linkstudentid"]intValue];
+            student.name = [jsonDictionary objectForKey:@"linkstudentname"];
+            link.student = student;
+            
+            view.link = link;
+            view.isLink = YES;
+            UIPopoverController *popController = [[UIPopoverController alloc] initWithContentViewController:navVC];
+            _popover = popController;
+            [popController presentPopoverFromRect:rect inView:self.webView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        }
         return NO;
     }
     return YES;
@@ -513,8 +545,9 @@ NSTimer *timer;
         
         StudentCourseLink *link = [[StudentCourseLink alloc] init];
         link.tutor = [session tutor];
-        
+        view.useDefaults = YES;
         view.link = link;
+        view.delegate = (id)self;
         _popover = [(UIStoryboardPopoverSegue *) segue popoverController];
     }
     

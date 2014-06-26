@@ -31,6 +31,7 @@
 @property NSArray *Notes;
 
 @property (nonatomic) NSArray *saveReturn;
+@property (nonatomic) NSArray *deleteReturn;
 
 @property int someNumber;
 

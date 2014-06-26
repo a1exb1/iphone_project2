@@ -44,5 +44,18 @@
     
 }
 
+-(NSArray *)saveReturn
+{
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&hour=%i&mins=%i&studentid=%li&courseid=%li&weekday=%i&duration=%i&tutorid=%li", [self StudentCourseLinkID], _Hour, _Mins,[[self student] studentID],[[self course]courseID], _Weekday,_Duration,[[self tutor] tutorID]];
+    return [jsonReader jsonRequestWithUrl:urlString];
+}
+
+-(NSArray *)deleteReturn
+{
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=studentcourselink&id=%li&delete=y", [self StudentCourseLinkID]];
+    return [jsonReader jsonRequestWithUrl:urlString];
+}
 
 @end

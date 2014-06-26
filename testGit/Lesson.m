@@ -61,7 +61,12 @@
     return [jsonReader jsonRequestWithUrl:urlString];
 }
 
-
+-(NSArray *)deleteReturn
+{
+    
+     NSString *urlString = [NSString stringWithFormat:@"http://lm.bechmann.co.uk/mobileapp/save_data.aspx?datatype=addupdatelesson&id=%li&delete=y",_LessonID];
+    return [jsonReader jsonRequestWithUrl:urlString];
+}
 
 //- (NSArray *)saveReturn
 //{

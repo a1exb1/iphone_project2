@@ -28,6 +28,7 @@
 @property id<calDelegate> delegate;
 @property NSDate *minDate;
 @property NSDate *dayDate;
+@property bool useDefaults;
 
 @property bool isLink;
 @end

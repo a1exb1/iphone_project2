@@ -68,6 +68,7 @@
 + (NSDate *)beginningOfDay:(NSDate *)date;
 
 +(NSArray *)daysOfWeekArray;
++(NSArray *)daysOfWeekArraySundayFirst;
 
 +(void)setModalSizeOfView:(UIView *)view;
 

@@ -59,6 +59,8 @@ NSArray *componentsArray;
     
     int minsFromArray = [_link Mins] / 5;
     [self.picker selectRow:minsFromArray inComponent:2 animated:YES];
+    [self.picker selectRow:[_link Weekday] inComponent:0 animated:YES];
+    [self.picker selectRow:[_link Hour] inComponent:1 animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

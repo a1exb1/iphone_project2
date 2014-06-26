@@ -35,11 +35,25 @@ extern Session *session;
     NSDate *today = [[NSDate alloc] init];
     today = [Tools dateRoundedDownTo5Minutes:today];
     
-    if(_isLink){
-        if(_link == nil){
-            
+    
+    
+    if(session.hasSetDefaults && _useDefaults){
+        //_lesson.Hour = session.lessonSlotSelectedHour;
+        //_lesson.Mins = session.lessonSlotSelectedMin;
+        //_lesson.Weekday = session.lessonSlotSelectedWeekday;
+        _link.Hour = session.lessonSlotSelectedHour;
+        _link.Mins = session.lessonSlotSelectedMin;
+        _link.Weekday = session.lessonSlotSelectedWeekday;
+        if(session.lessonSlotSelectedCourse != nil){
+            _link.course = session.lessonSlotSelectedCourse;
+            _lesson.course = session.lessonSlotSelectedCourse;
         }
         
+    }
+    
+    
+    if(_isLink){
+        _link.tutor = [session tutor];
         if([_link StudentCourseLinkID] > 0)
             self.title = @"Edit slot";
         
@@ -95,9 +109,9 @@ extern Session *session;
     
     
     UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
-    UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
+    UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(authorizeDelete)];
     self.navigationItem.rightBarButtonItem = saveBtn;
-    if ([_lesson LessonID] > 0) {
+    if ([_lesson LessonID] > 0 || _link.StudentCourseLinkID > 0) {
         self.navigationItem.leftBarButtonItem = deleteBtn;
     }
     self.navigationController.navigationBar.translucent = NO;
@@ -122,11 +136,47 @@ extern Session *session;
 {
     if(_isLink)
     {
-        NSLog(@"save slot");
+        if ([_link student] == nil || [_link course] == nil) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please select a course, student and day." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+        else{
+            NSArray *result = _link.saveReturn;
+            
+            if([[[result objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
+            {
+                [self.delegate reload];
+            }
+            else if([[[result objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"0"]){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[result objectAtIndex:0] objectForKey:@"errormsg" ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+                
+            }
+            else if([[[result objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"3"])
+            {
+                //[self.editLessonSlotDelegate updatedSlot: _studentCourseLink];
+                [self.delegate reload];
+                
+            }
+        }
+        
+        
+        session.lessonSlotSelectedCourse = [_link course];
+        session.lessonSlotSelectedHour = [_link Hour];
+        session.lessonSlotSelectedMin = [_link Mins];
+        session.lessonSlotSelectedWeekday = [_link Weekday];
+        session.hasSetDefaults = YES;
     }
     
     else{
         // LESSON
+        session.lessonSlotSelectedCourse = [_lesson course];
+        session.lessonSlotSelectedHour = [_lesson Hour];
+        session.lessonSlotSelectedMin = [_lesson Mins];
+        session.lessonSlotSelectedWeekday = [_lesson Weekday];
+        session.hasSetDefaults = YES;
+        
         if ([_lesson student] == nil || [_lesson course] == nil) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please select a course, student and lesson time." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
@@ -135,24 +185,69 @@ extern Session *session;
             [_lesson setDateTime: _dayDate];
             [_lesson setTutor:[session tutor]];
             
-            if([[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
+            NSArray *result = _lesson.saveReturn;
+            if([[[result objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
             {
                 [self.delegate reload];
             }
+            
+            
             else{
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"errormsg" ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[result objectAtIndex:0] objectForKey:@"errormsg" ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alert show];
             }
         }
     }
-    
-    
-    
+
 }
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1)
+    {
+        [self delete];
+    }
+}
+
+-(void)authorizeDelete{
+    //if(_isLink)
+        //NSString *msg = [NSString stringWithFormat:@""];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm delete"
+                                                    message:@"Are you sure you want to delete?"
+                                                   delegate:self    // <------
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Delete", nil];
+    [alert show];
+}
+
 
 -(void)delete
 {
-    
+    if(_isLink){
+        NSArray *result = _link.deleteReturn;
+        
+        if([[[result objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"3"])
+        {
+            [self.delegate reload];
+        }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[result objectAtIndex:0] objectForKey:@"errormsg" ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    else{
+        NSArray *result = _lesson.deleteReturn;
+        
+        if([[[result objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"3"])
+        {
+            [self.delegate reload];
+        }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[result objectAtIndex:0] objectForKey:@"errormsg" ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -162,10 +257,7 @@ extern Session *session;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if(_isLink)
-        return 3;
-    
+{    
     return 4;
 }
 
@@ -202,12 +294,18 @@ extern Session *session;
         }
         
         else if(indexPath.row == 2){
-            if([_link Weekday] == 0 || [_link Hour] == 0 || [_link Mins] == 0)
-                cell.textLabel.text = @"Select day and time";
+            cell.textLabel.text = @"Day";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %0.2d:%0.2d", [[Tools daysOfWeekArraySundayFirst] objectAtIndex:[_link Weekday]], [_link Hour], [_link Mins]];
+            
+        }
+        
+        else if(indexPath.row == 3){
+            if([_link Duration] == 0)
+                cell.textLabel.text = @"Select duration";
             
             else{
-                cell.textLabel.text = @"Day";
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %d:%d", [_link Weekday], [_link Hour], [_link Mins]];
+                cell.textLabel.text = @"Duration";
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [_link Duration]];
             }
         }
     }
@@ -308,7 +406,12 @@ extern Session *session;
     else if(indexPath.row == 3){
         PickerViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"pickerView"];
         view.delegate = (id)self;
-        view.number = _lesson.Duration;
+        if(_isLink)
+            view.number = _link.Duration;
+        
+        else
+            view.number = _lesson.Duration;
+        
         view.title = @"Duration";
         [self.navigationController pushViewController:view animated:YES];
         
@@ -349,6 +452,12 @@ extern Session *session;
     else
         _lesson.Duration = number;
     
+    [self.tableView reloadData];
+}
+
+-(void)sendBackLessonSlot:(StudentCourseLink*)link
+{
+    _link = link;
     [self.tableView reloadData];
 }
 

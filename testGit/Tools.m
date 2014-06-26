@@ -444,6 +444,19 @@ NSMutableArray *loaderViews;
                        nil];
 }
 
++(NSArray *)daysOfWeekArraySundayFirst
+{
+    return [[NSArray alloc] initWithObjects:
+            @"Sunday",
+            @"Monday",
+            @"Tuesday",
+            @"Wednesday",
+            @"Thursday",
+            @"Friday",
+            @"Saturday",
+            nil];
+}
+
 +(void)setModalSizeOfView:(UIView *)view
 {
     int longSide = 987;

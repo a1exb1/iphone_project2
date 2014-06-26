@@ -30,4 +30,6 @@
 -(void) save;
 -(void) deleteLink;
 
+@property (nonatomic) NSArray *saveReturn;
+@property (nonatomic) NSArray *deleteReturn;
 @end
