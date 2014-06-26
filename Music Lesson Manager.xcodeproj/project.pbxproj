@@ -68,6 +68,7 @@
 		E4035802195B24B20012194B /* calenderItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4035801195B24B20012194B /* calenderItemTableViewController.m */; };
 		E4035805195B30090012194B /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4035804195B30090012194B /* DatePickerViewController.m */; };
 		E4035809195B4EBA0012194B /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4035808195B4EBA0012194B /* PickerViewController.m */; };
+		E403580C195C1AA90012194B /* lessonSlotPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E403580B195C1AA90012194B /* lessonSlotPickerViewController.m */; };
 		E407AD6C191D620200F22977 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E407AD69191D620200F22977 /* DIDatepicker.m */; };
 		E407AD6D191D620200F22977 /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E407AD6B191D620200F22977 /* DIDatepickerDateView.m */; };
 		E407AD71191E962C00F22977 /* textNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E407AD70191E962C00F22977 /* textNoteViewController.m */; };
@@ -299,6 +300,8 @@
 		E4035804195B30090012194B /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 		E4035807195B4EBA0012194B /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
 		E4035808195B4EBA0012194B /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
+		E403580A195C1AA90012194B /* lessonSlotPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lessonSlotPickerViewController.h; sourceTree = "<group>"; };
+		E403580B195C1AA90012194B /* lessonSlotPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lessonSlotPickerViewController.m; sourceTree = "<group>"; };
 		E407AD68191D620200F22977 /* DIDatepicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepicker.h; sourceTree = "<group>"; };
 		E407AD69191D620200F22977 /* DIDatepicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepicker.m; sourceTree = "<group>"; };
 		E407AD6A191D620200F22977 /* DIDatepickerDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepickerDateView.h; sourceTree = "<group>"; };
@@ -695,6 +698,8 @@
 				E4035803195B30090012194B /* DatePickerViewController.h */,
 				E4035807195B4EBA0012194B /* PickerViewController.h */,
 				E4035808195B4EBA0012194B /* PickerViewController.m */,
+				E403580A195C1AA90012194B /* lessonSlotPickerViewController.h */,
+				E403580B195C1AA90012194B /* lessonSlotPickerViewController.m */,
 			);
 			name = VCTools;
 			sourceTree = "<group>";
@@ -1354,6 +1359,7 @@
 				E441CF021913EC6B00088FEE /* saveTutorViewController.m in Sources */,
 				795B6422190E5BC400A2C879 /* Student.m in Sources */,
 				79A86858191B93EC00AA4058 /* DSLCalendarMonthSelectorView.m in Sources */,
+				E403580C195C1AA90012194B /* lessonSlotPickerViewController.m in Sources */,
 				E441CEFB19115BF900088FEE /* viewAllStudentsViewController.m in Sources */,
 				E4035802195B24B20012194B /* calenderItemTableViewController.m in Sources */,
 				792B23D11921057A00CAE285 /* ManageTableViewController.m in Sources */,
