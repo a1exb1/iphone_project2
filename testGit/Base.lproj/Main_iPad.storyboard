@@ -53,7 +53,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ldN-dw-yP6">
                             <connections>
-                                <segue destination="A1C-uE-f9Q" kind="popover" identifier="coursesPopover" popoverAnchorBarButtonItem="ldN-dw-yP6" id="4MF-Le-eky">
+                                <segue destination="eWf-zE-UHL" kind="popover" identifier="coursesPopover" popoverAnchorBarButtonItem="ldN-dw-yP6" id="IvY-HP-L0X">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -550,7 +550,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="4049" y="-5140"/>
         </scene>
-        <!--New Calender Event View Controller - New lesson-->
+        <!--New Calender Event View Controller-->
         <scene sceneID="9pw-cu-gKN">
             <objects>
                 <viewController storyboardIdentifier="newCalenderItemView" id="ZY5-AL-Jna" customClass="newCalenderEventViewController" sceneMemberID="viewController">
@@ -594,7 +594,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="New lesson" id="EnP-He-fIA"/>
+                    <navigationItem key="navigationItem" id="EnP-He-fIA"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="310"/>
                     <connections>
@@ -1758,7 +1758,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Lesson Slot Picker View Controller-->
         <scene sceneID="9lh-jm-nZL">
             <objects>
-                <viewController id="u1Y-R2-oaG" customClass="lessonSlotPickerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="lessonSlotPicker" id="u1Y-R2-oaG" customClass="lessonSlotPickerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Psg-DT-sLr"/>
                         <viewControllerLayoutGuide type="bottom" id="LAO-cg-Oqa"/>
@@ -1783,6 +1783,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="310"/>
+                    <connections>
+                        <outlet property="picker" destination="TWU-B8-EuJ" id="rVd-MD-abL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rnh-7s-9P4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2016,7 +2019,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctN-Qk-YP9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3085" y="756"/>
+            <point key="canvasLocation" x="3041" y="792"/>
         </scene>
         <!--Calender Item Table View Controller - DateCell-->
         <scene sceneID="5RJ-fk-AOl">
@@ -2191,8 +2194,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Qt7-aI-T6M"/>
         <segue reference="5gf-Tb-f5e"/>
         <segue reference="LWh-Mf-gbI"/>
-        <segue reference="ugO-DN-v36"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,14 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "StudentCourseLink.h"
 
-@protocol pickerDelegate <NSObject>
+@protocol lessonSlotPickerDelegate <NSObject>
 -(void)sendBackLessonSlot:(StudentCourseLink*)link;
 @end
 
 @interface lessonSlotPickerViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property UIPickerView *picker;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *picker;
 @property StudentCourseLink *link;
-@property id<pickerDelegate> delegate;
+@property id<lessonSlotPickerDelegate> delegate;
 
 @end

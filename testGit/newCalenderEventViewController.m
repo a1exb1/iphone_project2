@@ -35,40 +35,65 @@ extern Session *session;
     NSDate *today = [[NSDate alloc] init];
     today = [Tools dateRoundedDownTo5Minutes:today];
     
-    if(_dayDate == nil){
-        _dayDate = today;
-        _lesson.dateTime = today;
-    }
-    
-    if(_lesson == nil){
-        _lesson = [[Lesson alloc] init];
-        _lesson.dateTime = _dayDate;
-    }
-    
-    if(!_lesson.LessonID > 0){
-        //[_lessonDatePicker setMinimumDate:today];
-        _minDate = today;
-        
-        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        NSDateComponents *components = [gregorian components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: today];
-        
-        if(_dayDate != nil){
+    if(_isLink){
+        if(_link == nil){
             
-            NSCalendar *gregorian2 = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-            NSDateComponents *components2 = [gregorian2 components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: _dayDate];
-            components2.hour = components.hour;
-            components2.minute = components.minute;
-            //[_lessonDatePicker setDate:[gregorian dateFromComponents:components2]]; //??
-            _dayDate = [gregorian dateFromComponents:components2];
         }
-   
-    
+        
+        if([_link StudentCourseLinkID] > 0)
+            self.title = @"Edit slot";
+        
+        else
+            self.title = @"New slot";
     }
     
     else{
-        //[_lessonDatePicker setDate:_dayDate];
-    }
+        if(_dayDate == nil){
+            _dayDate = today;
+            _lesson.dateTime = today;
+        }
         
+        if(_lesson == nil){
+            _lesson = [[Lesson alloc] init];
+            _lesson.dateTime = _dayDate;
+        }
+        
+        if(!_lesson.LessonID > 0){
+            //[_lessonDatePicker setMinimumDate:today];
+            _minDate = today;
+            
+            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDateComponents *components = [gregorian components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: today];
+            
+            if(_dayDate != nil){
+                
+                NSCalendar *gregorian2 = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                NSDateComponents *components2 = [gregorian2 components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: _dayDate];
+                components2.hour = components.hour;
+                components2.minute = components.minute;
+                //[_lessonDatePicker setDate:[gregorian dateFromComponents:components2]]; //??
+                _dayDate = [gregorian dateFromComponents:components2];
+            }
+            
+            
+        }
+        
+//        else{
+//            //[_lessonDatePicker setDate:_dayDate];
+//        }
+        
+        _studentLbl.text = [[_lesson student] name];
+        _courseLbl.text = [[_lesson course] name];
+        
+        if([_lesson LessonID] > 0)
+            self.title = @"Edit lesson";
+        
+        else
+            self.title = @"New lesson";
+
+    }
+    
+    
     UIBarButtonItem *saveBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     UIBarButtonItem *deleteBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delete)];
     self.navigationItem.rightBarButtonItem = saveBtn;
@@ -77,46 +102,52 @@ extern Session *session;
     }
     self.navigationController.navigationBar.translucent = NO;
     
-    
-    
-    _studentLbl.text = [[_lesson student] name];
-    _courseLbl.text = [[_lesson course] name];
-    
+
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
     self.navigationController.view.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor clearColor];
     
-    if([_lesson LessonID] > 0)
-        self.title = @"Edit lesson";
+    
 
 }
 
--(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [[UIView alloc] init];
-}
+//-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    return [[UIView alloc] init];
+//}
 
 -(void)save
 {
-    if ([_lesson student] == nil || [_lesson course] == nil) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please select a course, student and lesson time." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
+    if(_isLink)
+    {
+        NSLog(@"save slot");
     }
+    
     else{
-        [_lesson setDateTime: _dayDate];
-        [_lesson setTutor:[session tutor]];
-        
-        if([[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
-        {
-            [self.delegate reload];
-        }
-        else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"errormsg" ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        // LESSON
+        if ([_lesson student] == nil || [_lesson course] == nil) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please select a course, student and lesson time." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }
+        else{
+            [_lesson setDateTime: _dayDate];
+            [_lesson setTutor:[session tutor]];
+            
+            if([[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"success" ] isEqualToString:@"1"])
+            {
+                [self.delegate reload];
+            }
+            else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[_lesson.saveReturn objectAtIndex:0] objectForKey:@"errormsg" ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+        }
     }
+    
+    
+    
 }
 
 -(void)delete
@@ -132,6 +163,9 @@ extern Session *session;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if(_isLink)
+        return 3;
+    
     return 4;
 }
 
@@ -146,45 +180,82 @@ extern Session *session;
 {
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     
-    if(indexPath.row == 0){
-        if ([_lesson student] == nil)
-            cell.textLabel.text = @"Select student";
-
-        else{
-            cell.textLabel.text = @"Student";
-            cell.detailTextLabel.text = [[_lesson student] name];
+    if(_isLink){
+        if(indexPath.row == 0){
+            if ([_link student] == nil)
+                cell.textLabel.text = @"Select student";
+            
+            else{
+                cell.textLabel.text = @"Student";
+                cell.detailTextLabel.text = [[_link student] name];
+            }
+            
         }
-
-    }
-    else if(indexPath.row == 1){
-        if([_lesson course] == nil)
-            cell.textLabel.text = @"Select course";
+        else if(indexPath.row == 1){
+            if([_link course] == nil)
+                cell.textLabel.text = @"Select course";
+            
+            else{
+                cell.textLabel.text = @"Course";
+                cell.detailTextLabel.text = [[_link course] name];
+            }
+        }
         
-        else{
-            cell.textLabel.text = @"Course";
-            cell.detailTextLabel.text = [[_lesson course] name];
+        else if(indexPath.row == 2){
+            if([_link Weekday] == 0 || [_link Hour] == 0 || [_link Mins] == 0)
+                cell.textLabel.text = @"Select day and time";
+            
+            else{
+                cell.textLabel.text = @"Day";
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %d:%d", [_link Weekday], [_link Hour], [_link Mins]];
+            }
         }
     }
     
-    else if(indexPath.row == 2){
-        if([_lesson dateTime] == nil)
-            cell.textLabel.text = @"Select date";
+    else // LESSON
+    {
+        if(indexPath.row == 0){
+            if ([_lesson student] == nil)
+                cell.textLabel.text = @"Select student";
+            
+            else{
+                cell.textLabel.text = @"Student";
+                cell.detailTextLabel.text = [[_lesson student] name];
+            }
+            
+        }
+        else if(indexPath.row == 1){
+            if([_lesson course] == nil)
+                cell.textLabel.text = @"Select course";
+            
+            else{
+                cell.textLabel.text = @"Course";
+                cell.detailTextLabel.text = [[_lesson course] name];
+            }
+        }
         
-        else{
-            cell.textLabel.text = @"Date";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [Tools formatDate:_dayDate withFormat:@"dd/MM/yyyy HH:mm"]];
+        else if(indexPath.row == 2){
+            if([_lesson dateTime] == nil)
+                cell.textLabel.text = @"Select date";
+            
+            else{
+                cell.textLabel.text = @"Date";
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [Tools formatDate:_dayDate withFormat:@"dd/MM/yyyy HH:mm"]];
+            }
+        }
+        
+        else if(indexPath.row == 3){
+            if([_lesson Duration] == 0)
+                cell.textLabel.text = @"Select duration";
+            
+            else{
+                cell.textLabel.text = @"Duration";
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [_lesson Duration]];
+            }
         }
     }
     
-    else if(indexPath.row == 3){
-        if([_lesson Duration] == 0)
-            cell.textLabel.text = @"Select duration";
-        
-        else{
-            cell.textLabel.text = @"Duration";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [_lesson Duration]];
-        }
-    }
+    
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
@@ -214,12 +285,23 @@ extern Session *session;
     }
     
     else if(indexPath.row == 2){
-        DatePickerViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"datePickerView"];
-        view.delegate = (id)self;
-        view.date = _dayDate;
-        view.minDate = _minDate;
-        view.title = @"Date";
-        [self.navigationController pushViewController:view animated:YES];
+        if(_isLink)
+        {
+            lessonSlotPickerViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"lessonSlotPicker"];
+            view.delegate = (id)self;
+            view.link = _link;
+            view.title = @"Day and time";
+            [self.navigationController pushViewController:view animated:YES];
+        }
+        
+        else{
+            DatePickerViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"datePickerView"];
+            view.delegate = (id)self;
+            view.date = _dayDate;
+            view.minDate = _minDate;
+            view.title = @"Date";
+            [self.navigationController pushViewController:view animated:YES];
+        }
         
     }
     
@@ -241,17 +323,32 @@ extern Session *session;
 }
 
 -(void)sendBackStudent:(Student *)student{
-    _lesson.student = student;
+    if(_link)
+        _link.student = student;
+    
+    else
+        _lesson.student = student;
+    
     [self.tableView reloadData];
 }
 
 -(void)sendBackCourse:(Course *)course{
-    _lesson.course = course;
+    if(_link)
+        _link.course = course;
+    
+    else
+        _lesson.course = course;
+    
     [self.tableView reloadData];
 }
 
 -(void)sendBackInt:(int)number{
-    _lesson.Duration = number;
+    if(_link)
+        _link.Duration = number;
+    
+    else
+        _lesson.Duration = number;
+    
     [self.tableView reloadData];
 }
 

@@ -34,6 +34,9 @@ NSArray *componentsArray;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.picker.delegate = self;
+    self.picker.dataSource = self;
+    
     weekdayArray = [[NSArray alloc] initWithObjects:
                      @"Sun",
                      @"Mon",
@@ -51,12 +54,11 @@ NSArray *componentsArray;
     minutesArray = [[NSArray alloc] initWithObjects:
                      @"00",@"05",@"10",@"15",@"20",@"25",@"30",@"35",@"40",@"45",@"50",@"55",nil];
 
+    componentsArray =[[NSArray alloc]
+                       initWithObjects: weekdayArray, hoursArray, minutesArray, nil];
     
     int minsFromArray = [_link Mins] / 5;
     [self.picker selectRow:minsFromArray inComponent:2 animated:YES];
-    
-    componentsArray =[[NSArray alloc]
-                       initWithObjects: weekdayArray, hoursArray, minutesArray, nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,7 +83,7 @@ NSArray *componentsArray;
 // Display each row's data.
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     
-    return [componentsArray objectAtIndex:row];
+    return [[componentsArray objectAtIndex:component ] objectAtIndex:row];
     
 }
 

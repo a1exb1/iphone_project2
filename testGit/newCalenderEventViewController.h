@@ -14,6 +14,8 @@
 //#import "editCoursesTableViewController.h"
 #import "DatePickerViewController.h"
 #import "PickerViewController.h"
+#import "StudentCourseLink.h"
+#import "lessonSlotPickerViewController.h"
 
 @protocol calDelegate <NSObject>
 -(void)reload;
@@ -22,8 +24,10 @@
 @interface newCalenderEventViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property Lesson *lesson;
+@property StudentCourseLink *link;
 @property id<calDelegate> delegate;
 @property NSDate *minDate;
 @property NSDate *dayDate;
 
+@property bool isLink;
 @end
