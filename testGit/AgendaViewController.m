@@ -48,6 +48,7 @@ NSArray *daysOfWeekArray;
     {
         _keepEditing = YES;
     }
+    _attendenceStrings = [[NSMutableArray alloc] init];
     _indexPath= [self.mainTableView indexPathForSelectedRow];
     //_attendenceStrings = [_attendenceStrings]
     [self jsonRequestGetAgenda];
