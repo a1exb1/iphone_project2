@@ -15,5 +15,6 @@
 @property NSArray *studentNotes;
 //@property StudentCourseLink *studentCourseLink;
 
+@property double outstanding;
 
 @end

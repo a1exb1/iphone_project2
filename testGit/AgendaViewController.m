@@ -186,11 +186,23 @@ NSArray *daysOfWeekArray;
     
 }
 
+-(void)refreshViews
+{
+    [self sendDateToAgendaWithDate:[[NSDate alloc] init]];
+    session.didEnterForground = NO;
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     //if(_hasFilled == false){
         [self fillPicker];
     //}
     _hasFilled = true;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViews) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    if (session.didEnterForground) {
+        [self refreshViews];
+    }
     
 }
 
@@ -741,6 +753,7 @@ NSArray *daysOfWeekArray;
     [student setStudentID:[[[_lessons objectAtIndex:row] objectForKey:@"StudentID"] intValue]];
     [student setName:[[_lessons objectAtIndex:row] objectForKey:@"StudentName"]];
     [student setPhone:[[_lessons objectAtIndex:row] objectForKey:@"Telephone"]];
+    [student setOutstanding:[[[_lessons objectAtIndex:row] objectForKey:@"Outstanding"] intValue]];
     [_lessonSender setStudent:student];
     
 //    [self.detailViewController.navigationController popToViewController:[self.detailViewController.navigationController.viewControllers objectAtIndex:0] animated:NO];

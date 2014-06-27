@@ -35,23 +35,7 @@ extern Session *session;
     NSDate *today = [[NSDate alloc] init];
     today = [Tools dateRoundedDownTo5Minutes:today];
     
-    
-    
-    if(session.hasSetDefaults && _useDefaults){
-        //_lesson.Hour = session.lessonSlotSelectedHour;
-        //_lesson.Mins = session.lessonSlotSelectedMin;
-        //_lesson.Weekday = session.lessonSlotSelectedWeekday;
-        _link.Hour = session.lessonSlotSelectedHour;
-        _link.Mins = session.lessonSlotSelectedMin;
-        _link.Weekday = session.lessonSlotSelectedWeekday;
-        if(session.lessonSlotSelectedCourse != nil){
-            _link.course = session.lessonSlotSelectedCourse;
-            _lesson.course = session.lessonSlotSelectedCourse;
-        }
-        
-    }
-    
-    
+
     if(_isLink){
         _link.tutor = [session tutor];
         if([_link StudentCourseLinkID] > 0)
@@ -59,6 +43,20 @@ extern Session *session;
         
         else
             self.title = @"New slot";
+        
+        if(session.hasSetDefaults && _useDefaults){
+            //_lesson.Hour = session.lessonSlotSelectedHour;
+            //_lesson.Mins = session.lessonSlotSelectedMin;
+            //_lesson.Weekday = session.lessonSlotSelectedWeekday;
+            _link.Hour = session.lessonSlotSelectedHour;
+            _link.Mins = session.lessonSlotSelectedMin;
+            _link.Weekday = session.lessonSlotSelectedWeekday;
+            if(session.lessonSlotSelectedCourse != nil){
+                _link.course = session.lessonSlotSelectedCourse;
+                _lesson.course = session.lessonSlotSelectedCourse;
+            }
+            
+        }
     }
     
     else{
@@ -72,6 +70,8 @@ extern Session *session;
             _lesson.dateTime = _dayDate;
         }
         
+        
+        
         if(!_lesson.LessonID > 0){
             //[_lessonDatePicker setMinimumDate:today];
             _minDate = today;
@@ -81,14 +81,50 @@ extern Session *session;
             
             if(_dayDate != nil){
                 
-                NSCalendar *gregorian2 = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-                NSDateComponents *components2 = [gregorian2 components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: _dayDate];
-                components2.hour = components.hour;
-                components2.minute = components.minute;
+                
+                
+                if(session.hasSetDefaults && session.lessonSlotSelectedDate !=nil){
+                    NSCalendar *gregorian2 = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSDateComponents *components2 = [gregorian2 components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: session.lessonSlotSelectedDate];
+                    
+                    _lesson.Hour = session.lessonSlotSelectedHour;
+                    _lesson.Mins = session.lessonSlotSelectedMin;
+                    //_lesson.Weekday = session.lessonSlotSelectedWeekday;
+                    
+                    components2.hour = session.lessonSlotSelectedHour;
+                    components2.minute = session.lessonSlotSelectedMin;
+                    //_dayDate = session.lessonSlotSelectedDate;
+                    _dayDate = [gregorian dateFromComponents:components2];
+                    _lesson.dateTime = _dayDate;
+                }
+                else{
+                    NSCalendar *gregorian2 = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSDateComponents *components2 = [gregorian2 components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: _dayDate];
+                    
+                    components2.hour = components.hour;
+                    components2.minute = components.minute;
+                    _dayDate = [gregorian dateFromComponents:components2];
+                    _lesson.dateTime = _dayDate;
+                }
+                
                 //[_lessonDatePicker setDate:[gregorian dateFromComponents:components2]]; //??
-                _dayDate = [gregorian dateFromComponents:components2];
+                
             }
             
+            
+        }
+        
+        if(session.hasSetDefaults && _useDefaults){
+            //_lesson.Hour = session.lessonSlotSelectedHour;
+            //_lesson.Mins = session.lessonSlotSelectedMin;
+            //_lesson.Weekday = session.lessonSlotSelectedWeekday;
+            _link.Hour = session.lessonSlotSelectedHour;
+            _link.Mins = session.lessonSlotSelectedMin;
+            _link.Weekday = session.lessonSlotSelectedWeekday;
+            if(session.lessonSlotSelectedCourse != nil){
+                _link.course = session.lessonSlotSelectedCourse;
+                _lesson.course = session.lessonSlotSelectedCourse;
+            }
             
         }
         
@@ -176,15 +212,16 @@ extern Session *session;
     
     else{
         // LESSON
-        NVDate *date = [[NVDate alloc] initUsingToday];
-        date.hour = _lesson.Hour;
-        date.minute = _lesson.Mins;
-        NSDate *date2 = [date.date dateByAddingTimeInterval:(30 * 60)];
+        NVDate *date = [[NVDate alloc] initUsingDate:_lesson.dateTime];
+        //date.hour = _lesson.Hour;
+        //date.minute = _lesson.Mins;
+        NSDate *date2 = [date.date dateByAddingTimeInterval:(_lesson.Duration * 60)];
         
         session.lessonSlotSelectedCourse = [_lesson course];
         session.lessonSlotSelectedHour = [[Tools formatDate:date2 withFormat:@"HH"] intValue];
         session.lessonSlotSelectedMin = [[Tools formatDate:date2 withFormat:@"mm"] intValue];;
         session.lessonSlotSelectedWeekday = [_lesson Weekday];
+        session.lessonSlotSelectedDate = date2;
         session.hasSetDefaults = YES;
         
         if ([_lesson student] == nil || [_lesson course] == nil) {

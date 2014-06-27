@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.datePicker.date = _date;
-    [self.datePicker setMinimumDate:_minDate];
+    //[self.datePicker setMinimumDate:_minDate];
 }
 
 - (void)didReceiveMemoryWarning

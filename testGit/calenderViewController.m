@@ -62,6 +62,7 @@ NSTimer *timer;
     _lockBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"744-locked-toolbar-selected.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(unlock)];
     _locked = YES;
     
+    
 
     self.webView.delegate = self;
     
@@ -217,6 +218,7 @@ NSTimer *timer;
     monthCalenderViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"monthCal"];
     view.dayDate = _date;
     view.monthCalenderDelegate = self.monthCalenderDelegate;
+    view.dontReset = YES;
     [view drawSquaresWithDirection:3 andOldContainer:nil];
     self.navigationController.viewControllers = [[NSArray alloc] initWithObjects:view, nil];
 }
@@ -561,6 +563,7 @@ NSTimer *timer;
         newCalenderEventViewController *view = (newCalenderEventViewController *)navVC.topViewController;
         view.delegate = (id)self;
         view.dayDate = _date;
+        view.useDefaults = YES; // !!
         //view.accessibilityValue = @"coursesPopover";
         //view.tutor = [session tutor];
         _popover = [(UIStoryboardPopoverSegue *) segue popoverController];

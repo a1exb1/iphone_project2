@@ -660,7 +660,7 @@ extern Session *session;
     
     if(indexPath.row == 5){
         cell.imageView.image = [UIImage imageNamed:@"573-money.png"];
-        cell.textLabel.text = @"Owes £23.50";
+        cell.textLabel.text = [NSString stringWithFormat: @"Owes £%0.2f",  _lesson.student.outstanding];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
     }

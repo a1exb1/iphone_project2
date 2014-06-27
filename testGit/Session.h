@@ -30,5 +30,8 @@
 @property int lessonSlotSelectedHour;
 @property int lessonSlotSelectedMin;
 @property bool hasSetDefaults;
+@property NSDate *lessonSlotSelectedDate;
+
+@property bool didEnterForground;
 
 @end
