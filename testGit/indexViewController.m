@@ -135,6 +135,11 @@ extern Session *session;
     }
 }
 
+-(void)refreshViews
+{
+    [self.agendaDelegate refreshViews];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -143,6 +148,8 @@ extern Session *session;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         //self.splitViewController.delegate = self;
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViews) name:UIApplicationWillEnterForegroundNotification object:nil];
     
     //[session setMenuButtonStyle:self.menuBarButtonStyle];
     //_navigationPaneBarButtonItem.image = [self.menuBarButtonStyle image];

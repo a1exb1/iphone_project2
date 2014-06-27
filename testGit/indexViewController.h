@@ -17,6 +17,7 @@
 @protocol agendaDelegate <NSObject>
 
 -(void)reloadData;
+-(void)refreshViews;
 
 @end
 

@@ -131,6 +131,8 @@ NSArray *daysOfWeekArray;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+    
     [self.datePicker addTarget:self action:@selector(updateSelectedDate:) forControlEvents:UIControlEventValueChanged];
     
     [_mainTableView addPullToRefreshWithActionHandler:^{
@@ -188,8 +190,11 @@ NSArray *daysOfWeekArray;
 
 -(void)refreshViews
 {
+    //[self fillPicker];
     [self sendDateToAgendaWithDate:[[NSDate alloc] init]];
     session.didEnterForground = NO;
+    self.tabBarController.selectedIndex = 0;
+    //[self jsonRequestGetAgenda];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -198,7 +203,7 @@ NSArray *daysOfWeekArray;
     //}
     _hasFilled = true;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViews) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
     
     if (session.didEnterForground) {
         [self refreshViews];
