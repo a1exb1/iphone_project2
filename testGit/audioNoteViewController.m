@@ -420,9 +420,9 @@ extern Session *session;
 }
 
 -(void)updateRecordLabel{
-    int maxCount = 15;
+    int maxCount = 60;
     if([[session client] premium] ==0){
-        maxCount = 30;
+        maxCount = 120;
         
     }
     int secondsFromMax = maxCount - (int)secondsSinceStart;

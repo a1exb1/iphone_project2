@@ -59,12 +59,9 @@ NSMutableArray *audioNotes;
     //self.preferredContentSize = size;
     
     
-    [self jsonRequestGetData];
-    
-    //
-    _statusLbl.center = self.view.center;
-    
     [super viewWillAppear:animated];
+    _statusLbl.center = self.view.center;
+    [self jsonRequestGetData];
     
 }
 
@@ -89,6 +86,7 @@ NSMutableArray *audioNotes;
     }
     
     [Tools hideLoaderFromView:self.view];
+    [Tools hideLoader];
 }
 
 - (void)viewDidLoad
