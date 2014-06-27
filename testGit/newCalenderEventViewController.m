@@ -162,18 +162,28 @@ extern Session *session;
         }
         
         
+        NVDate *date = [[NVDate alloc] initUsingToday];
+        date.hour = _link.Hour;
+        date.minute = _link.Mins;
+        NSDate *date2 = [date.date dateByAddingTimeInterval:(_link.Duration * 60)];
+        
         session.lessonSlotSelectedCourse = [_link course];
-        session.lessonSlotSelectedHour = [_link Hour];
-        session.lessonSlotSelectedMin = [_link Mins];
+        session.lessonSlotSelectedHour = [[Tools formatDate:date2 withFormat:@"HH"] intValue];
+        session.lessonSlotSelectedMin = [[Tools formatDate:date2 withFormat:@"mm"] intValue];;
         session.lessonSlotSelectedWeekday = [_link Weekday];
         session.hasSetDefaults = YES;
     }
     
     else{
         // LESSON
+        NVDate *date = [[NVDate alloc] initUsingToday];
+        date.hour = _lesson.Hour;
+        date.minute = _lesson.Mins;
+        NSDate *date2 = [date.date dateByAddingTimeInterval:(30 * 60)];
+        
         session.lessonSlotSelectedCourse = [_lesson course];
-        session.lessonSlotSelectedHour = [_lesson Hour];
-        session.lessonSlotSelectedMin = [_lesson Mins];
+        session.lessonSlotSelectedHour = [[Tools formatDate:date2 withFormat:@"HH"] intValue];
+        session.lessonSlotSelectedMin = [[Tools formatDate:date2 withFormat:@"mm"] intValue];;
         session.lessonSlotSelectedWeekday = [_lesson Weekday];
         session.hasSetDefaults = YES;
         

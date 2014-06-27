@@ -82,4 +82,6 @@
 +(NSString *)formatDate:(NSDate *)Date withFormat:(NSString *)format;
 
 +(NSDate *) dateRoundedDownTo5Minutes:(NSDate *)dt;
+
++(NSString *)base64Decode:(NSString*)encodedString;
 @end

@@ -580,4 +580,11 @@ NSMutableArray *loaderViews;
     return roundedDate;
 }
 
++(NSString*)base64Decode:(NSString*)encodedString
+{
+    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:encodedString options:0];
+    return [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
+
+}
+
 @end

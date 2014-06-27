@@ -249,7 +249,6 @@ NSTimer *timer;
         }
     }
     
-    NSLog(@"here");
     float padding = self.view.frame.size.width * 0.09;
     //float labelContainer = self.view.frame.size.width - padding;
     float labelWidth = self.view.frame.size.width * 0.13;
@@ -419,7 +418,7 @@ NSTimer *timer;
                                           urlString.length - prefix.length);
         NSString *jsonString = [urlString substringWithRange:range];
         jsonString = [jsonString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
+
         NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
         
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
@@ -445,12 +444,12 @@ NSTimer *timer;
             
             Course *course = [[Course alloc] init];
             course.courseID = [[jsonDictionary objectForKey:@"lessoncourseid"]intValue];
-            course.name = [jsonDictionary objectForKey:@"lessoncoursename"];
+            course.name = [Tools base64Decode:[jsonDictionary objectForKey:@"lessoncoursename"]];
             lesson.course = course;
             
             Student *student = [[Student alloc] init];
             student.studentID = [[jsonDictionary objectForKey:@"lessonstudentid"]intValue];
-            student.name = [jsonDictionary objectForKey:@"lessonstudentname"];
+            student.name = [Tools base64Decode:[jsonDictionary objectForKey:@"lessonstudentname"]];
             lesson.student = student;
             
             //NVDate *date = [[NVDate alloc] initUsingString:[jsonDictionary objectForKey:@"lessondate"] ];
@@ -485,12 +484,12 @@ NSTimer *timer;
             
             Course *course = [[Course alloc] init];
             course.courseID = [[jsonDictionary objectForKey:@"linkcourseid"]intValue];
-            course.name = [jsonDictionary objectForKey:@"linkcoursename"];
+            course.name = [Tools base64Decode:[jsonDictionary objectForKey:@"linkcoursename"]];
             link.course = course;
             
             Student *student = [[Student alloc] init];
             student.studentID = [[jsonDictionary objectForKey:@"linkstudentid"]intValue];
-            student.name = [jsonDictionary objectForKey:@"linkstudentname"];
+            student.name = [Tools base64Decode:[jsonDictionary objectForKey:@"linkstudentname"]];
             link.student = student;
             
             view.link = link;
