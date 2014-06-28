@@ -255,6 +255,8 @@ NSMutableArray *audioNotes;
         [note setLessonID: [[[[[_lesson Notes] objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectForKey:@"LessonID"] intValue]];
         
         audioNoteViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"audioNoteView"];
+        
+        //audioPlayerViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"audioPlayer"];
         view.note = note;
         view.lesson = _lesson;
         [self.navigationController pushViewController:view animated:YES];

@@ -45,6 +45,11 @@ extern Session *session;
     [super viewWillAppear:animated];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    _playbackWebView.center = self.view.center;
+}
+
 - (void)viewDidLoad
 {
      [super viewDidLoad];

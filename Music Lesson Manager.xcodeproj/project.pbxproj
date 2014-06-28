@@ -73,6 +73,11 @@
 		E407AD6D191D620200F22977 /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E407AD6B191D620200F22977 /* DIDatepickerDateView.m */; };
 		E407AD71191E962C00F22977 /* textNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E407AD70191E962C00F22977 /* textNoteViewController.m */; };
 		E407AD74191E963E00F22977 /* audioNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E407AD73191E963E00F22977 /* audioNoteViewController.m */; };
+		E40CAAC5195EDE7000313210 /* AFAudioRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = E40CAAC2195EDE7000313210 /* AFAudioRouter.m */; };
+		E40CAAC6195EDE7000313210 /* AFSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E40CAAC4195EDE7000313210 /* AFSoundManager.m */; };
+		E40CAAC9195EDEDB00313210 /* audioPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E40CAAC8195EDEDB00313210 /* audioPlayerViewController.m */; };
+		E40CAACC195EE04B00313210 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = E40CAACA195EE04B00313210 /* pause.png */; };
+		E40CAACD195EE04B00313210 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = E40CAACB195EE04B00313210 /* play.png */; };
 		E40DF27E190017E100E1332A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF27D190017E100E1332A /* Foundation.framework */; };
 		E40DF280190017E100E1332A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF27F190017E100E1332A /* CoreGraphics.framework */; };
 		E40DF282190017E100E1332A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DF281190017E100E1332A /* UIKit.framework */; };
@@ -310,6 +315,14 @@
 		E407AD70191E962C00F22977 /* textNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = textNoteViewController.m; sourceTree = "<group>"; };
 		E407AD72191E963E00F22977 /* audioNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audioNoteViewController.h; sourceTree = "<group>"; };
 		E407AD73191E963E00F22977 /* audioNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = audioNoteViewController.m; sourceTree = "<group>"; };
+		E40CAAC1195EDE7000313210 /* AFAudioRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAudioRouter.h; sourceTree = "<group>"; };
+		E40CAAC2195EDE7000313210 /* AFAudioRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAudioRouter.m; sourceTree = "<group>"; };
+		E40CAAC3195EDE7000313210 /* AFSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSoundManager.h; sourceTree = "<group>"; };
+		E40CAAC4195EDE7000313210 /* AFSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSoundManager.m; sourceTree = "<group>"; };
+		E40CAAC7195EDEDB00313210 /* audioPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audioPlayerViewController.h; sourceTree = "<group>"; };
+		E40CAAC8195EDEDB00313210 /* audioPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = audioPlayerViewController.m; sourceTree = "<group>"; };
+		E40CAACA195EE04B00313210 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		E40CAACB195EE04B00313210 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		E40DF27A190017E100E1332A /* Music Lesson Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Lesson Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E40DF27D190017E100E1332A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E40DF27F190017E100E1332A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -723,8 +736,23 @@
 				E407AD70191E962C00F22977 /* textNoteViewController.m */,
 				E407AD72191E963E00F22977 /* audioNoteViewController.h */,
 				E407AD73191E963E00F22977 /* audioNoteViewController.m */,
+				E40CAAC7195EDEDB00313210 /* audioPlayerViewController.h */,
+				E40CAAC8195EDEDB00313210 /* audioPlayerViewController.m */,
 			);
 			name = Notes;
+			sourceTree = "<group>";
+		};
+		E40CAAC0195EDE6100313210 /* AFSoundplayer */ = {
+			isa = PBXGroup;
+			children = (
+				E40CAACA195EE04B00313210 /* pause.png */,
+				E40CAACB195EE04B00313210 /* play.png */,
+				E40CAAC1195EDE7000313210 /* AFAudioRouter.h */,
+				E40CAAC2195EDE7000313210 /* AFAudioRouter.m */,
+				E40CAAC3195EDE7000313210 /* AFSoundManager.h */,
+				E40CAAC4195EDE7000313210 /* AFSoundManager.m */,
+			);
+			name = AFSoundplayer;
 			sourceTree = "<group>";
 		};
 		E40DF271190017E100E1332A = {
@@ -1083,6 +1111,7 @@
 		E4FED276192174FF00E31223 /* plugins */ = {
 			isa = PBXGroup;
 			children = (
+				E40CAAC0195EDE6100313210 /* AFSoundplayer */,
 				E4AA7DD9191D501D00269A3F /* NVDate.h */,
 				E4AA7DDA191D501D00269A3F /* NVDate.m */,
 				E4AB886A191D4199001A70D9 /* MZDayPicker */,
@@ -1184,6 +1213,7 @@
 				E4546967194B86CC0098DE69 /* 1012-sticky-note@2x.png in Resources */,
 				79A86859191B93EC00AA4058 /* DSLCalendarMonthSelectorView.xib in Resources */,
 				E44A17BC1941C8F000606179 /* 602-exit.png in Resources */,
+				E40CAACD195EE04B00313210 /* play.png in Resources */,
 				79A86864191B93EC00AA4058 /* DSLCalendarDaySelection-left@2x.png in Resources */,
 				E4AB8861191AC6F0001A70D9 /* audio_icon.png in Resources */,
 				E454694C194A6FB60098DE69 /* 0.png in Resources */,
@@ -1279,6 +1309,7 @@
 				E40DF291190017E100E1332A /* Main_iPhone.storyboard in Resources */,
 				E4C9FB90194B8B9C0015BB01 /* 745-unlocked-toolbar@2x.png in Resources */,
 				E4D231E8192134C400E5797B /* Note Sticky.png in Resources */,
+				E40CAACC195EE04B00313210 /* pause.png in Resources */,
 				E4AB8869191BE8A2001A70D9 /* DSLCalendarDaySelection-left.png in Resources */,
 				E40DF288190017E100E1332A /* InfoPlist.strings in Resources */,
 				E4546957194AEAD60098DE69 /* 728-clock-selected.png in Resources */,
@@ -1310,6 +1341,7 @@
 				E4C28935193F4B1D00538763 /* addLessonsTableViewController.m in Sources */,
 				79A8686B191B93EC00AA4058 /* NSDate+DSLCalendarView.m in Sources */,
 				E4D3D60A19579C7700478BA4 /* newCalenderEventViewController.m in Sources */,
+				E40CAAC5195EDE7000313210 /* AFAudioRouter.m in Sources */,
 				E42B6112190C0582001B977F /* studentNote.m in Sources */,
 				E4AB8872191D4199001A70D9 /* MZDayPicker.m in Sources */,
 				E4035805195B30090012194B /* DatePickerViewController.m in Sources */,
@@ -1321,6 +1353,7 @@
 				E4C1C98319167BA90068A10D /* UIScrollView+SVPullToRefresh.m in Sources */,
 				E40DF28A190017E100E1332A /* main.m in Sources */,
 				E4B05BDE1951EEEA0031151C /* monthCalenderCell.m in Sources */,
+				E40CAAC9195EDEDB00313210 /* audioPlayerViewController.m in Sources */,
 				E407AD6C191D620200F22977 /* DIDatepicker.m in Sources */,
 				E4C1C9781915A4450068A10D /* NavigationBarTitleWithSubtitleView.m in Sources */,
 				E407AD74191E963E00F22977 /* audioNoteViewController.m in Sources */,
@@ -1346,6 +1379,7 @@
 				E4AA7DDB191D501D00269A3F /* NVDate.m in Sources */,
 				79A8686E191B941C00AA4058 /* SelectDateViewController.m in Sources */,
 				E40DF28E190017E100E1332A /* ABAppDelegate.m in Sources */,
+				E40CAAC6195EDE7000313210 /* AFSoundManager.m in Sources */,
 				E4CB07691954675C005D506F /* clientCoursesTableViewController.m in Sources */,
 				79A86857191B93EC00AA4058 /* DSLCalendarDayView.m in Sources */,
 				E47352801900279E008006EE /* indexViewController.m in Sources */,

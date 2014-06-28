@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Lesson.h"
 #import "Tools.h"
+#import "audioPlayerViewController.h"
 
 @interface NotesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
