@@ -95,7 +95,7 @@ extern Session *session;
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [self setModalSizeOfView];
-    
+    NSLog(@"%ld", fromInterfaceOrientation);
     
 }
 
@@ -382,26 +382,13 @@ extern Session *session;
     
     UIView *view = self.navigationController.view;
     [self setNavigationBarSize];
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.2f];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    
-    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
-    {
-        [view.superview setBounds:CGRectMake(0, 0, shortSide, longSide)];
-    }
-    else{
-        [view.superview setBounds:CGRectMake(0, 0, longSide, shortSide)];
-    }
-    
-    [UIView commitAnimations];
     
     [UIView animateWithDuration:0.2f
                           delay:0.00
                         options:UIViewAnimationOptionCurveEaseOut
      
                      animations:^{
-                         if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+                         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
                          {
                              [view.superview setBounds:CGRectMake(0, 0, shortSide, longSide)];
                          }

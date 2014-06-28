@@ -588,22 +588,14 @@ NSTimer *timer;
     [self setNavigationBarSize];
     int longSide = 987;
     int shortSide = 717;
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.2f];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    
-    
-    
-    [UIView commitAnimations];
-    
+   
 
     [UIView animateWithDuration:0.0f
                           delay:0.00
                         options:UIViewAnimationOptionCurveEaseOut
      
                      animations:^{
-                         if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+                         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
                          {
                              [self.navigationController.view.superview setBounds:CGRectMake(0, 0, shortSide, longSide)];
                          }

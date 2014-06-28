@@ -31,5 +31,6 @@
 -(void)loadCoursesAsyncWithDelegate:(id)loadDelegate;
 
 -(NSArray*)loadLessonsForDate:(NSDate *)date;
+-(void)loadAgendaAsyncWithDelegate:(id)loadDelegate forDate:(NSDate *)date;
 
 @end

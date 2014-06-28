@@ -1277,7 +1277,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0sx-XV-OZ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="426" y="-4674"/>
+            <point key="canvasLocation" x="416" y="-4202"/>
         </scene>
         <!--Tutors2 View Controller - Tutors-->
         <scene sceneID="rq9-B6-0M4">
@@ -1340,7 +1340,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="640-1L-uwK" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="-4674"/>
+            <point key="canvasLocation" x="-46" y="-4202"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Qna-53-id9">
@@ -2194,7 +2194,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Qt7-aI-T6M"/>
+        <segue reference="ugO-DN-v36"/>
         <segue reference="5gf-Tb-f5e"/>
         <segue reference="LWh-Mf-gbI"/>
     </inferredMetricsTieBreakers>
