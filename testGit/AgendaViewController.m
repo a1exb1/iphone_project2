@@ -613,7 +613,7 @@ NSArray *daysOfWeekArray;
         
     }
     else{
-        indexViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+        lessonViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
         view.lesson = _lessonSender;
         
         if(!_editing){
@@ -781,7 +781,7 @@ NSArray *daysOfWeekArray;
     
     detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
     
-    indexViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+    lessonViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
     //Object *obj = [[Object alloc] init];
     //[obj setStr:@"hello123"];
     top.lesson = _lessonSender;
@@ -806,7 +806,7 @@ NSArray *daysOfWeekArray;
     
     detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detailNavigationController"];
     
-    indexViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
+    lessonViewController *top = [self.storyboard instantiateViewControllerWithIdentifier:@"dayView"];
     top.lesson = nil;
     top.agendaDelegate = self;
     [detailViewController pushViewController:top animated:YES];

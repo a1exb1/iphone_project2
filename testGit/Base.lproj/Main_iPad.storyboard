@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13A598" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="A8s-0h-rIU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13A598" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="DJO-uf-mQF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1258,7 +1258,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Vx5-kb-hSn" kind="relationship" relationship="rootViewController" id="47b-jT-gie"/>
+                        <segue destination="A8s-0h-rIU" kind="relationship" relationship="rootViewController" id="QSr-NC-eMK"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m38-CD-2ad" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1582,31 +1582,33 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Lesson View Controller-->
         <scene sceneID="UtJ-XK-8pg">
             <objects>
-                <viewController id="A8s-0h-rIU" customClass="lessonViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dayView" id="A8s-0h-rIU" customClass="lessonViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="22z-k1-DDg"/>
                         <viewControllerLayoutGuide type="bottom" id="BEA-nl-vHu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hz1-3F-Thd">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <navigationItem key="navigationItem" id="O2O-O6-Alc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0V5-OS-HX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2541" y="-2219"/>
+            <point key="canvasLocation" x="-437" y="-2075"/>
         </scene>
-        <!--Index View Controller-->
+        <!--Lesson View Controller-->
         <scene sceneID="QLP-Af-uUp">
             <objects>
-                <viewController storyboardIdentifier="dayView" id="Vx5-kb-hSn" customClass="indexViewController" sceneMemberID="viewController">
+                <viewController id="Vx5-kb-hSn" customClass="lessonViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CKm-SM-m7R"/>
                         <viewControllerLayoutGuide type="bottom" id="e3y-vI-o8p"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9He-yv-yfS">
-                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No lesson selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLd-5R-wnU">
@@ -1631,22 +1633,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <color key="tintColor" red="0.26666666666666666" green="0.45098039215686275" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="I7F-P0-75y">
-                                <rect key="frame" x="191" y="412" width="320" height="534"/>
+                                <rect key="frame" x="191" y="412" width="385" height="790"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="War-Lf-wIc">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="385" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="War-Lf-wIc" id="A7j-wE-2iY">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="385" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="user_large.png" translatesAutoresizingMaskIntoConstraints="NO" id="PCU-dS-yt8">
-                                <rect key="frame" x="257" y="125" width="189" height="189"/>
+                                <rect key="frame" x="289" y="125" width="189" height="189"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TWz-wP-rbo">
@@ -1675,7 +1677,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <constraint firstItem="VFI-tt-Vbc" firstAttribute="centerX" secondItem="I7F-P0-75y" secondAttribute="centerX" id="MKt-On-N3m"/>
                             <constraint firstItem="sLd-5R-wnU" firstAttribute="top" secondItem="VFI-tt-Vbc" secondAttribute="bottom" constant="20" id="r7o-YI-viC"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="mc6-nf-mTa"/>
                     <connections>

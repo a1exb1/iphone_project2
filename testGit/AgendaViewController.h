@@ -11,7 +11,7 @@
 #import "SelectDateViewController.h"
 #import "MZDayPicker.h"
 #import "DIDatepicker.h"
-#import "indexViewController.h"
+#import "lessonViewController.h"
 #import "DetailViewController.h"
 
 #import "DetailViewManager.h"

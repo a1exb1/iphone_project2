@@ -14,12 +14,12 @@
 
 #import "DetailViewManager.h"
 
-@protocol agendaDelegate <NSObject>
-
--(void)reloadData;
--(void)refreshViews;
-
-@end
+//@protocol agendaDelegate <NSObject>
+//
+//-(void)reloadData;
+//-(void)refreshViews;
+//
+//@end
 
 @interface indexViewController : UIViewController <SubstitutableDetailViewController, UITableViewDataSource, UITableViewDelegate>
 
@@ -38,7 +38,7 @@
 -(void)updateLabels;
 -(void)changed;
 
-@property (weak, nonatomic) id<agendaDelegate> agendaDelegate;
+//@property (weak, nonatomic) id<agendaDelegate> agendaDelegate;
 
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 

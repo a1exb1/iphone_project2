@@ -26,25 +26,32 @@
 -(void)viewDidLoad;
 {
     [super viewDidLoad];
-    
+
+    if (_lessonTotal > 0) {
+        self.title = [NSString stringWithFormat:@"Lesson %d of %d", _lessonNumber, _lessonTotal];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
     self.cardViews = [[NSMutableArray alloc] init];
     
     
-    cardView *view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 100)];
+    cardView *view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
     view.parentView = self.view;
     view.cardIndex = 0;
     [view updatePositionAnimated:NO];
     view.backgroundColor = [UIColor redColor];
     [self.cardViews addObject:view];
     
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 100)];
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
     view.parentView = self.view;
     view.cardIndex = 1;
     [view updatePositionAnimated:NO];
     view.backgroundColor = [UIColor greenColor];
     [self.cardViews addObject:view];
     
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 100)];
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
     view.parentView = self.view;
     view.cardIndex = 2;
     [view updatePositionAnimated:NO];
@@ -59,9 +66,6 @@
                                        action:@selector(handlePan:)];
         [view addGestureRecognizer:pgr];
     }
-    
-    
-    
 }
 
 -(void)handlePan:(UIPanGestureRecognizer*)pgr;
@@ -83,12 +87,7 @@
             CGPoint center = pgr.view.center;
             
             float xThird = self.view.bounds.size.width / 3;
-            float leftEdge = 0;
-            float rightEdge = self.view.bounds.size.width;
-            
             float yThird = self.view.bounds.size.height / 3;
-            float bottomEdge = 0;
-            float topEdge = self.view.bounds.size.height;
             
             int column = 0;
             int row = 0;
