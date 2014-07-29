@@ -27,82 +27,116 @@
 {
     [super viewDidLoad];
     
-    self.view1 = [[UIView alloc] initWithFrame:CGRectMake(100, 200, 200, 100)];
-    self.view1.backgroundColor = [UIColor redColor];
+    self.cardViews = [[NSMutableArray alloc] init];
     
-    [self.view addSubview:self.view1];
     
-    UIPanGestureRecognizer* pgr = [[UIPanGestureRecognizer alloc]
-                                   initWithTarget:self
-                                   action:@selector(handlePan:)];
-    [self.view1 addGestureRecognizer:pgr];
+    cardView *view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 100)];
+    view.parentView = self.view;
+    view.cardIndex = 0;
+    [view updatePositionAnimated:NO];
+    view.backgroundColor = [UIColor redColor];
+    [self.cardViews addObject:view];
+    
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 100)];
+    view.parentView = self.view;
+    view.cardIndex = 1;
+    [view updatePositionAnimated:NO];
+    view.backgroundColor = [UIColor greenColor];
+    [self.cardViews addObject:view];
+    
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 100)];
+    view.parentView = self.view;
+    view.cardIndex = 2;
+    [view updatePositionAnimated:NO];
+    view.backgroundColor = [UIColor grayColor];
+    [self.cardViews addObject:view];
+    
+    
+    for(cardView* view in self.cardViews){
+        [self.view addSubview:view];
+        UIPanGestureRecognizer* pgr = [[UIPanGestureRecognizer alloc]
+                                       initWithTarget:self
+                                       action:@selector(handlePan:)];
+        [view addGestureRecognizer:pgr];
+    }
+    
+    
+    
 }
 
 -(void)handlePan:(UIPanGestureRecognizer*)pgr;
 {
-    if (pgr.state == UIGestureRecognizerStateChanged &&
-        (CGRectContainsRect(self.view.bounds, self.view1.bounds) )) {
-        CGPoint center = pgr.view.center;
-        CGPoint translation = [pgr translationInView:pgr.view];
-        center = CGPointMake(center.x + translation.x,
-                             center.y + translation.y);
-        pgr.view.center = center;
+    for (cardView *view in self.cardViews){
+        if (pgr.state == UIGestureRecognizerStateChanged &&
+            (CGRectContainsRect(self.view.bounds, view.bounds) )) {
+            CGPoint center = pgr.view.center;
+            CGPoint translation = [pgr translationInView:pgr.view];
+            center = CGPointMake(center.x + translation.x,
+                                 center.y + translation.y);
+            pgr.view.center = center;
+            
+        }
         
+        [pgr setTranslation:CGPointZero inView:pgr.view];
+        
+        if(pgr.state == UIGestureRecognizerStateEnded){
+            CGPoint center = pgr.view.center;
+            
+            float xThird = self.view.bounds.size.width / 3;
+            float leftEdge = 0;
+            float rightEdge = self.view.bounds.size.width;
+            
+            float yThird = self.view.bounds.size.height / 3;
+            float bottomEdge = 0;
+            float topEdge = self.view.bounds.size.height;
+            
+            int column = 0;
+            int row = 0;
+            
+            //get x pos
+            if (center.x < xThird) {
+                row = 0;
+            }
+            if (center.x > xThird &&
+                center.x < (xThird *2)) {
+                row = 1;
+            }
+            else if(center.x > (xThird *2)){
+                row = 2;
+            }
+            
+            //get y pos
+            if (center.y < yThird) {
+                column = 0;
+            }
+            if (center.y > yThird &&
+                center.y < (yThird *2)) {
+                column = 1;
+            }
+            else if(center.y > (yThird *2)){
+                column = 2;
+            }
+            
+            cardView *view = (cardView*)pgr.view;
+            int previousCardIndex = view.cardIndex;
+            NSLog(@"previous index = %d", previousCardIndex);
+            view.cardIndex = (column *3) + row;
+            [view updatePositionAnimated:YES];
+            
+            for(cardView* v in self.cardViews){
+                
+                if (v.cardIndex == view.cardIndex &&
+                    v != view) {
+                    NSLog(@"%d %d", v.cardIndex, view.cardIndex);
+                    v.cardIndex = previousCardIndex;
+                    [v updatePositionAnimated:YES];
+                }
+            }
+            
+        }
     }
     
-    [pgr setTranslation:CGPointZero inView:pgr.view];
     
-    if(pgr.state == UIGestureRecognizerStateEnded){
-        CGPoint center = pgr.view.center;
-        
-        float xThird = self.view.bounds.size.width / 3;
-        float leftEdge = 0;
-        float rightEdge = self.view.bounds.size.width;
-        
-        float yThird = self.view.bounds.size.height / 3;
-        float bottomEdge = 0;
-        float topEdge = self.view.bounds.size.height;
-        
-        int column = 0;
-        int row = 0;
-        
-        //get x pos
-        if (center.x < xThird) {
-            row = 0;
-        }
-        if (center.x > xThird &&
-            center.x < (xThird *2)) {
-            row = 1;
-        }
-        else if(center.x > (xThird *2)){
-            row = 2;
-        }
-        
-        //get y pos
-        if (center.y < yThird) {
-            column = 0;
-        }
-        if (center.y > yThird &&
-            center.y < (yThird *2)) {
-            column = 1;
-        }
-        else if(center.y > (yThird *2)){
-            column = 2;
-        }
-        
-        CGRect rect = CGRectMake(row*xThird, column*yThird, xThird,yThird);
-        CGPoint cent = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
-        
-        [UIView animateWithDuration:0.25
-                         animations:^{
-                             [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-                             pgr.view.center = cent;
-                         }];
-        
-        
-        
-        
-    }
 }
 
 - (void)didReceiveMemoryWarning

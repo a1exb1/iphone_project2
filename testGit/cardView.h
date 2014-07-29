@@ -1,5 +1,5 @@
 //
-//  lessonViewController.h
+//  cardView.h
 //  Music Lesson Manager
 //
 //  Created by Alex Bechmann on 29/07/14.
@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "cardView.h"
 
-@interface lessonViewController : UIViewController
+@interface cardView : UIView
 
-@property NSMutableArray *cardViews;
+@property int cardIndex;
+@property UIView *parentView;
+
+-(void)updatePositionAnimated:(bool)animated;
 
 @end
