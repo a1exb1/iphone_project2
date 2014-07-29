@@ -36,12 +36,12 @@ Session *session;
 //        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
         
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        
-        self.detailViewManager = [[DetailViewManager alloc] init];
-        self.detailViewManager.splitViewController = splitViewController;
-        self.detailViewManager.detailViewController = splitViewController.viewControllers.lastObject;
-        splitViewController.delegate = self.detailViewManager;
-        
+        //
+        //self.detailViewManager = [[DetailViewManager alloc] init];
+        //self.detailViewManager.splitViewController = splitViewController;
+        //self.detailViewManager.detailViewController = splitViewController.viewControllers.lastObject;
+        //splitViewController.delegate = self.detailViewManager;
+        //
         if ([splitViewController respondsToSelector:@selector(setPresentsWithGesture:)])
             //[splitViewController setPresentsWithGesture:YES];
         

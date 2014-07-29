@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="DJO-uf-mQF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13A598" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="A8s-0h-rIU">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1578,6 +1578,24 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NRd-AG-DF4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1031" y="-2863"/>
+        </scene>
+        <!--Lesson View Controller-->
+        <scene sceneID="UtJ-XK-8pg">
+            <objects>
+                <viewController id="A8s-0h-rIU" customClass="lessonViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="22z-k1-DDg"/>
+                        <viewControllerLayoutGuide type="bottom" id="BEA-nl-vHu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hz1-3F-Thd">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0V5-OS-HX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2541" y="-2219"/>
         </scene>
         <!--Index View Controller-->
         <scene sceneID="QLP-Af-uUp">

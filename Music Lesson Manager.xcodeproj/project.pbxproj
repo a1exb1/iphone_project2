@@ -148,6 +148,7 @@
 		E47352801900279E008006EE /* indexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E473527F1900279E008006EE /* indexViewController.m */; };
 		E4A36089191F87C900F5221B /* AudioNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A36088191F87C900F5221B /* AudioNote.m */; };
 		E4A3608C191F87E900F5221B /* TextNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3608B191F87E900F5221B /* TextNote.m */; };
+		E4A4FC2519879503009C93C9 /* lessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A4FC2419879503009C93C9 /* lessonViewController.m */; };
 		E4AA7DDB191D501D00269A3F /* NVDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AA7DDA191D501D00269A3F /* NVDate.m */; };
 		E4AAC5EF192966CE008E0BD7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4AAC5EE192966CE008E0BD7 /* iAd.framework */; };
 		E4AAC5F11929FF03008E0BD7 /* glyphicons_054_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AAC5F01929FF03008E0BD7 /* glyphicons_054_clock.png */; };
@@ -417,6 +418,8 @@
 		E4A36088191F87C900F5221B /* AudioNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioNote.m; sourceTree = "<group>"; };
 		E4A3608A191F87E900F5221B /* TextNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextNote.h; sourceTree = "<group>"; };
 		E4A3608B191F87E900F5221B /* TextNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextNote.m; sourceTree = "<group>"; };
+		E4A4FC2319879503009C93C9 /* lessonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lessonViewController.h; sourceTree = "<group>"; };
+		E4A4FC2419879503009C93C9 /* lessonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lessonViewController.m; sourceTree = "<group>"; };
 		E4AA7DD9191D501D00269A3F /* NVDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDate.h; sourceTree = "<group>"; };
 		E4AA7DDA191D501D00269A3F /* NVDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVDate.m; sourceTree = "<group>"; };
 		E4AAC5EE192966CE008E0BD7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
@@ -894,6 +897,7 @@
 		E421C96E1934DD0900FA039A /* ipad_only */ = {
 			isa = PBXGroup;
 			children = (
+				E4A4FC22198794AE009C93C9 /* lesson */,
 				E421C97219350D6500FA039A /* menu */,
 				E4F676FF1935F9D900208991 /* calenderViewController.h */,
 				E4F677001935F9D900208991 /* calenderViewController.m */,
@@ -1027,6 +1031,15 @@
 				79481D63192364EC00674ACF /* AddLessonsViewController.m */,
 			);
 			name = viewControllers;
+			sourceTree = "<group>";
+		};
+		E4A4FC22198794AE009C93C9 /* lesson */ = {
+			isa = PBXGroup;
+			children = (
+				E4A4FC2319879503009C93C9 /* lessonViewController.h */,
+				E4A4FC2419879503009C93C9 /* lessonViewController.m */,
+			);
+			name = lesson;
 			sourceTree = "<group>";
 		};
 		E4AB886A191D4199001A70D9 /* MZDayPicker */ = {
@@ -1399,6 +1412,7 @@
 				792B23D11921057A00CAE285 /* ManageTableViewController.m in Sources */,
 				E4BBD488194CEDFF00D67B79 /* jsonReader.m in Sources */,
 				E401DADB191ABA3000A05318 /* Lesson.m in Sources */,
+				E4A4FC2519879503009C93C9 /* lessonViewController.m in Sources */,
 				E441CEF819101C7D00088FEE /* editLessonSlotViewController.m in Sources */,
 				E4B1DF7E190BCB3C0069DB6A /* StudentCourseLink.m in Sources */,
 				E4F677011935F9D900208991 /* calenderViewController.m in Sources */,
