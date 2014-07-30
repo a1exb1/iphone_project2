@@ -22,5 +22,6 @@
 @property int rows;
 @property int columns;
 @property CGRect previousRect;
+@property bool isBeingViewed;
 
 @end

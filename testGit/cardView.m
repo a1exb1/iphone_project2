@@ -48,6 +48,9 @@
                          self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, rect.size.width - 10, rect.size.height-10);
                          [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
                          self.center = cent;
+                     }
+                     completion:^(BOOL finished) {
+                         [Tools addShadowToViewWithView:self];
                      }];
     
 }
@@ -84,10 +87,14 @@
                          self.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - 10, rect.size.height-10);
                          [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
                          self.center = cent;
+                     }
+                     completion:^(BOOL finished) {
+                         [Tools addShadowToViewWithView:self];
                      }];
 }
 
 -(void)view{
+    self.isBeingViewed = YES;
     self.previousRect = self.frame;
     float xdiff = (_parentView.bounds.size.width - _parentView.bounds.size.width/1.2) /2;
     float ydiff = (_parentView.bounds.size.height - _parentView.bounds.size.height/1.2) /2;
@@ -97,19 +104,27 @@
                      animations:^{
                          [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
                          self.frame = CGRectMake(xdiff, ydiff, _parentView.bounds.size.width/1.2, _parentView.bounds.size.height/1.2);
-                         //[Tools addShadowToViewWithView:self];
+                         
+                     }
+                     completion:^(BOOL finished) {
+                         [Tools addLargeShadowToView:self];
                      }];
     
     
 }
 
 -(void)stopViewing{
+    self.isBeingViewed = NO;
+    self.layer.shadowColor = nil;
+    self.layer.shadowRadius = 0;
+    self.layer.shadowOpacity = 0;
     
     [UIView animateWithDuration:0.25
                      animations:^{
                          self.frame = self.previousRect;
                      } completion:^(BOOL finished) {
-                         //
+                         
+                         [Tools addShadowToViewWithView:self];
                      }];
 }
 

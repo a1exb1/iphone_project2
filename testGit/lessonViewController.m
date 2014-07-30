@@ -52,6 +52,85 @@ extern Session *session;
     self.darkenView.backgroundColor = [UIColor colorWithRed:55 green:55 blue:55 alpha:0];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    if ([Tools isOrientationLandscape]) {
+        _columns = 3;
+        _rows = 3;
+    }
+    else{
+        _columns = 5;
+        _rows = 2;
+    }
+    
+    self.cardViews = [[NSMutableArray alloc] init];
+    
+    //INFO CARD
+    cardView *view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+    view.parentView = self.view;
+    view.columns = _columns;
+    view.rows = _rows;
+    view.cardIndex = 0;
+    [view updatePositionAnimated:NO];
+    view.backgroundColor = [UIColor whiteColor]; //eaeaea
+    
+    //student image
+    UIImageView *studentImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    studentImg.center = view.center;
+    studentImg.image = [UIImage imageNamed:@"user_large.png"];
+    [view addSubview:studentImg];
+    
+    
+    //student name
+    UILabel *studentNameLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, view.frame.size.width - 20, 20)];
+    studentNameLbl.text = self.lesson.student.name;
+    [view addSubview:studentNameLbl];
+    studentNameLbl.textAlignment = NSTextAlignmentCenter;
+    
+    [self.cardViews addObject:view];
+    
+    
+    // course?
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+    view.parentView = self.view;
+    view.columns = _columns;
+    view.rows = _rows;
+    view.cardIndex = 1;
+    [view updatePositionAnimated:NO];
+    view.backgroundColor = [UIColor whiteColor];
+    [self.cardViews addObject:view];
+    
+    
+    //note
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+    view.parentView = self.view;
+    view.columns = _columns;
+    view.rows = _rows;
+    view.cardIndex = 2;
+    [view updatePositionAnimated:NO];
+    view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    [self.cardViews addObject:view];
+    
+    
+    //note text label
+    UITextView *noteText = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
+    noteText.text = @"hello this is a long note which can go onto mulitple lines :)";
+    noteText.backgroundColor = [UIColor clearColor];
+    [view addSubview:noteText];
+    [noteText setUserInteractionEnabled:NO];
+    
+    for(cardView* view in self.cardViews){
+        [self.view addSubview:view];
+        UIPanGestureRecognizer* pgr = [[UIPanGestureRecognizer alloc]
+                                       initWithTarget:self
+                                       action:@selector(handlePan:)];
+        [view addGestureRecognizer:pgr];
+    }
+    
+    [self renderCards];
+}
+
+
 -(void)addNote{
     //note
     if ((int)[self.cardViews count] < 9) {
@@ -132,90 +211,6 @@ extern Session *session;
                      }];
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    if ([Tools isOrientationLandscape]) {
-        _columns = 3;
-        _rows = 3;
-    }
-    else{
-        _columns = 5;
-        _rows = 2;
-    }
-    
-    self.cardViews = [[NSMutableArray alloc] init];
-    
-    //INFO CARD
-    cardView *view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = self.view;
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = 0;
-    [view updatePositionAnimated:NO];
-    view.backgroundColor = [UIColor whiteColor]; //eaeaea
-    
-    //student image
-    UIImageView *studentImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    studentImg.center = view.center;
-    studentImg.image = [UIImage imageNamed:@"user_large.png"];
-    [view addSubview:studentImg];
-    
-    
-    //student name
-    UILabel *studentNameLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, view.frame.size.width - 20, 20)];
-    studentNameLbl.text = self.lesson.student.name;
-    [view addSubview:studentNameLbl];
-    studentNameLbl.textAlignment = NSTextAlignmentCenter;
-    
-    [self.cardViews addObject:view];
-    
-    
-    // course?
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = self.view;
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = 1;
-    [view updatePositionAnimated:NO];
-    view.backgroundColor = [UIColor whiteColor];
-    [self.cardViews addObject:view];
-    
-    
-    //note
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = self.view;
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = 2;
-    [view updatePositionAnimated:NO];
-    view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
-    [self.cardViews addObject:view];
-
-    
-    //note text label
-    UITextView *noteText = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
-    noteText.text = @"hello this is a long note which can go onto mulitple lines :)";
-    noteText.backgroundColor = [UIColor clearColor];
-    [noteText setEditable:NO];
-    [view addSubview:noteText];
-    
-    //to put in front of notetextview
-    //? only can drag down
-    UIView *block = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
-    block.backgroundColor = [UIColor clearColor];
-    [view addSubview:block];
-    
-    for(cardView* view in self.cardViews){
-        [self.view addSubview:view];
-        UIPanGestureRecognizer* pgr = [[UIPanGestureRecognizer alloc]
-                                       initWithTarget:self
-                                       action:@selector(handlePan:)];
-        [view addGestureRecognizer:pgr];
-        //[Tools addShadowToViewWithView:view];
-    }
-    
-    [self renderCards];
-}
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
     if ([Tools isOrientationLandscape]) {
@@ -242,68 +237,73 @@ extern Session *session;
 -(void)handlePan:(UIPanGestureRecognizer*)pgr;
 {
     int previousCardIndex;
+    cardView *pgrView = (cardView*)pgr.view;
     
-    for (cardView *view in self.cardViews){
-        if (pgr.state == UIGestureRecognizerStateChanged &&
-            (CGRectContainsRect(self.view.bounds, view.bounds) )) {
-            CGPoint center = pgr.view.center;
-            CGPoint translation = [pgr translationInView:pgr.view];
-            center = CGPointMake(center.x + translation.x,
-                                 center.y + translation.y);
-            pgr.view.center = center;
-            
-            float xThird = self.view.bounds.size.width / _rows;
-            float yThird = self.view.bounds.size.height / _columns;
-            
-            int column = 0;
-            int row = 0;
-            
-            //get x pos
-            for (int c = 0; c<_rows; c++) {
-                if(center.x < (xThird *(c+1)) &&
-                   center.x > (xThird *c)){
-                    row = c;
-                }
-            }
-            
-            //get y pos
-            for (int c = 0; c<_columns; c++) {
-                if(center.y < (yThird *(c+1)) &&
-                   center.y > (yThird *c)){
-                    column = c;
-                }
-            }
-            
-            cardView *view = (cardView*)pgr.view;
-            [self.view bringSubviewToFront:view];
-            previousCardIndex = view.cardIndex;
-            
-            int newCardIndex = (column * _rows) + row;
-            
-            if (newCardIndex == 9)
-                newCardIndex = previousCardIndex;
-            
-            view.cardIndex = newCardIndex;
-            
-            for(cardView* v in self.cardViews){
+    if(!pgrView.isBeingViewed){
+        for (cardView *view in self.cardViews){
+            if (pgr.state == UIGestureRecognizerStateChanged &&
+                (CGRectContainsRect(self.view.bounds, view.bounds))) {
+                CGPoint center = pgr.view.center;
+                CGPoint translation = [pgr translationInView:pgr.view];
+                center = CGPointMake(center.x + translation.x,
+                                     center.y + translation.y);
+                pgr.view.center = center;
                 
-                if (v.cardIndex == view.cardIndex &&
-                    v != view) {
-                    //NSLog(@"%d %d", v.cardIndex, view.cardIndex);
-                    v.cardIndex = previousCardIndex;
+                float xThird = self.view.bounds.size.width / _rows;
+                float yThird = self.view.bounds.size.height / _columns;
+                
+                int column = 0;
+                int row = 0;
+                
+                //get x pos
+                for (int c = 0; c<_rows; c++) {
+                    if(center.x < (xThird *(c+1)) &&
+                       center.x > (xThird *c)){
+                        row = c;
+                    }
+                }
+                
+                //get y pos
+                for (int c = 0; c<_columns; c++) {
+                    if(center.y < (yThird *(c+1)) &&
+                       center.y > (yThird *c)){
+                        column = c;
+                    }
+                }
+                
+                cardView *view = (cardView*)pgr.view;
+                [self.view bringSubviewToFront:view];
+                previousCardIndex = view.cardIndex;
+                
+                int newCardIndex = (column * _rows) + row;
+                
+                if (newCardIndex == 9)
+                    newCardIndex = previousCardIndex;
+                
+                view.cardIndex = newCardIndex;
+                
+                for(cardView* v in self.cardViews){
+                    
+                    if (v.cardIndex == view.cardIndex &&
+                        v != view) {
+                        //NSLog(@"%d %d", v.cardIndex, view.cardIndex);
+                        v.cardIndex = previousCardIndex;
+                        [v updatePositionAnimated:YES];
+                    }
+                }
+            }
+            
+            [pgr setTranslation:CGPointZero inView:pgr.view];
+            
+            if(pgr.state == UIGestureRecognizerStateEnded){
+                for(cardView* v in self.cardViews){
                     [v updatePositionAnimated:YES];
                 }
             }
         }
-        
-        [pgr setTranslation:CGPointZero inView:pgr.view];
-        
-        if(pgr.state == UIGestureRecognizerStateEnded){
-            for(cardView* v in self.cardViews){
-                [v updatePositionAnimated:YES];
-            }
-        }
+
     }
+    
     
     
 }

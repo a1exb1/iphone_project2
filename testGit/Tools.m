@@ -215,9 +215,21 @@ NSMutableArray *loaderViews;
 +(void)addShadowToViewWithView:(UIView *)view
 {
     view.layer.masksToBounds = NO;
-    view.layer.shadowOffset = CGSizeMake(4, 4);
+    view.layer.shadowOffset = CGSizeMake(2, 2);
     view.layer.shadowRadius = 2;
     view.layer.shadowOpacity = 0.15;
+    
+    view.layer.shadowPath = [UIBezierPath bezierPathWithRect:view.bounds].CGPath;
+}
+
++(void)addLargeShadowToView:(UIView *)view
+{
+    view.layer.masksToBounds = NO;
+    view.layer.shadowOffset = CGSizeMake(6, 6);
+    view.layer.shadowRadius = 5;
+    view.layer.shadowOpacity = 0.15;
+    
+    view.layer.shadowPath = [UIBezierPath bezierPathWithRect:view.bounds].CGPath;
 }
 
 +(UIColor *) defaultNavigationBarColour{
