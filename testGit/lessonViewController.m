@@ -10,6 +10,7 @@
 
 @interface lessonViewController ()
 
+
 @end
 
 @implementation lessonViewController
@@ -51,7 +52,7 @@ extern Session *session;
         _rows = 3;
     }
     else{
-        _columns = 4;
+        _columns = 5;
         _rows = 2;
     }
     
@@ -106,7 +107,7 @@ extern Session *session;
         _rows = 3;
     }
     else{
-        _columns = 4;
+        _columns = 5;
         _rows = 2;
     }
     [self renderCards];
@@ -124,6 +125,8 @@ extern Session *session;
 
 -(void)handlePan:(UIPanGestureRecognizer*)pgr;
 {
+    int previousCardIndex;
+    
     for (cardView *view in self.cardViews){
         if (pgr.state == UIGestureRecognizerStateChanged &&
             (CGRectContainsRect(self.view.bounds, view.bounds) )) {
@@ -132,13 +135,6 @@ extern Session *session;
             center = CGPointMake(center.x + translation.x,
                                  center.y + translation.y);
             pgr.view.center = center;
-
-        }
-        
-        [pgr setTranslation:CGPointZero inView:pgr.view];
-        
-        if(pgr.state == UIGestureRecognizerStateEnded){
-            CGPoint center = pgr.view.center;
             
             float xThird = self.view.bounds.size.width / _rows;
             float yThird = self.view.bounds.size.height / _columns;
@@ -147,14 +143,13 @@ extern Session *session;
             int row = 0;
             
             //get x pos
-            
             for (int c = 0; c<_rows; c++) {
                 if(center.x < (xThird *(c+1)) &&
                    center.x > (xThird *c)){
                     row = c;
                 }
             }
-
+            
             //get y pos
             for (int c = 0; c<_columns; c++) {
                 if(center.y < (yThird *(c+1)) &&
@@ -164,9 +159,14 @@ extern Session *session;
             }
             
             cardView *view = (cardView*)pgr.view;
-            int previousCardIndex = view.cardIndex;
-            view.cardIndex = (column * _rows) + row;
-            [view updatePositionAnimated:YES];
+            previousCardIndex = view.cardIndex;
+            
+            int newCardIndex = (column * _rows) + row;
+            
+            if (newCardIndex == 9)
+                newCardIndex = previousCardIndex;
+            
+            view.cardIndex = newCardIndex;
             
             for(cardView* v in self.cardViews){
                 
@@ -177,7 +177,14 @@ extern Session *session;
                     [v updatePositionAnimated:YES];
                 }
             }
-            
+        }
+        
+        [pgr setTranslation:CGPointZero inView:pgr.view];
+        
+        if(pgr.state == UIGestureRecognizerStateEnded){
+            for(cardView* v in self.cardViews){
+                [v updatePositionAnimated:YES];
+            }
         }
     }
     
