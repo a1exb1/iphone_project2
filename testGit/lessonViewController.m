@@ -225,13 +225,16 @@ extern Session *session;
 }
 
 -(void)renderCards{
-    
     for(cardView* view in self.cardViews){
         view.columns = _columns;
         view.rows = _rows;
         [view updatePositionAnimated:YES];
+        
+        if(view.isBeingViewed){
+            [Tools removeShadowFromView:view];
+            [view view];
+        }
     }
-
 }
 
 -(void)handlePan:(UIPanGestureRecognizer*)pgr;

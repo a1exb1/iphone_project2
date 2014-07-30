@@ -232,6 +232,12 @@ NSMutableArray *loaderViews;
     view.layer.shadowPath = [UIBezierPath bezierPathWithRect:view.bounds].CGPath;
 }
 
++(void)removeShadowFromView:(UIView *)view{
+    view.layer.shadowColor = nil;
+    view.layer.shadowRadius = 0;
+    view.layer.shadowOpacity = 0;
+}
+
 +(UIColor *) defaultNavigationBarColour{
 //   return [UIColor colorWithRed:(247/255.0) green:(247/255.0) blue:(247/255.0) alpha:1];
     return [self colorFromHexString:@"#f8f8f8"];

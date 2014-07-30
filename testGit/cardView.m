@@ -20,6 +20,8 @@
 }
 
 -(void)updatePositionAnimated:(bool)animated{
+    //[Tools removeShadowFromView:self];
+    
     int column = 0;
     int row = 0;
     
@@ -31,7 +33,6 @@
         }
     }
 
-    
     float xThird = self.parentView.bounds.size.width / _rows;
     float yThird = self.parentView.bounds.size.height / _columns;
     
@@ -50,10 +51,12 @@
                          self.center = cent;
                      }
                      completion:^(BOOL finished) {
-                         [Tools addShadowToViewWithView:self];
+                         //[Tools addShadowToViewWithView:self];
+                         //self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
                      }];
     
 }
+
 
 -(void)createPositionAnimated:(bool)animated{
     int column = 0;
@@ -66,7 +69,6 @@
             column++;
         }
     }
-    
     
     float xThird = self.parentView.bounds.size.width / _rows;
     float yThird = self.parentView.bounds.size.height / _columns;
@@ -89,7 +91,8 @@
                          self.center = cent;
                      }
                      completion:^(BOOL finished) {
-                         [Tools addShadowToViewWithView:self];
+                         //[Tools addShadowToViewWithView:self];
+                         //self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
                      }];
 }
 
@@ -115,16 +118,14 @@
 
 -(void)stopViewing{
     self.isBeingViewed = NO;
-    self.layer.shadowColor = nil;
-    self.layer.shadowRadius = 0;
-    self.layer.shadowOpacity = 0;
+    [Tools removeShadowFromView:self];
     
     [UIView animateWithDuration:0.25
-                     animations:^{
+               animations:^{
                          self.frame = self.previousRect;
                      } completion:^(BOOL finished) {
                          
-                         [Tools addShadowToViewWithView:self];
+                         //[Tools addShadowToViewWithView:self];
                      }];
 }
 

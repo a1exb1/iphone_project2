@@ -42,6 +42,7 @@
 
 +(void)addShadowToViewWithView:(UIView *)view;
 +(void)addLargeShadowToView:(UIView *)view;
++(void)removeShadowFromView:(UIView *)view;
 
 +(UIColor *) defaultNavigationBarColour;
 
