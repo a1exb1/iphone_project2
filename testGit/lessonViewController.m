@@ -14,6 +14,8 @@
 
 @implementation lessonViewController
 
+extern Session *session;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,22 +32,49 @@
     if (_lessonTotal > 0) {
         self.title = [NSString stringWithFormat:@"Lesson %d of %d", _lessonNumber, _lessonTotal];
     }
+    
+    [session setShouldHideMasterInLandscape:NO];
+    
+    if ([[session client]clientID] == 0) {
+        UIViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"loginView"]; //loginView monthCalView
+        
+        [self presentViewController:view animated:NO completion:nil];
+    }
+    [self.navigationItem setHidesBackButton:YES];
+    [self.navigationController.navigationBar setTranslucent:NO];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    if ([Tools isOrientationLandscape]) {
+        _columns = 3;
+        _rows = 3;
+    }
+    else{
+        _columns = 4;
+        _rows = 2;
+    }
+    
     self.cardViews = [[NSMutableArray alloc] init];
     
-    
+    //INFO CARD
     cardView *view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
     view.parentView = self.view;
+    view.columns = _columns;
+    view.rows = _rows;
     view.cardIndex = 0;
     [view updatePositionAnimated:NO];
     view.backgroundColor = [UIColor redColor];
+    
+    //inside info card
+    
+    
     [self.cardViews addObject:view];
     
     view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
     view.parentView = self.view;
+    view.columns = _columns;
+    view.rows = _rows;
     view.cardIndex = 1;
     [view updatePositionAnimated:NO];
     view.backgroundColor = [UIColor greenColor];
@@ -53,12 +82,13 @@
     
     view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
     view.parentView = self.view;
+    view.columns = _columns;
+    view.rows = _rows;
     view.cardIndex = 2;
     [view updatePositionAnimated:NO];
     view.backgroundColor = [UIColor grayColor];
     [self.cardViews addObject:view];
-    
-    
+
     for(cardView* view in self.cardViews){
         [self.view addSubview:view];
         UIPanGestureRecognizer* pgr = [[UIPanGestureRecognizer alloc]
@@ -66,6 +96,30 @@
                                        action:@selector(handlePan:)];
         [view addGestureRecognizer:pgr];
     }
+    
+    [self renderCards];
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    if ([Tools isOrientationLandscape]) {
+        _columns = 3;
+        _rows = 3;
+    }
+    else{
+        _columns = 4;
+        _rows = 2;
+    }
+    [self renderCards];
+}
+
+-(void)renderCards{
+    
+    for(cardView* view in self.cardViews){
+        view.columns = _columns;
+        view.rows = _rows;
+        [view updatePositionAnimated:YES];
+    }
+
 }
 
 -(void)handlePan:(UIPanGestureRecognizer*)pgr;
@@ -78,7 +132,7 @@
             center = CGPointMake(center.x + translation.x,
                                  center.y + translation.y);
             pgr.view.center = center;
-            
+
         }
         
         [pgr setTranslation:CGPointZero inView:pgr.view];
@@ -86,47 +140,39 @@
         if(pgr.state == UIGestureRecognizerStateEnded){
             CGPoint center = pgr.view.center;
             
-            float xThird = self.view.bounds.size.width / 3;
-            float yThird = self.view.bounds.size.height / 3;
+            float xThird = self.view.bounds.size.width / _rows;
+            float yThird = self.view.bounds.size.height / _columns;
             
             int column = 0;
             int row = 0;
             
             //get x pos
-            if (center.x < xThird) {
-                row = 0;
-            }
-            if (center.x > xThird &&
-                center.x < (xThird *2)) {
-                row = 1;
-            }
-            else if(center.x > (xThird *2)){
-                row = 2;
-            }
             
+            for (int c = 0; c<_rows; c++) {
+                if(center.x < (xThird *(c+1)) &&
+                   center.x > (xThird *c)){
+                    row = c;
+                }
+            }
+
             //get y pos
-            if (center.y < yThird) {
-                column = 0;
-            }
-            if (center.y > yThird &&
-                center.y < (yThird *2)) {
-                column = 1;
-            }
-            else if(center.y > (yThird *2)){
-                column = 2;
+            for (int c = 0; c<_columns; c++) {
+                if(center.y < (yThird *(c+1)) &&
+                   center.y > (yThird *c)){
+                    column = c;
+                }
             }
             
             cardView *view = (cardView*)pgr.view;
             int previousCardIndex = view.cardIndex;
-            NSLog(@"previous index = %d", previousCardIndex);
-            view.cardIndex = (column *3) + row;
+            view.cardIndex = (column * _rows) + row;
             [view updatePositionAnimated:YES];
             
             for(cardView* v in self.cardViews){
                 
                 if (v.cardIndex == view.cardIndex &&
                     v != view) {
-                    NSLog(@"%d %d", v.cardIndex, view.cardIndex);
+                    //NSLog(@"%d %d", v.cardIndex, view.cardIndex);
                     v.cardIndex = previousCardIndex;
                     [v updatePositionAnimated:YES];
                 }

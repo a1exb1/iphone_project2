@@ -25,15 +25,15 @@
     
     for (int c=0; c<self.cardIndex; c++) {
         row++;
-        if (row == 3){
+        if (row == _rows){
             row = 0;
             column++;
         }
     }
 
     
-    float xThird = self.parentView.bounds.size.width / 3;
-    float yThird = self.parentView.bounds.size.height / 3;
+    float xThird = self.parentView.bounds.size.width / _rows;
+    float yThird = self.parentView.bounds.size.height / _columns;
     
     CGRect rect = CGRectMake(row*xThird, column*yThird, xThird,yThird);
     CGPoint cent = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
@@ -45,6 +45,7 @@
     
     [UIView animateWithDuration:animationDuration
                      animations:^{
+                         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, rect.size.width - 10, rect.size.height-10);
                          [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
                          self.center = cent;
                      }];

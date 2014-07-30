@@ -15,4 +15,7 @@
 
 -(void)updatePositionAnimated:(bool)animated;
 
+@property int rows;
+@property int columns;
+
 @end

@@ -10,6 +10,7 @@
 #import "cardView.h"
 #import "Lesson.h"
 #import "DetailViewManager.h"
+#import "Session.h"
 
 @protocol agendaDelegate <NSObject>
 -(void)reloadData;
@@ -25,6 +26,8 @@
 
 @property (weak, nonatomic) id<agendaDelegate> agendaDelegate;
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
+@property int rows;
+@property int columns;
 
 
 @end
