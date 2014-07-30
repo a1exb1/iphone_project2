@@ -59,9 +59,7 @@ extern Session *session;
         view.parentView = self.view;
         view.columns = _columns;
         view.rows = _rows;
-        //view.cardIndex = (int)[self.cardViews count];
-        
-        
+
         bool done = NO;
         for (int c=0; c<9; c++) {
             bool allowed = YES;
