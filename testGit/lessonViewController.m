@@ -131,8 +131,18 @@ extern Session *session;
     [view updatePositionAnimated:NO];
     view.backgroundColor = [Tools colorFromHexString:@"#eaeaea"];
     
-    //inside info card
+    //student image
+    UIImageView *studentImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    studentImg.center = view.center;
+    studentImg.image = [UIImage imageNamed:@"user_large.png"];
+    [view addSubview:studentImg];
     
+    
+    //student name
+    UILabel *studentNameLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, view.frame.size.width - 20, 20)];
+    studentNameLbl.text = self.lesson.student.name;
+    [view addSubview:studentNameLbl];
+    studentNameLbl.textAlignment = NSTextAlignmentCenter;
     
     [self.cardViews addObject:view];
     
