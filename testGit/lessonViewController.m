@@ -50,41 +50,66 @@ extern Session *session;
     
     self.darkenView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.darkenView.backgroundColor = [UIColor colorWithRed:55 green:55 blue:55 alpha:0];
-    [self.view addSubview:self.darkenView];
 }
 
 -(void)addNote{
     //note
-    cardView *view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = self.view;
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = (int)[self.cardViews count];
-    [view createPositionAnimated:YES];
-    view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    if ((int)[self.cardViews count] < 9) {
+        cardView *view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+        view.parentView = self.view;
+        view.columns = _columns;
+        view.rows = _rows;
+        //view.cardIndex = (int)[self.cardViews count];
+        
+        
+        bool done = NO;
+        for (int c=0; c<9; c++) {
+            bool allowed = YES;
+            if (!done) {
+                for (cardView *view in self.cardViews){
+                    if (view.cardIndex == c) {
+                        allowed = NO;
+                    }
+                }
+                if (allowed) {
+                    done = YES;
+                    view.cardIndex = c;
+                }
+            }
+        }
+        
+        [view createPositionAnimated:YES];
+        view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+        
+        //inside
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
+        [btn setTitle:@"view" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(view:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:btn];
+        
+        UIButton *stopViewBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 0, 100, 50)];
+        [stopViewBtn setTitle:@"stop view" forState:UIControlStateNormal];
+        [stopViewBtn addTarget:self action:@selector(stopViewing:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:stopViewBtn];
+        
+        [self.cardViews addObject:view];
+        [self.view addSubview:view];
+        UIPanGestureRecognizer* pgr = [[UIPanGestureRecognizer alloc]
+                                       initWithTarget:self
+                                       action:@selector(handlePan:)];
+        [view addGestureRecognizer:pgr];
+    }
     
-    //inside
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
-    [btn setTitle:@"view" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(view:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:btn];
+    else{
+        NSLog(@"not more space");
+    }
     
-    UIButton *stopViewBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 0, 100, 50)];
-    [stopViewBtn setTitle:@"stop view" forState:UIControlStateNormal];
-    [stopViewBtn addTarget:self action:@selector(stopViewing:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:stopViewBtn];
     
-    [self.cardViews addObject:view];
-    [self.view addSubview:view];
-    UIPanGestureRecognizer* pgr = [[UIPanGestureRecognizer alloc]
-                                   initWithTarget:self
-                                   action:@selector(handlePan:)];
-    [view addGestureRecognizer:pgr];
 }
 
 -(void)view:(UIButton*)btn{
     cardView *view = (cardView*)btn.superview;
-    [self.view bringSubviewToFront:self.darkenView];
+    [self.view addSubview:self.darkenView];
     [view view];
 
     self.darkenView.backgroundColor = [UIColor colorWithRed:55 green:55 blue:55 alpha:0];
@@ -105,7 +130,7 @@ extern Session *session;
                      animations:^{
                          self.darkenView.backgroundColor = [UIColor colorWithRed:55 green:55 blue:55 alpha:0];
                      } completion:^(BOOL finished) {
-                        
+                         [self.darkenView removeFromSuperview];
                      }];
 }
 
@@ -177,7 +202,7 @@ extern Session *session;
     [view addSubview:noteText];
     
     //to put in front of notetextview
-    //? only can drag down 
+    //? only can drag down
     UIView *block = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
     block.backgroundColor = [UIColor clearColor];
     [view addSubview:block];

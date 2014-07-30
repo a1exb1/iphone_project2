@@ -73,7 +73,7 @@
     
     float animationDuration = 0;
     if (animated)
-        animationDuration = 0.25;
+        animationDuration = 0.15;
     
     self.frame = CGRectMake(rect.origin.x, rect.origin.y, 0, 0);
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
