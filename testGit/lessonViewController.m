@@ -129,7 +129,7 @@ extern Session *session;
     view.rows = _rows;
     view.cardIndex = 0;
     [view updatePositionAnimated:NO];
-    view.backgroundColor = [Tools colorFromHexString:@"#eaeaea"];
+    view.backgroundColor = [UIColor whiteColor]; //eaeaea
     
     //student image
     UIImageView *studentImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
@@ -154,7 +154,7 @@ extern Session *session;
     view.rows = _rows;
     view.cardIndex = 1;
     [view updatePositionAnimated:NO];
-    view.backgroundColor = [Tools colorFromHexString:@"#eaeaea"];
+    view.backgroundColor = [UIColor whiteColor];
     [self.cardViews addObject:view];
     
     
@@ -168,6 +168,20 @@ extern Session *session;
     view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
     [self.cardViews addObject:view];
 
+    
+    //note text label
+    UITextView *noteText = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
+    noteText.text = @"hello this is a long note which can go onto mulitple lines :)";
+    noteText.backgroundColor = [UIColor clearColor];
+    [noteText setEditable:NO];
+    [view addSubview:noteText];
+    
+    //to put in front of notetextview
+    //? only can drag down 
+    UIView *block = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
+    block.backgroundColor = [UIColor clearColor];
+    [view addSubview:block];
+    
     for(cardView* view in self.cardViews){
         [self.view addSubview:view];
         UIPanGestureRecognizer* pgr = [[UIPanGestureRecognizer alloc]
@@ -238,6 +252,7 @@ extern Session *session;
             }
             
             cardView *view = (cardView*)pgr.view;
+            [self.view bringSubviewToFront:view];
             previousCardIndex = view.cardIndex;
             
             int newCardIndex = (column * _rows) + row;
