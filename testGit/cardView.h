@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Tools.h"
 
 @interface cardView : UIView
 
@@ -14,8 +15,12 @@
 @property UIView *parentView;
 
 -(void)updatePositionAnimated:(bool)animated;
+-(void)createPositionAnimated:(bool)animated;
+-(void)view;
+-(void)stopViewing;
 
 @property int rows;
 @property int columns;
+@property CGRect previousRect;
 
 @end

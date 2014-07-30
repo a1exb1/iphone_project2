@@ -29,5 +29,6 @@
 @property int rows;
 @property int columns;
 
+@property UIView *darkenView;
 
 @end

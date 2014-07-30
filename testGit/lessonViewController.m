@@ -43,6 +43,70 @@ extern Session *session;
     }
     [self.navigationItem setHidesBackButton:YES];
     [self.navigationController.navigationBar setTranslucent:NO];
+    
+    UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNote)];
+    
+    self.navigationItem.rightBarButtonItem = addBtn;
+    
+    self.darkenView = [[UIView alloc] initWithFrame:self.view.bounds];
+    self.darkenView.backgroundColor = [UIColor colorWithRed:55 green:55 blue:55 alpha:0];
+    [self.view addSubview:self.darkenView];
+}
+
+-(void)addNote{
+    //note
+    cardView *view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+    view.parentView = self.view;
+    view.columns = _columns;
+    view.rows = _rows;
+    view.cardIndex = (int)[self.cardViews count];
+    [view createPositionAnimated:YES];
+    view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    
+    //inside
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
+    [btn setTitle:@"view" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(view:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btn];
+    
+    UIButton *stopViewBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 0, 100, 50)];
+    [stopViewBtn setTitle:@"stop view" forState:UIControlStateNormal];
+    [stopViewBtn addTarget:self action:@selector(stopViewing:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:stopViewBtn];
+    
+    [self.cardViews addObject:view];
+    [self.view addSubview:view];
+    UIPanGestureRecognizer* pgr = [[UIPanGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(handlePan:)];
+    [view addGestureRecognizer:pgr];
+}
+
+-(void)view:(UIButton*)btn{
+    cardView *view = (cardView*)btn.superview;
+    [self.view bringSubviewToFront:self.darkenView];
+    [view view];
+
+    self.darkenView.backgroundColor = [UIColor colorWithRed:55 green:55 blue:55 alpha:0];
+    
+    [UIView animateWithDuration:0.25
+                     animations:^{
+                         self.darkenView.backgroundColor = [UIColor colorWithRed:55 green:55 blue:55 alpha:0.8];
+                     } completion:^(BOOL finished) {
+                         
+                     }];
+}
+
+-(void)stopViewing:(UIButton*)btn{
+    cardView *view = (cardView*)btn.superview;
+    [view stopViewing];
+    
+    [UIView animateWithDuration:0.25
+                     animations:^{
+                         self.darkenView.backgroundColor = [UIColor colorWithRed:55 green:55 blue:55 alpha:0];
+                     } completion:^(BOOL finished) {
+                        
+                     }];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -65,29 +129,33 @@ extern Session *session;
     view.rows = _rows;
     view.cardIndex = 0;
     [view updatePositionAnimated:NO];
-    view.backgroundColor = [UIColor redColor];
+    view.backgroundColor = [Tools colorFromHexString:@"#eaeaea"];
     
     //inside info card
     
     
     [self.cardViews addObject:view];
     
+    
+    // course?
     view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
     view.parentView = self.view;
     view.columns = _columns;
     view.rows = _rows;
     view.cardIndex = 1;
     [view updatePositionAnimated:NO];
-    view.backgroundColor = [UIColor greenColor];
+    view.backgroundColor = [Tools colorFromHexString:@"#eaeaea"];
     [self.cardViews addObject:view];
     
+    
+    //note
     view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
     view.parentView = self.view;
     view.columns = _columns;
     view.rows = _rows;
     view.cardIndex = 2;
     [view updatePositionAnimated:NO];
-    view.backgroundColor = [UIColor grayColor];
+    view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
     [self.cardViews addObject:view];
 
     for(cardView* view in self.cardViews){
@@ -96,6 +164,7 @@ extern Session *session;
                                        initWithTarget:self
                                        action:@selector(handlePan:)];
         [view addGestureRecognizer:pgr];
+        //[Tools addShadowToViewWithView:view];
     }
     
     [self renderCards];
