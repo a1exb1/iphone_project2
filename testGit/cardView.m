@@ -90,6 +90,7 @@
                          self.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - 10, rect.size.height-10);
                          [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
                          self.center = cent;
+                         
                      }
                      completion:^(BOOL finished) {
                          [Tools addShadowToViewWithView:self];
@@ -113,6 +114,7 @@
                      }
                      completion:^(BOOL finished) {
                          [Tools addLargeShadowToView:self];
+                         [Tools addTopBorderToView:self WithColor:[Tools colorFromHexString:@"#333333"]];
                      }];
     
     
@@ -125,8 +127,9 @@
     [UIView animateWithDuration:0.25
                animations:^{
                          self.frame = self.previousRect;
+                   
                      } completion:^(BOOL finished) {
-                         
+                         [Tools addTopBorderToView:self WithColor:[Tools colorFromHexString:@"#333333"]];
                          [Tools addShadowToViewWithView:self];
                      }];
 }

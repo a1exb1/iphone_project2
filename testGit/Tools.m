@@ -606,9 +606,14 @@ NSMutableArray *loaderViews;
 }
 
 +(void)addTopBorderToView:(UIView *)view WithColor:(UIColor *)color{
+    //for (CALayer *layer in view.layer.sublayers) {
+        //[layer removeFromSuperlayer];
+    //}
+    
     CALayer *TopBorder = [CALayer layer];
     TopBorder.frame = CGRectMake(0.0f, 0.0f, view.frame.size.width, 3.0f);
     TopBorder.backgroundColor = color.CGColor;
+    TopBorder.accessibilityValue = @"border";
     [view.layer addSublayer:TopBorder];
 }
 

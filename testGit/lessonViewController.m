@@ -160,7 +160,7 @@ extern Session *session;
         
         [view createPositionAnimated:YES];
         
-        view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+        [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
         
         //inside
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
