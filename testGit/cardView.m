@@ -15,6 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -91,8 +92,9 @@
                          self.center = cent;
                      }
                      completion:^(BOOL finished) {
-                         //[Tools addShadowToViewWithView:self];
+                         [Tools addShadowToViewWithView:self];
                          //self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
+                         
                      }];
 }
 
@@ -125,7 +127,7 @@
                          self.frame = self.previousRect;
                      } completion:^(BOOL finished) {
                          
-                         //[Tools addShadowToViewWithView:self];
+                         [Tools addShadowToViewWithView:self];
                      }];
 }
 

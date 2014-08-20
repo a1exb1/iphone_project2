@@ -86,4 +86,6 @@
 +(NSDate *) dateRoundedDownTo5Minutes:(NSDate *)dt;
 
 +(NSString *)base64Decode:(NSString*)encodedString;
+
++(void)addTopBorderToView:(UIView*)view WithColor:(UIColor*)color;
 @end

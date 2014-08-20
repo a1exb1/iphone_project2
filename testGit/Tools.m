@@ -605,4 +605,11 @@ NSMutableArray *loaderViews;
 
 }
 
++(void)addTopBorderToView:(UIView *)view WithColor:(UIColor *)color{
+    CALayer *TopBorder = [CALayer layer];
+    TopBorder.frame = CGRectMake(0.0f, 0.0f, view.frame.size.width, 3.0f);
+    TopBorder.backgroundColor = color.CGColor;
+    [view.layer addSublayer:TopBorder];
+}
+
 @end

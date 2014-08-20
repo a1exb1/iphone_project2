@@ -55,6 +55,7 @@
 
 -(void)jsonAsyncRequestWithDelegateAndUrl:(NSString*)urlString;
 {
+    NSLog(@"%@", urlString);
     __block NSArray *arr = [[NSArray alloc] init];
     
     NSURL *url = [NSURL URLWithString: urlString];

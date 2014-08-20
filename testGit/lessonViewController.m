@@ -42,7 +42,7 @@ extern Session *session;
         [self presentViewController:view animated:NO completion:nil];
     }
     [self.navigationItem setHidesBackButton:YES];
-    [self.navigationController.navigationBar setTranslucent:NO];
+    //[self.navigationController.navigationBar setTranslucent:NO];
     
     UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNote)];
     
@@ -73,6 +73,7 @@ extern Session *session;
     view.cardIndex = 0;
     [view updatePositionAnimated:NO];
     view.backgroundColor = [UIColor whiteColor]; //eaeaea
+    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#333333"]];
     
     //student image
     UIImageView *studentImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
@@ -108,7 +109,8 @@ extern Session *session;
     view.rows = _rows;
     view.cardIndex = 2;
     [view updatePositionAnimated:NO];
-    view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
     [self.cardViews addObject:view];
     
     
@@ -125,6 +127,7 @@ extern Session *session;
                                        initWithTarget:self
                                        action:@selector(handlePan:)];
         [view addGestureRecognizer:pgr];
+        [Tools addShadowToViewWithView:view];
     }
     
     [self renderCards];
@@ -156,6 +159,7 @@ extern Session *session;
         }
         
         [view createPositionAnimated:YES];
+        
         view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
         
         //inside
