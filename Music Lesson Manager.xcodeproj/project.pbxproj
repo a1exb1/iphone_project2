@@ -208,6 +208,8 @@
 		E4D231EA1921367900E5797B /* login_landscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4D231E91921367900E5797B /* login_landscape.jpg */; };
 		E4D231EC1921368000E5797B /* login_portrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4D231EB1921368000E5797B /* login_portrait.jpg */; };
 		E4D3D60A19579C7700478BA4 /* newCalenderEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D3D60919579C7700478BA4 /* newCalenderEventViewController.m */; };
+		E4D6CADD19A76521007E7952 /* 974-users-toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D6CADB19A76521007E7952 /* 974-users-toolbar.png */; };
+		E4D6CADE19A76521007E7952 /* 974-users-toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D6CADC19A76521007E7952 /* 974-users-toolbar@2x.png */; };
 		E4F676FC19356CA900208991 /* clock_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F676FB19356CA900208991 /* clock_80.png */; };
 		E4F676FE19356CB100208991 /* people_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F676FD19356CB100208991 /* people_80.png */; };
 		E4F677011935F9D900208991 /* calenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F677001935F9D900208991 /* calenderViewController.m */; };
@@ -505,6 +507,8 @@
 		E4D231EB1921368000E5797B /* login_portrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_portrait.jpg; sourceTree = "<group>"; };
 		E4D3D60819579C7700478BA4 /* newCalenderEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newCalenderEventViewController.h; sourceTree = "<group>"; };
 		E4D3D60919579C7700478BA4 /* newCalenderEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newCalenderEventViewController.m; sourceTree = "<group>"; };
+		E4D6CADB19A76521007E7952 /* 974-users-toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "974-users-toolbar.png"; sourceTree = "<group>"; };
+		E4D6CADC19A76521007E7952 /* 974-users-toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "974-users-toolbar@2x.png"; sourceTree = "<group>"; };
 		E4F676FB19356CA900208991 /* clock_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock_80.png; sourceTree = "<group>"; };
 		E4F676FD19356CB100208991 /* people_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people_80.png; sourceTree = "<group>"; };
 		E4F676FF1935F9D900208991 /* calenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calenderViewController.h; sourceTree = "<group>"; };
@@ -682,6 +686,8 @@
 		E4005D1419369D91006C6ABB /* Glyphish */ = {
 			isa = PBXGroup;
 			children = (
+				E4D6CADB19A76521007E7952 /* 974-users-toolbar.png */,
+				E4D6CADC19A76521007E7952 /* 974-users-toolbar@2x.png */,
 				E4CB076319542CE4005D506F /* 573-money.png */,
 				E4CB076419542CE4005D506F /* 573-money@2x.png */,
 				E4CB075919530075005D506F /* 791-warning-toolbar.png */,
@@ -1293,6 +1299,7 @@
 				E4C9FB8C194B8B3C0015BB01 /* 973-user-toolbar@2x.png in Resources */,
 				79A86865191B93EC00AA4058 /* DSLCalendarDaySelection-middle.png in Resources */,
 				792B23D31921076A00CAE285 /* Button White Add.png in Resources */,
+				E4D6CADE19A76521007E7952 /* 974-users-toolbar@2x.png in Resources */,
 				E4CB076519542CE4005D506F /* 573-money.png in Resources */,
 				E4C9FB9B194B8DCD0015BB01 /* 888-checkmark.png in Resources */,
 				E4546953194A79D90098DE69 /* 742-wrench@2x.png in Resources */,
@@ -1305,6 +1312,7 @@
 				792B23C01920D04C00CAE285 /* Button White Stop.png in Resources */,
 				79A86861191B93EC00AA4058 /* DSLCalendarDayCallout.png in Resources */,
 				E4C1C96B1914F75B0068A10D /* glyphicons_030_pencil.png in Resources */,
+				E4D6CADD19A76521007E7952 /* 974-users-toolbar.png in Resources */,
 				E4005D08193639CA006C6ABB /* minus_80.png in Resources */,
 				E421C97A1935199000FA039A /* menu-background.png in Resources */,
 				E40DF299190017E100E1332A /* Images.xcassets in Resources */,

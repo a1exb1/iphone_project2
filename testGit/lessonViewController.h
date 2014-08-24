@@ -19,10 +19,14 @@
 
 @interface lessonViewController : UIViewController <SubstitutableDetailViewController>
 
+@property UIView *parentContainerView;
+@property NSMutableArray *containerViews;
 @property NSMutableArray *cardViews;
 @property Lesson *lesson;
 @property int lessonNumber;
 @property int lessonTotal;
+
+@property int activeContainer;
 
 @property (weak, nonatomic) id<agendaDelegate> agendaDelegate;
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
@@ -30,5 +34,7 @@
 @property int columns;
 
 @property UIView *darkenView;
+
+@property bool isEditing;
 
 @end

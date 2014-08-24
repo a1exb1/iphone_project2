@@ -63,7 +63,7 @@ extern Session *session;
     NSMutableArray *section =[[NSMutableArray alloc ]init];
     
     //SECTION
-    NSArray *cell = [[NSArray alloc]initWithObjects:@"clock_80.png", @"Slots", @"", @"slots", nil];
+    NSArray *cell = [[NSArray alloc]initWithObjects:@"clock_80.png", @"Slots", @"", @"slots", @"#4473b4", nil];
     [section addObject:cell];
     
     //    cell = [[NSArray alloc]initWithObjects:@"Calendar-Date-03-80.png", @"Calender", @"", @"calender", nil];
@@ -82,7 +82,7 @@ extern Session *session;
     NSLog(@"account type %d",[[session tutor] accountType] );
     if ([[session tutor] accountType] < 2) {
         
-        cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Tutors", @"", @"tutors", nil];
+        cell = [[NSArray alloc]initWithObjects:@"974-users-toolbar.png", @"Tutors", @"", @"tutors", @"#4473b4", nil];
         [section addObject:cell];
         
         cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Courses", @"", @"allcourses", nil];
@@ -151,7 +151,14 @@ extern Session *session;
     }
     
     
-    cell.imageView.image = [UIImage imageNamed:[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 0]];
+    
+    
+    UIImage *img = [UIImage imageNamed:[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 0]];
+    if ([[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 0] != nil) {
+        img = [Tools colorAnImage:[Tools colorFromHexString:[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 0]] :img];
+    }
+    
+    cell.imageView.image = img;
     
     cell.textLabel.text = [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 1];
     
