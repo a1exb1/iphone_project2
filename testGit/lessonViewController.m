@@ -42,7 +42,7 @@ extern Session *session;
         [self presentViewController:view animated:NO completion:nil];
     }
     [self.navigationItem setHidesBackButton:YES];
-    [self.navigationController.navigationBar setTranslucent:NO];
+    //[self.navigationController.navigationBar setTranslucent:NO];
     
     UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNote)];
     
@@ -65,24 +65,30 @@ extern Session *session;
     
     self.parentContainerView = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y+64, self.view.bounds.size.width*3, self.view.bounds.size.height)];
     [self.view addSubview:self.parentContainerView];
-    UIPanGestureRecognizer* pgr = [[UIPanGestureRecognizer alloc]
-                                   initWithTarget:self
-                                   action:@selector(handlePan:)];
-    [self.parentContainerView addGestureRecognizer:pgr];
+    
     
     
     self.containerViews = [[NSMutableArray alloc] init];
     
     UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
-    //containerView.backgroundColor = [UIColor redColor];
+    containerView.backgroundColor = [UIColor greenColor];
     [self.containerViews addObject:containerView];
+    
+    UIView *containerView2 = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x + (self.view.bounds.size.width), self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    containerView2.backgroundColor = [UIColor blueColor];
+    
+    [self.containerViews addObject:containerView2];
     //[self.view addSubview:containerView];
+
+    UIPanGestureRecognizer* pgr4 = [[UIPanGestureRecognizer alloc]
+                                    initWithTarget:self
+                                    action:@selector(handlePan:)];
+    [self.view addGestureRecognizer:pgr4];
     
     for(UIView *view in self.containerViews){
         [self.parentContainerView addSubview:view];
     }
     
-    [self.navigationController.navigationBar setTranslucent:YES];
     self.cardViews = [[NSMutableArray alloc] init];
     
     //INFO CARD
@@ -262,16 +268,27 @@ extern Session *session;
 }
 
 -(void)renderCards{
+    int c = 0;
+    for(UIView *view in self.containerViews){
+        view.frame = CGRectMake(self.view.bounds.origin.x + c * self.view.bounds.size.width, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
+        
+        c++;
+    }
+    
     for(cardView* view in self.cardViews){
         view.columns = _columns;
         view.rows = _rows;
+        [Tools removeShadowFromView:view];
         [view updatePositionAnimated:YES];
+        [Tools addShadowToViewWithView:view];
         
         if(view.isBeingViewed){
             [Tools removeShadowFromView:view];
             [view view];
         }
     }
+    
+    
 }
 
 -(void)handlePan:(UIPanGestureRecognizer*)pgr;
@@ -354,12 +371,28 @@ extern Session *session;
                                  center.y);
             self.parentContainerView.center = center;
             [pgr setTranslation:CGPointZero inView:self.parentContainerView];
+            NSLog(@"%f", self.parentContainerView.frame.origin.x);
         }
         
         if (pgr.state == UIGestureRecognizerStateEnded) {
-            //if (pgr) {
-                
-            //}
+            NSLog(@"%f, %f", self.parentContainerView.frame.origin.x, (self.view.bounds.size.width / 3) );
+            
+            if (self.parentContainerView.frame.origin.x < -(self.view.bounds.size.width / 3) &&
+                self.parentContainerView.frame.origin.x < 0) {
+                self.activeContainer++;
+
+            }
+            else{
+                self.activeContainer = 0;
+            }
+            
+            [UIView animateWithDuration:0.2
+                             animations:^{
+                                 [self.parentContainerView setFrame:CGRectMake(self.view.bounds.origin.x - self.view.bounds.size.width * self.activeContainer, self.view.bounds.origin.y+64, self.view.bounds.size.width, self.view.bounds.size.height)];
+                             }
+                             completion:^(BOOL finished) {
+                                 
+                             }];
         }
 
     }

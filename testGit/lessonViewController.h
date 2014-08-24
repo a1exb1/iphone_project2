@@ -20,6 +20,8 @@
 @interface lessonViewController : UIViewController <SubstitutableDetailViewController>
 
 @property UIView *parentContainerView;
+//@property int activeContainerView;
+
 @property NSMutableArray *containerViews;
 @property NSMutableArray *cardViews;
 @property Lesson *lesson;
