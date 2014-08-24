@@ -166,6 +166,95 @@ extern Session *session;
     [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
     [self.cardViews addObject:view];
     
+    //note
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
+    view.columns = _columns;
+    view.rows = _rows;
+    view.cardIndex = 3;
+    [view updatePositionAnimated:NO];
+    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
+    [self.cardViews addObject:view];
+    
+    //note
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
+    view.columns = _columns;
+    view.rows = _rows;
+    view.cardIndex = 4;
+    [view updatePositionAnimated:NO];
+    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
+    [self.cardViews addObject:view];
+    
+    //note
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
+    view.columns = _columns;
+    view.rows = _rows;
+    view.cardIndex = 5;
+    [view updatePositionAnimated:NO];
+    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
+    [self.cardViews addObject:view];
+    
+    //note
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
+    view.columns = _columns;
+    view.rows = _rows;
+    view.cardIndex = 6;
+    [view updatePositionAnimated:NO];
+    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
+    [self.cardViews addObject:view];
+    
+    //note
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
+    view.columns = _columns;
+    view.rows = _rows;
+    view.cardIndex = 7;
+    [view updatePositionAnimated:NO];
+    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
+    [self.cardViews addObject:view];
+    
+    //note
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
+    view.columns = _columns;
+    view.rows = _rows;
+    view.cardIndex = 8;
+    [view updatePositionAnimated:NO];
+    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
+    [self.cardViews addObject:view];
+    
+    //note
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
+    view.columns = _columns;
+    view.rows = _rows;
+    view.cardIndex = 0;
+    [view updatePositionAnimated:NO];
+    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
+    [self.cardViews addObject:view];
+    
+    //note
+    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
+    view.columns = _columns;
+    view.rows = _rows;
+    view.cardIndex = 1;
+    [view updatePositionAnimated:NO];
+    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
+    [self.cardViews addObject:view];
+    
+    
     
     //note text label
     UITextView *noteText = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
@@ -178,16 +267,15 @@ extern Session *session;
     int containerCounter = 0;
     
     for(cardView* view in self.cardViews){
+        NSLog(@"%d, %d", viewCounter, containerCounter);
+        
         [[self.containerViews objectAtIndex:containerCounter] addSubview:view];
         
-        if (viewCounter % 9 == 0 && viewCounter > 0) {
+        if ((viewCounter+1) % 9 == 0 && viewCounter > 0) {
             viewCounter = 0;
             containerCounter++;
         }
-        
-        if (viewCounter == 8) {
-            viewCounter = 0;
-        }
+
         UIPanGestureRecognizer* pgr = [[UIPanGestureRecognizer alloc]
                                        initWithTarget:self
                                        action:@selector(handlePan:)];
@@ -301,13 +389,7 @@ extern Session *session;
         c++;
     }
     
-    [UIView animateWithDuration:0
-                     animations:^{
-                         [self.parentContainerView setFrame:CGRectMake(self.view.bounds.origin.x - self.view.bounds.size.width * self.activeContainer, self.view.bounds.origin.y+64, self.view.bounds.size.width, self.view.bounds.size.height)];
-                     }
-                     completion:^(BOOL finished) {
-                         
-                     }];
+    [self slide];
     
     for(cardView* view in self.cardViews){
         view.columns = _columns;
@@ -315,6 +397,7 @@ extern Session *session;
         [Tools removeShadowFromView:view];
         [view updatePositionAnimated:YES];
         [Tools addShadowToViewWithView:view];
+        //[Tools addTopBorderToView:view WithColor:[UIColor redColor]];
         
         if(view.isBeingViewed){
             [Tools removeShadowFromView:view];
@@ -405,7 +488,6 @@ extern Session *session;
                                  center.y);
             self.parentContainerView.center = center;
             [pgr setTranslation:CGPointZero inView:self.parentContainerView];
-            NSLog(@"%f", self.parentContainerView.frame.origin.x);
         }
         
         if (pgr.state == UIGestureRecognizerStateEnded) {
@@ -416,13 +498,10 @@ extern Session *session;
             int third = 100; //(self.view.bounds.size.width / 3);
             int parentOrigin = self.parentContainerView.frame.origin.x;
             
-            NSLog(@"%d, %d, %d", leftSide, parentOrigin, rightSide);
-            
             if (parentOrigin < -(leftSide + third) && parentOrigin < leftSide) {
                 if (self.activeContainer < [self.containerViews count]-1) {
                     self.activeContainer++;
                 }
-
             }
             
             else if (-parentOrigin < leftSide && -parentOrigin < leftSide - (third)){
@@ -431,20 +510,20 @@ extern Session *session;
                 }
             }
             
-            [UIView animateWithDuration:0.2
-                             animations:^{
-                                 [self.parentContainerView setFrame:CGRectMake(self.view.bounds.origin.x - self.view.bounds.size.width * self.activeContainer, self.view.bounds.origin.y+64, self.view.bounds.size.width, self.view.bounds.size.height)];
-                             }
-                             completion:^(BOOL finished) {
-                                 
-                             }];
+            [self slide];
         }
 
     }
-    
-    
-    
-    
+}
+
+-(void)slide{
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         [self.parentContainerView setFrame:CGRectMake(self.view.bounds.origin.x - self.view.bounds.size.width * self.activeContainer, self.view.bounds.origin.y+64, self.view.bounds.size.width, self.view.bounds.size.height)];
+                     }
+                     completion:^(BOOL finished) {
+                         
+                     }];
 }
 
 - (void)didReceiveMemoryWarning
