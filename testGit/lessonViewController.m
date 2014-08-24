@@ -45,11 +45,35 @@ extern Session *session;
     //[self.navigationController.navigationBar setTranslucent:NO];
     
     UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNote)];
-    
     self.navigationItem.rightBarButtonItem = addBtn;
+    
+    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleEdit)];
+    self.navigationItem.leftBarButtonItem = editBtn;
     
     self.darkenView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.darkenView.backgroundColor = [UIColor colorWithRed:55 green:55 blue:55 alpha:0];
+}
+
+-(void)toggleEdit{
+    if (self.isEditing) {
+        self.isEditing = NO;
+        UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleEdit)];
+        self.navigationItem.leftBarButtonItem = editBtn;
+        
+        UIPanGestureRecognizer* pgr4 = [[UIPanGestureRecognizer alloc]
+                                        initWithTarget:self
+                                        action:@selector(handlePan:)];
+        [self.view addGestureRecognizer:pgr4];
+    }
+    else{
+        self.isEditing = YES;
+        UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(toggleEdit)];
+        self.navigationItem.leftBarButtonItem = editBtn;
+        
+        for (UIGestureRecognizer *recognizer in self.view.gestureRecognizers) {
+            [self.view removeGestureRecognizer:recognizer];
+        }
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
