@@ -100,9 +100,12 @@ extern Session *session;
     
     UIView *containerView2 = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x + (self.view.bounds.size.width), self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
     containerView2.backgroundColor = [UIColor blueColor];
-    
     [self.containerViews addObject:containerView2];
     //[self.view addSubview:containerView];
+    
+    UIView *containerView3 = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x + (self.view.bounds.size.width), self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    containerView3.backgroundColor = [UIColor orangeColor];
+    [self.containerViews addObject:containerView3];
 
     UIPanGestureRecognizer* pgr4 = [[UIPanGestureRecognizer alloc]
                                     initWithTarget:self
@@ -295,9 +298,16 @@ extern Session *session;
     int c = 0;
     for(UIView *view in self.containerViews){
         view.frame = CGRectMake(self.view.bounds.origin.x + c * self.view.bounds.size.width, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
-        
         c++;
     }
+    
+    [UIView animateWithDuration:0
+                     animations:^{
+                         [self.parentContainerView setFrame:CGRectMake(self.view.bounds.origin.x - self.view.bounds.size.width * self.activeContainer, self.view.bounds.origin.y+64, self.view.bounds.size.width, self.view.bounds.size.height)];
+                     }
+                     completion:^(BOOL finished) {
+                         
+                     }];
     
     for(cardView* view in self.cardViews){
         view.columns = _columns;
@@ -399,15 +409,26 @@ extern Session *session;
         }
         
         if (pgr.state == UIGestureRecognizerStateEnded) {
-            NSLog(@"%f, %f", self.parentContainerView.frame.origin.x, (self.view.bounds.size.width / 3) );
+            //NSLog(@"%f, %f", self.parentContainerView.frame.origin.x, (self.view.bounds.size.width / 3) );
             
-            if (self.parentContainerView.frame.origin.x < -(self.view.bounds.size.width / 3) &&
-                self.parentContainerView.frame.origin.x < 0) {
-                self.activeContainer++;
+            int leftSide = self.view.bounds.size.width * self.activeContainer;
+            int rightSide = leftSide + self.view.bounds.size.width;
+            int third = 100; //(self.view.bounds.size.width / 3);
+            int parentOrigin = self.parentContainerView.frame.origin.x;
+            
+            NSLog(@"%d, %d, %d", leftSide, parentOrigin, rightSide);
+            
+            if (parentOrigin < -(leftSide + third) && parentOrigin < leftSide) {
+                if (self.activeContainer < [self.containerViews count]-1) {
+                    self.activeContainer++;
+                }
 
             }
-            else{
-                self.activeContainer = 0;
+            
+            else if (-parentOrigin < leftSide && -parentOrigin < leftSide - (third)){
+                if (self.activeContainer > 0) {
+                    self.activeContainer--;
+                }
             }
             
             [UIView animateWithDuration:0.2
