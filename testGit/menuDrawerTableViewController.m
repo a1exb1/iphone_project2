@@ -68,18 +68,18 @@ extern Session *session;
     
     //    cell = [[NSArray alloc]initWithObjects:@"Calendar-Date-03-80.png", @"Calender", @"", @"calender", nil];
     //    [section addObject:cell];
-    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Courses", @"", @"courses", nil];
+    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Courses", @"", @"courses", @"", nil];
     [section addObject:cell];
     
     
-    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add lessons", @"", @"addlessons", nil];
+    cell = [[NSArray alloc]initWithObjects:@"add_80.png", @"Add lessons", @"", @"addlessons", @"", nil];
     [section addObject:cell];
     
     [_cellsArray addObject:section];
     
     //SECTION
     section =[[NSMutableArray alloc ]init];
-    NSLog(@"account type %d",[[session tutor] accountType] );
+    //NSLog(@"account type %d",[[session tutor] accountType] );
     if ([[session tutor] accountType] < 2) {
         
         cell = [[NSArray alloc]initWithObjects:@"974-users-toolbar.png", @"Tutors", @"", @"tutors", @"#4473b4", nil];
@@ -96,7 +96,7 @@ extern Session *session;
     
     //SECTION
     section =[[NSMutableArray alloc ]init];
-    cell = [[NSArray alloc]initWithObjects:@"602-exit.png", @"Logout", @"", @"logout", nil];
+    cell = [[NSArray alloc]initWithObjects:@"602-exit.png", @"Logout", @"", @"logout", @"", nil];
     [section addObject:cell];
     [_cellsArray addObject:section];
 }
@@ -136,36 +136,25 @@ extern Session *session;
     // Configure the cell...
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     
-    //[[cell contentView] setBackgroundColor:[UIColor clearColor]];
-    //[[cell backgroundView] setBackgroundColor:[UIColor clearColor]];
-    //[cell setBackgroundColor:[UIColor clearColor]];
+    NSArray *cellArray = [[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row];
     
-    //cell.textLabel.textColor = [UIColor whiteColor];
-    //cell.detailTextLabel.textColor = [UIColor whiteColor];
-    
-    cell.accessibilityValue = [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 3];
+    cell.accessibilityValue = [cellArray objectAtIndex: 3];
     
     if(![[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 2] isEqualToString:@""]){
         //UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
         cell.detailTextLabel.text = [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 2];
     }
     
+    UIImage *img = [UIImage imageNamed:[cellArray objectAtIndex: 0]];
     
-    
-    
-    UIImage *img = [UIImage imageNamed:[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 0]];
-    if ([[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 3] != nil) {
-        img = [Tools colorAnImage:[Tools colorFromHexString:[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 3]] :img];
-        NSLog(@"%@", [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 3]);
+    if (![[cellArray objectAtIndex:4] isEqualToString:@""]) {
+        NSString *colString = [cellArray objectAtIndex: 4];
+        UIColor *col = [Tools colorFromHexString:colString];
+        img = [Tools colorAnImage:col: img];
     }
     
     cell.imageView.image = img;
-    
-    cell.textLabel.text = [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 1];
-    
-    //UIView *selectionColor = [[UIView alloc] init];
-    //selectionColor.backgroundColor = [Tools colorFromHexString:@"#004c6d"];
-    //cell.selectedBackgroundView = selectionColor;
+    cell.textLabel.text = [cellArray objectAtIndex: 1];
     
     cell.backgroundColor = [UIColor whiteColor];
     if((indexPath.row == 4 && indexPath.section == 0) ||
