@@ -156,7 +156,7 @@ extern Session *session;
     
     [self.lesson loadNotes];
     
-    NSLog(@"%@", self.lesson.Notes);
+    NSLog(@"%@", [self.lesson.Notes objectAtIndex:1]);
     
     //TEXT NOTES
     for(NSDictionary *note in [self.lesson.Notes objectAtIndex:1]){
@@ -174,11 +174,10 @@ extern Session *session;
         if ([[note objectForKey:@"NoteType"] isEqualToString:@"text"]) {
             noteText.text = [note objectForKey:@"Note"];
         }
-        else if ([[note objectForKey:@"NoteType"]isEqualToString:@"text"]) {
-            noteText.text = [note objectForKey:@"FileName"];
+        else if ([[note objectForKey:@"NoteType"]isEqualToString:@"audio"]) {
+            noteText.text = [note objectForKey:@"Filename"];
         }
         
-        noteText.text = @"hello";//, note.note;
         noteText.backgroundColor = [UIColor clearColor];
         [view addSubview:noteText];
         [noteText setUserInteractionEnabled:NO];
