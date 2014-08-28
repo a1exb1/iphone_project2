@@ -11,6 +11,8 @@
 #import "Lesson.h"
 #import "DetailViewManager.h"
 #import "Session.h"
+#import "TextNote.h"
+#import "AudioNote.h"
 
 @protocol agendaDelegate <NSObject>
 -(void)reloadData;
@@ -27,7 +29,6 @@
 @property Lesson *lesson;
 @property int lessonNumber;
 @property int lessonTotal;
-
 @property int activeContainer;
 
 @property (weak, nonatomic) id<agendaDelegate> agendaDelegate;
@@ -36,7 +37,6 @@
 @property int columns;
 
 @property UIView *darkenView;
-
 @property bool isEditing;
 
 @end

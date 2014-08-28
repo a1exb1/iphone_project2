@@ -13,7 +13,7 @@
 @property long studentNoteID;
 @property long studentID;
 @property long lessonID;
-
+//@property NSString *noteType;
 @property NSDate *enteredDate;
 
 -(void) loadByID: (long)noteID;

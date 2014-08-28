@@ -35,6 +35,8 @@
 
 @property int someNumber;
 
+
+
 -(void)loadNotes;
 -(void)save;
 

@@ -87,23 +87,23 @@ extern Session *session;
         _rows = 2;
     }
     
-    self.parentContainerView = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y+64, self.view.bounds.size.width*3, self.view.bounds.size.height)];
+    self.parentContainerView = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y+64, self.view.bounds.size.width*3, self.view.bounds.size.height-64)];
     [self.view addSubview:self.parentContainerView];
     
     
     
     self.containerViews = [[NSMutableArray alloc] init];
     
-    UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
-    containerView.backgroundColor = [UIColor greenColor];
+    UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y+64, self.view.bounds.size.width, self.view.bounds.size.height-64)];
+    //containerView.backgroundColor = [UIColor greenColor];
     [self.containerViews addObject:containerView];
     
-    UIView *containerView2 = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x + (self.view.bounds.size.width), self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    UIView *containerView2 = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y+64, self.view.bounds.size.width, self.view.bounds.size.height-64)];
     containerView2.backgroundColor = [UIColor blueColor];
     [self.containerViews addObject:containerView2];
     //[self.view addSubview:containerView];
     
-    UIView *containerView3 = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x + (self.view.bounds.size.width), self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    UIView *containerView3 = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y+64, self.view.bounds.size.width, self.view.bounds.size.height-64)];
     containerView3.backgroundColor = [UIColor orangeColor];
     [self.containerViews addObject:containerView3];
 
@@ -154,122 +154,47 @@ extern Session *session;
     view.backgroundColor = [UIColor whiteColor];
     [self.cardViews addObject:view];
     
+    [self.lesson loadNotes];
     
-    //note
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = 2;
-    [view updatePositionAnimated:NO];
-    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
-    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
-    [self.cardViews addObject:view];
+    NSLog(@"%@", self.lesson.Notes);
     
-    //note
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = 3;
-    [view updatePositionAnimated:NO];
-    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
-    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
-    [self.cardViews addObject:view];
+    //TEXT NOTES
+    for(NSDictionary *note in [self.lesson.Notes objectAtIndex:1]){
+        view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
+        view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
+        view.columns = _columns;
+        view.rows = _rows;
+        view.cardIndex = 2;
+        [view updatePositionAnimated:NO];
+        //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
+        [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
+        
+        UITextView *noteText = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
+        
+        if ([[note objectForKey:@"NoteType"] isEqualToString:@"text"]) {
+            noteText.text = [note objectForKey:@"Note"];
+        }
+        else if ([[note objectForKey:@"NoteType"]isEqualToString:@"text"]) {
+            noteText.text = [note objectForKey:@"FileName"];
+        }
+        
+        noteText.text = @"hello";//, note.note;
+        noteText.backgroundColor = [UIColor clearColor];
+        [view addSubview:noteText];
+        [noteText setUserInteractionEnabled:NO];
+        
+        [self.cardViews addObject:view];
+    }
     
-    //note
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = 4;
-    [view updatePositionAnimated:NO];
-    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
-    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
-    [self.cardViews addObject:view];
-    
-    //note
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = 5;
-    [view updatePositionAnimated:NO];
-    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
-    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
-    [self.cardViews addObject:view];
-    
-    //note
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = 6;
-    [view updatePositionAnimated:NO];
-    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
-    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
-    [self.cardViews addObject:view];
-    
-    //note
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = 7;
-    [view updatePositionAnimated:NO];
-    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
-    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
-    [self.cardViews addObject:view];
-    
-    //note
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = 8;
-    [view updatePositionAnimated:NO];
-    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
-    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
-    [self.cardViews addObject:view];
-    
-    //note
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = 0;
-    [view updatePositionAnimated:NO];
-    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
-    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
-    [self.cardViews addObject:view];
-    
-    //note
-    view = [[cardView alloc] initWithFrame:CGRectMake(100, 200, 200, 200)];
-    view.parentView = [self.containerViews objectAtIndex:self.activeContainer];
-    view.columns = _columns;
-    view.rows = _rows;
-    view.cardIndex = 1;
-    [view updatePositionAnimated:NO];
-    //view.backgroundColor = [Tools colorFromHexString:@"#ffe400"];
-    [Tools addTopBorderToView:view WithColor:[Tools colorFromHexString:@"#ffe400"]];
-    [self.cardViews addObject:view];
-    
-    
-    
-    //note text label
-    UITextView *noteText = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
-    noteText.text = @"hello this is a long note which can go onto mulitple lines :)";
-    noteText.backgroundColor = [UIColor clearColor];
-    [view addSubview:noteText];
-    [noteText setUserInteractionEnabled:NO];
-    
+    //
     int viewCounter = 0;
     int containerCounter = 0;
     
     for(cardView* view in self.cardViews){
-        NSLog(@"%d, %d", viewCounter, containerCounter);
+        //NSLog(@"%d, %d", viewCounter, containerCounter);
         
         [[self.containerViews objectAtIndex:containerCounter] addSubview:view];
+        view.layer.cornerRadius = 2;
         
         if ((viewCounter+1) % 9 == 0 && viewCounter > 0) {
             viewCounter = 0;
@@ -385,7 +310,7 @@ extern Session *session;
 -(void)renderCards{
     int c = 0;
     for(UIView *view in self.containerViews){
-        view.frame = CGRectMake(self.view.bounds.origin.x + c * self.view.bounds.size.width, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
+        view.frame = CGRectMake(self.view.bounds.origin.x + c * self.view.bounds.size.width, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height-64);
         c++;
     }
     
@@ -396,9 +321,8 @@ extern Session *session;
         view.rows = _rows;
         [Tools removeShadowFromView:view];
         [view updatePositionAnimated:YES];
-        [Tools addShadowToViewWithView:view];
+        //[Tools addShadowToViewWithView:view];
         //[Tools addTopBorderToView:view WithColor:[UIColor redColor]];
-        
         if(view.isBeingViewed){
             [Tools removeShadowFromView:view];
             [view view];

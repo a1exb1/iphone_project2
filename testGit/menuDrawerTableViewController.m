@@ -85,12 +85,12 @@ extern Session *session;
         cell = [[NSArray alloc]initWithObjects:@"974-users-toolbar.png", @"Tutors", @"", @"tutors", @"#4473b4", nil];
         [section addObject:cell];
         
-        cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Courses", @"", @"allcourses", nil];
+        cell = [[NSArray alloc]initWithObjects:@"841-music-playlist.png", @"Courses", @"", @"allcourses", @"#66cc33", nil];
         [section addObject:cell];
         
     }
     
-    cell = [[NSArray alloc]initWithObjects:@"people_80.png", @"Students", @"", @"students", nil];
+    cell = [[NSArray alloc]initWithObjects:@"974-users-toolbar.png", @"Students", @"", @"students", @"#b44444", nil];
     [section addObject:cell];
     [_cellsArray addObject:section];
     
@@ -154,8 +154,9 @@ extern Session *session;
     
     
     UIImage *img = [UIImage imageNamed:[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 0]];
-    if ([[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 0] != nil) {
-        img = [Tools colorAnImage:[Tools colorFromHexString:[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 0]] :img];
+    if ([[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 3] != nil) {
+        img = [Tools colorAnImage:[Tools colorFromHexString:[[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 3]] :img];
+        NSLog(@"%@", [[[_cellsArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row] objectAtIndex: 3]);
     }
     
     cell.imageView.image = img;

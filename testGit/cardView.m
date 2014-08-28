@@ -52,7 +52,7 @@
                          self.center = cent;
                      }
                      completion:^(BOOL finished) {
-                         //[Tools addShadowToViewWithView:self];
+                         [Tools addShadowToViewWithView:self];
                          //self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
                      }];
     

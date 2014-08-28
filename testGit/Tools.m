@@ -215,8 +215,8 @@ NSMutableArray *loaderViews;
 +(void)addShadowToViewWithView:(UIView *)view
 {
     view.layer.masksToBounds = NO;
-    view.layer.shadowOffset = CGSizeMake(2, 2);
-    view.layer.shadowRadius = 2;
+    view.layer.shadowOffset = CGSizeMake(1, 1);
+    view.layer.shadowRadius = 1;
     view.layer.shadowOpacity = 0.15;
     
     view.layer.shadowPath = [UIBezierPath bezierPathWithRect:view.bounds].CGPath;
@@ -605,15 +605,29 @@ NSMutableArray *loaderViews;
 
 }
 
-+(void)addTopBorderToView:(UIView *)view WithColor:(UIColor *)color{
-    //for (CALayer *layer in view.layer.sublayers) {
-        //[layer removeFromSuperlayer];
-    //}
++(void)addTopBorderToView:(UIView *)view WithColor:(UIColor *)color{    
+    for (int i =(int)[view.layer.sublayers count]; i>0; i--) {
+        CALayer *layer = [view.layer.sublayers objectAtIndex:i];
+        if ([layer.accessibilityValue isEqualToString:@"border"]) {
+            [layer removeFromSuperlayer];
+        }
+    }
     
     CALayer *TopBorder = [CALayer layer];
     TopBorder.frame = CGRectMake(0.0f, 0.0f, view.frame.size.width, 3.0f);
     TopBorder.backgroundColor = color.CGColor;
     TopBorder.accessibilityValue = @"border";
+    
+    UIBezierPath *maskPath;
+    maskPath = [UIBezierPath bezierPathWithRoundedRect:TopBorder.bounds
+                                     byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight)
+                                           cornerRadii:CGSizeMake(2.0, 2.0)];
+    
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = view.bounds;
+    maskLayer.path = maskPath.CGPath;
+    TopBorder.mask = maskLayer;
+    
     [view.layer addSublayer:TopBorder];
 }
 
